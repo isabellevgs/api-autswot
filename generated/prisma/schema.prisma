@@ -1,0 +1,265 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Enum para roles de usuário
+enum UserRole {
+  USER // Usuário normal - acesso apenas ao app
+  SUPER_USER // Super usuário - acesso ao app e ao admin
+}
+
+// Modelo de Usuário
+model User {
+  id                    String                 @id @default(uuid())
+  email                 String                 @unique
+  name                  String
+  password              String
+  role                  UserRole               @default(USER)
+  createdAt             DateTime               @default(now())
+  updatedAt             DateTime               @updatedAt
+  posts                 Post[] // Relação com posts
+  questions             Question[] // Relação com perguntas
+  diaryEntries          DiaryEntry[] // Relação com entradas do diário
+  questionarioRespostas QuestionarioResposta[] // Relação com respostas do questionário
+}
+
+// Modelo de Post
+model Post {
+  id        String   @id @default(uuid())
+  title     String
+  content   String   @db.Text // HTML do editor TipTap
+  imageUrl  String? // URL da imagem de capa (opcional)
+  authorId  String
+  author    User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([authorId])
+  @@index([createdAt])
+}
+
+// Modelo de Question (Pergunta)
+model Question {
+  id        String        @id @default(uuid())
+  texto     String        @db.Text
+  ordem     Int // Ordem da pergunta (para reordenação)
+  ativo     Boolean       @default(true) // Status ativo/inativo da pergunta
+  userId    String // ID do usuário (person) a quem a pergunta pertence
+  user      User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+  answers   DiaryAnswer[] // Relação com respostas
+
+  @@index([userId])
+  @@index([userId, ordem])
+  @@index([userId, ativo])
+}
+
+// Modelo de Entrada do Diário
+model DiaryEntry {
+  id        String        @id @default(uuid())
+  userId    String // ID do usuário que criou a entrada
+  user      User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  date      DateTime // Data da entrada (sem hora, apenas data)
+  answers   DiaryAnswer[] // Respostas desta entrada
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+
+  @@unique([userId, date]) // Um usuário só pode ter uma entrada por data
+  @@index([userId])
+  @@index([userId, date])
+}
+
+// Modelo de Resposta do Diário
+model DiaryAnswer {
+  id         String     @id @default(uuid())
+  entryId    String // ID da entrada do diário
+  entry      DiaryEntry @relation(fields: [entryId], references: [id], onDelete: Cascade)
+  questionId String // ID da pergunta
+  question   Question   @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  texto      String     @db.Text // Texto da resposta
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+
+  @@unique([entryId, questionId]) // Uma entrada só pode ter uma resposta por pergunta
+  @@index([entryId])
+  @@index([questionId])
+}
+
+// Modelo de Fraquezas e Ameaças SH
+model FraquezasAmeacasSh {
+  id          String @id @default(uuid())
+  numeroTraco Int // Número do traço
+  pergunta    String @db.Text // Pergunta
+  explicacao  String @db.Text // Explicação
+  frequencia  Float // Frequência
+  intensidade Float // Intensidade
+  swot        String @default("") @db.Text
+
+  @@index([numeroTraco])
+}
+
+// Modelo Histórias sociais
+model HistoriasSociais {
+  id                  String @id @default(uuid())
+  numeroHistoria      Int
+  introducao          String @db.Text
+  titulo              String
+  personagem          String
+  ambientacao         String @db.Text
+  historia            String @db.Text
+  questionamento      String @db.Text
+  perguntaIntensidade String @db.Text
+  intensidadeLeve     String @db.Text
+  intensidadeModerada String @db.Text
+  intensidadeAlta     String @db.Text
+
+  @@index([numeroHistoria])
+}
+
+// Modelo de Fraquezas e Ameaças CH
+model FraquezasAmeacasCh {
+  id          String @id @default(uuid())
+  numeroTraco Int
+  numHistoria Int
+  frequencia  Float
+  intensidade Float
+  swot        String @default("") @db.Text
+
+  @@index([numeroTraco])
+}
+
+// Modelo de Fraquezas e Oportunidades 
+model FraquezasOportunidades {
+  id          String @id @default(uuid())
+  numeroTraco Int
+  pergunta    String @db.Text
+  explicacao  String @db.Text
+  swot        String @default("") @db.Text
+
+  tracoNeutro       TracoNeutroFO[]       @relation("TracoNeutroToFraquezasOportunidades")
+  tracoOportunidade TracoOportunidadeFO[] @relation("TracoOportunidadeToFraquezasOportunidades")
+  tracoFraqueza     TracoFraquezaFO[]     @relation("TracoFraquezaToFraquezasOportunidades")
+
+  @@index([numeroTraco])
+}
+
+// Modelo de Traço Neutro - Fraquezas e Oportunidades 
+model TracoNeutroFO {
+  id                       String                 @id @default(uuid())
+  valor                    String
+  fraquezasOportunidadesId String
+  fraquezasOportunidades   FraquezasOportunidades @relation("TracoNeutroToFraquezasOportunidades", fields: [fraquezasOportunidadesId], references: [id], onDelete: Cascade)
+
+  @@index([fraquezasOportunidadesId])
+}
+
+// Modelo de Traço Oportunidade - Fraquezas e Oportunidades 
+model TracoOportunidadeFO {
+  id                       String                 @id @default(uuid())
+  valor                    String
+  fraquezasOportunidadesId String
+  fraquezasOportunidades   FraquezasOportunidades @relation("TracoOportunidadeToFraquezasOportunidades", fields: [fraquezasOportunidadesId], references: [id], onDelete: Cascade)
+
+  @@index([fraquezasOportunidadesId])
+}
+
+// Modelo de Traço Fraqueza - Fraquezas e Oportunidades 
+model TracoFraquezaFO {
+  id                       String                 @id @default(uuid())
+  valor                    String
+  fraquezasOportunidadesId String
+  fraquezasOportunidades   FraquezasOportunidades @relation("TracoFraquezaToFraquezasOportunidades", fields: [fraquezasOportunidadesId], references: [id], onDelete: Cascade)
+
+  @@index([fraquezasOportunidadesId])
+}
+
+// Modelo de Forcas
+model Forcas {
+  id          String @id @default(uuid())
+  numeroTraco Int
+  pergunta    String @db.Text
+  exemplo     String @db.Text
+  swot        String @default("") @db.Text
+
+  tracoNeutro       TracoNeutroF[]       @relation("TracoNeutroToForcas")
+  tracoForca        TracoForcaF[]        @relation("TracoForcaToForcas")
+  tracoFraqueza     TracoFraquezaF[]     @relation("TracoFraquezaToForcas")
+  tracoOportunidade TracoOportunidadeF[] @relation("TracoOportunidadeToForcas")
+
+  @@index([numeroTraco])
+}
+
+// Modelo de Traço Neutro - Forcas
+model TracoNeutroF {
+  id       String @id @default(uuid())
+  valor    String
+  forcasId String
+  forcas   Forcas @relation("TracoNeutroToForcas", fields: [forcasId], references: [id], onDelete: Cascade)
+
+  @@index([forcasId])
+}
+
+// Modelo de Traço Força - Forcas
+model TracoForcaF {
+  id       String @id @default(uuid())
+  valor    String
+  forcasId String
+  forcas   Forcas @relation("TracoForcaToForcas", fields: [forcasId], references: [id], onDelete: Cascade)
+
+  @@index([forcasId])
+}
+
+// Modelo de Traço Fraqueza - Forcas
+model TracoFraquezaF {
+  id       String @id @default(uuid())
+  valor    String
+  forcasId String
+  forcas   Forcas @relation("TracoFraquezaToForcas", fields: [forcasId], references: [id], onDelete: Cascade)
+
+  @@index([forcasId])
+}
+
+// Modelo de Traço Oportunidade - Forcas
+model TracoOportunidadeF {
+  id       String @id @default(uuid())
+  valor    String
+  forcasId String
+  forcas   Forcas @relation("TracoOportunidadeToForcas", fields: [forcasId], references: [id], onDelete: Cascade)
+
+  @@index([forcasId])
+}
+
+// Modelo de Resposta do Questionário SWOT
+model QuestionarioResposta {
+  id     String @id @default(uuid())
+  userId String // ID do usuário que respondeu
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // Identificação da pergunta
+  perguntaId  String // ID da pergunta original (da tabela SH, CH, FO ou F)
+  tipo        String // Tipo da pergunta: 'SH', 'CH', 'FO', 'F'
+  numeroTraco Int // Número do traço para referência
+
+  // Respostas
+  resposta    String? // Resposta principal: 'sim', 'nao', 'neutro', 'forca', 'fraqueza', 'oportunidade'
+  frequencia  Int? // Frequência selecionada (1-5)
+  intensidade Int? // Intensidade selecionada (1-3), apenas para SH e CH quando resposta é 'sim'
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId, perguntaId, tipo]) // Um usuário só pode ter uma resposta por pergunta
+  @@index([userId])
+  @@index([userId, tipo])
+  @@index([perguntaId])
+}
