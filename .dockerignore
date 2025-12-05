@@ -1,0 +1,12 @@
+node_modules
+dist
+.env
+.git
+.gitignore
+*.md
+.vscode
+.idea
+coverage
+.npm
+.eslintcache
+generated
