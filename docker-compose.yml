@@ -6,7 +6,7 @@ services:
     restart: unless-stopped
     environment:
       POSTGRES_USER: autswot_user
-      POSTGRES_PASSWORD: autswot_secure_pass_2025
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: autswot
     volumes:
       - postgres_data:/var/lib/postgresql/data
@@ -25,7 +25,7 @@ services:
     ports:
       - "3000:3000"
     environment:
-      DATABASE_URL: postgresql://autswot_user:autswot_secure_pass_2025@postgres:5432/autswot?schema=public
+      DATABASE_URL: postgresql://autswot_user:${POSTGRES_PASSWORD}@postgres:5432/autswot?schema=public
       JWT_SECRET: ${JWT_SECRET}
       JWT_REFRESH_SECRET: ${JWT_REFRESH_SECRET}
       JWT_EXPIRES_IN: ${JWT_EXPIRES_IN}
