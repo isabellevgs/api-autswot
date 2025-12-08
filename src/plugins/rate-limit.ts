@@ -1,18 +1,15 @@
-import type { FastifyInstance } from 'fastify';
-import rateLimit from '@fastify/rate-limit';
+import type { FastifyInstance } from "fastify";
+import rateLimit from "@fastify/rate-limit";
 
 export async function rateLimitPlugin(fastify: FastifyInstance) {
   await fastify.register(rateLimit, {
-    global: false, // Não aplicar globalmente
-    max: 100, // Máximo de requisições
-    timeWindow: '15 minutes', // Janela de tempo
-    errorResponseBuilder: (request, context) => {
-      return {
-        error: 'Muitas requisições. Tente novamente mais tarde.',
-        code: 'RATE_LIMIT_EXCEEDED',
-        retryAfter: context.ttl,
-      };
-    }
+    max: 100,
+    timeWindow: "15 minutes",
+    errorResponseBuilder: () => ({
+      statusCode: 429,
+      error: "Too Many Requests",
+      message: "Rate limit exceeded, please try again later.",
+    }),
   });
 }
 
@@ -21,8 +18,7 @@ export const authRateLimit = {
   config: {
     rateLimit: {
       max: 5,
-      timeWindow: '5 minutes'
-    }
-  }
+      timeWindow: "5 minutes",
+    },
+  },
 };
-

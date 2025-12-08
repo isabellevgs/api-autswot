@@ -60,24 +60,28 @@ const getAllowedOrigins = () => {
 
 export async function buildServer() {
   const fastify = Fastify({
-    logger: {
-      level: env.NODE_ENV === "production" ? "info" : "debug",
-      transport:
-        env.NODE_ENV === "development"
-          ? {
+    logger:
+      env.NODE_ENV === "production"
+        ? {
+            level: "error", // Só mostra erros em produção
+            redact: ["req.headers.authorization"], // Remove dados sensíveis
+          }
+        : {
+            level: "info",
+            transport: {
               target: "pino-pretty",
               options: {
                 translateTime: "HH:MM:ss Z",
                 ignore: "pid,hostname",
               },
-            }
-          : undefined,
-    },
+            },
+          },
   });
 
   // Registrar plugins de segurança
   await fastify.register(helmet, {
     contentSecurityPolicy: env.NODE_ENV === "production",
+    hidePoweredBy: true, // Remove header X-Powered-By
   });
 
   // Registrar CORS
@@ -140,65 +144,22 @@ export async function buildServer() {
   // Registrar error handler
   fastify.setErrorHandler(errorHandler);
 
-  // Rota de health check
-  fastify.get(
-    "/",
-    {
-      schema: {
-        tags: ["health"],
-        description: "Informações da API",
-        response: {
-          200: {
-            description: "API online",
-            type: "object",
-            properties: {
-              message: { type: "string" },
-              version: { type: "string" },
-              environment: { type: "string" },
-              docs: { type: "string" },
-            },
-          },
-        },
-      },
-    },
-    async (request, reply) => {
-      return {
-        message: "API AutSWOT está rodando! 🚀",
-        version: "2.0.0",
-        environment: env.NODE_ENV,
-        docs:
-          env.NODE_ENV === "development"
-            ? `http://localhost:${env.PORT}/docs`
-            : "https://api.autswot.com/docs",
-      };
-    }
-  );
+  // Rota raiz minimalista
+  fastify.get("/", async () => {
+    return {
+      status: "ok",
+      timestamp: new Date().toISOString(),
+    };
+  });
 
-  fastify.get(
-    "/health",
-    {
-      schema: {
-        tags: ["health"],
-        description: "Health check da API",
-        response: {
-          200: {
-            description: "API saudável",
-            type: "object",
-            properties: {
-              status: { type: "string" },
-              timestamp: { type: "string" },
-            },
-          },
-        },
-      },
-    },
-    async (request, reply) => {
-      return {
-        status: "healthy",
-        timestamp: new Date().toISOString(),
-      };
-    }
-  );
+  // Health check separado (para monitoramento)
+  fastify.get("/health", async () => {
+    // Você pode adicionar checks de banco, etc
+    return {
+      status: "healthy",
+      uptime: process.uptime(),
+    };
+  });
 
   // Registrar rotas de autenticação com versionamento (v1)
   await fastify.register(authRoutes, { prefix: "/v1/auth" });
