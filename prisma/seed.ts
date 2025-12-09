@@ -1,6 +1,16 @@
 import { PrismaClient } from '../generated/prisma/index.js';
 
-const prisma = new PrismaClient();
+// Garantir que DATABASE_URL está definida
+if (!process.env.DATABASE_URL) {
+  console.error('❌ Erro: DATABASE_URL não está definida.');
+  console.error('Por favor, defina a variável de ambiente DATABASE_URL antes de executar o seed.');
+  process.exit(1);
+}
+
+// Criar PrismaClient (ele lê automaticamente DATABASE_URL da variável de ambiente)
+const prisma = new PrismaClient({
+  log: process.env.NODE_ENV === 'development' ? ['error', 'warn'] : ['error'],
+});
 
 /**
  * Seed de Fraquezas e Ameaças SH

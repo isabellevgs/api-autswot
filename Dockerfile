@@ -21,4 +21,4 @@ RUN bun x prisma generate
 EXPOSE 3000
 
 # Script de inicialização
-CMD ["sh", "-c", "bun x prisma migrate deploy && bun run db:seed && bun run dev"]
+CMD ["sh", "-c", "bun x prisma migrate deploy && bun x prisma db seed && bun run dev"]
