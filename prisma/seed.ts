@@ -18,10 +18,14 @@ const pool = new Pool({
 const adapter = new PrismaPg(pool);
 
 // Criar PrismaClient com adapter (necessário para o engine type "client")
+// IMPORTANTE: O PrismaClient gerado requer adapter quando usa engine type "client"
 const prisma = new PrismaClient({
   adapter,
   log: process.env.NODE_ENV === 'development' ? ['error', 'warn'] : ['error'],
 });
+
+// Log de debug para confirmar que o adapter foi configurado
+console.log('✅ PrismaClient inicializado com adapter');
 
 /**
  * Seed de Fraquezas e Ameaças SH
