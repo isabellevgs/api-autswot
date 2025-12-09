@@ -4,6 +4,8 @@ services:
   postgres:
     image: postgres:16-alpine
     restart: unless-stopped
+    ports:
+      - "127.0.0.1:5432:5432"  # Expõe apenas para localhost da VPS
     environment:
       POSTGRES_USER: autswot_user
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
