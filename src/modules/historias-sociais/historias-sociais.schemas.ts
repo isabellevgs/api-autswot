@@ -33,9 +33,18 @@ export const getHistoriasSociaisParamsSchema = z.object({
 });
 
 export const listHistoriasSociaisQuerySchema = z.object({
-  page: z.string().optional().transform(val => val ? parseInt(val, 10) : 1),
-  limit: z.string().optional().transform(val => val ? parseInt(val, 10) : 10),
-  numeroHistoria: z.string().optional().transform(val => val ? parseInt(val, 10) : undefined),
+  page: z.union([z.string(), z.number()]).optional().transform(val => {
+    if (val === undefined) return 1;
+    return typeof val === 'string' ? parseInt(val, 10) : val;
+  }),
+  limit: z.union([z.string(), z.number()]).optional().transform(val => {
+    if (val === undefined) return 10;
+    return typeof val === 'string' ? parseInt(val, 10) : val;
+  }),
+  numeroHistoria: z.union([z.string(), z.number()]).optional().transform(val => {
+    if (val === undefined) return undefined;
+    return typeof val === 'string' ? parseInt(val, 10) : val;
+  }),
 });
 
 export type CreateHistoriasSociaisInput = z.infer<typeof createHistoriasSociaisSchema>;

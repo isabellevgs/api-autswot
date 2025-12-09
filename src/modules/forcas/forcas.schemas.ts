@@ -17,9 +17,18 @@ export const getForcasParamsSchema = z.object({
 });
 
 export const listForcasQuerySchema = z.object({
-  page: z.string().optional().transform(val => val ? parseInt(val, 10) : 1),
-  limit: z.string().optional().transform(val => val ? parseInt(val, 10) : 10),
-  numeroTraco: z.string().optional().transform(val => val ? parseInt(val, 10) : undefined),
+  page: z.union([z.string(), z.number()]).optional().transform(val => {
+    if (val === undefined) return 1;
+    return typeof val === 'string' ? parseInt(val, 10) : val;
+  }),
+  limit: z.union([z.string(), z.number()]).optional().transform(val => {
+    if (val === undefined) return 10;
+    return typeof val === 'string' ? parseInt(val, 10) : val;
+  }),
+  numeroTraco: z.union([z.string(), z.number()]).optional().transform(val => {
+    if (val === undefined) return undefined;
+    return typeof val === 'string' ? parseInt(val, 10) : val;
+  }),
 });
 
 export type CreateForcasInput = z.infer<typeof createForcasSchema>;
