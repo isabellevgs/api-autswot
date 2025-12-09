@@ -1,4 +1,6 @@
 import { PrismaClient } from '../generated/prisma/index.js';
+import { PrismaPg } from '@prisma/adapter-pg';
+import { Pool } from 'pg';
 
 // Garantir que DATABASE_URL está definida
 if (!process.env.DATABASE_URL) {
@@ -7,8 +9,17 @@ if (!process.env.DATABASE_URL) {
   process.exit(1);
 }
 
-// Criar PrismaClient (ele lê automaticamente DATABASE_URL da variável de ambiente)
+// Criar pool de conexões PostgreSQL
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+});
+
+// Criar adapter do Prisma
+const adapter = new PrismaPg(pool);
+
+// Criar PrismaClient com adapter (necessário para o engine type "client")
 const prisma = new PrismaClient({
+  adapter,
   log: process.env.NODE_ENV === 'development' ? ['error', 'warn'] : ['error'],
 });
 
@@ -1768,6 +1779,7 @@ async function main() {
     throw error;
   } finally {
     await prisma.$disconnect();
+    await pool.end();
   }
 }
 
