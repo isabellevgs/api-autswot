@@ -21,4 +21,6 @@ RUN bun x prisma generate
 EXPOSE 3000
 
 # Script de inicialização
-CMD ["sh", "-c", "bun x prisma migrate deploy && bun x prisma db seed && bun run dev"]
+# Executa migrations, seed e inicia o servidor
+# Usa NODE_ENV para determinar se é produção ou desenvolvimento
+CMD ["sh", "-c", "echo '🚀 Iniciando aplicação...' && echo '📊 Executando migrations...' && bun x prisma migrate deploy && echo '🌱 Executando seed...' && bun x prisma db seed && echo '✅ Seed concluído!' && if [ \"$NODE_ENV\" = \"production\" ]; then echo '🏭 Iniciando em modo produção...' && bun run start; else echo '🔧 Iniciando em modo desenvolvimento...' && bun run dev; fi"]
