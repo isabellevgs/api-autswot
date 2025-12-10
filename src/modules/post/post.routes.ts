@@ -110,18 +110,19 @@ export async function postRoutes(fastify: FastifyInstance) {
 
   // Rotas protegidas (criação, edição, exclusão)
   // Apenas usuários autenticados com role SUPER_USER podem criar/editar/deletar
-  fastify.addHook('onRequest', async (request, reply) => {
-    await fastify.authenticate(request, reply);
-    const user = request.user as any;
-    if (user.role !== 'SUPER_USER') {
-      return reply.status(403).send({
-        error: 'Acesso negado. Apenas super usuários podem gerenciar posts.',
-        code: 'FORBIDDEN',
-      });
-    }
-  });
+  fastify.register(async (authenticatedRoutes) => {
+    authenticatedRoutes.addHook('onRequest', async (request, reply) => {
+      await fastify.authenticate(request, reply);
+      const user = request.user as any;
+      if (user.role !== 'SUPER_USER') {
+        return reply.status(403).send({
+          error: 'Acesso negado. Apenas super usuários podem gerenciar posts.',
+          code: 'FORBIDDEN',
+        });
+      }
+    });
 
-  fastify.post('/', {
+    authenticatedRoutes.post('/', {
     schema: {
       tags: ['posts'],
       description: 'Criar novo post',
@@ -172,9 +173,9 @@ export async function postRoutes(fastify: FastifyInstance) {
         },
       },
     },
-  }, postController.createPost.bind(postController));
+    }, postController.createPost.bind(postController));
 
-  fastify.put('/:id', {
+    authenticatedRoutes.put('/:id', {
     schema: {
       tags: ['posts'],
       description: 'Atualizar post',
@@ -222,9 +223,9 @@ export async function postRoutes(fastify: FastifyInstance) {
         },
       },
     },
-  }, postController.updatePost.bind(postController));
+    }, postController.updatePost.bind(postController));
 
-  fastify.delete('/:id', {
+    authenticatedRoutes.delete('/:id', {
     schema: {
       tags: ['posts'],
       description: 'Excluir post',
@@ -254,6 +255,7 @@ export async function postRoutes(fastify: FastifyInstance) {
         },
       },
     },
-  }, postController.deletePost.bind(postController));
+    }, postController.deletePost.bind(postController));
+  });
 }
 

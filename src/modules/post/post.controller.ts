@@ -1,4 +1,5 @@
 import type { FastifyRequest, FastifyReply } from 'fastify';
+import { ZodError } from 'zod';
 import { PostService } from './post.service.js';
 import {
   createPostSchema,
@@ -21,11 +22,23 @@ export class PostController {
   }
 
   async listPosts(request: FastifyRequest<{ Querystring: ListPostsQuery }>, reply: FastifyReply) {
-    const { page = 1, limit = 10, search } = listPostsQuerySchema.parse(request.query);
-    // Normalizar o termo de busca
-    const normalizedSearch = search?.trim() || undefined;
-    const result = await postService.listPosts(page, limit, normalizedSearch);
-    return reply.send(result);
+    try {
+      const { page = 1, limit = 10, search } = listPostsQuerySchema.parse(request.query);
+      // Normalizar o termo de busca
+      const normalizedSearch = search?.trim() || undefined;
+      const result = await postService.listPosts(page, limit, normalizedSearch);
+      return reply.send(result);
+    } catch (error: any) {
+      request.log.error({ error }, 'Erro ao listar posts');
+      if (error.name === 'ZodError') {
+        return reply.status(400).send({
+          error: 'Parâmetros inválidos',
+          code: 'VALIDATION_ERROR',
+          details: error.errors,
+        });
+      }
+      throw error;
+    }
   }
 
   async createPost(

@@ -21,25 +21,33 @@ export class AuthController {
     const data = registerSchema.parse(request.body) as RegisterInput;
     const user = await authService.register(data);
 
+    // Garantir que o role esteja presente e seja uma string
+    // Normalizar o role para garantir comparação correta no frontend
+    const userRole = user.role ? String(user.role).toUpperCase() : 'USER';
+    const userWithRole = {
+      ...user,
+      role: userRole,
+    };
+
     // Gerar tokens JWT
     const accessToken = request.server.jwt.sign({
-      id: user.id,
-      email: user.email,
-      name: user.name,
-      role: user.role,
+      id: userWithRole.id,
+      email: userWithRole.email,
+      name: userWithRole.name,
+      role: userWithRole.role,
     }, {
       expiresIn: env.JWT_EXPIRES_IN
     });
 
     const refreshToken = request.server.jwt.sign({
-      id: user.id,
+      id: userWithRole.id,
     }, {
       expiresIn: env.JWT_REFRESH_EXPIRES_IN
     });
 
     return reply.status(201).send({
       message: 'Usuário criado com sucesso',
-      user,
+      user: userWithRole,
       accessToken,
       refreshToken,
     });
@@ -54,9 +62,11 @@ export class AuthController {
     console.log('🔍 [DEBUG API] login - Usuário completo:', JSON.stringify(user, null, 2));
 
     // Garantir que o role esteja presente e seja uma string
+    // Normalizar o role para garantir comparação correta no frontend
+    const userRole = user.role ? String(user.role).toUpperCase() : 'USER';
     const userWithRole = {
       ...user,
-      role: user.role || 'USER', // Garantir que role sempre exista
+      role: userRole,
     };
 
     // Debug: verificar o userWithRole
@@ -101,12 +111,16 @@ export class AuthController {
       // Buscar dados atualizados do usuário
       const user = await authService.getProfile(decoded.id);
 
+      // Garantir que o role esteja presente e seja uma string
+      // Normalizar o role para garantir comparação correta no frontend
+      const userRole = user.role ? String(user.role).toUpperCase() : 'USER';
+
       // Gerar novo access token
       const accessToken = request.server.jwt.sign({
         id: user.id,
         email: user.email,
         name: user.name,
-        role: user.role,
+        role: userRole,
       }, {
         expiresIn: env.JWT_EXPIRES_IN
       });
@@ -126,11 +140,19 @@ export class AuthController {
     const userId = request.user.id;
     const user = await authService.getProfile(userId);
     
-    // Debug: log do role retornado
-    console.log('🔍 [DEBUG API] getProfile - Role retornado:', user.role, 'Tipo:', typeof user.role);
-    console.log('🔍 [DEBUG API] getProfile - Usuário completo:', JSON.stringify(user, null, 2));
+    // Garantir que o role esteja presente e seja uma string
+    // Normalizar o role para garantir comparação correta no frontend
+    const userRole = user.role ? String(user.role).toUpperCase() : 'USER';
+    const userWithRole = {
+      ...user,
+      role: userRole,
+    };
     
-    return reply.send({ user });
+    // Debug: log do role retornado
+    console.log('🔍 [DEBUG API] getProfile - Role retornado:', userWithRole.role, 'Tipo:', typeof userWithRole.role);
+    console.log('🔍 [DEBUG API] getProfile - Usuário completo:', JSON.stringify(userWithRole, null, 2));
+    
+    return reply.send({ user: userWithRole });
   }
 
   async updateProfile(request: FastifyRequest, reply: FastifyReply) {
@@ -138,9 +160,17 @@ export class AuthController {
     const data = updateProfileSchema.parse(request.body) as UpdateProfileInput;
     const user = await authService.updateProfile(userId, data);
 
+    // Garantir que o role esteja presente e seja uma string
+    // Normalizar o role para garantir comparação correta no frontend
+    const userRole = user.role ? String(user.role).toUpperCase() : 'USER';
+    const userWithRole = {
+      ...user,
+      role: userRole,
+    };
+
     return reply.send({
       message: 'Perfil atualizado com sucesso',
-      user
+      user: userWithRole
     });
   }
 
