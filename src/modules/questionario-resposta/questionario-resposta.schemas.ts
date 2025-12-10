@@ -21,8 +21,18 @@ export const listRespostasQuerySchema = z.object({
   tipo: z.enum(['SH', 'CH', 'FO', 'F']).optional(),
 });
 
+export const listRespostasByUserIdParamsSchema = z.object({
+  userId: z.string().uuid('ID do usuário inválido'),
+});
+
+export const listRespostasByUserIdQuerySchema = z.object({
+  tipo: z.enum(['SH', 'CH', 'FO', 'F']).optional(),
+});
+
 export type SalvarRespostaInput = z.infer<typeof salvarRespostaSchema>;
 export type SalvarRespostasInput = z.infer<typeof salvarRespostasSchema>;
 export type GetRespostaParams = z.infer<typeof getRespostaParamsSchema>;
 export type ListRespostasQuery = z.infer<typeof listRespostasQuerySchema>;
+export type ListRespostasByUserIdParams = z.infer<typeof listRespostasByUserIdParamsSchema>;
+export type ListRespostasByUserIdQuery = z.infer<typeof listRespostasByUserIdQuerySchema>;
 

@@ -1,14 +1,19 @@
 import type { FastifyRequest, FastifyReply } from 'fastify';
 import { QuestionarioRespostaService } from './questionario-resposta.service.js';
+import { ForbiddenError } from '../../utils/errors.js';
 import {
   salvarRespostaSchema,
   salvarRespostasSchema,
   getRespostaParamsSchema,
   listRespostasQuerySchema,
+  listRespostasByUserIdParamsSchema,
+  listRespostasByUserIdQuerySchema,
   type SalvarRespostaInput,
   type SalvarRespostasInput,
   type GetRespostaParams,
   type ListRespostasQuery,
+  type ListRespostasByUserIdParams,
+  type ListRespostasByUserIdQuery,
 } from './questionario-resposta.schemas.js';
 
 const service = new QuestionarioRespostaService();
@@ -84,6 +89,47 @@ export class QuestionarioRespostaController {
       ameacas: swot.ameacas.length
     });
     return reply.send(swot);
+  }
+
+  async obterSwotByUserId(
+    request: FastifyRequest<{ Params: { userId: string } }>,
+    reply: FastifyReply
+  ) {
+    // Verificar se o usuário é SUPER_USER
+    const userRole = request.user.role?.toString().trim().toUpperCase();
+    if (userRole !== 'SUPER_USER') {
+      throw new ForbiddenError('Apenas super usuários podem visualizar SWOT de outros usuários');
+    }
+
+    const { userId } = request.params;
+    console.log('[DEBUG controller] obterSwotByUserId chamado com userId:', userId);
+    const swot = await service.obterSwotCompleto(userId);
+    console.log('[DEBUG controller] SWOT retornado:', {
+      forcas: swot.forcas.length,
+      fraquezas: swot.fraquezas.length,
+      oportunidades: swot.oportunidades.length,
+      ameacas: swot.ameacas.length
+    });
+    return reply.send(swot);
+  }
+
+  async listRespostasByUserId(
+    request: FastifyRequest<{ 
+      Params: ListRespostasByUserIdParams;
+      Querystring: ListRespostasByUserIdQuery;
+    }>,
+    reply: FastifyReply
+  ) {
+    // Verificar se o usuário é SUPER_USER
+    const userRole = request.user.role?.toString().trim().toUpperCase();
+    if (userRole !== 'SUPER_USER') {
+      throw new ForbiddenError('Apenas super usuários podem visualizar respostas de outros usuários');
+    }
+
+    const { userId } = listRespostasByUserIdParamsSchema.parse(request.params);
+    const { tipo } = listRespostasByUserIdQuerySchema.parse(request.query);
+    const respostas = await service.listRespostasByUserId(userId, tipo);
+    return reply.send({ respostas });
   }
 }
 

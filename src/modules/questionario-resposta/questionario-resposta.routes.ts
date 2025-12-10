@@ -55,6 +55,61 @@ export async function questionarioRespostaRoutes(fastify: FastifyInstance) {
     },
   }, controller.listRespostas.bind(controller));
 
+  // Listar respostas de um usuário específico (apenas para SUPER_USER/admin)
+  fastify.get('/user/:userId', {
+    schema: {
+      tags: ['questionario-resposta'],
+      description: 'Listar respostas do questionário de um usuário específico (apenas para SUPER_USER)',
+      security: [{ bearerAuth: [] }],
+      params: {
+        type: 'object',
+        required: ['userId'],
+        properties: {
+          userId: { type: 'string', format: 'uuid' },
+        },
+      },
+      querystring: {
+        type: 'object',
+        properties: {
+          tipo: { 
+            type: 'string', 
+            enum: ['SH', 'CH', 'FO', 'F'],
+            description: 'Filtrar por tipo de pergunta' 
+          },
+        },
+      },
+      response: {
+        200: {
+          description: 'Lista de respostas',
+          type: 'object',
+          properties: {
+            respostas: {
+              type: 'array',
+              items: {
+                type: 'object',
+                properties: {
+                  id: { type: 'string' },
+                  userId: { type: 'string' },
+                  perguntaId: { type: 'string' },
+                  tipo: { type: 'string' },
+                  numeroTraco: { type: 'number' },
+                  resposta: { type: 'string', nullable: true },
+                  frequencia: { type: 'number', nullable: true },
+                  intensidade: { type: 'number', nullable: true },
+                  mediaUser: { type: 'number', nullable: true, description: 'Média calculada para SH e CH: (frequencia + intensidade * 5/3) / 2' },
+                  classificacaoAmeacaFraqueza: { type: 'string', nullable: true, enum: ['ameaça', 'fraqueza'], description: 'Classificação: ameaça se mediaUser >= intensidade da tabela, fraqueza caso contrário' },
+                  classificacaoTraco: { type: 'string', nullable: true, enum: ['neutro', 'oportunidade', 'fraqueza', 'forca'], description: 'Classificação do traço para FO e F baseada na frequência' },
+                  createdAt: { type: 'string' },
+                  updatedAt: { type: 'string' },
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+  }, controller.listRespostasByUserId.bind(controller));
+
   // Obter resposta específica
   fastify.get('/:id', {
     schema: {
@@ -222,6 +277,111 @@ export async function questionarioRespostaRoutes(fastify: FastifyInstance) {
       },
     },
   }, controller.deletarResposta.bind(controller));
+
+  // Obter SWOT completo de um usuário específico (apenas para SUPER_USER/admin)
+  // IMPORTANTE: Esta rota deve vir ANTES de /swot para evitar conflito
+  fastify.get('/swot/user/:userId', {
+    schema: {
+      tags: ['questionario-resposta'],
+      description: 'Obter SWOT completo de um usuário específico (apenas para SUPER_USER)',
+      security: [{ bearerAuth: [] }],
+      params: {
+        type: 'object',
+        required: ['userId'],
+        properties: {
+          userId: { type: 'string', format: 'uuid' },
+        },
+      },
+      response: {
+        200: {
+          description: 'SWOT completo',
+          type: 'object',
+          properties: {
+            forcas: {
+              type: 'array',
+              items: {
+                type: 'object',
+                properties: {
+                  id: { type: 'string' },
+                  userId: { type: 'string' },
+                  perguntaId: { type: 'string' },
+                  tipo: { type: 'string' },
+                  numeroTraco: { type: 'number' },
+                  resposta: { type: 'string', nullable: true },
+                  frequencia: { type: 'number', nullable: true },
+                  intensidade: { type: 'number', nullable: true },
+                  mediaUser: { type: 'number', nullable: true },
+                  classificacaoAmeacaFraqueza: { type: 'string', nullable: true },
+                  classificacaoTraco: { type: 'string', nullable: true },
+                  swot: { type: 'string', nullable: true },
+                },
+              },
+            },
+            fraquezas: {
+              type: 'array',
+              items: {
+                type: 'object',
+                properties: {
+                  id: { type: 'string' },
+                  userId: { type: 'string' },
+                  perguntaId: { type: 'string' },
+                  tipo: { type: 'string' },
+                  numeroTraco: { type: 'number' },
+                  resposta: { type: 'string', nullable: true },
+                  frequencia: { type: 'number', nullable: true },
+                  intensidade: { type: 'number', nullable: true },
+                  mediaUser: { type: 'number', nullable: true },
+                  classificacaoAmeacaFraqueza: { type: 'string', nullable: true },
+                  classificacaoTraco: { type: 'string', nullable: true },
+                  swot: { type: 'string', nullable: true },
+                },
+              },
+            },
+            oportunidades: {
+              type: 'array',
+              items: {
+                type: 'object',
+                properties: {
+                  id: { type: 'string' },
+                  userId: { type: 'string' },
+                  perguntaId: { type: 'string' },
+                  tipo: { type: 'string' },
+                  numeroTraco: { type: 'number' },
+                  resposta: { type: 'string', nullable: true },
+                  frequencia: { type: 'number', nullable: true },
+                  intensidade: { type: 'number', nullable: true },
+                  mediaUser: { type: 'number', nullable: true },
+                  classificacaoAmeacaFraqueza: { type: 'string', nullable: true },
+                  classificacaoTraco: { type: 'string', nullable: true },
+                  swot: { type: 'string', nullable: true },
+                },
+              },
+            },
+            ameacas: {
+              type: 'array',
+              items: {
+                type: 'object',
+                properties: {
+                  id: { type: 'string' },
+                  userId: { type: 'string' },
+                  perguntaId: { type: 'string' },
+                  tipo: { type: 'string' },
+                  numeroTraco: { type: 'number' },
+                  resposta: { type: 'string', nullable: true },
+                  frequencia: { type: 'number', nullable: true },
+                  intensidade: { type: 'number', nullable: true },
+                  mediaUser: { type: 'number', nullable: true },
+                  classificacaoAmeacaFraqueza: { type: 'string', nullable: true },
+                  classificacaoTraco: { type: 'string', nullable: true },
+                  swot: { type: 'string', nullable: true },
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+  }, controller.obterSwotByUserId.bind(controller));
 
   // Obter SWOT completo organizado por módulos
   fastify.get('/swot', {
