@@ -38,6 +38,17 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
+    networks:
+      default:
+      coolify:
+        aliases:
+          - autswot-api
 
 volumes:
   postgres_data:
+
+networks:
+  default:
+    driver: bridge
+  coolify:
+    external: true
