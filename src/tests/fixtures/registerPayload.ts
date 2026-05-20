@@ -1,0 +1,30 @@
+import type { RegisterInput } from '../../modules/auth/auth.schemas.js';
+
+/** Payload válido completo para POST /auth/register (testes) */
+export const registerPayloadFixture: RegisterInput = {
+  email: 'fixture@example.com',
+  name: 'Usuário Teste',
+  password: 'password123',
+  especialistaIndicacao: 'Dr. Pesquisador Exemplo',
+  diagnosticadoTea: 'sim',
+  outrasCondicoesSaude: 'nao',
+  outrasCondicoesDetalhe: '',
+  acessoMedicacoes: 'sim',
+  terapiasNaoMedicamentosas: 'sim_todas_recomendadas',
+  idade: '30',
+  corRaca: 'branca',
+  genero: 'feminino',
+  generoOutroTexto: '',
+  profissao: 'Estudante',
+  escolaridade: 'graduacao_curso_ou_completa',
+  comQuemMora: 'pais_parentes',
+  situacaoTrabalho: 'nao',
+  auxilioGovernoExperiencia: 'Não solicitei auxílio.',
+  nivelRenda: 'ate_2_sm',
+  burnout: 'nao',
+  burnoutDescricao: '',
+  pensamentosSuicidio: 'nunca',
+  frequenciaSuicidio12meses: 'nunca',
+  contouSuicidioOuBarreiras: 'Não se aplica.',
+  probabilidadeSuicidioFuturoExplicacao: 'Baixa; busco apoio quando necessário.',
+};

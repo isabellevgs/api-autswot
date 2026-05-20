@@ -16,6 +16,8 @@ import { fraquezasOportunidadesRoutes } from "./modules/fraquezas-oportunidades/
 import { historiasSociaisRoutes } from "./modules/historias-sociais/historias-sociais.routes.js";
 import { forcasRoutes } from "./modules/forcas/forcas.routes.js";
 import { questionarioRespostaRoutes } from "./modules/questionario-resposta/questionario-resposta.routes.js";
+import { tracoDetalheRoutes } from "./modules/traco-detalhe/traco-detalhe.routes.js";
+import { reflexaoTracoRoutes } from "./modules/reflexao-traco/reflexao-traco.routes.js";
 import { errorHandler } from "./plugins/error-handler.js";
 import { rateLimitPlugin } from "./plugins/rate-limit.js";
 import { swaggerPlugin } from "./plugins/swagger.js";
@@ -230,6 +232,14 @@ export async function buildServer() {
   await fastify.register(questionarioRespostaRoutes, {
     prefix: "/questionario-resposta",
   });
+
+  // Registrar rotas de traco-detalhe
+  await fastify.register(tracoDetalheRoutes, { prefix: "/v1/traco-detalhe" });
+  await fastify.register(tracoDetalheRoutes, { prefix: "/traco-detalhe" });
+
+  // Registrar rotas de reflexao-traco
+  await fastify.register(reflexaoTracoRoutes, { prefix: "/v1/reflexao-traco" });
+  await fastify.register(reflexaoTracoRoutes, { prefix: "/reflexao-traco" });
 
   return fastify;
 }

@@ -1,5 +1,6 @@
 import { HistoriasSociaisRepository } from './historias-sociais.repository.js';
 import { NotFoundError } from '../../utils/errors.js';
+import type { UpdateHistoriasSociaisInput } from './historias-sociais.schemas.js';
 
 /**
  * Service de HistoriasSociais
@@ -37,6 +38,24 @@ export class HistoriasSociaisService {
     }
 
     return registro;
+  }
+
+  /**
+   * Atualizar registro por ID
+   */
+  async updateHistoriasSociais(id: string, data: UpdateHistoriasSociaisInput) {
+    const exists = await this.historiasSociaisRepository.findById(id);
+    if (!exists) throw new NotFoundError('Registro não encontrado');
+    return this.historiasSociaisRepository.update(id, data);
+  }
+
+  /**
+   * Deletar registro por ID
+   */
+  async deleteHistoriasSociais(id: string) {
+    const exists = await this.historiasSociaisRepository.findById(id);
+    if (!exists) throw new NotFoundError('Registro não encontrado');
+    return this.historiasSociaisRepository.delete(id);
   }
 
   /**

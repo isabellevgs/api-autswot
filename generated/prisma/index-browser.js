@@ -126,6 +126,7 @@ exports.Prisma.UserScalarFieldEnum = {
   name: 'name',
   password: 'password',
   role: 'role',
+  profileRegistration: 'profileRegistration',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -259,6 +260,33 @@ exports.Prisma.TracoOportunidadeFScalarFieldEnum = {
   forcasId: 'forcasId'
 };
 
+exports.Prisma.TracoDetalheScalarFieldEnum = {
+  id: 'id',
+  tipo: 'tipo',
+  numeroTraco: 'numeroTraco',
+  titulo: 'titulo',
+  oQueE: 'oQueE',
+  comoUsar: 'comoUsar',
+  comoOportunidade: 'comoOportunidade',
+  comoAtrapalhar: 'comoAtrapalhar',
+  reduzirImpacto: 'reduzirImpacto',
+  dicas: 'dicas',
+  exemplos: 'exemplos',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ReflexaoTracoScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  tipo: 'tipo',
+  numeroTraco: 'numeroTraco',
+  quadrante: 'quadrante',
+  respostas: 'respostas',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.QuestionarioRespostaScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
@@ -277,9 +305,24 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 
+exports.Prisma.NullableJsonNullValueInput = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull
+};
+
+exports.Prisma.JsonNullValueInput = {
+  JsonNull: Prisma.JsonNull
+};
+
 exports.Prisma.QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
+};
+
+exports.Prisma.JsonNullValueFilter = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull,
+  AnyNull: Prisma.AnyNull
 };
 
 exports.Prisma.NullsOrder = {
@@ -309,6 +352,8 @@ exports.Prisma.ModelName = {
   TracoForcaF: 'TracoForcaF',
   TracoFraquezaF: 'TracoFraquezaF',
   TracoOportunidadeF: 'TracoOportunidadeF',
+  TracoDetalhe: 'TracoDetalhe',
+  ReflexaoTraco: 'ReflexaoTraco',
   QuestionarioResposta: 'QuestionarioResposta'
 };
 

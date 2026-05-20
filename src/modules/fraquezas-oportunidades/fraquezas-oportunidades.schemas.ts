@@ -7,9 +7,13 @@ export const createFraquezasOportunidadesSchema = z.object({
 });
 
 export const updateFraquezasOportunidadesSchema = z.object({
-  numeroTraco: z.number().int().positive('Número do traço deve ser positivo').optional(),
-  pergunta: z.string().min(1, 'Pergunta é obrigatória').optional(),
-  explicacao: z.string().min(1, 'Explicação é obrigatória').optional(),
+  numeroTraco:       z.number().int().positive().optional(),
+  pergunta:          z.string().min(1).optional(),
+  explicacao:        z.string().optional(),
+  swot:              z.string().optional(),
+  tracoNeutro:       z.array(z.string()).optional(),
+  tracoOportunidade: z.array(z.string()).optional(),
+  tracoFraqueza:     z.array(z.string()).optional(),
 });
 
 export const getFraquezasOportunidadesParamsSchema = z.object({

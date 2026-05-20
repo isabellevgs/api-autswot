@@ -1,11 +1,7 @@
 import { FraquezasAmeacasChRepository } from './fraquezas-ameacas-ch.repository.js';
 import { NotFoundError } from '../../utils/errors.js';
+import type { UpdateFraquezasAmeacasChInput } from './fraquezas-ameacas-ch.schemas.js';
 
-/**
- * Service de FraquezasAmeacasCh
- * Contém a lógica de negócio relacionada a fraquezas e ameaças CH
- * Nota: Este módulo é somente leitura - os dados são populados via seed/migration
- */
 export class FraquezasAmeacasChService {
   private fraquezasAmeacasChRepository: FraquezasAmeacasChRepository;
 
@@ -13,22 +9,24 @@ export class FraquezasAmeacasChService {
     this.fraquezasAmeacasChRepository = new FraquezasAmeacasChRepository();
   }
 
-  /**
-   * Obter registro por ID
-   */
   async getFraquezasAmeacasChById(id: string) {
     const registro = await this.fraquezasAmeacasChRepository.findById(id);
-
-    if (!registro) {
-      throw new NotFoundError('Registro não encontrado');
-    }
-
+    if (!registro) throw new NotFoundError('Registro não encontrado');
     return registro;
   }
 
-  /**
-   * Listar registros com paginação e filtros
-   */
+  async updateFraquezasAmeacasCh(id: string, data: UpdateFraquezasAmeacasChInput) {
+    const exists = await this.fraquezasAmeacasChRepository.findById(id);
+    if (!exists) throw new NotFoundError('Registro não encontrado');
+    return this.fraquezasAmeacasChRepository.update(id, data);
+  }
+
+  async deleteFraquezasAmeacasCh(id: string) {
+    const exists = await this.fraquezasAmeacasChRepository.findById(id);
+    if (!exists) throw new NotFoundError('Registro não encontrado');
+    return this.fraquezasAmeacasChRepository.delete(id);
+  }
+
   async listFraquezasAmeacasCh(
     page: number = 1,
     limit: number = 10,
@@ -42,13 +40,7 @@ export class FraquezasAmeacasChService {
 
     return {
       registros,
-      pagination: {
-        page,
-        limit,
-        total,
-        totalPages: Math.ceil(total / limit),
-      },
+      pagination: { page, limit, total, totalPages: Math.ceil(total / limit) },
     };
   }
 }
-

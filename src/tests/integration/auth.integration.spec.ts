@@ -1,18 +1,22 @@
 import { describe, it, expect, beforeAll, afterAll } from 'bun:test';
 import { buildServer } from '../../server';
 import type { FastifyInstance } from 'fastify';
+import { registerPayloadFixture } from '../fixtures/registerPayload';
+import type { RegisterInput } from '../../modules/auth/auth.schemas';
 
 describe('Auth Integration Tests', () => {
   let app: FastifyInstance;
   let authToken: string;
   let refreshToken: string;
-  const testUser = {
-    email: `test-${Date.now()}@example.com`,
-    name: 'Test User',
-    password: 'password123',
-  };
+  let testUser: RegisterInput;
 
   beforeAll(async () => {
+    testUser = {
+      ...registerPayloadFixture,
+      email: `test-${Date.now()}@example.com`,
+      name: 'Test User',
+      password: 'password123',
+    };
     app = await buildServer();
     await app.ready();
   });

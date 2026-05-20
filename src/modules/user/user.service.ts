@@ -1,3 +1,4 @@
+import bcrypt from 'bcryptjs';
 import { UserRepository } from './user.repository.js';
 import { NotFoundError, ConflictError } from '../../utils/errors.js';
 import type { UpdateUserInput } from './user.schemas.js';
@@ -85,6 +86,18 @@ export class UserService {
     );
 
     return updatedUser;
+  }
+
+  /**
+   * Redefinir senha de um usuário (ação administrativa, sem exigir senha atual)
+   */
+  async resetPassword(id: string, newPassword: string) {
+    const user = await this.userRepository.findById(id);
+    if (!user) throw new NotFoundError('Usuário não encontrado');
+
+    const hashed = await bcrypt.hash(newPassword, 10);
+    await this.userRepository.update(id, { password: hashed });
+    return { message: 'Senha redefinida com sucesso' };
   }
 
   /**

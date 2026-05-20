@@ -11,7 +11,8 @@ export const createFraquezasAmeacasShSchema = z.object({
 export const updateFraquezasAmeacasShSchema = z.object({
   numeroTraco: z.number().int().positive('Número do traço deve ser positivo').optional(),
   pergunta: z.string().min(1, 'Pergunta é obrigatória').optional(),
-  explicacao: z.string().min(1, 'Explicação é obrigatória').optional(),
+  explicacao: z.string().optional(),
+  swot: z.string().optional(),
   frequencia: z.number().int().min(0, 'Frequência deve ser um número não negativo').optional(),
   intensidade: z.number().int().min(0, 'Intensidade deve ser um número não negativo').optional(),
 });
@@ -39,4 +40,8 @@ export type CreateFraquezasAmeacasShInput = z.infer<typeof createFraquezasAmeaca
 export type UpdateFraquezasAmeacasShInput = z.infer<typeof updateFraquezasAmeacasShSchema>;
 export type GetFraquezasAmeacasShParams = z.infer<typeof getFraquezasAmeacasShParamsSchema>;
 export type ListFraquezasAmeacasShQuery = z.infer<typeof listFraquezasAmeacasShQuerySchema>;
+
+export const updateFraquezasAmeacasShParamsSchema = getFraquezasAmeacasShParamsSchema;
+export type UpdateFraquezasAmeacasShParams = GetFraquezasAmeacasShParams;
+export type DeleteFraquezasAmeacasShParams = GetFraquezasAmeacasShParams;
 

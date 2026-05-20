@@ -1,4 +1,5 @@
 import bcrypt from 'bcryptjs';
+import type { Prisma } from '../../../generated/prisma/index.js';
 import { AuthRepository } from './auth.repository.js';
 import { ConflictError, NotFoundError, UnauthorizedError } from '../../utils/errors.js';
 import type { RegisterInput, LoginInput, UpdateProfileInput, ChangePasswordInput } from './auth.schemas.js';
@@ -18,22 +19,25 @@ export class AuthService {
    * Registrar novo usuário
    */
   async register(data: RegisterInput) {
+    const { email, name, password, ...profileRegistration } = data;
+
     // Verificar se o email já está em uso
-    const existingUser = await this.authRepository.findByEmail(data.email);
+    const existingUser = await this.authRepository.findByEmail(email);
 
     if (existingUser) {
       throw new ConflictError('Email já está em uso');
     }
 
     // Hash da senha
-    const hashedPassword = await bcrypt.hash(data.password, 10);
+    const hashedPassword = await bcrypt.hash(password, 10);
 
     // Criar usuário
     const user = await this.authRepository.createSelect(
       {
-        email: data.email,
-        name: data.name,
+        email,
+        name,
         password: hashedPassword,
+        profileRegistration: profileRegistration as unknown as Prisma.InputJsonValue,
       },
       {
         id: true,

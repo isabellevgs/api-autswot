@@ -23,12 +23,15 @@ model User {
   name                  String
   password              String
   role                  UserRole               @default(USER)
+  /// Dados sociodemográficos e de saúde coletados no cadastro (JSON validado na API)
+  profileRegistration   Json?
   createdAt             DateTime               @default(now())
   updatedAt             DateTime               @updatedAt
   posts                 Post[] // Relação com posts
   questions             Question[] // Relação com perguntas
   diaryEntries          DiaryEntry[] // Relação com entradas do diário
   questionarioRespostas QuestionarioResposta[] // Relação com respostas do questionário
+  reflexoesTraco        ReflexaoTraco[] // Reflexões dos traços SWOT
 }
 
 // Modelo de Post
@@ -236,6 +239,57 @@ model TracoOportunidadeF {
   forcas   Forcas @relation("TracoOportunidadeToForcas", fields: [forcasId], references: [id], onDelete: Cascade)
 
   @@index([forcasId])
+}
+
+// Modelo de Detalhes dos Traços (conteúdo editorial exibido no modal do app)
+model TracoDetalhe {
+  id          String @id @default(uuid())
+  tipo        String // 'SH' | 'CH' | 'FO' | 'F'
+  numeroTraco Int
+
+  titulo String
+
+  // "O que é" — sempre exibido
+  oQueE Json // String[]
+
+  // Quando classificado como Força (tipo F, quadrante forca)
+  comoUsar Json // String[]
+
+  // Quando classificado como Oportunidade (quadrante oportunidade)
+  comoOportunidade Json // String[]
+
+  // Quando classificado como Fraqueza ou Ameaça (quadrante fraqueza/ameaca)
+  comoAtrapalhar Json // String[]
+  reduzirImpacto Json // String[]
+
+  // Comuns a oportunidade, fraqueza e ameaça
+  dicas    Json // String[]
+  exemplos Json // String[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([tipo, numeroTraco])
+  @@index([tipo])
+}
+
+// Modelo de Reflexões do Usuário por Traço (persistência das respostas qualitativas)
+model ReflexaoTraco {
+  id     String @id @default(uuid())
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  tipo        String // 'SH' | 'CH' | 'FO' | 'F'
+  numeroTraco Int
+  quadrante   String // 'ameaca' | 'fraqueza' | 'oportunidade' | 'forca'
+
+  respostas Json // { q1?: string, q2?: string, ..., q8?: string }
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId, tipo, numeroTraco, quadrante])
+  @@index([userId])
 }
 
 // Modelo de Resposta do Questionário SWOT

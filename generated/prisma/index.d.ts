@@ -99,6 +99,16 @@ export type TracoFraquezaF = $Result.DefaultSelection<Prisma.$TracoFraquezaFPayl
  */
 export type TracoOportunidadeF = $Result.DefaultSelection<Prisma.$TracoOportunidadeFPayload>
 /**
+ * Model TracoDetalhe
+ * 
+ */
+export type TracoDetalhe = $Result.DefaultSelection<Prisma.$TracoDetalhePayload>
+/**
+ * Model ReflexaoTraco
+ * 
+ */
+export type ReflexaoTraco = $Result.DefaultSelection<Prisma.$ReflexaoTracoPayload>
+/**
  * Model QuestionarioResposta
  * 
  */
@@ -407,6 +417,26 @@ export class PrismaClient<
     * ```
     */
   get tracoOportunidadeF(): Prisma.TracoOportunidadeFDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.tracoDetalhe`: Exposes CRUD operations for the **TracoDetalhe** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more TracoDetalhes
+    * const tracoDetalhes = await prisma.tracoDetalhe.findMany()
+    * ```
+    */
+  get tracoDetalhe(): Prisma.TracoDetalheDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.reflexaoTraco`: Exposes CRUD operations for the **ReflexaoTraco** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ReflexaoTracos
+    * const reflexaoTracos = await prisma.reflexaoTraco.findMany()
+    * ```
+    */
+  get reflexaoTraco(): Prisma.ReflexaoTracoDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.questionarioResposta`: Exposes CRUD operations for the **QuestionarioResposta** model.
@@ -868,6 +898,8 @@ export namespace Prisma {
     TracoForcaF: 'TracoForcaF',
     TracoFraquezaF: 'TracoFraquezaF',
     TracoOportunidadeF: 'TracoOportunidadeF',
+    TracoDetalhe: 'TracoDetalhe',
+    ReflexaoTraco: 'ReflexaoTraco',
     QuestionarioResposta: 'QuestionarioResposta'
   };
 
@@ -884,7 +916,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "post" | "question" | "diaryEntry" | "diaryAnswer" | "fraquezasAmeacasSh" | "historiasSociais" | "fraquezasAmeacasCh" | "fraquezasOportunidades" | "tracoNeutroFO" | "tracoOportunidadeFO" | "tracoFraquezaFO" | "forcas" | "tracoNeutroF" | "tracoForcaF" | "tracoFraquezaF" | "tracoOportunidadeF" | "questionarioResposta"
+      modelProps: "user" | "post" | "question" | "diaryEntry" | "diaryAnswer" | "fraquezasAmeacasSh" | "historiasSociais" | "fraquezasAmeacasCh" | "fraquezasOportunidades" | "tracoNeutroFO" | "tracoOportunidadeFO" | "tracoFraquezaFO" | "forcas" | "tracoNeutroF" | "tracoForcaF" | "tracoFraquezaF" | "tracoOportunidadeF" | "tracoDetalhe" | "reflexaoTraco" | "questionarioResposta"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2146,6 +2178,154 @@ export namespace Prisma {
           }
         }
       }
+      TracoDetalhe: {
+        payload: Prisma.$TracoDetalhePayload<ExtArgs>
+        fields: Prisma.TracoDetalheFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.TracoDetalheFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TracoDetalhePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.TracoDetalheFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TracoDetalhePayload>
+          }
+          findFirst: {
+            args: Prisma.TracoDetalheFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TracoDetalhePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.TracoDetalheFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TracoDetalhePayload>
+          }
+          findMany: {
+            args: Prisma.TracoDetalheFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TracoDetalhePayload>[]
+          }
+          create: {
+            args: Prisma.TracoDetalheCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TracoDetalhePayload>
+          }
+          createMany: {
+            args: Prisma.TracoDetalheCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.TracoDetalheCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TracoDetalhePayload>[]
+          }
+          delete: {
+            args: Prisma.TracoDetalheDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TracoDetalhePayload>
+          }
+          update: {
+            args: Prisma.TracoDetalheUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TracoDetalhePayload>
+          }
+          deleteMany: {
+            args: Prisma.TracoDetalheDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.TracoDetalheUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.TracoDetalheUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TracoDetalhePayload>[]
+          }
+          upsert: {
+            args: Prisma.TracoDetalheUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TracoDetalhePayload>
+          }
+          aggregate: {
+            args: Prisma.TracoDetalheAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateTracoDetalhe>
+          }
+          groupBy: {
+            args: Prisma.TracoDetalheGroupByArgs<ExtArgs>
+            result: $Utils.Optional<TracoDetalheGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.TracoDetalheCountArgs<ExtArgs>
+            result: $Utils.Optional<TracoDetalheCountAggregateOutputType> | number
+          }
+        }
+      }
+      ReflexaoTraco: {
+        payload: Prisma.$ReflexaoTracoPayload<ExtArgs>
+        fields: Prisma.ReflexaoTracoFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ReflexaoTracoFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReflexaoTracoPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ReflexaoTracoFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReflexaoTracoPayload>
+          }
+          findFirst: {
+            args: Prisma.ReflexaoTracoFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReflexaoTracoPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ReflexaoTracoFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReflexaoTracoPayload>
+          }
+          findMany: {
+            args: Prisma.ReflexaoTracoFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReflexaoTracoPayload>[]
+          }
+          create: {
+            args: Prisma.ReflexaoTracoCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReflexaoTracoPayload>
+          }
+          createMany: {
+            args: Prisma.ReflexaoTracoCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ReflexaoTracoCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReflexaoTracoPayload>[]
+          }
+          delete: {
+            args: Prisma.ReflexaoTracoDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReflexaoTracoPayload>
+          }
+          update: {
+            args: Prisma.ReflexaoTracoUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReflexaoTracoPayload>
+          }
+          deleteMany: {
+            args: Prisma.ReflexaoTracoDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ReflexaoTracoUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ReflexaoTracoUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReflexaoTracoPayload>[]
+          }
+          upsert: {
+            args: Prisma.ReflexaoTracoUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReflexaoTracoPayload>
+          }
+          aggregate: {
+            args: Prisma.ReflexaoTracoAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateReflexaoTraco>
+          }
+          groupBy: {
+            args: Prisma.ReflexaoTracoGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ReflexaoTracoGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ReflexaoTracoCountArgs<ExtArgs>
+            result: $Utils.Optional<ReflexaoTracoCountAggregateOutputType> | number
+          }
+        }
+      }
       QuestionarioResposta: {
         payload: Prisma.$QuestionarioRespostaPayload<ExtArgs>
         fields: Prisma.QuestionarioRespostaFieldRefs
@@ -2329,6 +2509,8 @@ export namespace Prisma {
     tracoForcaF?: TracoForcaFOmit
     tracoFraquezaF?: TracoFraquezaFOmit
     tracoOportunidadeF?: TracoOportunidadeFOmit
+    tracoDetalhe?: TracoDetalheOmit
+    reflexaoTraco?: ReflexaoTracoOmit
     questionarioResposta?: QuestionarioRespostaOmit
   }
 
@@ -2414,6 +2596,7 @@ export namespace Prisma {
     questions: number
     diaryEntries: number
     questionarioRespostas: number
+    reflexoesTraco: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2421,6 +2604,7 @@ export namespace Prisma {
     questions?: boolean | UserCountOutputTypeCountQuestionsArgs
     diaryEntries?: boolean | UserCountOutputTypeCountDiaryEntriesArgs
     questionarioRespostas?: boolean | UserCountOutputTypeCountQuestionarioRespostasArgs
+    reflexoesTraco?: boolean | UserCountOutputTypeCountReflexoesTracoArgs
   }
 
   // Custom InputTypes
@@ -2460,6 +2644,13 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountQuestionarioRespostasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: QuestionarioRespostaWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountReflexoesTracoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ReflexaoTracoWhereInput
   }
 
 
@@ -2672,6 +2863,7 @@ export namespace Prisma {
     name: number
     password: number
     role: number
+    profileRegistration: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -2704,6 +2896,7 @@ export namespace Prisma {
     name?: true
     password?: true
     role?: true
+    profileRegistration?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -2787,6 +2980,7 @@ export namespace Prisma {
     name: string
     password: string
     role: $Enums.UserRole
+    profileRegistration: JsonValue | null
     createdAt: Date
     updatedAt: Date
     _count: UserCountAggregateOutputType | null
@@ -2814,12 +3008,14 @@ export namespace Prisma {
     name?: boolean
     password?: boolean
     role?: boolean
+    profileRegistration?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     posts?: boolean | User$postsArgs<ExtArgs>
     questions?: boolean | User$questionsArgs<ExtArgs>
     diaryEntries?: boolean | User$diaryEntriesArgs<ExtArgs>
     questionarioRespostas?: boolean | User$questionarioRespostasArgs<ExtArgs>
+    reflexoesTraco?: boolean | User$reflexoesTracoArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -2829,6 +3025,7 @@ export namespace Prisma {
     name?: boolean
     password?: boolean
     role?: boolean
+    profileRegistration?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["user"]>
@@ -2839,6 +3036,7 @@ export namespace Prisma {
     name?: boolean
     password?: boolean
     role?: boolean
+    profileRegistration?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["user"]>
@@ -2849,16 +3047,18 @@ export namespace Prisma {
     name?: boolean
     password?: boolean
     role?: boolean
+    profileRegistration?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "name" | "password" | "role" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "name" | "password" | "role" | "profileRegistration" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     posts?: boolean | User$postsArgs<ExtArgs>
     questions?: boolean | User$questionsArgs<ExtArgs>
     diaryEntries?: boolean | User$diaryEntriesArgs<ExtArgs>
     questionarioRespostas?: boolean | User$questionarioRespostasArgs<ExtArgs>
+    reflexoesTraco?: boolean | User$reflexoesTracoArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -2871,6 +3071,7 @@ export namespace Prisma {
       questions: Prisma.$QuestionPayload<ExtArgs>[]
       diaryEntries: Prisma.$DiaryEntryPayload<ExtArgs>[]
       questionarioRespostas: Prisma.$QuestionarioRespostaPayload<ExtArgs>[]
+      reflexoesTraco: Prisma.$ReflexaoTracoPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -2878,6 +3079,10 @@ export namespace Prisma {
       name: string
       password: string
       role: $Enums.UserRole
+      /**
+       * Dados sociodemográficos e de saúde coletados no cadastro (JSON validado na API)
+       */
+      profileRegistration: Prisma.JsonValue | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["user"]>
@@ -3278,6 +3483,7 @@ export namespace Prisma {
     questions<T extends User$questionsArgs<ExtArgs> = {}>(args?: Subset<T, User$questionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$QuestionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     diaryEntries<T extends User$diaryEntriesArgs<ExtArgs> = {}>(args?: Subset<T, User$diaryEntriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DiaryEntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     questionarioRespostas<T extends User$questionarioRespostasArgs<ExtArgs> = {}>(args?: Subset<T, User$questionarioRespostasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$QuestionarioRespostaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    reflexoesTraco<T extends User$reflexoesTracoArgs<ExtArgs> = {}>(args?: Subset<T, User$reflexoesTracoArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReflexaoTracoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3312,6 +3518,7 @@ export namespace Prisma {
     readonly name: FieldRef<"User", 'String'>
     readonly password: FieldRef<"User", 'String'>
     readonly role: FieldRef<"User", 'UserRole'>
+    readonly profileRegistration: FieldRef<"User", 'Json'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
     readonly updatedAt: FieldRef<"User", 'DateTime'>
   }
@@ -3795,6 +4002,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: QuestionarioRespostaScalarFieldEnum | QuestionarioRespostaScalarFieldEnum[]
+  }
+
+  /**
+   * User.reflexoesTraco
+   */
+  export type User$reflexoesTracoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReflexaoTraco
+     */
+    select?: ReflexaoTracoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ReflexaoTraco
+     */
+    omit?: ReflexaoTracoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReflexaoTracoInclude<ExtArgs> | null
+    where?: ReflexaoTracoWhereInput
+    orderBy?: ReflexaoTracoOrderByWithRelationInput | ReflexaoTracoOrderByWithRelationInput[]
+    cursor?: ReflexaoTracoWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ReflexaoTracoScalarFieldEnum | ReflexaoTracoScalarFieldEnum[]
   }
 
   /**
@@ -21025,6 +21256,2238 @@ export namespace Prisma {
 
 
   /**
+   * Model TracoDetalhe
+   */
+
+  export type AggregateTracoDetalhe = {
+    _count: TracoDetalheCountAggregateOutputType | null
+    _avg: TracoDetalheAvgAggregateOutputType | null
+    _sum: TracoDetalheSumAggregateOutputType | null
+    _min: TracoDetalheMinAggregateOutputType | null
+    _max: TracoDetalheMaxAggregateOutputType | null
+  }
+
+  export type TracoDetalheAvgAggregateOutputType = {
+    numeroTraco: number | null
+  }
+
+  export type TracoDetalheSumAggregateOutputType = {
+    numeroTraco: number | null
+  }
+
+  export type TracoDetalheMinAggregateOutputType = {
+    id: string | null
+    tipo: string | null
+    numeroTraco: number | null
+    titulo: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type TracoDetalheMaxAggregateOutputType = {
+    id: string | null
+    tipo: string | null
+    numeroTraco: number | null
+    titulo: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type TracoDetalheCountAggregateOutputType = {
+    id: number
+    tipo: number
+    numeroTraco: number
+    titulo: number
+    oQueE: number
+    comoUsar: number
+    comoOportunidade: number
+    comoAtrapalhar: number
+    reduzirImpacto: number
+    dicas: number
+    exemplos: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type TracoDetalheAvgAggregateInputType = {
+    numeroTraco?: true
+  }
+
+  export type TracoDetalheSumAggregateInputType = {
+    numeroTraco?: true
+  }
+
+  export type TracoDetalheMinAggregateInputType = {
+    id?: true
+    tipo?: true
+    numeroTraco?: true
+    titulo?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type TracoDetalheMaxAggregateInputType = {
+    id?: true
+    tipo?: true
+    numeroTraco?: true
+    titulo?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type TracoDetalheCountAggregateInputType = {
+    id?: true
+    tipo?: true
+    numeroTraco?: true
+    titulo?: true
+    oQueE?: true
+    comoUsar?: true
+    comoOportunidade?: true
+    comoAtrapalhar?: true
+    reduzirImpacto?: true
+    dicas?: true
+    exemplos?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type TracoDetalheAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TracoDetalhe to aggregate.
+     */
+    where?: TracoDetalheWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TracoDetalhes to fetch.
+     */
+    orderBy?: TracoDetalheOrderByWithRelationInput | TracoDetalheOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: TracoDetalheWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TracoDetalhes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TracoDetalhes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned TracoDetalhes
+    **/
+    _count?: true | TracoDetalheCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: TracoDetalheAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: TracoDetalheSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: TracoDetalheMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: TracoDetalheMaxAggregateInputType
+  }
+
+  export type GetTracoDetalheAggregateType<T extends TracoDetalheAggregateArgs> = {
+        [P in keyof T & keyof AggregateTracoDetalhe]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateTracoDetalhe[P]>
+      : GetScalarType<T[P], AggregateTracoDetalhe[P]>
+  }
+
+
+
+
+  export type TracoDetalheGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TracoDetalheWhereInput
+    orderBy?: TracoDetalheOrderByWithAggregationInput | TracoDetalheOrderByWithAggregationInput[]
+    by: TracoDetalheScalarFieldEnum[] | TracoDetalheScalarFieldEnum
+    having?: TracoDetalheScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: TracoDetalheCountAggregateInputType | true
+    _avg?: TracoDetalheAvgAggregateInputType
+    _sum?: TracoDetalheSumAggregateInputType
+    _min?: TracoDetalheMinAggregateInputType
+    _max?: TracoDetalheMaxAggregateInputType
+  }
+
+  export type TracoDetalheGroupByOutputType = {
+    id: string
+    tipo: string
+    numeroTraco: number
+    titulo: string
+    oQueE: JsonValue
+    comoUsar: JsonValue
+    comoOportunidade: JsonValue
+    comoAtrapalhar: JsonValue
+    reduzirImpacto: JsonValue
+    dicas: JsonValue
+    exemplos: JsonValue
+    createdAt: Date
+    updatedAt: Date
+    _count: TracoDetalheCountAggregateOutputType | null
+    _avg: TracoDetalheAvgAggregateOutputType | null
+    _sum: TracoDetalheSumAggregateOutputType | null
+    _min: TracoDetalheMinAggregateOutputType | null
+    _max: TracoDetalheMaxAggregateOutputType | null
+  }
+
+  type GetTracoDetalheGroupByPayload<T extends TracoDetalheGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<TracoDetalheGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof TracoDetalheGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], TracoDetalheGroupByOutputType[P]>
+            : GetScalarType<T[P], TracoDetalheGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type TracoDetalheSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tipo?: boolean
+    numeroTraco?: boolean
+    titulo?: boolean
+    oQueE?: boolean
+    comoUsar?: boolean
+    comoOportunidade?: boolean
+    comoAtrapalhar?: boolean
+    reduzirImpacto?: boolean
+    dicas?: boolean
+    exemplos?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["tracoDetalhe"]>
+
+  export type TracoDetalheSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tipo?: boolean
+    numeroTraco?: boolean
+    titulo?: boolean
+    oQueE?: boolean
+    comoUsar?: boolean
+    comoOportunidade?: boolean
+    comoAtrapalhar?: boolean
+    reduzirImpacto?: boolean
+    dicas?: boolean
+    exemplos?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["tracoDetalhe"]>
+
+  export type TracoDetalheSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tipo?: boolean
+    numeroTraco?: boolean
+    titulo?: boolean
+    oQueE?: boolean
+    comoUsar?: boolean
+    comoOportunidade?: boolean
+    comoAtrapalhar?: boolean
+    reduzirImpacto?: boolean
+    dicas?: boolean
+    exemplos?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["tracoDetalhe"]>
+
+  export type TracoDetalheSelectScalar = {
+    id?: boolean
+    tipo?: boolean
+    numeroTraco?: boolean
+    titulo?: boolean
+    oQueE?: boolean
+    comoUsar?: boolean
+    comoOportunidade?: boolean
+    comoAtrapalhar?: boolean
+    reduzirImpacto?: boolean
+    dicas?: boolean
+    exemplos?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type TracoDetalheOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tipo" | "numeroTraco" | "titulo" | "oQueE" | "comoUsar" | "comoOportunidade" | "comoAtrapalhar" | "reduzirImpacto" | "dicas" | "exemplos" | "createdAt" | "updatedAt", ExtArgs["result"]["tracoDetalhe"]>
+
+  export type $TracoDetalhePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "TracoDetalhe"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      tipo: string
+      numeroTraco: number
+      titulo: string
+      oQueE: Prisma.JsonValue
+      comoUsar: Prisma.JsonValue
+      comoOportunidade: Prisma.JsonValue
+      comoAtrapalhar: Prisma.JsonValue
+      reduzirImpacto: Prisma.JsonValue
+      dicas: Prisma.JsonValue
+      exemplos: Prisma.JsonValue
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["tracoDetalhe"]>
+    composites: {}
+  }
+
+  type TracoDetalheGetPayload<S extends boolean | null | undefined | TracoDetalheDefaultArgs> = $Result.GetResult<Prisma.$TracoDetalhePayload, S>
+
+  type TracoDetalheCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<TracoDetalheFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: TracoDetalheCountAggregateInputType | true
+    }
+
+  export interface TracoDetalheDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['TracoDetalhe'], meta: { name: 'TracoDetalhe' } }
+    /**
+     * Find zero or one TracoDetalhe that matches the filter.
+     * @param {TracoDetalheFindUniqueArgs} args - Arguments to find a TracoDetalhe
+     * @example
+     * // Get one TracoDetalhe
+     * const tracoDetalhe = await prisma.tracoDetalhe.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends TracoDetalheFindUniqueArgs>(args: SelectSubset<T, TracoDetalheFindUniqueArgs<ExtArgs>>): Prisma__TracoDetalheClient<$Result.GetResult<Prisma.$TracoDetalhePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one TracoDetalhe that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {TracoDetalheFindUniqueOrThrowArgs} args - Arguments to find a TracoDetalhe
+     * @example
+     * // Get one TracoDetalhe
+     * const tracoDetalhe = await prisma.tracoDetalhe.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends TracoDetalheFindUniqueOrThrowArgs>(args: SelectSubset<T, TracoDetalheFindUniqueOrThrowArgs<ExtArgs>>): Prisma__TracoDetalheClient<$Result.GetResult<Prisma.$TracoDetalhePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TracoDetalhe that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TracoDetalheFindFirstArgs} args - Arguments to find a TracoDetalhe
+     * @example
+     * // Get one TracoDetalhe
+     * const tracoDetalhe = await prisma.tracoDetalhe.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends TracoDetalheFindFirstArgs>(args?: SelectSubset<T, TracoDetalheFindFirstArgs<ExtArgs>>): Prisma__TracoDetalheClient<$Result.GetResult<Prisma.$TracoDetalhePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TracoDetalhe that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TracoDetalheFindFirstOrThrowArgs} args - Arguments to find a TracoDetalhe
+     * @example
+     * // Get one TracoDetalhe
+     * const tracoDetalhe = await prisma.tracoDetalhe.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends TracoDetalheFindFirstOrThrowArgs>(args?: SelectSubset<T, TracoDetalheFindFirstOrThrowArgs<ExtArgs>>): Prisma__TracoDetalheClient<$Result.GetResult<Prisma.$TracoDetalhePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more TracoDetalhes that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TracoDetalheFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all TracoDetalhes
+     * const tracoDetalhes = await prisma.tracoDetalhe.findMany()
+     * 
+     * // Get first 10 TracoDetalhes
+     * const tracoDetalhes = await prisma.tracoDetalhe.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const tracoDetalheWithIdOnly = await prisma.tracoDetalhe.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends TracoDetalheFindManyArgs>(args?: SelectSubset<T, TracoDetalheFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TracoDetalhePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a TracoDetalhe.
+     * @param {TracoDetalheCreateArgs} args - Arguments to create a TracoDetalhe.
+     * @example
+     * // Create one TracoDetalhe
+     * const TracoDetalhe = await prisma.tracoDetalhe.create({
+     *   data: {
+     *     // ... data to create a TracoDetalhe
+     *   }
+     * })
+     * 
+     */
+    create<T extends TracoDetalheCreateArgs>(args: SelectSubset<T, TracoDetalheCreateArgs<ExtArgs>>): Prisma__TracoDetalheClient<$Result.GetResult<Prisma.$TracoDetalhePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many TracoDetalhes.
+     * @param {TracoDetalheCreateManyArgs} args - Arguments to create many TracoDetalhes.
+     * @example
+     * // Create many TracoDetalhes
+     * const tracoDetalhe = await prisma.tracoDetalhe.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends TracoDetalheCreateManyArgs>(args?: SelectSubset<T, TracoDetalheCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many TracoDetalhes and returns the data saved in the database.
+     * @param {TracoDetalheCreateManyAndReturnArgs} args - Arguments to create many TracoDetalhes.
+     * @example
+     * // Create many TracoDetalhes
+     * const tracoDetalhe = await prisma.tracoDetalhe.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many TracoDetalhes and only return the `id`
+     * const tracoDetalheWithIdOnly = await prisma.tracoDetalhe.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends TracoDetalheCreateManyAndReturnArgs>(args?: SelectSubset<T, TracoDetalheCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TracoDetalhePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a TracoDetalhe.
+     * @param {TracoDetalheDeleteArgs} args - Arguments to delete one TracoDetalhe.
+     * @example
+     * // Delete one TracoDetalhe
+     * const TracoDetalhe = await prisma.tracoDetalhe.delete({
+     *   where: {
+     *     // ... filter to delete one TracoDetalhe
+     *   }
+     * })
+     * 
+     */
+    delete<T extends TracoDetalheDeleteArgs>(args: SelectSubset<T, TracoDetalheDeleteArgs<ExtArgs>>): Prisma__TracoDetalheClient<$Result.GetResult<Prisma.$TracoDetalhePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one TracoDetalhe.
+     * @param {TracoDetalheUpdateArgs} args - Arguments to update one TracoDetalhe.
+     * @example
+     * // Update one TracoDetalhe
+     * const tracoDetalhe = await prisma.tracoDetalhe.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends TracoDetalheUpdateArgs>(args: SelectSubset<T, TracoDetalheUpdateArgs<ExtArgs>>): Prisma__TracoDetalheClient<$Result.GetResult<Prisma.$TracoDetalhePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more TracoDetalhes.
+     * @param {TracoDetalheDeleteManyArgs} args - Arguments to filter TracoDetalhes to delete.
+     * @example
+     * // Delete a few TracoDetalhes
+     * const { count } = await prisma.tracoDetalhe.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends TracoDetalheDeleteManyArgs>(args?: SelectSubset<T, TracoDetalheDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TracoDetalhes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TracoDetalheUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many TracoDetalhes
+     * const tracoDetalhe = await prisma.tracoDetalhe.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends TracoDetalheUpdateManyArgs>(args: SelectSubset<T, TracoDetalheUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TracoDetalhes and returns the data updated in the database.
+     * @param {TracoDetalheUpdateManyAndReturnArgs} args - Arguments to update many TracoDetalhes.
+     * @example
+     * // Update many TracoDetalhes
+     * const tracoDetalhe = await prisma.tracoDetalhe.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more TracoDetalhes and only return the `id`
+     * const tracoDetalheWithIdOnly = await prisma.tracoDetalhe.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends TracoDetalheUpdateManyAndReturnArgs>(args: SelectSubset<T, TracoDetalheUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TracoDetalhePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one TracoDetalhe.
+     * @param {TracoDetalheUpsertArgs} args - Arguments to update or create a TracoDetalhe.
+     * @example
+     * // Update or create a TracoDetalhe
+     * const tracoDetalhe = await prisma.tracoDetalhe.upsert({
+     *   create: {
+     *     // ... data to create a TracoDetalhe
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the TracoDetalhe we want to update
+     *   }
+     * })
+     */
+    upsert<T extends TracoDetalheUpsertArgs>(args: SelectSubset<T, TracoDetalheUpsertArgs<ExtArgs>>): Prisma__TracoDetalheClient<$Result.GetResult<Prisma.$TracoDetalhePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of TracoDetalhes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TracoDetalheCountArgs} args - Arguments to filter TracoDetalhes to count.
+     * @example
+     * // Count the number of TracoDetalhes
+     * const count = await prisma.tracoDetalhe.count({
+     *   where: {
+     *     // ... the filter for the TracoDetalhes we want to count
+     *   }
+     * })
+    **/
+    count<T extends TracoDetalheCountArgs>(
+      args?: Subset<T, TracoDetalheCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], TracoDetalheCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a TracoDetalhe.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TracoDetalheAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends TracoDetalheAggregateArgs>(args: Subset<T, TracoDetalheAggregateArgs>): Prisma.PrismaPromise<GetTracoDetalheAggregateType<T>>
+
+    /**
+     * Group by TracoDetalhe.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TracoDetalheGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends TracoDetalheGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: TracoDetalheGroupByArgs['orderBy'] }
+        : { orderBy?: TracoDetalheGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, TracoDetalheGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTracoDetalheGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the TracoDetalhe model
+   */
+  readonly fields: TracoDetalheFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for TracoDetalhe.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__TracoDetalheClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the TracoDetalhe model
+   */
+  interface TracoDetalheFieldRefs {
+    readonly id: FieldRef<"TracoDetalhe", 'String'>
+    readonly tipo: FieldRef<"TracoDetalhe", 'String'>
+    readonly numeroTraco: FieldRef<"TracoDetalhe", 'Int'>
+    readonly titulo: FieldRef<"TracoDetalhe", 'String'>
+    readonly oQueE: FieldRef<"TracoDetalhe", 'Json'>
+    readonly comoUsar: FieldRef<"TracoDetalhe", 'Json'>
+    readonly comoOportunidade: FieldRef<"TracoDetalhe", 'Json'>
+    readonly comoAtrapalhar: FieldRef<"TracoDetalhe", 'Json'>
+    readonly reduzirImpacto: FieldRef<"TracoDetalhe", 'Json'>
+    readonly dicas: FieldRef<"TracoDetalhe", 'Json'>
+    readonly exemplos: FieldRef<"TracoDetalhe", 'Json'>
+    readonly createdAt: FieldRef<"TracoDetalhe", 'DateTime'>
+    readonly updatedAt: FieldRef<"TracoDetalhe", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * TracoDetalhe findUnique
+   */
+  export type TracoDetalheFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TracoDetalhe
+     */
+    select?: TracoDetalheSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TracoDetalhe
+     */
+    omit?: TracoDetalheOmit<ExtArgs> | null
+    /**
+     * Filter, which TracoDetalhe to fetch.
+     */
+    where: TracoDetalheWhereUniqueInput
+  }
+
+  /**
+   * TracoDetalhe findUniqueOrThrow
+   */
+  export type TracoDetalheFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TracoDetalhe
+     */
+    select?: TracoDetalheSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TracoDetalhe
+     */
+    omit?: TracoDetalheOmit<ExtArgs> | null
+    /**
+     * Filter, which TracoDetalhe to fetch.
+     */
+    where: TracoDetalheWhereUniqueInput
+  }
+
+  /**
+   * TracoDetalhe findFirst
+   */
+  export type TracoDetalheFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TracoDetalhe
+     */
+    select?: TracoDetalheSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TracoDetalhe
+     */
+    omit?: TracoDetalheOmit<ExtArgs> | null
+    /**
+     * Filter, which TracoDetalhe to fetch.
+     */
+    where?: TracoDetalheWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TracoDetalhes to fetch.
+     */
+    orderBy?: TracoDetalheOrderByWithRelationInput | TracoDetalheOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TracoDetalhes.
+     */
+    cursor?: TracoDetalheWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TracoDetalhes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TracoDetalhes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TracoDetalhes.
+     */
+    distinct?: TracoDetalheScalarFieldEnum | TracoDetalheScalarFieldEnum[]
+  }
+
+  /**
+   * TracoDetalhe findFirstOrThrow
+   */
+  export type TracoDetalheFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TracoDetalhe
+     */
+    select?: TracoDetalheSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TracoDetalhe
+     */
+    omit?: TracoDetalheOmit<ExtArgs> | null
+    /**
+     * Filter, which TracoDetalhe to fetch.
+     */
+    where?: TracoDetalheWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TracoDetalhes to fetch.
+     */
+    orderBy?: TracoDetalheOrderByWithRelationInput | TracoDetalheOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TracoDetalhes.
+     */
+    cursor?: TracoDetalheWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TracoDetalhes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TracoDetalhes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TracoDetalhes.
+     */
+    distinct?: TracoDetalheScalarFieldEnum | TracoDetalheScalarFieldEnum[]
+  }
+
+  /**
+   * TracoDetalhe findMany
+   */
+  export type TracoDetalheFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TracoDetalhe
+     */
+    select?: TracoDetalheSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TracoDetalhe
+     */
+    omit?: TracoDetalheOmit<ExtArgs> | null
+    /**
+     * Filter, which TracoDetalhes to fetch.
+     */
+    where?: TracoDetalheWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TracoDetalhes to fetch.
+     */
+    orderBy?: TracoDetalheOrderByWithRelationInput | TracoDetalheOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing TracoDetalhes.
+     */
+    cursor?: TracoDetalheWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TracoDetalhes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TracoDetalhes.
+     */
+    skip?: number
+    distinct?: TracoDetalheScalarFieldEnum | TracoDetalheScalarFieldEnum[]
+  }
+
+  /**
+   * TracoDetalhe create
+   */
+  export type TracoDetalheCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TracoDetalhe
+     */
+    select?: TracoDetalheSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TracoDetalhe
+     */
+    omit?: TracoDetalheOmit<ExtArgs> | null
+    /**
+     * The data needed to create a TracoDetalhe.
+     */
+    data: XOR<TracoDetalheCreateInput, TracoDetalheUncheckedCreateInput>
+  }
+
+  /**
+   * TracoDetalhe createMany
+   */
+  export type TracoDetalheCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many TracoDetalhes.
+     */
+    data: TracoDetalheCreateManyInput | TracoDetalheCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * TracoDetalhe createManyAndReturn
+   */
+  export type TracoDetalheCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TracoDetalhe
+     */
+    select?: TracoDetalheSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the TracoDetalhe
+     */
+    omit?: TracoDetalheOmit<ExtArgs> | null
+    /**
+     * The data used to create many TracoDetalhes.
+     */
+    data: TracoDetalheCreateManyInput | TracoDetalheCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * TracoDetalhe update
+   */
+  export type TracoDetalheUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TracoDetalhe
+     */
+    select?: TracoDetalheSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TracoDetalhe
+     */
+    omit?: TracoDetalheOmit<ExtArgs> | null
+    /**
+     * The data needed to update a TracoDetalhe.
+     */
+    data: XOR<TracoDetalheUpdateInput, TracoDetalheUncheckedUpdateInput>
+    /**
+     * Choose, which TracoDetalhe to update.
+     */
+    where: TracoDetalheWhereUniqueInput
+  }
+
+  /**
+   * TracoDetalhe updateMany
+   */
+  export type TracoDetalheUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update TracoDetalhes.
+     */
+    data: XOR<TracoDetalheUpdateManyMutationInput, TracoDetalheUncheckedUpdateManyInput>
+    /**
+     * Filter which TracoDetalhes to update
+     */
+    where?: TracoDetalheWhereInput
+    /**
+     * Limit how many TracoDetalhes to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * TracoDetalhe updateManyAndReturn
+   */
+  export type TracoDetalheUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TracoDetalhe
+     */
+    select?: TracoDetalheSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the TracoDetalhe
+     */
+    omit?: TracoDetalheOmit<ExtArgs> | null
+    /**
+     * The data used to update TracoDetalhes.
+     */
+    data: XOR<TracoDetalheUpdateManyMutationInput, TracoDetalheUncheckedUpdateManyInput>
+    /**
+     * Filter which TracoDetalhes to update
+     */
+    where?: TracoDetalheWhereInput
+    /**
+     * Limit how many TracoDetalhes to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * TracoDetalhe upsert
+   */
+  export type TracoDetalheUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TracoDetalhe
+     */
+    select?: TracoDetalheSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TracoDetalhe
+     */
+    omit?: TracoDetalheOmit<ExtArgs> | null
+    /**
+     * The filter to search for the TracoDetalhe to update in case it exists.
+     */
+    where: TracoDetalheWhereUniqueInput
+    /**
+     * In case the TracoDetalhe found by the `where` argument doesn't exist, create a new TracoDetalhe with this data.
+     */
+    create: XOR<TracoDetalheCreateInput, TracoDetalheUncheckedCreateInput>
+    /**
+     * In case the TracoDetalhe was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<TracoDetalheUpdateInput, TracoDetalheUncheckedUpdateInput>
+  }
+
+  /**
+   * TracoDetalhe delete
+   */
+  export type TracoDetalheDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TracoDetalhe
+     */
+    select?: TracoDetalheSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TracoDetalhe
+     */
+    omit?: TracoDetalheOmit<ExtArgs> | null
+    /**
+     * Filter which TracoDetalhe to delete.
+     */
+    where: TracoDetalheWhereUniqueInput
+  }
+
+  /**
+   * TracoDetalhe deleteMany
+   */
+  export type TracoDetalheDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TracoDetalhes to delete
+     */
+    where?: TracoDetalheWhereInput
+    /**
+     * Limit how many TracoDetalhes to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * TracoDetalhe without action
+   */
+  export type TracoDetalheDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TracoDetalhe
+     */
+    select?: TracoDetalheSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TracoDetalhe
+     */
+    omit?: TracoDetalheOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ReflexaoTraco
+   */
+
+  export type AggregateReflexaoTraco = {
+    _count: ReflexaoTracoCountAggregateOutputType | null
+    _avg: ReflexaoTracoAvgAggregateOutputType | null
+    _sum: ReflexaoTracoSumAggregateOutputType | null
+    _min: ReflexaoTracoMinAggregateOutputType | null
+    _max: ReflexaoTracoMaxAggregateOutputType | null
+  }
+
+  export type ReflexaoTracoAvgAggregateOutputType = {
+    numeroTraco: number | null
+  }
+
+  export type ReflexaoTracoSumAggregateOutputType = {
+    numeroTraco: number | null
+  }
+
+  export type ReflexaoTracoMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    tipo: string | null
+    numeroTraco: number | null
+    quadrante: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ReflexaoTracoMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    tipo: string | null
+    numeroTraco: number | null
+    quadrante: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ReflexaoTracoCountAggregateOutputType = {
+    id: number
+    userId: number
+    tipo: number
+    numeroTraco: number
+    quadrante: number
+    respostas: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type ReflexaoTracoAvgAggregateInputType = {
+    numeroTraco?: true
+  }
+
+  export type ReflexaoTracoSumAggregateInputType = {
+    numeroTraco?: true
+  }
+
+  export type ReflexaoTracoMinAggregateInputType = {
+    id?: true
+    userId?: true
+    tipo?: true
+    numeroTraco?: true
+    quadrante?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ReflexaoTracoMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    tipo?: true
+    numeroTraco?: true
+    quadrante?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ReflexaoTracoCountAggregateInputType = {
+    id?: true
+    userId?: true
+    tipo?: true
+    numeroTraco?: true
+    quadrante?: true
+    respostas?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type ReflexaoTracoAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ReflexaoTraco to aggregate.
+     */
+    where?: ReflexaoTracoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ReflexaoTracos to fetch.
+     */
+    orderBy?: ReflexaoTracoOrderByWithRelationInput | ReflexaoTracoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ReflexaoTracoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ReflexaoTracos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ReflexaoTracos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ReflexaoTracos
+    **/
+    _count?: true | ReflexaoTracoCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ReflexaoTracoAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ReflexaoTracoSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ReflexaoTracoMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ReflexaoTracoMaxAggregateInputType
+  }
+
+  export type GetReflexaoTracoAggregateType<T extends ReflexaoTracoAggregateArgs> = {
+        [P in keyof T & keyof AggregateReflexaoTraco]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateReflexaoTraco[P]>
+      : GetScalarType<T[P], AggregateReflexaoTraco[P]>
+  }
+
+
+
+
+  export type ReflexaoTracoGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ReflexaoTracoWhereInput
+    orderBy?: ReflexaoTracoOrderByWithAggregationInput | ReflexaoTracoOrderByWithAggregationInput[]
+    by: ReflexaoTracoScalarFieldEnum[] | ReflexaoTracoScalarFieldEnum
+    having?: ReflexaoTracoScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ReflexaoTracoCountAggregateInputType | true
+    _avg?: ReflexaoTracoAvgAggregateInputType
+    _sum?: ReflexaoTracoSumAggregateInputType
+    _min?: ReflexaoTracoMinAggregateInputType
+    _max?: ReflexaoTracoMaxAggregateInputType
+  }
+
+  export type ReflexaoTracoGroupByOutputType = {
+    id: string
+    userId: string
+    tipo: string
+    numeroTraco: number
+    quadrante: string
+    respostas: JsonValue
+    createdAt: Date
+    updatedAt: Date
+    _count: ReflexaoTracoCountAggregateOutputType | null
+    _avg: ReflexaoTracoAvgAggregateOutputType | null
+    _sum: ReflexaoTracoSumAggregateOutputType | null
+    _min: ReflexaoTracoMinAggregateOutputType | null
+    _max: ReflexaoTracoMaxAggregateOutputType | null
+  }
+
+  type GetReflexaoTracoGroupByPayload<T extends ReflexaoTracoGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ReflexaoTracoGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ReflexaoTracoGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ReflexaoTracoGroupByOutputType[P]>
+            : GetScalarType<T[P], ReflexaoTracoGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ReflexaoTracoSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    tipo?: boolean
+    numeroTraco?: boolean
+    quadrante?: boolean
+    respostas?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["reflexaoTraco"]>
+
+  export type ReflexaoTracoSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    tipo?: boolean
+    numeroTraco?: boolean
+    quadrante?: boolean
+    respostas?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["reflexaoTraco"]>
+
+  export type ReflexaoTracoSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    tipo?: boolean
+    numeroTraco?: boolean
+    quadrante?: boolean
+    respostas?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["reflexaoTraco"]>
+
+  export type ReflexaoTracoSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    tipo?: boolean
+    numeroTraco?: boolean
+    quadrante?: boolean
+    respostas?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type ReflexaoTracoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "tipo" | "numeroTraco" | "quadrante" | "respostas" | "createdAt" | "updatedAt", ExtArgs["result"]["reflexaoTraco"]>
+  export type ReflexaoTracoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type ReflexaoTracoIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type ReflexaoTracoIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $ReflexaoTracoPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ReflexaoTraco"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      tipo: string
+      numeroTraco: number
+      quadrante: string
+      respostas: Prisma.JsonValue
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["reflexaoTraco"]>
+    composites: {}
+  }
+
+  type ReflexaoTracoGetPayload<S extends boolean | null | undefined | ReflexaoTracoDefaultArgs> = $Result.GetResult<Prisma.$ReflexaoTracoPayload, S>
+
+  type ReflexaoTracoCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ReflexaoTracoFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ReflexaoTracoCountAggregateInputType | true
+    }
+
+  export interface ReflexaoTracoDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ReflexaoTraco'], meta: { name: 'ReflexaoTraco' } }
+    /**
+     * Find zero or one ReflexaoTraco that matches the filter.
+     * @param {ReflexaoTracoFindUniqueArgs} args - Arguments to find a ReflexaoTraco
+     * @example
+     * // Get one ReflexaoTraco
+     * const reflexaoTraco = await prisma.reflexaoTraco.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ReflexaoTracoFindUniqueArgs>(args: SelectSubset<T, ReflexaoTracoFindUniqueArgs<ExtArgs>>): Prisma__ReflexaoTracoClient<$Result.GetResult<Prisma.$ReflexaoTracoPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ReflexaoTraco that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ReflexaoTracoFindUniqueOrThrowArgs} args - Arguments to find a ReflexaoTraco
+     * @example
+     * // Get one ReflexaoTraco
+     * const reflexaoTraco = await prisma.reflexaoTraco.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ReflexaoTracoFindUniqueOrThrowArgs>(args: SelectSubset<T, ReflexaoTracoFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ReflexaoTracoClient<$Result.GetResult<Prisma.$ReflexaoTracoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ReflexaoTraco that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ReflexaoTracoFindFirstArgs} args - Arguments to find a ReflexaoTraco
+     * @example
+     * // Get one ReflexaoTraco
+     * const reflexaoTraco = await prisma.reflexaoTraco.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ReflexaoTracoFindFirstArgs>(args?: SelectSubset<T, ReflexaoTracoFindFirstArgs<ExtArgs>>): Prisma__ReflexaoTracoClient<$Result.GetResult<Prisma.$ReflexaoTracoPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ReflexaoTraco that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ReflexaoTracoFindFirstOrThrowArgs} args - Arguments to find a ReflexaoTraco
+     * @example
+     * // Get one ReflexaoTraco
+     * const reflexaoTraco = await prisma.reflexaoTraco.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ReflexaoTracoFindFirstOrThrowArgs>(args?: SelectSubset<T, ReflexaoTracoFindFirstOrThrowArgs<ExtArgs>>): Prisma__ReflexaoTracoClient<$Result.GetResult<Prisma.$ReflexaoTracoPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ReflexaoTracos that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ReflexaoTracoFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ReflexaoTracos
+     * const reflexaoTracos = await prisma.reflexaoTraco.findMany()
+     * 
+     * // Get first 10 ReflexaoTracos
+     * const reflexaoTracos = await prisma.reflexaoTraco.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const reflexaoTracoWithIdOnly = await prisma.reflexaoTraco.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ReflexaoTracoFindManyArgs>(args?: SelectSubset<T, ReflexaoTracoFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReflexaoTracoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ReflexaoTraco.
+     * @param {ReflexaoTracoCreateArgs} args - Arguments to create a ReflexaoTraco.
+     * @example
+     * // Create one ReflexaoTraco
+     * const ReflexaoTraco = await prisma.reflexaoTraco.create({
+     *   data: {
+     *     // ... data to create a ReflexaoTraco
+     *   }
+     * })
+     * 
+     */
+    create<T extends ReflexaoTracoCreateArgs>(args: SelectSubset<T, ReflexaoTracoCreateArgs<ExtArgs>>): Prisma__ReflexaoTracoClient<$Result.GetResult<Prisma.$ReflexaoTracoPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ReflexaoTracos.
+     * @param {ReflexaoTracoCreateManyArgs} args - Arguments to create many ReflexaoTracos.
+     * @example
+     * // Create many ReflexaoTracos
+     * const reflexaoTraco = await prisma.reflexaoTraco.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ReflexaoTracoCreateManyArgs>(args?: SelectSubset<T, ReflexaoTracoCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ReflexaoTracos and returns the data saved in the database.
+     * @param {ReflexaoTracoCreateManyAndReturnArgs} args - Arguments to create many ReflexaoTracos.
+     * @example
+     * // Create many ReflexaoTracos
+     * const reflexaoTraco = await prisma.reflexaoTraco.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ReflexaoTracos and only return the `id`
+     * const reflexaoTracoWithIdOnly = await prisma.reflexaoTraco.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ReflexaoTracoCreateManyAndReturnArgs>(args?: SelectSubset<T, ReflexaoTracoCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReflexaoTracoPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ReflexaoTraco.
+     * @param {ReflexaoTracoDeleteArgs} args - Arguments to delete one ReflexaoTraco.
+     * @example
+     * // Delete one ReflexaoTraco
+     * const ReflexaoTraco = await prisma.reflexaoTraco.delete({
+     *   where: {
+     *     // ... filter to delete one ReflexaoTraco
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ReflexaoTracoDeleteArgs>(args: SelectSubset<T, ReflexaoTracoDeleteArgs<ExtArgs>>): Prisma__ReflexaoTracoClient<$Result.GetResult<Prisma.$ReflexaoTracoPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ReflexaoTraco.
+     * @param {ReflexaoTracoUpdateArgs} args - Arguments to update one ReflexaoTraco.
+     * @example
+     * // Update one ReflexaoTraco
+     * const reflexaoTraco = await prisma.reflexaoTraco.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ReflexaoTracoUpdateArgs>(args: SelectSubset<T, ReflexaoTracoUpdateArgs<ExtArgs>>): Prisma__ReflexaoTracoClient<$Result.GetResult<Prisma.$ReflexaoTracoPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ReflexaoTracos.
+     * @param {ReflexaoTracoDeleteManyArgs} args - Arguments to filter ReflexaoTracos to delete.
+     * @example
+     * // Delete a few ReflexaoTracos
+     * const { count } = await prisma.reflexaoTraco.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ReflexaoTracoDeleteManyArgs>(args?: SelectSubset<T, ReflexaoTracoDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ReflexaoTracos.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ReflexaoTracoUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ReflexaoTracos
+     * const reflexaoTraco = await prisma.reflexaoTraco.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ReflexaoTracoUpdateManyArgs>(args: SelectSubset<T, ReflexaoTracoUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ReflexaoTracos and returns the data updated in the database.
+     * @param {ReflexaoTracoUpdateManyAndReturnArgs} args - Arguments to update many ReflexaoTracos.
+     * @example
+     * // Update many ReflexaoTracos
+     * const reflexaoTraco = await prisma.reflexaoTraco.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ReflexaoTracos and only return the `id`
+     * const reflexaoTracoWithIdOnly = await prisma.reflexaoTraco.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ReflexaoTracoUpdateManyAndReturnArgs>(args: SelectSubset<T, ReflexaoTracoUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReflexaoTracoPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ReflexaoTraco.
+     * @param {ReflexaoTracoUpsertArgs} args - Arguments to update or create a ReflexaoTraco.
+     * @example
+     * // Update or create a ReflexaoTraco
+     * const reflexaoTraco = await prisma.reflexaoTraco.upsert({
+     *   create: {
+     *     // ... data to create a ReflexaoTraco
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ReflexaoTraco we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ReflexaoTracoUpsertArgs>(args: SelectSubset<T, ReflexaoTracoUpsertArgs<ExtArgs>>): Prisma__ReflexaoTracoClient<$Result.GetResult<Prisma.$ReflexaoTracoPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ReflexaoTracos.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ReflexaoTracoCountArgs} args - Arguments to filter ReflexaoTracos to count.
+     * @example
+     * // Count the number of ReflexaoTracos
+     * const count = await prisma.reflexaoTraco.count({
+     *   where: {
+     *     // ... the filter for the ReflexaoTracos we want to count
+     *   }
+     * })
+    **/
+    count<T extends ReflexaoTracoCountArgs>(
+      args?: Subset<T, ReflexaoTracoCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ReflexaoTracoCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ReflexaoTraco.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ReflexaoTracoAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ReflexaoTracoAggregateArgs>(args: Subset<T, ReflexaoTracoAggregateArgs>): Prisma.PrismaPromise<GetReflexaoTracoAggregateType<T>>
+
+    /**
+     * Group by ReflexaoTraco.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ReflexaoTracoGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ReflexaoTracoGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ReflexaoTracoGroupByArgs['orderBy'] }
+        : { orderBy?: ReflexaoTracoGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ReflexaoTracoGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetReflexaoTracoGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ReflexaoTraco model
+   */
+  readonly fields: ReflexaoTracoFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ReflexaoTraco.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ReflexaoTracoClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ReflexaoTraco model
+   */
+  interface ReflexaoTracoFieldRefs {
+    readonly id: FieldRef<"ReflexaoTraco", 'String'>
+    readonly userId: FieldRef<"ReflexaoTraco", 'String'>
+    readonly tipo: FieldRef<"ReflexaoTraco", 'String'>
+    readonly numeroTraco: FieldRef<"ReflexaoTraco", 'Int'>
+    readonly quadrante: FieldRef<"ReflexaoTraco", 'String'>
+    readonly respostas: FieldRef<"ReflexaoTraco", 'Json'>
+    readonly createdAt: FieldRef<"ReflexaoTraco", 'DateTime'>
+    readonly updatedAt: FieldRef<"ReflexaoTraco", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ReflexaoTraco findUnique
+   */
+  export type ReflexaoTracoFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReflexaoTraco
+     */
+    select?: ReflexaoTracoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ReflexaoTraco
+     */
+    omit?: ReflexaoTracoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReflexaoTracoInclude<ExtArgs> | null
+    /**
+     * Filter, which ReflexaoTraco to fetch.
+     */
+    where: ReflexaoTracoWhereUniqueInput
+  }
+
+  /**
+   * ReflexaoTraco findUniqueOrThrow
+   */
+  export type ReflexaoTracoFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReflexaoTraco
+     */
+    select?: ReflexaoTracoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ReflexaoTraco
+     */
+    omit?: ReflexaoTracoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReflexaoTracoInclude<ExtArgs> | null
+    /**
+     * Filter, which ReflexaoTraco to fetch.
+     */
+    where: ReflexaoTracoWhereUniqueInput
+  }
+
+  /**
+   * ReflexaoTraco findFirst
+   */
+  export type ReflexaoTracoFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReflexaoTraco
+     */
+    select?: ReflexaoTracoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ReflexaoTraco
+     */
+    omit?: ReflexaoTracoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReflexaoTracoInclude<ExtArgs> | null
+    /**
+     * Filter, which ReflexaoTraco to fetch.
+     */
+    where?: ReflexaoTracoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ReflexaoTracos to fetch.
+     */
+    orderBy?: ReflexaoTracoOrderByWithRelationInput | ReflexaoTracoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ReflexaoTracos.
+     */
+    cursor?: ReflexaoTracoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ReflexaoTracos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ReflexaoTracos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ReflexaoTracos.
+     */
+    distinct?: ReflexaoTracoScalarFieldEnum | ReflexaoTracoScalarFieldEnum[]
+  }
+
+  /**
+   * ReflexaoTraco findFirstOrThrow
+   */
+  export type ReflexaoTracoFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReflexaoTraco
+     */
+    select?: ReflexaoTracoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ReflexaoTraco
+     */
+    omit?: ReflexaoTracoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReflexaoTracoInclude<ExtArgs> | null
+    /**
+     * Filter, which ReflexaoTraco to fetch.
+     */
+    where?: ReflexaoTracoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ReflexaoTracos to fetch.
+     */
+    orderBy?: ReflexaoTracoOrderByWithRelationInput | ReflexaoTracoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ReflexaoTracos.
+     */
+    cursor?: ReflexaoTracoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ReflexaoTracos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ReflexaoTracos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ReflexaoTracos.
+     */
+    distinct?: ReflexaoTracoScalarFieldEnum | ReflexaoTracoScalarFieldEnum[]
+  }
+
+  /**
+   * ReflexaoTraco findMany
+   */
+  export type ReflexaoTracoFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReflexaoTraco
+     */
+    select?: ReflexaoTracoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ReflexaoTraco
+     */
+    omit?: ReflexaoTracoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReflexaoTracoInclude<ExtArgs> | null
+    /**
+     * Filter, which ReflexaoTracos to fetch.
+     */
+    where?: ReflexaoTracoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ReflexaoTracos to fetch.
+     */
+    orderBy?: ReflexaoTracoOrderByWithRelationInput | ReflexaoTracoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ReflexaoTracos.
+     */
+    cursor?: ReflexaoTracoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ReflexaoTracos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ReflexaoTracos.
+     */
+    skip?: number
+    distinct?: ReflexaoTracoScalarFieldEnum | ReflexaoTracoScalarFieldEnum[]
+  }
+
+  /**
+   * ReflexaoTraco create
+   */
+  export type ReflexaoTracoCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReflexaoTraco
+     */
+    select?: ReflexaoTracoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ReflexaoTraco
+     */
+    omit?: ReflexaoTracoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReflexaoTracoInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ReflexaoTraco.
+     */
+    data: XOR<ReflexaoTracoCreateInput, ReflexaoTracoUncheckedCreateInput>
+  }
+
+  /**
+   * ReflexaoTraco createMany
+   */
+  export type ReflexaoTracoCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ReflexaoTracos.
+     */
+    data: ReflexaoTracoCreateManyInput | ReflexaoTracoCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ReflexaoTraco createManyAndReturn
+   */
+  export type ReflexaoTracoCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReflexaoTraco
+     */
+    select?: ReflexaoTracoSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ReflexaoTraco
+     */
+    omit?: ReflexaoTracoOmit<ExtArgs> | null
+    /**
+     * The data used to create many ReflexaoTracos.
+     */
+    data: ReflexaoTracoCreateManyInput | ReflexaoTracoCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReflexaoTracoIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ReflexaoTraco update
+   */
+  export type ReflexaoTracoUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReflexaoTraco
+     */
+    select?: ReflexaoTracoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ReflexaoTraco
+     */
+    omit?: ReflexaoTracoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReflexaoTracoInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ReflexaoTraco.
+     */
+    data: XOR<ReflexaoTracoUpdateInput, ReflexaoTracoUncheckedUpdateInput>
+    /**
+     * Choose, which ReflexaoTraco to update.
+     */
+    where: ReflexaoTracoWhereUniqueInput
+  }
+
+  /**
+   * ReflexaoTraco updateMany
+   */
+  export type ReflexaoTracoUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ReflexaoTracos.
+     */
+    data: XOR<ReflexaoTracoUpdateManyMutationInput, ReflexaoTracoUncheckedUpdateManyInput>
+    /**
+     * Filter which ReflexaoTracos to update
+     */
+    where?: ReflexaoTracoWhereInput
+    /**
+     * Limit how many ReflexaoTracos to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ReflexaoTraco updateManyAndReturn
+   */
+  export type ReflexaoTracoUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReflexaoTraco
+     */
+    select?: ReflexaoTracoSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ReflexaoTraco
+     */
+    omit?: ReflexaoTracoOmit<ExtArgs> | null
+    /**
+     * The data used to update ReflexaoTracos.
+     */
+    data: XOR<ReflexaoTracoUpdateManyMutationInput, ReflexaoTracoUncheckedUpdateManyInput>
+    /**
+     * Filter which ReflexaoTracos to update
+     */
+    where?: ReflexaoTracoWhereInput
+    /**
+     * Limit how many ReflexaoTracos to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReflexaoTracoIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ReflexaoTraco upsert
+   */
+  export type ReflexaoTracoUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReflexaoTraco
+     */
+    select?: ReflexaoTracoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ReflexaoTraco
+     */
+    omit?: ReflexaoTracoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReflexaoTracoInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ReflexaoTraco to update in case it exists.
+     */
+    where: ReflexaoTracoWhereUniqueInput
+    /**
+     * In case the ReflexaoTraco found by the `where` argument doesn't exist, create a new ReflexaoTraco with this data.
+     */
+    create: XOR<ReflexaoTracoCreateInput, ReflexaoTracoUncheckedCreateInput>
+    /**
+     * In case the ReflexaoTraco was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ReflexaoTracoUpdateInput, ReflexaoTracoUncheckedUpdateInput>
+  }
+
+  /**
+   * ReflexaoTraco delete
+   */
+  export type ReflexaoTracoDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReflexaoTraco
+     */
+    select?: ReflexaoTracoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ReflexaoTraco
+     */
+    omit?: ReflexaoTracoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReflexaoTracoInclude<ExtArgs> | null
+    /**
+     * Filter which ReflexaoTraco to delete.
+     */
+    where: ReflexaoTracoWhereUniqueInput
+  }
+
+  /**
+   * ReflexaoTraco deleteMany
+   */
+  export type ReflexaoTracoDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ReflexaoTracos to delete
+     */
+    where?: ReflexaoTracoWhereInput
+    /**
+     * Limit how many ReflexaoTracos to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ReflexaoTraco without action
+   */
+  export type ReflexaoTracoDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReflexaoTraco
+     */
+    select?: ReflexaoTracoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ReflexaoTraco
+     */
+    omit?: ReflexaoTracoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReflexaoTracoInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Model QuestionarioResposta
    */
 
@@ -22209,6 +24672,7 @@ export namespace Prisma {
     name: 'name',
     password: 'password',
     role: 'role',
+    profileRegistration: 'profileRegistration',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -22393,6 +24857,39 @@ export namespace Prisma {
   export type TracoOportunidadeFScalarFieldEnum = (typeof TracoOportunidadeFScalarFieldEnum)[keyof typeof TracoOportunidadeFScalarFieldEnum]
 
 
+  export const TracoDetalheScalarFieldEnum: {
+    id: 'id',
+    tipo: 'tipo',
+    numeroTraco: 'numeroTraco',
+    titulo: 'titulo',
+    oQueE: 'oQueE',
+    comoUsar: 'comoUsar',
+    comoOportunidade: 'comoOportunidade',
+    comoAtrapalhar: 'comoAtrapalhar',
+    reduzirImpacto: 'reduzirImpacto',
+    dicas: 'dicas',
+    exemplos: 'exemplos',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type TracoDetalheScalarFieldEnum = (typeof TracoDetalheScalarFieldEnum)[keyof typeof TracoDetalheScalarFieldEnum]
+
+
+  export const ReflexaoTracoScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    tipo: 'tipo',
+    numeroTraco: 'numeroTraco',
+    quadrante: 'quadrante',
+    respostas: 'respostas',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type ReflexaoTracoScalarFieldEnum = (typeof ReflexaoTracoScalarFieldEnum)[keyof typeof ReflexaoTracoScalarFieldEnum]
+
+
   export const QuestionarioRespostaScalarFieldEnum: {
     id: 'id',
     userId: 'userId',
@@ -22417,12 +24914,36 @@ export namespace Prisma {
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
+  export const NullableJsonNullValueInput: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull
+  };
+
+  export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
+
+
+  export const JsonNullValueInput: {
+    JsonNull: typeof JsonNull
+  };
+
+  export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
+
+
   export const QueryMode: {
     default: 'default',
     insensitive: 'insensitive'
   };
 
   export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+  export const JsonNullValueFilter: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull,
+    AnyNull: typeof AnyNull
+  };
+
+  export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 
 
   export const NullsOrder: {
@@ -22463,6 +24984,20 @@ export namespace Prisma {
    * Reference to a field of type 'UserRole[]'
    */
   export type ListEnumUserRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'UserRole[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Json'
+   */
+  export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
+    
+
+
+  /**
+   * Reference to a field of type 'QueryMode'
+   */
+  export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
     
 
 
@@ -22527,12 +25062,14 @@ export namespace Prisma {
     name?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
     role?: EnumUserRoleFilter<"User"> | $Enums.UserRole
+    profileRegistration?: JsonNullableFilter<"User">
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     posts?: PostListRelationFilter
     questions?: QuestionListRelationFilter
     diaryEntries?: DiaryEntryListRelationFilter
     questionarioRespostas?: QuestionarioRespostaListRelationFilter
+    reflexoesTraco?: ReflexaoTracoListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -22541,12 +25078,14 @@ export namespace Prisma {
     name?: SortOrder
     password?: SortOrder
     role?: SortOrder
+    profileRegistration?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     posts?: PostOrderByRelationAggregateInput
     questions?: QuestionOrderByRelationAggregateInput
     diaryEntries?: DiaryEntryOrderByRelationAggregateInput
     questionarioRespostas?: QuestionarioRespostaOrderByRelationAggregateInput
+    reflexoesTraco?: ReflexaoTracoOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -22558,12 +25097,14 @@ export namespace Prisma {
     name?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
     role?: EnumUserRoleFilter<"User"> | $Enums.UserRole
+    profileRegistration?: JsonNullableFilter<"User">
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     posts?: PostListRelationFilter
     questions?: QuestionListRelationFilter
     diaryEntries?: DiaryEntryListRelationFilter
     questionarioRespostas?: QuestionarioRespostaListRelationFilter
+    reflexoesTraco?: ReflexaoTracoListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -22572,6 +25113,7 @@ export namespace Prisma {
     name?: SortOrder
     password?: SortOrder
     role?: SortOrder
+    profileRegistration?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: UserCountOrderByAggregateInput
@@ -22588,6 +25130,7 @@ export namespace Prisma {
     name?: StringWithAggregatesFilter<"User"> | string
     password?: StringWithAggregatesFilter<"User"> | string
     role?: EnumUserRoleWithAggregatesFilter<"User"> | $Enums.UserRole
+    profileRegistration?: JsonNullableWithAggregatesFilter<"User">
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
   }
@@ -23506,6 +26049,174 @@ export namespace Prisma {
     forcasId?: StringWithAggregatesFilter<"TracoOportunidadeF"> | string
   }
 
+  export type TracoDetalheWhereInput = {
+    AND?: TracoDetalheWhereInput | TracoDetalheWhereInput[]
+    OR?: TracoDetalheWhereInput[]
+    NOT?: TracoDetalheWhereInput | TracoDetalheWhereInput[]
+    id?: StringFilter<"TracoDetalhe"> | string
+    tipo?: StringFilter<"TracoDetalhe"> | string
+    numeroTraco?: IntFilter<"TracoDetalhe"> | number
+    titulo?: StringFilter<"TracoDetalhe"> | string
+    oQueE?: JsonFilter<"TracoDetalhe">
+    comoUsar?: JsonFilter<"TracoDetalhe">
+    comoOportunidade?: JsonFilter<"TracoDetalhe">
+    comoAtrapalhar?: JsonFilter<"TracoDetalhe">
+    reduzirImpacto?: JsonFilter<"TracoDetalhe">
+    dicas?: JsonFilter<"TracoDetalhe">
+    exemplos?: JsonFilter<"TracoDetalhe">
+    createdAt?: DateTimeFilter<"TracoDetalhe"> | Date | string
+    updatedAt?: DateTimeFilter<"TracoDetalhe"> | Date | string
+  }
+
+  export type TracoDetalheOrderByWithRelationInput = {
+    id?: SortOrder
+    tipo?: SortOrder
+    numeroTraco?: SortOrder
+    titulo?: SortOrder
+    oQueE?: SortOrder
+    comoUsar?: SortOrder
+    comoOportunidade?: SortOrder
+    comoAtrapalhar?: SortOrder
+    reduzirImpacto?: SortOrder
+    dicas?: SortOrder
+    exemplos?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type TracoDetalheWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    tipo_numeroTraco?: TracoDetalheTipoNumeroTracoCompoundUniqueInput
+    AND?: TracoDetalheWhereInput | TracoDetalheWhereInput[]
+    OR?: TracoDetalheWhereInput[]
+    NOT?: TracoDetalheWhereInput | TracoDetalheWhereInput[]
+    tipo?: StringFilter<"TracoDetalhe"> | string
+    numeroTraco?: IntFilter<"TracoDetalhe"> | number
+    titulo?: StringFilter<"TracoDetalhe"> | string
+    oQueE?: JsonFilter<"TracoDetalhe">
+    comoUsar?: JsonFilter<"TracoDetalhe">
+    comoOportunidade?: JsonFilter<"TracoDetalhe">
+    comoAtrapalhar?: JsonFilter<"TracoDetalhe">
+    reduzirImpacto?: JsonFilter<"TracoDetalhe">
+    dicas?: JsonFilter<"TracoDetalhe">
+    exemplos?: JsonFilter<"TracoDetalhe">
+    createdAt?: DateTimeFilter<"TracoDetalhe"> | Date | string
+    updatedAt?: DateTimeFilter<"TracoDetalhe"> | Date | string
+  }, "id" | "tipo_numeroTraco">
+
+  export type TracoDetalheOrderByWithAggregationInput = {
+    id?: SortOrder
+    tipo?: SortOrder
+    numeroTraco?: SortOrder
+    titulo?: SortOrder
+    oQueE?: SortOrder
+    comoUsar?: SortOrder
+    comoOportunidade?: SortOrder
+    comoAtrapalhar?: SortOrder
+    reduzirImpacto?: SortOrder
+    dicas?: SortOrder
+    exemplos?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: TracoDetalheCountOrderByAggregateInput
+    _avg?: TracoDetalheAvgOrderByAggregateInput
+    _max?: TracoDetalheMaxOrderByAggregateInput
+    _min?: TracoDetalheMinOrderByAggregateInput
+    _sum?: TracoDetalheSumOrderByAggregateInput
+  }
+
+  export type TracoDetalheScalarWhereWithAggregatesInput = {
+    AND?: TracoDetalheScalarWhereWithAggregatesInput | TracoDetalheScalarWhereWithAggregatesInput[]
+    OR?: TracoDetalheScalarWhereWithAggregatesInput[]
+    NOT?: TracoDetalheScalarWhereWithAggregatesInput | TracoDetalheScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"TracoDetalhe"> | string
+    tipo?: StringWithAggregatesFilter<"TracoDetalhe"> | string
+    numeroTraco?: IntWithAggregatesFilter<"TracoDetalhe"> | number
+    titulo?: StringWithAggregatesFilter<"TracoDetalhe"> | string
+    oQueE?: JsonWithAggregatesFilter<"TracoDetalhe">
+    comoUsar?: JsonWithAggregatesFilter<"TracoDetalhe">
+    comoOportunidade?: JsonWithAggregatesFilter<"TracoDetalhe">
+    comoAtrapalhar?: JsonWithAggregatesFilter<"TracoDetalhe">
+    reduzirImpacto?: JsonWithAggregatesFilter<"TracoDetalhe">
+    dicas?: JsonWithAggregatesFilter<"TracoDetalhe">
+    exemplos?: JsonWithAggregatesFilter<"TracoDetalhe">
+    createdAt?: DateTimeWithAggregatesFilter<"TracoDetalhe"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"TracoDetalhe"> | Date | string
+  }
+
+  export type ReflexaoTracoWhereInput = {
+    AND?: ReflexaoTracoWhereInput | ReflexaoTracoWhereInput[]
+    OR?: ReflexaoTracoWhereInput[]
+    NOT?: ReflexaoTracoWhereInput | ReflexaoTracoWhereInput[]
+    id?: StringFilter<"ReflexaoTraco"> | string
+    userId?: StringFilter<"ReflexaoTraco"> | string
+    tipo?: StringFilter<"ReflexaoTraco"> | string
+    numeroTraco?: IntFilter<"ReflexaoTraco"> | number
+    quadrante?: StringFilter<"ReflexaoTraco"> | string
+    respostas?: JsonFilter<"ReflexaoTraco">
+    createdAt?: DateTimeFilter<"ReflexaoTraco"> | Date | string
+    updatedAt?: DateTimeFilter<"ReflexaoTraco"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type ReflexaoTracoOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    tipo?: SortOrder
+    numeroTraco?: SortOrder
+    quadrante?: SortOrder
+    respostas?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type ReflexaoTracoWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    userId_tipo_numeroTraco_quadrante?: ReflexaoTracoUserIdTipoNumeroTracoQuadranteCompoundUniqueInput
+    AND?: ReflexaoTracoWhereInput | ReflexaoTracoWhereInput[]
+    OR?: ReflexaoTracoWhereInput[]
+    NOT?: ReflexaoTracoWhereInput | ReflexaoTracoWhereInput[]
+    userId?: StringFilter<"ReflexaoTraco"> | string
+    tipo?: StringFilter<"ReflexaoTraco"> | string
+    numeroTraco?: IntFilter<"ReflexaoTraco"> | number
+    quadrante?: StringFilter<"ReflexaoTraco"> | string
+    respostas?: JsonFilter<"ReflexaoTraco">
+    createdAt?: DateTimeFilter<"ReflexaoTraco"> | Date | string
+    updatedAt?: DateTimeFilter<"ReflexaoTraco"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id" | "userId_tipo_numeroTraco_quadrante">
+
+  export type ReflexaoTracoOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    tipo?: SortOrder
+    numeroTraco?: SortOrder
+    quadrante?: SortOrder
+    respostas?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: ReflexaoTracoCountOrderByAggregateInput
+    _avg?: ReflexaoTracoAvgOrderByAggregateInput
+    _max?: ReflexaoTracoMaxOrderByAggregateInput
+    _min?: ReflexaoTracoMinOrderByAggregateInput
+    _sum?: ReflexaoTracoSumOrderByAggregateInput
+  }
+
+  export type ReflexaoTracoScalarWhereWithAggregatesInput = {
+    AND?: ReflexaoTracoScalarWhereWithAggregatesInput | ReflexaoTracoScalarWhereWithAggregatesInput[]
+    OR?: ReflexaoTracoScalarWhereWithAggregatesInput[]
+    NOT?: ReflexaoTracoScalarWhereWithAggregatesInput | ReflexaoTracoScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ReflexaoTraco"> | string
+    userId?: StringWithAggregatesFilter<"ReflexaoTraco"> | string
+    tipo?: StringWithAggregatesFilter<"ReflexaoTraco"> | string
+    numeroTraco?: IntWithAggregatesFilter<"ReflexaoTraco"> | number
+    quadrante?: StringWithAggregatesFilter<"ReflexaoTraco"> | string
+    respostas?: JsonWithAggregatesFilter<"ReflexaoTraco">
+    createdAt?: DateTimeWithAggregatesFilter<"ReflexaoTraco"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"ReflexaoTraco"> | Date | string
+  }
+
   export type QuestionarioRespostaWhereInput = {
     AND?: QuestionarioRespostaWhereInput | QuestionarioRespostaWhereInput[]
     OR?: QuestionarioRespostaWhereInput[]
@@ -23595,12 +26306,14 @@ export namespace Prisma {
     name: string
     password: string
     role?: $Enums.UserRole
+    profileRegistration?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
     posts?: PostCreateNestedManyWithoutAuthorInput
     questions?: QuestionCreateNestedManyWithoutUserInput
     diaryEntries?: DiaryEntryCreateNestedManyWithoutUserInput
     questionarioRespostas?: QuestionarioRespostaCreateNestedManyWithoutUserInput
+    reflexoesTraco?: ReflexaoTracoCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -23609,12 +26322,14 @@ export namespace Prisma {
     name: string
     password: string
     role?: $Enums.UserRole
+    profileRegistration?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     questions?: QuestionUncheckedCreateNestedManyWithoutUserInput
     diaryEntries?: DiaryEntryUncheckedCreateNestedManyWithoutUserInput
     questionarioRespostas?: QuestionarioRespostaUncheckedCreateNestedManyWithoutUserInput
+    reflexoesTraco?: ReflexaoTracoUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -23623,12 +26338,14 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    profileRegistration?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     posts?: PostUpdateManyWithoutAuthorNestedInput
     questions?: QuestionUpdateManyWithoutUserNestedInput
     diaryEntries?: DiaryEntryUpdateManyWithoutUserNestedInput
     questionarioRespostas?: QuestionarioRespostaUpdateManyWithoutUserNestedInput
+    reflexoesTraco?: ReflexaoTracoUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -23637,12 +26354,14 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    profileRegistration?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     questions?: QuestionUncheckedUpdateManyWithoutUserNestedInput
     diaryEntries?: DiaryEntryUncheckedUpdateManyWithoutUserNestedInput
     questionarioRespostas?: QuestionarioRespostaUncheckedUpdateManyWithoutUserNestedInput
+    reflexoesTraco?: ReflexaoTracoUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -23651,6 +26370,7 @@ export namespace Prisma {
     name: string
     password: string
     role?: $Enums.UserRole
+    profileRegistration?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -23661,6 +26381,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    profileRegistration?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -23671,6 +26392,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    profileRegistration?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -24602,6 +27324,194 @@ export namespace Prisma {
     forcasId?: StringFieldUpdateOperationsInput | string
   }
 
+  export type TracoDetalheCreateInput = {
+    id?: string
+    tipo: string
+    numeroTraco: number
+    titulo: string
+    oQueE: JsonNullValueInput | InputJsonValue
+    comoUsar: JsonNullValueInput | InputJsonValue
+    comoOportunidade: JsonNullValueInput | InputJsonValue
+    comoAtrapalhar: JsonNullValueInput | InputJsonValue
+    reduzirImpacto: JsonNullValueInput | InputJsonValue
+    dicas: JsonNullValueInput | InputJsonValue
+    exemplos: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TracoDetalheUncheckedCreateInput = {
+    id?: string
+    tipo: string
+    numeroTraco: number
+    titulo: string
+    oQueE: JsonNullValueInput | InputJsonValue
+    comoUsar: JsonNullValueInput | InputJsonValue
+    comoOportunidade: JsonNullValueInput | InputJsonValue
+    comoAtrapalhar: JsonNullValueInput | InputJsonValue
+    reduzirImpacto: JsonNullValueInput | InputJsonValue
+    dicas: JsonNullValueInput | InputJsonValue
+    exemplos: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TracoDetalheUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tipo?: StringFieldUpdateOperationsInput | string
+    numeroTraco?: IntFieldUpdateOperationsInput | number
+    titulo?: StringFieldUpdateOperationsInput | string
+    oQueE?: JsonNullValueInput | InputJsonValue
+    comoUsar?: JsonNullValueInput | InputJsonValue
+    comoOportunidade?: JsonNullValueInput | InputJsonValue
+    comoAtrapalhar?: JsonNullValueInput | InputJsonValue
+    reduzirImpacto?: JsonNullValueInput | InputJsonValue
+    dicas?: JsonNullValueInput | InputJsonValue
+    exemplos?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TracoDetalheUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tipo?: StringFieldUpdateOperationsInput | string
+    numeroTraco?: IntFieldUpdateOperationsInput | number
+    titulo?: StringFieldUpdateOperationsInput | string
+    oQueE?: JsonNullValueInput | InputJsonValue
+    comoUsar?: JsonNullValueInput | InputJsonValue
+    comoOportunidade?: JsonNullValueInput | InputJsonValue
+    comoAtrapalhar?: JsonNullValueInput | InputJsonValue
+    reduzirImpacto?: JsonNullValueInput | InputJsonValue
+    dicas?: JsonNullValueInput | InputJsonValue
+    exemplos?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TracoDetalheCreateManyInput = {
+    id?: string
+    tipo: string
+    numeroTraco: number
+    titulo: string
+    oQueE: JsonNullValueInput | InputJsonValue
+    comoUsar: JsonNullValueInput | InputJsonValue
+    comoOportunidade: JsonNullValueInput | InputJsonValue
+    comoAtrapalhar: JsonNullValueInput | InputJsonValue
+    reduzirImpacto: JsonNullValueInput | InputJsonValue
+    dicas: JsonNullValueInput | InputJsonValue
+    exemplos: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TracoDetalheUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tipo?: StringFieldUpdateOperationsInput | string
+    numeroTraco?: IntFieldUpdateOperationsInput | number
+    titulo?: StringFieldUpdateOperationsInput | string
+    oQueE?: JsonNullValueInput | InputJsonValue
+    comoUsar?: JsonNullValueInput | InputJsonValue
+    comoOportunidade?: JsonNullValueInput | InputJsonValue
+    comoAtrapalhar?: JsonNullValueInput | InputJsonValue
+    reduzirImpacto?: JsonNullValueInput | InputJsonValue
+    dicas?: JsonNullValueInput | InputJsonValue
+    exemplos?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TracoDetalheUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tipo?: StringFieldUpdateOperationsInput | string
+    numeroTraco?: IntFieldUpdateOperationsInput | number
+    titulo?: StringFieldUpdateOperationsInput | string
+    oQueE?: JsonNullValueInput | InputJsonValue
+    comoUsar?: JsonNullValueInput | InputJsonValue
+    comoOportunidade?: JsonNullValueInput | InputJsonValue
+    comoAtrapalhar?: JsonNullValueInput | InputJsonValue
+    reduzirImpacto?: JsonNullValueInput | InputJsonValue
+    dicas?: JsonNullValueInput | InputJsonValue
+    exemplos?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ReflexaoTracoCreateInput = {
+    id?: string
+    tipo: string
+    numeroTraco: number
+    quadrante: string
+    respostas: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutReflexoesTracoInput
+  }
+
+  export type ReflexaoTracoUncheckedCreateInput = {
+    id?: string
+    userId: string
+    tipo: string
+    numeroTraco: number
+    quadrante: string
+    respostas: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ReflexaoTracoUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tipo?: StringFieldUpdateOperationsInput | string
+    numeroTraco?: IntFieldUpdateOperationsInput | number
+    quadrante?: StringFieldUpdateOperationsInput | string
+    respostas?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutReflexoesTracoNestedInput
+  }
+
+  export type ReflexaoTracoUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    tipo?: StringFieldUpdateOperationsInput | string
+    numeroTraco?: IntFieldUpdateOperationsInput | number
+    quadrante?: StringFieldUpdateOperationsInput | string
+    respostas?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ReflexaoTracoCreateManyInput = {
+    id?: string
+    userId: string
+    tipo: string
+    numeroTraco: number
+    quadrante: string
+    respostas: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ReflexaoTracoUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tipo?: StringFieldUpdateOperationsInput | string
+    numeroTraco?: IntFieldUpdateOperationsInput | number
+    quadrante?: StringFieldUpdateOperationsInput | string
+    respostas?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ReflexaoTracoUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    tipo?: StringFieldUpdateOperationsInput | string
+    numeroTraco?: IntFieldUpdateOperationsInput | number
+    quadrante?: StringFieldUpdateOperationsInput | string
+    respostas?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type QuestionarioRespostaCreateInput = {
     id?: string
     perguntaId: string
@@ -24713,6 +27623,29 @@ export namespace Prisma {
     notIn?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
     not?: NestedEnumUserRoleFilter<$PrismaModel> | $Enums.UserRole
   }
+  export type JsonNullableFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonNullableFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
 
   export type DateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
@@ -24749,6 +27682,17 @@ export namespace Prisma {
     none?: QuestionarioRespostaWhereInput
   }
 
+  export type ReflexaoTracoListRelationFilter = {
+    every?: ReflexaoTracoWhereInput
+    some?: ReflexaoTracoWhereInput
+    none?: ReflexaoTracoWhereInput
+  }
+
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
+  }
+
   export type PostOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -24765,12 +27709,17 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
+  export type ReflexaoTracoOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type UserCountOrderByAggregateInput = {
     id?: SortOrder
     email?: SortOrder
     name?: SortOrder
     password?: SortOrder
     role?: SortOrder
+    profileRegistration?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -24822,6 +27771,32 @@ export namespace Prisma {
     _min?: NestedEnumUserRoleFilter<$PrismaModel>
     _max?: NestedEnumUserRoleFilter<$PrismaModel>
   }
+  export type JsonNullableWithAggregatesFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonNullableWithAggregatesFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedJsonNullableFilter<$PrismaModel>
+    _max?: NestedJsonNullableFilter<$PrismaModel>
+  }
 
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
@@ -24855,11 +27830,6 @@ export namespace Prisma {
   export type UserScalarRelationFilter = {
     is?: UserWhereInput
     isNot?: UserWhereInput
-  }
-
-  export type SortOrderInput = {
-    sort: SortOrder
-    nulls?: NullsOrder
   }
 
   export type PostCountOrderByAggregateInput = {
@@ -25501,6 +28471,148 @@ export namespace Prisma {
     valor?: SortOrder
     forcasId?: SortOrder
   }
+  export type JsonFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type TracoDetalheTipoNumeroTracoCompoundUniqueInput = {
+    tipo: string
+    numeroTraco: number
+  }
+
+  export type TracoDetalheCountOrderByAggregateInput = {
+    id?: SortOrder
+    tipo?: SortOrder
+    numeroTraco?: SortOrder
+    titulo?: SortOrder
+    oQueE?: SortOrder
+    comoUsar?: SortOrder
+    comoOportunidade?: SortOrder
+    comoAtrapalhar?: SortOrder
+    reduzirImpacto?: SortOrder
+    dicas?: SortOrder
+    exemplos?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type TracoDetalheAvgOrderByAggregateInput = {
+    numeroTraco?: SortOrder
+  }
+
+  export type TracoDetalheMaxOrderByAggregateInput = {
+    id?: SortOrder
+    tipo?: SortOrder
+    numeroTraco?: SortOrder
+    titulo?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type TracoDetalheMinOrderByAggregateInput = {
+    id?: SortOrder
+    tipo?: SortOrder
+    numeroTraco?: SortOrder
+    titulo?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type TracoDetalheSumOrderByAggregateInput = {
+    numeroTraco?: SortOrder
+  }
+  export type JsonWithAggregatesFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonWithAggregatesFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonWithAggregatesFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedJsonFilter<$PrismaModel>
+    _max?: NestedJsonFilter<$PrismaModel>
+  }
+
+  export type ReflexaoTracoUserIdTipoNumeroTracoQuadranteCompoundUniqueInput = {
+    userId: string
+    tipo: string
+    numeroTraco: number
+    quadrante: string
+  }
+
+  export type ReflexaoTracoCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    tipo?: SortOrder
+    numeroTraco?: SortOrder
+    quadrante?: SortOrder
+    respostas?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ReflexaoTracoAvgOrderByAggregateInput = {
+    numeroTraco?: SortOrder
+  }
+
+  export type ReflexaoTracoMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    tipo?: SortOrder
+    numeroTraco?: SortOrder
+    quadrante?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ReflexaoTracoMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    tipo?: SortOrder
+    numeroTraco?: SortOrder
+    quadrante?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ReflexaoTracoSumOrderByAggregateInput = {
+    numeroTraco?: SortOrder
+  }
 
   export type IntNullableFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
@@ -25614,6 +28726,13 @@ export namespace Prisma {
     connect?: QuestionarioRespostaWhereUniqueInput | QuestionarioRespostaWhereUniqueInput[]
   }
 
+  export type ReflexaoTracoCreateNestedManyWithoutUserInput = {
+    create?: XOR<ReflexaoTracoCreateWithoutUserInput, ReflexaoTracoUncheckedCreateWithoutUserInput> | ReflexaoTracoCreateWithoutUserInput[] | ReflexaoTracoUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ReflexaoTracoCreateOrConnectWithoutUserInput | ReflexaoTracoCreateOrConnectWithoutUserInput[]
+    createMany?: ReflexaoTracoCreateManyUserInputEnvelope
+    connect?: ReflexaoTracoWhereUniqueInput | ReflexaoTracoWhereUniqueInput[]
+  }
+
   export type PostUncheckedCreateNestedManyWithoutAuthorInput = {
     create?: XOR<PostCreateWithoutAuthorInput, PostUncheckedCreateWithoutAuthorInput> | PostCreateWithoutAuthorInput[] | PostUncheckedCreateWithoutAuthorInput[]
     connectOrCreate?: PostCreateOrConnectWithoutAuthorInput | PostCreateOrConnectWithoutAuthorInput[]
@@ -25640,6 +28759,13 @@ export namespace Prisma {
     connectOrCreate?: QuestionarioRespostaCreateOrConnectWithoutUserInput | QuestionarioRespostaCreateOrConnectWithoutUserInput[]
     createMany?: QuestionarioRespostaCreateManyUserInputEnvelope
     connect?: QuestionarioRespostaWhereUniqueInput | QuestionarioRespostaWhereUniqueInput[]
+  }
+
+  export type ReflexaoTracoUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<ReflexaoTracoCreateWithoutUserInput, ReflexaoTracoUncheckedCreateWithoutUserInput> | ReflexaoTracoCreateWithoutUserInput[] | ReflexaoTracoUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ReflexaoTracoCreateOrConnectWithoutUserInput | ReflexaoTracoCreateOrConnectWithoutUserInput[]
+    createMany?: ReflexaoTracoCreateManyUserInputEnvelope
+    connect?: ReflexaoTracoWhereUniqueInput | ReflexaoTracoWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -25710,6 +28836,20 @@ export namespace Prisma {
     deleteMany?: QuestionarioRespostaScalarWhereInput | QuestionarioRespostaScalarWhereInput[]
   }
 
+  export type ReflexaoTracoUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ReflexaoTracoCreateWithoutUserInput, ReflexaoTracoUncheckedCreateWithoutUserInput> | ReflexaoTracoCreateWithoutUserInput[] | ReflexaoTracoUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ReflexaoTracoCreateOrConnectWithoutUserInput | ReflexaoTracoCreateOrConnectWithoutUserInput[]
+    upsert?: ReflexaoTracoUpsertWithWhereUniqueWithoutUserInput | ReflexaoTracoUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ReflexaoTracoCreateManyUserInputEnvelope
+    set?: ReflexaoTracoWhereUniqueInput | ReflexaoTracoWhereUniqueInput[]
+    disconnect?: ReflexaoTracoWhereUniqueInput | ReflexaoTracoWhereUniqueInput[]
+    delete?: ReflexaoTracoWhereUniqueInput | ReflexaoTracoWhereUniqueInput[]
+    connect?: ReflexaoTracoWhereUniqueInput | ReflexaoTracoWhereUniqueInput[]
+    update?: ReflexaoTracoUpdateWithWhereUniqueWithoutUserInput | ReflexaoTracoUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ReflexaoTracoUpdateManyWithWhereWithoutUserInput | ReflexaoTracoUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ReflexaoTracoScalarWhereInput | ReflexaoTracoScalarWhereInput[]
+  }
+
   export type PostUncheckedUpdateManyWithoutAuthorNestedInput = {
     create?: XOR<PostCreateWithoutAuthorInput, PostUncheckedCreateWithoutAuthorInput> | PostCreateWithoutAuthorInput[] | PostUncheckedCreateWithoutAuthorInput[]
     connectOrCreate?: PostCreateOrConnectWithoutAuthorInput | PostCreateOrConnectWithoutAuthorInput[]
@@ -25764,6 +28904,20 @@ export namespace Prisma {
     update?: QuestionarioRespostaUpdateWithWhereUniqueWithoutUserInput | QuestionarioRespostaUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: QuestionarioRespostaUpdateManyWithWhereWithoutUserInput | QuestionarioRespostaUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: QuestionarioRespostaScalarWhereInput | QuestionarioRespostaScalarWhereInput[]
+  }
+
+  export type ReflexaoTracoUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ReflexaoTracoCreateWithoutUserInput, ReflexaoTracoUncheckedCreateWithoutUserInput> | ReflexaoTracoCreateWithoutUserInput[] | ReflexaoTracoUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ReflexaoTracoCreateOrConnectWithoutUserInput | ReflexaoTracoCreateOrConnectWithoutUserInput[]
+    upsert?: ReflexaoTracoUpsertWithWhereUniqueWithoutUserInput | ReflexaoTracoUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ReflexaoTracoCreateManyUserInputEnvelope
+    set?: ReflexaoTracoWhereUniqueInput | ReflexaoTracoWhereUniqueInput[]
+    disconnect?: ReflexaoTracoWhereUniqueInput | ReflexaoTracoWhereUniqueInput[]
+    delete?: ReflexaoTracoWhereUniqueInput | ReflexaoTracoWhereUniqueInput[]
+    connect?: ReflexaoTracoWhereUniqueInput | ReflexaoTracoWhereUniqueInput[]
+    update?: ReflexaoTracoUpdateWithWhereUniqueWithoutUserInput | ReflexaoTracoUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ReflexaoTracoUpdateManyWithWhereWithoutUserInput | ReflexaoTracoUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ReflexaoTracoScalarWhereInput | ReflexaoTracoScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutPostsInput = {
@@ -26336,6 +29490,20 @@ export namespace Prisma {
     update?: XOR<XOR<ForcasUpdateToOneWithWhereWithoutTracoOportunidadeInput, ForcasUpdateWithoutTracoOportunidadeInput>, ForcasUncheckedUpdateWithoutTracoOportunidadeInput>
   }
 
+  export type UserCreateNestedOneWithoutReflexoesTracoInput = {
+    create?: XOR<UserCreateWithoutReflexoesTracoInput, UserUncheckedCreateWithoutReflexoesTracoInput>
+    connectOrCreate?: UserCreateOrConnectWithoutReflexoesTracoInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutReflexoesTracoNestedInput = {
+    create?: XOR<UserCreateWithoutReflexoesTracoInput, UserUncheckedCreateWithoutReflexoesTracoInput>
+    connectOrCreate?: UserCreateOrConnectWithoutReflexoesTracoInput
+    upsert?: UserUpsertWithoutReflexoesTracoInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutReflexoesTracoInput, UserUpdateWithoutReflexoesTracoInput>, UserUncheckedUpdateWithoutReflexoesTracoInput>
+  }
+
   export type UserCreateNestedOneWithoutQuestionarioRespostasInput = {
     create?: XOR<UserCreateWithoutQuestionarioRespostasInput, UserUncheckedCreateWithoutQuestionarioRespostasInput>
     connectOrCreate?: UserCreateOrConnectWithoutQuestionarioRespostasInput
@@ -26428,6 +29596,40 @@ export namespace Prisma {
     _max?: NestedEnumUserRoleFilter<$PrismaModel>
   }
 
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+  export type NestedJsonNullableFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<NestedJsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>,
+        Required<NestedJsonNullableFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>
+
+  export type NestedJsonNullableFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -26471,17 +29673,6 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedStringNullableFilter<$PrismaModel>
     _max?: NestedStringNullableFilter<$PrismaModel>
-  }
-
-  export type NestedIntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
   export type NestedBoolFilter<$PrismaModel = never> = {
@@ -26538,6 +29729,29 @@ export namespace Prisma {
     _sum?: NestedFloatFilter<$PrismaModel>
     _min?: NestedFloatFilter<$PrismaModel>
     _max?: NestedFloatFilter<$PrismaModel>
+  }
+  export type NestedJsonFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<NestedJsonFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>,
+        Required<NestedJsonFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>
+
+  export type NestedJsonFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
 
   export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -26685,6 +29899,36 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type ReflexaoTracoCreateWithoutUserInput = {
+    id?: string
+    tipo: string
+    numeroTraco: number
+    quadrante: string
+    respostas: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ReflexaoTracoUncheckedCreateWithoutUserInput = {
+    id?: string
+    tipo: string
+    numeroTraco: number
+    quadrante: string
+    respostas: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ReflexaoTracoCreateOrConnectWithoutUserInput = {
+    where: ReflexaoTracoWhereUniqueInput
+    create: XOR<ReflexaoTracoCreateWithoutUserInput, ReflexaoTracoUncheckedCreateWithoutUserInput>
+  }
+
+  export type ReflexaoTracoCreateManyUserInputEnvelope = {
+    data: ReflexaoTracoCreateManyUserInput | ReflexaoTracoCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
   export type PostUpsertWithWhereUniqueWithoutAuthorInput = {
     where: PostWhereUniqueInput
     update: XOR<PostUpdateWithoutAuthorInput, PostUncheckedUpdateWithoutAuthorInput>
@@ -26802,17 +30046,49 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"QuestionarioResposta"> | Date | string
   }
 
+  export type ReflexaoTracoUpsertWithWhereUniqueWithoutUserInput = {
+    where: ReflexaoTracoWhereUniqueInput
+    update: XOR<ReflexaoTracoUpdateWithoutUserInput, ReflexaoTracoUncheckedUpdateWithoutUserInput>
+    create: XOR<ReflexaoTracoCreateWithoutUserInput, ReflexaoTracoUncheckedCreateWithoutUserInput>
+  }
+
+  export type ReflexaoTracoUpdateWithWhereUniqueWithoutUserInput = {
+    where: ReflexaoTracoWhereUniqueInput
+    data: XOR<ReflexaoTracoUpdateWithoutUserInput, ReflexaoTracoUncheckedUpdateWithoutUserInput>
+  }
+
+  export type ReflexaoTracoUpdateManyWithWhereWithoutUserInput = {
+    where: ReflexaoTracoScalarWhereInput
+    data: XOR<ReflexaoTracoUpdateManyMutationInput, ReflexaoTracoUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type ReflexaoTracoScalarWhereInput = {
+    AND?: ReflexaoTracoScalarWhereInput | ReflexaoTracoScalarWhereInput[]
+    OR?: ReflexaoTracoScalarWhereInput[]
+    NOT?: ReflexaoTracoScalarWhereInput | ReflexaoTracoScalarWhereInput[]
+    id?: StringFilter<"ReflexaoTraco"> | string
+    userId?: StringFilter<"ReflexaoTraco"> | string
+    tipo?: StringFilter<"ReflexaoTraco"> | string
+    numeroTraco?: IntFilter<"ReflexaoTraco"> | number
+    quadrante?: StringFilter<"ReflexaoTraco"> | string
+    respostas?: JsonFilter<"ReflexaoTraco">
+    createdAt?: DateTimeFilter<"ReflexaoTraco"> | Date | string
+    updatedAt?: DateTimeFilter<"ReflexaoTraco"> | Date | string
+  }
+
   export type UserCreateWithoutPostsInput = {
     id?: string
     email: string
     name: string
     password: string
     role?: $Enums.UserRole
+    profileRegistration?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
     questions?: QuestionCreateNestedManyWithoutUserInput
     diaryEntries?: DiaryEntryCreateNestedManyWithoutUserInput
     questionarioRespostas?: QuestionarioRespostaCreateNestedManyWithoutUserInput
+    reflexoesTraco?: ReflexaoTracoCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutPostsInput = {
@@ -26821,11 +30097,13 @@ export namespace Prisma {
     name: string
     password: string
     role?: $Enums.UserRole
+    profileRegistration?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
     questions?: QuestionUncheckedCreateNestedManyWithoutUserInput
     diaryEntries?: DiaryEntryUncheckedCreateNestedManyWithoutUserInput
     questionarioRespostas?: QuestionarioRespostaUncheckedCreateNestedManyWithoutUserInput
+    reflexoesTraco?: ReflexaoTracoUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutPostsInput = {
@@ -26850,11 +30128,13 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    profileRegistration?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     questions?: QuestionUpdateManyWithoutUserNestedInput
     diaryEntries?: DiaryEntryUpdateManyWithoutUserNestedInput
     questionarioRespostas?: QuestionarioRespostaUpdateManyWithoutUserNestedInput
+    reflexoesTraco?: ReflexaoTracoUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPostsInput = {
@@ -26863,11 +30143,13 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    profileRegistration?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     questions?: QuestionUncheckedUpdateManyWithoutUserNestedInput
     diaryEntries?: DiaryEntryUncheckedUpdateManyWithoutUserNestedInput
     questionarioRespostas?: QuestionarioRespostaUncheckedUpdateManyWithoutUserNestedInput
+    reflexoesTraco?: ReflexaoTracoUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutQuestionsInput = {
@@ -26876,11 +30158,13 @@ export namespace Prisma {
     name: string
     password: string
     role?: $Enums.UserRole
+    profileRegistration?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
     posts?: PostCreateNestedManyWithoutAuthorInput
     diaryEntries?: DiaryEntryCreateNestedManyWithoutUserInput
     questionarioRespostas?: QuestionarioRespostaCreateNestedManyWithoutUserInput
+    reflexoesTraco?: ReflexaoTracoCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutQuestionsInput = {
@@ -26889,11 +30173,13 @@ export namespace Prisma {
     name: string
     password: string
     role?: $Enums.UserRole
+    profileRegistration?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     diaryEntries?: DiaryEntryUncheckedCreateNestedManyWithoutUserInput
     questionarioRespostas?: QuestionarioRespostaUncheckedCreateNestedManyWithoutUserInput
+    reflexoesTraco?: ReflexaoTracoUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutQuestionsInput = {
@@ -26944,11 +30230,13 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    profileRegistration?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     posts?: PostUpdateManyWithoutAuthorNestedInput
     diaryEntries?: DiaryEntryUpdateManyWithoutUserNestedInput
     questionarioRespostas?: QuestionarioRespostaUpdateManyWithoutUserNestedInput
+    reflexoesTraco?: ReflexaoTracoUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutQuestionsInput = {
@@ -26957,11 +30245,13 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    profileRegistration?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     diaryEntries?: DiaryEntryUncheckedUpdateManyWithoutUserNestedInput
     questionarioRespostas?: QuestionarioRespostaUncheckedUpdateManyWithoutUserNestedInput
+    reflexoesTraco?: ReflexaoTracoUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type DiaryAnswerUpsertWithWhereUniqueWithoutQuestionInput = {
@@ -26998,11 +30288,13 @@ export namespace Prisma {
     name: string
     password: string
     role?: $Enums.UserRole
+    profileRegistration?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
     posts?: PostCreateNestedManyWithoutAuthorInput
     questions?: QuestionCreateNestedManyWithoutUserInput
     questionarioRespostas?: QuestionarioRespostaCreateNestedManyWithoutUserInput
+    reflexoesTraco?: ReflexaoTracoCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutDiaryEntriesInput = {
@@ -27011,11 +30303,13 @@ export namespace Prisma {
     name: string
     password: string
     role?: $Enums.UserRole
+    profileRegistration?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     questions?: QuestionUncheckedCreateNestedManyWithoutUserInput
     questionarioRespostas?: QuestionarioRespostaUncheckedCreateNestedManyWithoutUserInput
+    reflexoesTraco?: ReflexaoTracoUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutDiaryEntriesInput = {
@@ -27066,11 +30360,13 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    profileRegistration?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     posts?: PostUpdateManyWithoutAuthorNestedInput
     questions?: QuestionUpdateManyWithoutUserNestedInput
     questionarioRespostas?: QuestionarioRespostaUpdateManyWithoutUserNestedInput
+    reflexoesTraco?: ReflexaoTracoUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutDiaryEntriesInput = {
@@ -27079,11 +30375,13 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    profileRegistration?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     questions?: QuestionUncheckedUpdateManyWithoutUserNestedInput
     questionarioRespostas?: QuestionarioRespostaUncheckedUpdateManyWithoutUserNestedInput
+    reflexoesTraco?: ReflexaoTracoUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type DiaryAnswerUpsertWithWhereUniqueWithoutEntryInput = {
@@ -27929,17 +31227,95 @@ export namespace Prisma {
     tracoFraqueza?: TracoFraquezaFUncheckedUpdateManyWithoutForcasNestedInput
   }
 
+  export type UserCreateWithoutReflexoesTracoInput = {
+    id?: string
+    email: string
+    name: string
+    password: string
+    role?: $Enums.UserRole
+    profileRegistration?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    posts?: PostCreateNestedManyWithoutAuthorInput
+    questions?: QuestionCreateNestedManyWithoutUserInput
+    diaryEntries?: DiaryEntryCreateNestedManyWithoutUserInput
+    questionarioRespostas?: QuestionarioRespostaCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutReflexoesTracoInput = {
+    id?: string
+    email: string
+    name: string
+    password: string
+    role?: $Enums.UserRole
+    profileRegistration?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
+    questions?: QuestionUncheckedCreateNestedManyWithoutUserInput
+    diaryEntries?: DiaryEntryUncheckedCreateNestedManyWithoutUserInput
+    questionarioRespostas?: QuestionarioRespostaUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutReflexoesTracoInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutReflexoesTracoInput, UserUncheckedCreateWithoutReflexoesTracoInput>
+  }
+
+  export type UserUpsertWithoutReflexoesTracoInput = {
+    update: XOR<UserUpdateWithoutReflexoesTracoInput, UserUncheckedUpdateWithoutReflexoesTracoInput>
+    create: XOR<UserCreateWithoutReflexoesTracoInput, UserUncheckedCreateWithoutReflexoesTracoInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutReflexoesTracoInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutReflexoesTracoInput, UserUncheckedUpdateWithoutReflexoesTracoInput>
+  }
+
+  export type UserUpdateWithoutReflexoesTracoInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    profileRegistration?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    posts?: PostUpdateManyWithoutAuthorNestedInput
+    questions?: QuestionUpdateManyWithoutUserNestedInput
+    diaryEntries?: DiaryEntryUpdateManyWithoutUserNestedInput
+    questionarioRespostas?: QuestionarioRespostaUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutReflexoesTracoInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    profileRegistration?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
+    questions?: QuestionUncheckedUpdateManyWithoutUserNestedInput
+    diaryEntries?: DiaryEntryUncheckedUpdateManyWithoutUserNestedInput
+    questionarioRespostas?: QuestionarioRespostaUncheckedUpdateManyWithoutUserNestedInput
+  }
+
   export type UserCreateWithoutQuestionarioRespostasInput = {
     id?: string
     email: string
     name: string
     password: string
     role?: $Enums.UserRole
+    profileRegistration?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
     posts?: PostCreateNestedManyWithoutAuthorInput
     questions?: QuestionCreateNestedManyWithoutUserInput
     diaryEntries?: DiaryEntryCreateNestedManyWithoutUserInput
+    reflexoesTraco?: ReflexaoTracoCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutQuestionarioRespostasInput = {
@@ -27948,11 +31324,13 @@ export namespace Prisma {
     name: string
     password: string
     role?: $Enums.UserRole
+    profileRegistration?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     questions?: QuestionUncheckedCreateNestedManyWithoutUserInput
     diaryEntries?: DiaryEntryUncheckedCreateNestedManyWithoutUserInput
+    reflexoesTraco?: ReflexaoTracoUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutQuestionarioRespostasInput = {
@@ -27977,11 +31355,13 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    profileRegistration?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     posts?: PostUpdateManyWithoutAuthorNestedInput
     questions?: QuestionUpdateManyWithoutUserNestedInput
     diaryEntries?: DiaryEntryUpdateManyWithoutUserNestedInput
+    reflexoesTraco?: ReflexaoTracoUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutQuestionarioRespostasInput = {
@@ -27990,11 +31370,13 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    profileRegistration?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     questions?: QuestionUncheckedUpdateManyWithoutUserNestedInput
     diaryEntries?: DiaryEntryUncheckedUpdateManyWithoutUserNestedInput
+    reflexoesTraco?: ReflexaoTracoUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type PostCreateManyAuthorInput = {
@@ -28030,6 +31412,16 @@ export namespace Prisma {
     resposta?: string | null
     frequencia?: number | null
     intensidade?: number | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ReflexaoTracoCreateManyUserInput = {
+    id?: string
+    tipo: string
+    numeroTraco: number
+    quadrante: string
+    respostas: JsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -28145,6 +31537,36 @@ export namespace Prisma {
     resposta?: NullableStringFieldUpdateOperationsInput | string | null
     frequencia?: NullableIntFieldUpdateOperationsInput | number | null
     intensidade?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ReflexaoTracoUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tipo?: StringFieldUpdateOperationsInput | string
+    numeroTraco?: IntFieldUpdateOperationsInput | number
+    quadrante?: StringFieldUpdateOperationsInput | string
+    respostas?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ReflexaoTracoUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tipo?: StringFieldUpdateOperationsInput | string
+    numeroTraco?: IntFieldUpdateOperationsInput | number
+    quadrante?: StringFieldUpdateOperationsInput | string
+    respostas?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ReflexaoTracoUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tipo?: StringFieldUpdateOperationsInput | string
+    numeroTraco?: IntFieldUpdateOperationsInput | number
+    quadrante?: StringFieldUpdateOperationsInput | string
+    respostas?: JsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

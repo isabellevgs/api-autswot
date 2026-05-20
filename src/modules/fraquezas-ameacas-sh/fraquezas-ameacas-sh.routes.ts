@@ -3,8 +3,20 @@ import { FraquezasAmeacasShController } from './fraquezas-ameacas-sh.controller.
 
 const fraquezasAmeacasShController = new FraquezasAmeacasShController();
 
+const registroSchema = {
+  type: 'object',
+  properties: {
+    id: { type: 'string' },
+    numeroTraco: { type: 'number' },
+    pergunta: { type: 'string' },
+    explicacao: { type: 'string' },
+    swot: { type: 'string' },
+    frequencia: { type: 'number', format: 'float' },
+    intensidade: { type: 'number', format: 'float' },
+  },
+};
+
 export async function fraquezasAmeacasShRoutes(fastify: FastifyInstance) {
-  // Todas as rotas de fraquezas-ameacas-sh requerem autenticação
   fastify.addHook('onRequest', fastify.authenticate);
 
   // Listar registros com paginação e filtros
@@ -23,23 +35,9 @@ export async function fraquezasAmeacasShRoutes(fastify: FastifyInstance) {
       },
       response: {
         200: {
-          description: 'Lista de registros',
           type: 'object',
           properties: {
-            registros: {
-              type: 'array',
-              items: {
-                type: 'object',
-                properties: {
-                  id: { type: 'string' },
-                  numeroTraco: { type: 'number' },
-                  pergunta: { type: 'string' },
-                  explicacao: { type: 'string' },
-                  frequencia: { type: 'number', format: 'float' },
-                  intensidade: { type: 'number', format: 'float' },
-                },
-              },
-            },
+            registros: { type: 'array', items: registroSchema },
             pagination: {
               type: 'object',
               properties: {
@@ -64,38 +62,78 @@ export async function fraquezasAmeacasShRoutes(fastify: FastifyInstance) {
       params: {
         type: 'object',
         required: ['id'],
-        properties: {
-          id: { type: 'string', format: 'uuid' },
-        },
+        properties: { id: { type: 'string', format: 'uuid' } },
       },
       response: {
         200: {
-          description: 'Dados do registro',
           type: 'object',
-          properties: {
-            registro: {
-              type: 'object',
-              properties: {
-                id: { type: 'string' },
-                numeroTraco: { type: 'number' },
-                pergunta: { type: 'string' },
-                explicacao: { type: 'string' },
-                frequencia: { type: 'number' },
-                intensidade: { type: 'number' },
-              },
-            },
-          },
+          properties: { registro: registroSchema },
         },
         404: {
-          description: 'Registro não encontrado',
           type: 'object',
-          properties: {
-            error: { type: 'string' },
-            code: { type: 'string' },
-          },
+          properties: { error: { type: 'string' }, code: { type: 'string' } },
         },
       },
     },
   }, fraquezasAmeacasShController.getFraquezasAmeacasSh.bind(fraquezasAmeacasShController));
+
+  // Atualizar registro por ID
+  fastify.put('/:id', {
+    schema: {
+      tags: ['fraquezas-ameacas-sh'],
+      description: 'Atualizar registro de fraquezas e ameaças SH',
+      security: [{ bearerAuth: [] }],
+      params: {
+        type: 'object',
+        required: ['id'],
+        properties: { id: { type: 'string', format: 'uuid' } },
+      },
+      body: {
+        type: 'object',
+        properties: {
+          numeroTraco: { type: 'number' },
+          pergunta: { type: 'string' },
+          explicacao: { type: 'string' },
+          swot: { type: 'string' },
+          frequencia: { type: 'number' },
+          intensidade: { type: 'number' },
+        },
+      },
+      response: {
+        200: {
+          type: 'object',
+          properties: { registro: registroSchema },
+        },
+        404: {
+          type: 'object',
+          properties: { error: { type: 'string' }, code: { type: 'string' } },
+        },
+      },
+    },
+  }, fraquezasAmeacasShController.updateFraquezasAmeacasSh.bind(fraquezasAmeacasShController));
+
+  // Deletar registro por ID
+  fastify.delete('/:id', {
+    schema: {
+      tags: ['fraquezas-ameacas-sh'],
+      description: 'Deletar registro de fraquezas e ameaças SH',
+      security: [{ bearerAuth: [] }],
+      params: {
+        type: 'object',
+        required: ['id'],
+        properties: { id: { type: 'string', format: 'uuid' } },
+      },
+      response: {
+        200: {
+          type: 'object',
+          properties: { message: { type: 'string' } },
+        },
+        404: {
+          type: 'object',
+          properties: { error: { type: 'string' }, code: { type: 'string' } },
+        },
+      },
+    },
+  }, fraquezasAmeacasShController.deleteFraquezasAmeacasSh.bind(fraquezasAmeacasShController));
 }
 

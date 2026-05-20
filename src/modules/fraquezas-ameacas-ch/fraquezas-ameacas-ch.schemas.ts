@@ -12,6 +12,7 @@ export const updateFraquezasAmeacasChSchema = z.object({
   numHistoria: z.number().int().positive('Número da história deve ser positivo').optional(),
   frequencia: z.number().min(0, 'Frequência deve ser um número não negativo').optional(),
   intensidade: z.number().min(0, 'Intensidade deve ser um número não negativo').optional(),
+  swot: z.string().optional(),
 });
 
 export const getFraquezasAmeacasChParamsSchema = z.object({

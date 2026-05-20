@@ -156,5 +156,37 @@ export async function userRoutes(fastify: FastifyInstance) {
       },
     },
   }, userController.deleteUser.bind(userController));
+
+  // Admin: redefinir senha de um usuário (requer SUPER_USER)
+  fastify.patch('/:id/password', {
+    onRequest: [fastify.requireRole(['SUPER_USER'])],
+    schema: {
+      tags: ['users'],
+      description: 'Redefinir senha de um usuário (admin)',
+      security: [{ bearerAuth: [] }],
+      params: {
+        type: 'object',
+        required: ['id'],
+        properties: {
+          id: { type: 'string', format: 'uuid' },
+        },
+      },
+      body: {
+        type: 'object',
+        required: ['password'],
+        properties: {
+          password: { type: 'string', minLength: 8 },
+        },
+      },
+      response: {
+        200: {
+          type: 'object',
+          properties: {
+            message: { type: 'string' },
+          },
+        },
+      },
+    },
+  }, userController.resetPassword.bind(userController));
 }
 

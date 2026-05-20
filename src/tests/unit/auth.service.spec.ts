@@ -3,6 +3,7 @@ import { AuthService } from '../../modules/auth/auth.service';
 import { AuthRepository } from '../../modules/auth/auth.repository';
 import { ConflictError, UnauthorizedError, NotFoundError } from '../../utils/errors';
 import bcrypt from 'bcryptjs';
+import { registerPayloadFixture } from '../fixtures/registerPayload';
 
 // Mock do AuthRepository
 mock.module('../../modules/auth/auth.repository', () => ({
@@ -43,9 +44,9 @@ describe('AuthService', () => {
       (authRepository.createSelect as any).mockResolvedValueOnce(mockUser);
 
       const result = await authService.register({
+        ...registerPayloadFixture,
         email: 'test@example.com',
         name: 'Test User',
-        password: 'password123',
       });
 
       expect(result).toEqual(mockUser);
@@ -59,9 +60,9 @@ describe('AuthService', () => {
 
       await expect(
         authService.register({
+          ...registerPayloadFixture,
           email: 'test@example.com',
           name: 'Test User',
-          password: 'password123',
         })
       ).rejects.toThrow(ConflictError);
     });
