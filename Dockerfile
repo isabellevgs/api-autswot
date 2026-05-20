@@ -3,7 +3,7 @@ FROM oven/bun:1-alpine
 WORKDIR /app
 
 # Copiar arquivos de dependências
-COPY package.json bun.lockb* ./
+COPY package.json bun.lock* ./
 COPY tsconfig.json ./
 COPY prisma.config.ts ./
 COPY prisma ./prisma/
@@ -15,7 +15,9 @@ RUN bun install --frozen-lockfile || bun install
 COPY . .
 
 # Gerar Prisma Client
-RUN bun x prisma generate
+# DATABASE_URL é injetada apenas durante este RUN para satisfazer prisma.config.ts
+# (não persiste na imagem; em runtime, a URL real vem do ambiente do container)
+RUN DATABASE_URL="postgresql://build:build@localhost:5432/build?schema=public" bun x prisma generate
 
 # Expor porta
 EXPOSE 3000
