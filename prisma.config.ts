@@ -1,7 +1,11 @@
 import { defineConfig } from "prisma/config";
 
-// Carregar variáveis do .env com fallback para operações que não precisam de conexão real (como generate)
-const DATABASE_URL = process.env.DATABASE_URL || "postgresql://postgres:postgres@localhost:5432/autswot?schema=public";
+const DATABASE_URL = process.env.DATABASE_URL;
+if (!DATABASE_URL) {
+  throw new Error(
+    "❌ DATABASE_URL não definida. Configure a variável de ambiente antes de rodar migrações.",
+  );
+}
 
 export default defineConfig({
   schema: "prisma/schema.prisma",

@@ -19,3 +19,12 @@ const envSchema = z.object({
 
 // Validar e exportar variáveis de ambiente
 export const env = envSchema.parse(process.env);
+
+const abbrev = (s: string, n = 4) => s.slice(0, n) + "***";
+console.info("🔐 Env carregada:", {
+  DATABASE_URL: abbrev(env.DATABASE_URL, 30),
+  JWT_SECRET: `${abbrev(env.JWT_SECRET)} [${env.JWT_SECRET.length}chars]`,
+  JWT_REFRESH_SECRET: `${abbrev(env.JWT_REFRESH_SECRET)} [${env.JWT_REFRESH_SECRET.length}chars]`,
+  NODE_ENV: env.NODE_ENV,
+  PORT: env.PORT,
+});
