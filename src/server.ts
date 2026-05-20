@@ -1,6 +1,5 @@
 import Fastify from "fastify";
 import type { FastifyRequest, FastifyReply } from "fastify";
-import cors from "@fastify/cors";
 import jwt from "@fastify/jwt";
 import helmet from "@fastify/helmet";
 import { env } from "./config/env.js";
@@ -56,27 +55,6 @@ const ALLOWED_ORIGINS: string[] = env.FRONTEND_URL
 console.log(`[CORS] NODE_ENV: ${env.NODE_ENV}`);
 console.log(`[CORS] Origens permitidas: ${ALLOWED_ORIGINS.join(", ")}`);
 
-/**
- * Callback de origem por request — mais robusto que array estático.
- * Loga a origem recebida em produção para facilitar debug.
- */
-const originCallback = (
-  origin: string | undefined,
-  callback: (err: Error | null, allow: boolean) => void,
-) => {
-  // Em desenvolvimento, libera tudo
-  if (env.NODE_ENV !== "production") return callback(null, true);
-
-  // Requisições sem Origin (ex.: chamadas server-to-server, curl)
-  if (!origin) return callback(null, true);
-
-  if (ALLOWED_ORIGINS.includes(origin)) {
-    callback(null, true);
-  } else {
-    console.warn(`[CORS] Origem bloqueada: ${origin}. Permitidas: ${ALLOWED_ORIGINS.join(", ")}`);
-    callback(null, false);
-  }
-};
 
 export async function buildServer() {
   const fastify = Fastify({
@@ -98,21 +76,47 @@ export async function buildServer() {
           },
   });
 
-  // CORS deve ser registrado ANTES do helmet para que os headers
-  // de preflight sejam definidos antes de qualquer header de segurança
-  await fastify.register(cors, {
-    origin: originCallback,
-    credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-    preflightContinue: false,
-    optionsSuccessStatus: 204,
+  // ── CORS manual via hook ────────────────────────────────────────────────
+  // Substituímos @fastify/cors por hook raw para garantir compatibilidade
+  // total com Fastify v5 e evitar problemas de interceptação do proxy.
+  fastify.addHook('onRequest', async (request, reply) => {
+    const origin = request.headers['origin'] as string | undefined;
+    const isDev  = env.NODE_ENV !== 'production';
+    const allowed = isDev || !origin || ALLOWED_ORIGINS.includes(origin);
+
+    console.log(`[CORS] ${request.method} ${request.url} origin="${origin ?? 'none'}" allowed=${allowed}`);
+
+    if (origin && allowed) {
+      reply.header('Access-Control-Allow-Origin',      origin);
+      reply.header('Access-Control-Allow-Credentials', 'true');
+      reply.header('Vary', 'Origin');
+    }
+
+    // Preflight OPTIONS — responde imediatamente com 204
+    if (request.method === 'OPTIONS') {
+      reply
+        .header('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,PATCH,OPTIONS')
+        .header('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+        .header('Access-Control-Max-Age', '86400')
+        .code(204)
+        .send();
+    }
   });
 
-  // Registrar plugins de segurança (após CORS)
+  // Garantir CORS nos erros também (error handler pode sobrescrever headers)
+  fastify.addHook('onSend', async (request, reply) => {
+    const origin = request.headers['origin'] as string | undefined;
+    const isDev  = env.NODE_ENV !== 'production';
+    if (origin && (isDev || ALLOWED_ORIGINS.includes(origin))) {
+      reply.header('Access-Control-Allow-Origin',      origin);
+      reply.header('Access-Control-Allow-Credentials', 'true');
+    }
+  });
+
+  // Registrar plugins de segurança
   await fastify.register(helmet, {
     contentSecurityPolicy: env.NODE_ENV === "production",
-    crossOriginResourcePolicy: { policy: "cross-origin" }, // Necessário para permitir requests cross-origin
+    crossOriginResourcePolicy: { policy: "cross-origin" },
     hidePoweredBy: true,
   });
 
