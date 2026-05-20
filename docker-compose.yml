@@ -48,7 +48,5 @@ volumes:
   postgres_data:
 
 networks:
-  default:
-    driver: bridge
   coolify:
     external: true
