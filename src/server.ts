@@ -48,16 +48,34 @@ declare module "@fastify/jwt" {
   }
 }
 
-const getAllowedOrigins = () => {
-  if (env.NODE_ENV !== "production") return true;
+const ALLOWED_ORIGINS: string[] = env.FRONTEND_URL
+  .split(",")
+  .map((u) => u.trim())
+  .filter(Boolean);
 
-  if (!env.FRONTEND_URL) {
-    throw new Error("FRONTEND_URL não configurada em produção");
+console.log(`[CORS] NODE_ENV: ${env.NODE_ENV}`);
+console.log(`[CORS] Origens permitidas: ${ALLOWED_ORIGINS.join(", ")}`);
+
+/**
+ * Callback de origem por request — mais robusto que array estático.
+ * Loga a origem recebida em produção para facilitar debug.
+ */
+const originCallback = (
+  origin: string | undefined,
+  callback: (err: Error | null, allow: boolean) => void,
+) => {
+  // Em desenvolvimento, libera tudo
+  if (env.NODE_ENV !== "production") return callback(null, true);
+
+  // Requisições sem Origin (ex.: chamadas server-to-server, curl)
+  if (!origin) return callback(null, true);
+
+  if (ALLOWED_ORIGINS.includes(origin)) {
+    callback(null, true);
+  } else {
+    console.warn(`[CORS] Origem bloqueada: ${origin}. Permitidas: ${ALLOWED_ORIGINS.join(", ")}`);
+    callback(null, false);
   }
-
-  return env.FRONTEND_URL.split(",")
-    .map((url) => url.trim())
-    .filter((url) => url.length > 0);
 };
 
 export async function buildServer() {
@@ -80,18 +98,22 @@ export async function buildServer() {
           },
   });
 
-  // Registrar plugins de segurança
-  await fastify.register(helmet, {
-    contentSecurityPolicy: env.NODE_ENV === "production",
-    hidePoweredBy: true, // Remove header X-Powered-By
-  });
-
-  // Registrar CORS
+  // CORS deve ser registrado ANTES do helmet para que os headers
+  // de preflight sejam definidos antes de qualquer header de segurança
   await fastify.register(cors, {
-    origin: getAllowedOrigins(), // Em desenvolvimento permite qualquer origem
+    origin: originCallback,
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
+    preflightContinue: false,
+    optionsSuccessStatus: 204,
+  });
+
+  // Registrar plugins de segurança (após CORS)
+  await fastify.register(helmet, {
+    contentSecurityPolicy: env.NODE_ENV === "production",
+    crossOriginResourcePolicy: { policy: "cross-origin" }, // Necessário para permitir requests cross-origin
+    hidePoweredBy: true,
   });
 
   // Registrar Rate Limit

@@ -14,7 +14,7 @@ const envSchema = z.object({
   NODE_ENV: z
     .enum(["development", "production", "test"])
     .default("development"),
-  FRONTEND_URL: z.string().default("http://localhost:5173"),
+  FRONTEND_URL: z.string().min(1).default("http://localhost:5173,http://localhost:5174"),
 });
 
 // Validar e exportar variáveis de ambiente
