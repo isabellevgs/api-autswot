@@ -34,7 +34,7 @@ services:
       JWT_REFRESH_EXPIRES_IN: ${JWT_REFRESH_EXPIRES_IN}
       PORT: 3000
       NODE_ENV: production
-      FRONTEND_URL: https://app.autswot.com,https://admin.autswot.com
+      FRONTEND_URL: ${FRONTEND_URL:-https://app.autswot.com,https://painel.autswot.com}
     depends_on:
       postgres:
         condition: service_healthy
