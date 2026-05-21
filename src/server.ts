@@ -58,6 +58,7 @@ console.log(`[CORS] Origens permitidas: ${ALLOWED_ORIGINS.join(", ")}`);
 
 export async function buildServer() {
   const fastify = Fastify({
+    trustProxy: true,
     logger:
       env.NODE_ENV === "production"
         ? {

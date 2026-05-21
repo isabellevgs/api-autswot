@@ -1,4 +1,5 @@
 import type { FastifyInstance } from 'fastify';
+import { authRateLimit } from '../../plugins/rate-limit.js';
 import { AuthController } from './auth.controller.js';
 
 const authController = new AuthController();
@@ -6,6 +7,7 @@ const authController = new AuthController();
 export async function authRoutes(fastify: FastifyInstance) {
   // Rotas públicas
   fastify.post('/register', {
+    ...authRateLimit,
     schema: {
       tags: ['auth'],
       description: 'Registrar novo usuário',
@@ -58,6 +60,7 @@ export async function authRoutes(fastify: FastifyInstance) {
   }, authController.register.bind(authController));
 
   fastify.post('/login', {
+    ...authRateLimit,
     schema: {
       tags: ['auth'],
       description: 'Fazer login',
