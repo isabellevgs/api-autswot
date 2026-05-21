@@ -101,6 +101,26 @@ export class UserService {
   }
 
   /**
+   * Obter ficha de cadastro sociodemográfico (admin)
+   */
+  async getUserRegistration(id: string) {
+    const user = await this.userRepository.findByIdSelect(id, {
+      id: true,
+      email: true,
+      name: true,
+      role: true,
+      profileRegistration: true,
+      createdAt: true,
+    });
+
+    if (!user) {
+      throw new NotFoundError('Usuário não encontrado');
+    }
+
+    return user;
+  }
+
+  /**
    * Deletar usuário e todos os dados relacionados (cascade no banco)
    */
   async deleteUser(id: string, requesterId?: string) {

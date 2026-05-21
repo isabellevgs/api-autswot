@@ -156,6 +156,7 @@ export async function authRoutes(fastify: FastifyInstance) {
                   email: { type: 'string' },
                   name: { type: 'string' },
                   role: { type: 'string', enum: ['USER', 'SUPER_USER'] },
+                  profileRegistration: { type: 'object', additionalProperties: true, nullable: true },
                   createdAt: { type: 'string' },
                   updatedAt: { type: 'string' },
                 },

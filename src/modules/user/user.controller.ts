@@ -50,6 +50,15 @@ export class UserController {
     return reply.send(result);
   }
 
+  async getUserRegistration(
+    request: FastifyRequest<{ Params: GetUserParams }>,
+    reply: FastifyReply,
+  ) {
+    const { id } = getUserParamsSchema.parse(request.params);
+    const user = await userService.getUserRegistration(id);
+    return reply.send({ user });
+  }
+
   async resetPassword(
     request: FastifyRequest<{ Params: GetUserParams; Body: { password: string } }>,
     reply: FastifyReply,

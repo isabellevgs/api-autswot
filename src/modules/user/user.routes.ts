@@ -52,6 +52,42 @@ export async function userRoutes(fastify: FastifyInstance) {
     },
   }, userController.listUsers.bind(userController));
 
+  // Admin: ficha de cadastro sociodemográfico (requer SUPER_USER)
+  fastify.get('/:id/registration', {
+    onRequest: [fastify.requireRole(['SUPER_USER'])],
+    schema: {
+      tags: ['users'],
+      description: 'Obter ficha de cadastro sociodemográfico de um usuário (admin)',
+      security: [{ bearerAuth: [] }],
+      params: {
+        type: 'object',
+        required: ['id'],
+        properties: {
+          id: { type: 'string', format: 'uuid' },
+        },
+      },
+      response: {
+        200: {
+          description: 'Ficha de cadastro',
+          type: 'object',
+          properties: {
+            user: {
+              type: 'object',
+              properties: {
+                id: { type: 'string' },
+                email: { type: 'string' },
+                name: { type: 'string' },
+                role: { type: 'string' },
+                profileRegistration: { type: 'object', additionalProperties: true, nullable: true },
+                createdAt: { type: 'string' },
+              },
+            },
+          },
+        },
+      },
+    },
+  }, userController.getUserRegistration.bind(userController));
+
   fastify.get('/:id', {
     schema: {
       tags: ['users'],
