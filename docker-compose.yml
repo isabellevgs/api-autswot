@@ -17,6 +17,10 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    networks:
+      default:
+        aliases:
+          - autswot-postgres
 
   api:
     build:
@@ -27,7 +31,8 @@ services:
     ports:
       - "3000:3000"
     environment:
-      DATABASE_URL: postgresql://autswot_user:${POSTGRES_PASSWORD}@postgres:5432/autswot?schema=public
+      # Coolify injeta DATABASE_URL no .env — não hardcodar @postgres (conflita com rede coolify)
+      DATABASE_URL: ${DATABASE_URL:-postgresql://autswot_user:${POSTGRES_PASSWORD}@autswot-postgres:5432/autswot?schema=public}
       JWT_SECRET: ${JWT_SECRET}
       JWT_REFRESH_SECRET: ${JWT_REFRESH_SECRET}
       JWT_EXPIRES_IN: ${JWT_EXPIRES_IN}
