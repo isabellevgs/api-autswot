@@ -1,6 +1,6 @@
 import bcrypt from 'bcryptjs';
 import { UserRepository } from './user.repository.js';
-import { NotFoundError, ConflictError } from '../../utils/errors.js';
+import { NotFoundError, ConflictError, ForbiddenError } from '../../utils/errors.js';
 import type { UpdateUserInput } from './user.schemas.js';
 
 /**
@@ -101,12 +101,20 @@ export class UserService {
   }
 
   /**
-   * Deletar usuário
+   * Deletar usuário e todos os dados relacionados (cascade no banco)
    */
-  async deleteUser(id: string) {
+  async deleteUser(id: string, requesterId?: string) {
     const user = await this.userRepository.findById(id);
     if (!user) {
       throw new NotFoundError('Usuário não encontrado');
+    }
+
+    if (requesterId && requesterId === id) {
+      throw new ForbiddenError('Você não pode excluir sua própria conta por aqui');
+    }
+
+    if (user.role === 'SUPER_USER') {
+      throw new ForbiddenError('Não é possível excluir um administrador');
     }
 
     await this.userRepository.delete(id);

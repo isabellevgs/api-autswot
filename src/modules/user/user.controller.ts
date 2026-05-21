@@ -45,7 +45,8 @@ export class UserController {
 
   async deleteUser(request: FastifyRequest<{ Params: GetUserParams }>, reply: FastifyReply) {
     const { id } = getUserParamsSchema.parse(request.params);
-    const result = await userService.deleteUser(id);
+    const requesterId = (request.user as { id: string }).id;
+    const result = await userService.deleteUser(id, requesterId);
     return reply.send(result);
   }
 

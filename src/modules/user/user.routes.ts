@@ -133,10 +133,12 @@ export async function userRoutes(fastify: FastifyInstance) {
     },
   }, userController.updateUser.bind(userController));
 
+  // Admin: excluir usuário e todos os dados relacionados (requer SUPER_USER)
   fastify.delete('/:id', {
+    onRequest: [fastify.requireRole(['SUPER_USER'])],
     schema: {
       tags: ['users'],
-      description: 'Excluir usuário',
+      description: 'Excluir usuário e todos os dados relacionados (admin)',
       security: [{ bearerAuth: [] }],
       params: {
         type: 'object',
