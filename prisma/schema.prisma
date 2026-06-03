@@ -253,24 +253,96 @@ model TracoDetalhe {
   oQueE       Json     // String[]
 
   // Quando classificado como Força (tipo F, quadrante forca)
-  comoUsar    Json     // String[]
+  comoUsarAcademico    String @db.Text @default("")
+  comoUsarProfissional String @db.Text @default("")
+  comoUsarCotidiano    String @db.Text @default("")
 
-  // Quando classificado como Oportunidade (quadrante oportunidade)
+  // Quando classificado como Oportunidade (quadrante oportunidade, tipo FO)
   comoOportunidade Json // String[]
+  exemplosOportunidadeAcademico      String @db.Text @default("")
+  exemplosOportunidadeProfissional    String @db.Text @default("")
+  exemplosOportunidadeFamiliar        String @db.Text @default("")
+  exemplosOportunidadeAmigosColegas   String @db.Text @default("")
+  exemplosOportunidadeParceiros       String @db.Text @default("")
 
-  // Quando classificado como Fraqueza ou Ameaça (quadrante fraqueza/ameaca)
-  comoAtrapalhar   Json // String[]
-  reduzirImpacto   Json // String[]
+  // Oportunidade em traços tipo F (Forças) — quadrante oportunidade
+  exemplosPraticosEstudo    String @db.Text @default("")
+  exemplosPraticosTrabalho  String @db.Text @default("")
+  exemplosPraticosCotidiano String @db.Text @default("")
 
-  // Comuns a oportunidade, fraqueza e ameaça
+  // Quando classificado como Fraqueza (quadrante fraqueza, tipo FO)
+  fraquezaOuAmeaca Json @default("[]") // String[] — parágrafos
+  atrapalharAcademico      String @db.Text @default("")
+  atrapalharProfissional    String @db.Text @default("")
+  atrapalharFamiliar        String @db.Text @default("")
+  atrapalharAmigosColegas   String @db.Text @default("")
+  atrapalharParceiros       String @db.Text @default("")
+
+  // Traços tipo F (Forças) — bullets por quadrante
+  transformarEmForca        Json @default("[]") // String[] — quadrante oportunidade
+  transformarEmOportunidade Json @default("[]") // String[] — quadrante fraqueza
+
+  reduzirImpacto   Json // String[] — legado SH/CH embutido em TracoDetalhe
+
+  // Neutro (tipo FO — sempre exibido)
   dicas      Json     // String[]
-  exemplos   Json     // String[]
+  exemplos   Json     // String[] — exemplos práticos
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   @@unique([tipo, numeroTraco])
   @@index([tipo])
+}
+
+// Relatório editorial — Traços de Fraquezas ou Ameaças sem história social (SH)
+model RelatorioSh {
+  id          String   @id @default(uuid())
+  numeroTraco Int      @unique
+
+  titulo      String
+
+  oQueE       Json     // String[] — parágrafos descritivos
+
+  atrapalharAcademico      String @db.Text @default("")
+  atrapalharProfissional   String @db.Text @default("")
+  atrapalharFamiliar       String @db.Text @default("")
+  atrapalharAmigosColegas  String @db.Text @default("")
+  atrapalharParceiros      String @db.Text @default("")
+
+  reduzirImpacto Json     // String[] — parágrafos
+  dicas          Json     // String[] — bullet points
+  exemplos       Json     // String[] — bullet points
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([numeroTraco])
+}
+
+// Relatório editorial — Traços de Fraquezas ou Ameaças com história social (CH)
+model RelatorioCh {
+  id          String   @id @default(uuid())
+  numeroTraco Int      @unique
+
+  titulo      String
+
+  oQueE       Json     // String[] — parágrafos descritivos
+
+  atrapalharAcademico      String @db.Text @default("")
+  atrapalharProfissional   String @db.Text @default("")
+  atrapalharFamiliar       String @db.Text @default("")
+  atrapalharAmigosColegas  String @db.Text @default("")
+  atrapalharParceiros      String @db.Text @default("")
+
+  reduzirImpacto Json     // String[] — parágrafos
+  dicas          Json     // String[] — bullet points
+  exemplos       Json     // String[] — bullet points
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([numeroTraco])
 }
 
 // Modelo de Reflexões do Usuário por Traço (persistência das respostas qualitativas)

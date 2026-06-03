@@ -1,6 +1,13 @@
 import { PrismaClient } from '../generated/prisma/index.js';
 import { PrismaPg } from '@prisma/adapter-pg';
 import { Pool } from 'pg';
+import { parseComoAtrapalhar } from '../src/utils/parse-como-atrapalhar.js';
+import { mapAtrapalharParaExemplosOportunidade } from '../src/utils/map-atrapalhar-para-exemplos-oportunidade.js';
+import { parseComoUsar } from '../src/utils/parse-como-usar.js';
+import {
+  parseExemplosPraticosForca,
+  migrarExemplosOportunidadeErradosParaForca,
+} from '../src/utils/parse-exemplos-praticos-forca.js';
 
 // Garantir que DATABASE_URL está definida
 if (!process.env.DATABASE_URL) {
@@ -5318,22 +5325,124 @@ const TRACOS_CH = [
  * Seed dos detalhes editoriais de cada traço SWOT (SH, FO, F e CH)
  * Gerado a partir dos arquivos seed-traco-detalhe.ts e seed-ch-detalhe.ts
  */
+function normalizarTracoDetalheParaUpsert(d: Record<string, unknown>) {
+  const payload = { ...d };
+
+  if (Array.isArray(payload.exemplosOportunidade) && (payload.exemplosOportunidade as string[]).length > 0) {
+    if (payload.tipo === 'F') {
+      Object.assign(payload, parseExemplosPraticosForca(payload.exemplosOportunidade as string[]));
+    } else {
+      const parsed = parseComoAtrapalhar(payload.exemplosOportunidade as string[]);
+      Object.assign(payload, mapAtrapalharParaExemplosOportunidade(parsed));
+    }
+  }
+
+  migrarExemplosOportunidadeErradosParaForca(payload);
+
+  if (Array.isArray(payload.comoAtrapalhar) && (payload.comoAtrapalhar as string[]).length > 0) {
+    Object.assign(payload, parseComoAtrapalhar(payload.comoAtrapalhar as string[]));
+  }
+
+  if (Array.isArray(payload.comoUsar) && (payload.comoUsar as string[]).length > 0) {
+    Object.assign(payload, parseComoUsar(payload.comoUsar as string[]));
+  }
+
+  delete payload.exemplosOportunidade;
+  delete payload.comoAtrapalhar;
+  delete payload.comoUsar;
+  return payload;
+}
+
 async function seedTracosDetalhe() {
   const todos = [...TRACOS_DETALHE, ...TRACOS_CH];
   console.log(`
 🌱 TracoDetalhe: inserindo/atualizando ${todos.length} traços...`);
   let count = 0;
   for (const d of todos) {
+    const payload = normalizarTracoDetalheParaUpsert(d as Record<string, unknown>);
     await (prisma as any).tracoDetalhe.upsert({
-      where: { tipo_numeroTraco: { tipo: d.tipo, numeroTraco: d.numeroTraco } },
-      update: { ...d },
-      create: { ...d },
+      where: { tipo_numeroTraco: { tipo: payload.tipo, numeroTraco: payload.numeroTraco } },
+      update: payload,
+      create: payload,
     });
     process.stdout.write('.');
     count++;
   }
   console.log(`
 ✅ TracoDetalhe: ${count} traço(s) inserido(s)/atualizado(s).`);
+}
+
+/**
+ * Seed dos relatórios SH (Fraquezas/Ameaças sem história social)
+ */
+async function seedRelatoriosSh() {
+  const shTracos = TRACOS_DETALHE.filter((d) => d.tipo === 'SH');
+  console.log(`
+🌱 RelatorioSh: inserindo/atualizando ${shTracos.length} relatórios...`);
+  let count = 0;
+  for (const d of shTracos) {
+    const atrapalhar = parseComoAtrapalhar(Array.isArray(d.comoAtrapalhar) ? d.comoAtrapalhar : []);
+    await (prisma as any).relatorioSh.upsert({
+      where: { numeroTraco: d.numeroTraco },
+      update: {
+        titulo: d.titulo,
+        oQueE: d.oQueE ?? [],
+        ...atrapalhar,
+        reduzirImpacto: d.reduzirImpacto ?? [],
+        dicas: d.dicas ?? [],
+        exemplos: d.exemplos ?? [],
+      },
+      create: {
+        numeroTraco: d.numeroTraco,
+        titulo: d.titulo,
+        oQueE: d.oQueE ?? [],
+        ...atrapalhar,
+        reduzirImpacto: d.reduzirImpacto ?? [],
+        dicas: d.dicas ?? [],
+        exemplos: d.exemplos ?? [],
+      },
+    });
+    process.stdout.write('.');
+    count++;
+  }
+  console.log(`
+✅ RelatorioSh: ${count} relatório(s) inserido(s)/atualizado(s).`);
+}
+
+/**
+ * Seed dos relatórios CH (Fraquezas/Ameaças com história social)
+ */
+async function seedRelatoriosCh() {
+  console.log(`
+🌱 RelatorioCh: inserindo/atualizando ${TRACOS_CH.length} relatórios...`);
+  let count = 0;
+  for (const d of TRACOS_CH) {
+    const atrapalhar = parseComoAtrapalhar(Array.isArray(d.comoAtrapalhar) ? d.comoAtrapalhar : []);
+    await (prisma as any).relatorioCh.upsert({
+      where: { numeroTraco: d.numeroTraco },
+      update: {
+        titulo: d.titulo,
+        oQueE: d.oQueE ?? [],
+        ...atrapalhar,
+        reduzirImpacto: d.reduzirImpacto ?? [],
+        dicas: d.dicas ?? [],
+        exemplos: d.exemplos ?? [],
+      },
+      create: {
+        numeroTraco: d.numeroTraco,
+        titulo: d.titulo,
+        oQueE: d.oQueE ?? [],
+        ...atrapalhar,
+        reduzirImpacto: d.reduzirImpacto ?? [],
+        dicas: d.dicas ?? [],
+        exemplos: d.exemplos ?? [],
+      },
+    });
+    process.stdout.write('.');
+    count++;
+  }
+  console.log(`
+✅ RelatorioCh: ${count} relatório(s) inserido(s)/atualizado(s).`);
 }
 
 /**
@@ -5350,7 +5459,8 @@ async function main() {
     await seedHistoriasSociais();
     await seedFraquezasOportunidades();
     await seedForcas();
-    await seedTracosDetalhe();
+    // Relatórios editoriais (TracoDetalhe, RelatorioSh, RelatorioCh): tabelas via migration;
+    // conteúdo cadastrado pelo admin — seed não popula essas tabelas.
 
     console.log('\n✨ Seed concluído com sucesso!');
   } catch (error) {

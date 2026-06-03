@@ -16,6 +16,8 @@ import { historiasSociaisRoutes } from "./modules/historias-sociais/historias-so
 import { forcasRoutes } from "./modules/forcas/forcas.routes.js";
 import { questionarioRespostaRoutes } from "./modules/questionario-resposta/questionario-resposta.routes.js";
 import { tracoDetalheRoutes } from "./modules/traco-detalhe/traco-detalhe.routes.js";
+import { relatorioShRoutes } from "./modules/relatorio-sh/relatorio-sh.routes.js";
+import { relatorioChRoutes } from "./modules/relatorio-ch/relatorio-ch.routes.js";
 import { reflexaoTracoRoutes } from "./modules/reflexao-traco/reflexao-traco.routes.js";
 import { errorHandler } from "./plugins/error-handler.js";
 import { rateLimitPlugin } from "./plugins/rate-limit.js";
@@ -263,6 +265,13 @@ export async function buildServer() {
   // Registrar rotas de traco-detalhe
   await fastify.register(tracoDetalheRoutes, { prefix: "/v1/traco-detalhe" });
   await fastify.register(tracoDetalheRoutes, { prefix: "/traco-detalhe" });
+
+  // Registrar rotas de relatorio-sh
+  await fastify.register(relatorioShRoutes, { prefix: "/v1/relatorio-sh" });
+  await fastify.register(relatorioShRoutes, { prefix: "/relatorio-sh" });
+
+  await fastify.register(relatorioChRoutes, { prefix: "/v1/relatorio-ch" });
+  await fastify.register(relatorioChRoutes, { prefix: "/relatorio-ch" });
 
   // Registrar rotas de reflexao-traco
   await fastify.register(reflexaoTracoRoutes, { prefix: "/v1/reflexao-traco" });

@@ -183,19 +183,13 @@ export class QuestionarioRespostaService {
       }
     }
 
-    // Classifica traço para tipos FO
-    if (resposta.tipo === 'FO') {
+    // Classifica traço para tipos FO e F quando resposta é 'sim'
+    if (resposta.tipo === 'FO' && resposta.resposta === 'sim') {
       classificacaoTraco = await this.classificarTracoFO(resposta.numeroTraco, resposta.frequencia);
     }
 
-    // Classifica traço para tipos F
-    if (resposta.tipo === 'F') {
-      console.log('[DEBUG adicionarCamposCalculados] Classificando traço F:', {
-        numeroTraco: resposta.numeroTraco,
-        frequencia: resposta.frequencia
-      });
+    if (resposta.tipo === 'F' && resposta.resposta === 'sim') {
       classificacaoTraco = await this.classificarTracoF(resposta.numeroTraco, resposta.frequencia);
-      console.log('[DEBUG adicionarCamposCalculados] Resultado classificação:', classificacaoTraco);
     }
 
     return {

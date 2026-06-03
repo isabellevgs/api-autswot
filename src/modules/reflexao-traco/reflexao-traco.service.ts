@@ -1,8 +1,11 @@
 import { prisma } from '../../config/database.js';
 import type { UpsertReflexaoInput } from './reflexao-traco.schemas.js';
-
-// Quantidade de reflexões necessárias para desbloquear cada quadrante
-const THRESHOLDS = { ameaca: 5, fraqueza: 3, oportunidade: 2 } as const;
+import {
+  QUADRANTES_ORDEM,
+  TRACOS_PARA_DESBLOQUEAR_PROXIMO,
+  quadranteEstaDesbloqueado,
+  type QuadranteKey,
+} from '../../constants/swot-quadrantes.js';
 
 export async function obterReflexao(userId: string, tipo: string, numeroTraco: number, quadrante: string) {
   return prisma.reflexaoTraco.findUnique({
@@ -53,20 +56,21 @@ export async function obterProgressoQuadrantes(userId: string) {
     _count: { id: true },
   });
 
-  const mapa: Record<string, number> = {};
+  const mapa: Partial<Record<QuadranteKey, number>> = {};
   for (const c of contagens) {
-    mapa[c.quadrante] = c._count.id;
+    mapa[c.quadrante as QuadranteKey] = c._count.id;
   }
 
-  const ameaca       = mapa['ameaca']       ?? 0;
-  const fraqueza     = mapa['fraqueza']     ?? 0;
-  const oportunidade = mapa['oportunidade'] ?? 0;
-  const forca        = mapa['forca']        ?? 0;
+  const progresso: Record<string, { concluidos: number; necessarios: number; desbloqueado: boolean }> = {};
 
-  return {
-    ameaca:       { concluidos: ameaca,       necessarios: THRESHOLDS.ameaca,       desbloqueado: true },
-    fraqueza:     { concluidos: fraqueza,     necessarios: THRESHOLDS.fraqueza,     desbloqueado: ameaca       >= THRESHOLDS.ameaca },
-    oportunidade: { concluidos: oportunidade, necessarios: THRESHOLDS.oportunidade, desbloqueado: fraqueza     >= THRESHOLDS.fraqueza },
-    forca:        { concluidos: forca,        necessarios: 0,                       desbloqueado: oportunidade >= THRESHOLDS.oportunidade },
-  };
+  for (const quadrante of QUADRANTES_ORDEM) {
+    progresso[quadrante] = {
+      concluidos: mapa[quadrante] ?? 0,
+      /** Traços neste quadrante necessários para desbloquear o próximo. */
+      necessarios: TRACOS_PARA_DESBLOQUEAR_PROXIMO[quadrante],
+      desbloqueado: quadranteEstaDesbloqueado(quadrante, mapa),
+    };
+  }
+
+  return progresso;
 }

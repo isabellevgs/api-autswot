@@ -104,6 +104,16 @@ export type TracoOportunidadeF = $Result.DefaultSelection<Prisma.$TracoOportunid
  */
 export type TracoDetalhe = $Result.DefaultSelection<Prisma.$TracoDetalhePayload>
 /**
+ * Model RelatorioSh
+ * 
+ */
+export type RelatorioSh = $Result.DefaultSelection<Prisma.$RelatorioShPayload>
+/**
+ * Model RelatorioCh
+ * 
+ */
+export type RelatorioCh = $Result.DefaultSelection<Prisma.$RelatorioChPayload>
+/**
  * Model ReflexaoTraco
  * 
  */
@@ -427,6 +437,26 @@ export class PrismaClient<
     * ```
     */
   get tracoDetalhe(): Prisma.TracoDetalheDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.relatorioSh`: Exposes CRUD operations for the **RelatorioSh** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more RelatorioShes
+    * const relatorioShes = await prisma.relatorioSh.findMany()
+    * ```
+    */
+  get relatorioSh(): Prisma.RelatorioShDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.relatorioCh`: Exposes CRUD operations for the **RelatorioCh** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more RelatorioChes
+    * const relatorioChes = await prisma.relatorioCh.findMany()
+    * ```
+    */
+  get relatorioCh(): Prisma.RelatorioChDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.reflexaoTraco`: Exposes CRUD operations for the **ReflexaoTraco** model.
@@ -899,6 +929,8 @@ export namespace Prisma {
     TracoFraquezaF: 'TracoFraquezaF',
     TracoOportunidadeF: 'TracoOportunidadeF',
     TracoDetalhe: 'TracoDetalhe',
+    RelatorioSh: 'RelatorioSh',
+    RelatorioCh: 'RelatorioCh',
     ReflexaoTraco: 'ReflexaoTraco',
     QuestionarioResposta: 'QuestionarioResposta'
   };
@@ -916,7 +948,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "post" | "question" | "diaryEntry" | "diaryAnswer" | "fraquezasAmeacasSh" | "historiasSociais" | "fraquezasAmeacasCh" | "fraquezasOportunidades" | "tracoNeutroFO" | "tracoOportunidadeFO" | "tracoFraquezaFO" | "forcas" | "tracoNeutroF" | "tracoForcaF" | "tracoFraquezaF" | "tracoOportunidadeF" | "tracoDetalhe" | "reflexaoTraco" | "questionarioResposta"
+      modelProps: "user" | "post" | "question" | "diaryEntry" | "diaryAnswer" | "fraquezasAmeacasSh" | "historiasSociais" | "fraquezasAmeacasCh" | "fraquezasOportunidades" | "tracoNeutroFO" | "tracoOportunidadeFO" | "tracoFraquezaFO" | "forcas" | "tracoNeutroF" | "tracoForcaF" | "tracoFraquezaF" | "tracoOportunidadeF" | "tracoDetalhe" | "relatorioSh" | "relatorioCh" | "reflexaoTraco" | "questionarioResposta"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2252,6 +2284,154 @@ export namespace Prisma {
           }
         }
       }
+      RelatorioSh: {
+        payload: Prisma.$RelatorioShPayload<ExtArgs>
+        fields: Prisma.RelatorioShFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.RelatorioShFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RelatorioShPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.RelatorioShFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RelatorioShPayload>
+          }
+          findFirst: {
+            args: Prisma.RelatorioShFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RelatorioShPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.RelatorioShFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RelatorioShPayload>
+          }
+          findMany: {
+            args: Prisma.RelatorioShFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RelatorioShPayload>[]
+          }
+          create: {
+            args: Prisma.RelatorioShCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RelatorioShPayload>
+          }
+          createMany: {
+            args: Prisma.RelatorioShCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.RelatorioShCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RelatorioShPayload>[]
+          }
+          delete: {
+            args: Prisma.RelatorioShDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RelatorioShPayload>
+          }
+          update: {
+            args: Prisma.RelatorioShUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RelatorioShPayload>
+          }
+          deleteMany: {
+            args: Prisma.RelatorioShDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.RelatorioShUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.RelatorioShUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RelatorioShPayload>[]
+          }
+          upsert: {
+            args: Prisma.RelatorioShUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RelatorioShPayload>
+          }
+          aggregate: {
+            args: Prisma.RelatorioShAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateRelatorioSh>
+          }
+          groupBy: {
+            args: Prisma.RelatorioShGroupByArgs<ExtArgs>
+            result: $Utils.Optional<RelatorioShGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.RelatorioShCountArgs<ExtArgs>
+            result: $Utils.Optional<RelatorioShCountAggregateOutputType> | number
+          }
+        }
+      }
+      RelatorioCh: {
+        payload: Prisma.$RelatorioChPayload<ExtArgs>
+        fields: Prisma.RelatorioChFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.RelatorioChFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RelatorioChPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.RelatorioChFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RelatorioChPayload>
+          }
+          findFirst: {
+            args: Prisma.RelatorioChFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RelatorioChPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.RelatorioChFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RelatorioChPayload>
+          }
+          findMany: {
+            args: Prisma.RelatorioChFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RelatorioChPayload>[]
+          }
+          create: {
+            args: Prisma.RelatorioChCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RelatorioChPayload>
+          }
+          createMany: {
+            args: Prisma.RelatorioChCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.RelatorioChCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RelatorioChPayload>[]
+          }
+          delete: {
+            args: Prisma.RelatorioChDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RelatorioChPayload>
+          }
+          update: {
+            args: Prisma.RelatorioChUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RelatorioChPayload>
+          }
+          deleteMany: {
+            args: Prisma.RelatorioChDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.RelatorioChUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.RelatorioChUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RelatorioChPayload>[]
+          }
+          upsert: {
+            args: Prisma.RelatorioChUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RelatorioChPayload>
+          }
+          aggregate: {
+            args: Prisma.RelatorioChAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateRelatorioCh>
+          }
+          groupBy: {
+            args: Prisma.RelatorioChGroupByArgs<ExtArgs>
+            result: $Utils.Optional<RelatorioChGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.RelatorioChCountArgs<ExtArgs>
+            result: $Utils.Optional<RelatorioChCountAggregateOutputType> | number
+          }
+        }
+      }
       ReflexaoTraco: {
         payload: Prisma.$ReflexaoTracoPayload<ExtArgs>
         fields: Prisma.ReflexaoTracoFieldRefs
@@ -2510,6 +2690,8 @@ export namespace Prisma {
     tracoFraquezaF?: TracoFraquezaFOmit
     tracoOportunidadeF?: TracoOportunidadeFOmit
     tracoDetalhe?: TracoDetalheOmit
+    relatorioSh?: RelatorioShOmit
+    relatorioCh?: RelatorioChOmit
     reflexaoTraco?: ReflexaoTracoOmit
     questionarioResposta?: QuestionarioRespostaOmit
   }
@@ -21280,6 +21462,22 @@ export namespace Prisma {
     tipo: string | null
     numeroTraco: number | null
     titulo: string | null
+    comoUsarAcademico: string | null
+    comoUsarProfissional: string | null
+    comoUsarCotidiano: string | null
+    exemplosOportunidadeAcademico: string | null
+    exemplosOportunidadeProfissional: string | null
+    exemplosOportunidadeFamiliar: string | null
+    exemplosOportunidadeAmigosColegas: string | null
+    exemplosOportunidadeParceiros: string | null
+    exemplosPraticosEstudo: string | null
+    exemplosPraticosTrabalho: string | null
+    exemplosPraticosCotidiano: string | null
+    atrapalharAcademico: string | null
+    atrapalharProfissional: string | null
+    atrapalharFamiliar: string | null
+    atrapalharAmigosColegas: string | null
+    atrapalharParceiros: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -21289,6 +21487,22 @@ export namespace Prisma {
     tipo: string | null
     numeroTraco: number | null
     titulo: string | null
+    comoUsarAcademico: string | null
+    comoUsarProfissional: string | null
+    comoUsarCotidiano: string | null
+    exemplosOportunidadeAcademico: string | null
+    exemplosOportunidadeProfissional: string | null
+    exemplosOportunidadeFamiliar: string | null
+    exemplosOportunidadeAmigosColegas: string | null
+    exemplosOportunidadeParceiros: string | null
+    exemplosPraticosEstudo: string | null
+    exemplosPraticosTrabalho: string | null
+    exemplosPraticosCotidiano: string | null
+    atrapalharAcademico: string | null
+    atrapalharProfissional: string | null
+    atrapalharFamiliar: string | null
+    atrapalharAmigosColegas: string | null
+    atrapalharParceiros: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -21299,9 +21513,26 @@ export namespace Prisma {
     numeroTraco: number
     titulo: number
     oQueE: number
-    comoUsar: number
+    comoUsarAcademico: number
+    comoUsarProfissional: number
+    comoUsarCotidiano: number
     comoOportunidade: number
-    comoAtrapalhar: number
+    exemplosOportunidadeAcademico: number
+    exemplosOportunidadeProfissional: number
+    exemplosOportunidadeFamiliar: number
+    exemplosOportunidadeAmigosColegas: number
+    exemplosOportunidadeParceiros: number
+    exemplosPraticosEstudo: number
+    exemplosPraticosTrabalho: number
+    exemplosPraticosCotidiano: number
+    fraquezaOuAmeaca: number
+    atrapalharAcademico: number
+    atrapalharProfissional: number
+    atrapalharFamiliar: number
+    atrapalharAmigosColegas: number
+    atrapalharParceiros: number
+    transformarEmForca: number
+    transformarEmOportunidade: number
     reduzirImpacto: number
     dicas: number
     exemplos: number
@@ -21324,6 +21555,22 @@ export namespace Prisma {
     tipo?: true
     numeroTraco?: true
     titulo?: true
+    comoUsarAcademico?: true
+    comoUsarProfissional?: true
+    comoUsarCotidiano?: true
+    exemplosOportunidadeAcademico?: true
+    exemplosOportunidadeProfissional?: true
+    exemplosOportunidadeFamiliar?: true
+    exemplosOportunidadeAmigosColegas?: true
+    exemplosOportunidadeParceiros?: true
+    exemplosPraticosEstudo?: true
+    exemplosPraticosTrabalho?: true
+    exemplosPraticosCotidiano?: true
+    atrapalharAcademico?: true
+    atrapalharProfissional?: true
+    atrapalharFamiliar?: true
+    atrapalharAmigosColegas?: true
+    atrapalharParceiros?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -21333,6 +21580,22 @@ export namespace Prisma {
     tipo?: true
     numeroTraco?: true
     titulo?: true
+    comoUsarAcademico?: true
+    comoUsarProfissional?: true
+    comoUsarCotidiano?: true
+    exemplosOportunidadeAcademico?: true
+    exemplosOportunidadeProfissional?: true
+    exemplosOportunidadeFamiliar?: true
+    exemplosOportunidadeAmigosColegas?: true
+    exemplosOportunidadeParceiros?: true
+    exemplosPraticosEstudo?: true
+    exemplosPraticosTrabalho?: true
+    exemplosPraticosCotidiano?: true
+    atrapalharAcademico?: true
+    atrapalharProfissional?: true
+    atrapalharFamiliar?: true
+    atrapalharAmigosColegas?: true
+    atrapalharParceiros?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -21343,9 +21606,26 @@ export namespace Prisma {
     numeroTraco?: true
     titulo?: true
     oQueE?: true
-    comoUsar?: true
+    comoUsarAcademico?: true
+    comoUsarProfissional?: true
+    comoUsarCotidiano?: true
     comoOportunidade?: true
-    comoAtrapalhar?: true
+    exemplosOportunidadeAcademico?: true
+    exemplosOportunidadeProfissional?: true
+    exemplosOportunidadeFamiliar?: true
+    exemplosOportunidadeAmigosColegas?: true
+    exemplosOportunidadeParceiros?: true
+    exemplosPraticosEstudo?: true
+    exemplosPraticosTrabalho?: true
+    exemplosPraticosCotidiano?: true
+    fraquezaOuAmeaca?: true
+    atrapalharAcademico?: true
+    atrapalharProfissional?: true
+    atrapalharFamiliar?: true
+    atrapalharAmigosColegas?: true
+    atrapalharParceiros?: true
+    transformarEmForca?: true
+    transformarEmOportunidade?: true
     reduzirImpacto?: true
     dicas?: true
     exemplos?: true
@@ -21446,9 +21726,26 @@ export namespace Prisma {
     numeroTraco: number
     titulo: string
     oQueE: JsonValue
-    comoUsar: JsonValue
+    comoUsarAcademico: string
+    comoUsarProfissional: string
+    comoUsarCotidiano: string
     comoOportunidade: JsonValue
-    comoAtrapalhar: JsonValue
+    exemplosOportunidadeAcademico: string
+    exemplosOportunidadeProfissional: string
+    exemplosOportunidadeFamiliar: string
+    exemplosOportunidadeAmigosColegas: string
+    exemplosOportunidadeParceiros: string
+    exemplosPraticosEstudo: string
+    exemplosPraticosTrabalho: string
+    exemplosPraticosCotidiano: string
+    fraquezaOuAmeaca: JsonValue
+    atrapalharAcademico: string
+    atrapalharProfissional: string
+    atrapalharFamiliar: string
+    atrapalharAmigosColegas: string
+    atrapalharParceiros: string
+    transformarEmForca: JsonValue
+    transformarEmOportunidade: JsonValue
     reduzirImpacto: JsonValue
     dicas: JsonValue
     exemplos: JsonValue
@@ -21481,9 +21778,26 @@ export namespace Prisma {
     numeroTraco?: boolean
     titulo?: boolean
     oQueE?: boolean
-    comoUsar?: boolean
+    comoUsarAcademico?: boolean
+    comoUsarProfissional?: boolean
+    comoUsarCotidiano?: boolean
     comoOportunidade?: boolean
-    comoAtrapalhar?: boolean
+    exemplosOportunidadeAcademico?: boolean
+    exemplosOportunidadeProfissional?: boolean
+    exemplosOportunidadeFamiliar?: boolean
+    exemplosOportunidadeAmigosColegas?: boolean
+    exemplosOportunidadeParceiros?: boolean
+    exemplosPraticosEstudo?: boolean
+    exemplosPraticosTrabalho?: boolean
+    exemplosPraticosCotidiano?: boolean
+    fraquezaOuAmeaca?: boolean
+    atrapalharAcademico?: boolean
+    atrapalharProfissional?: boolean
+    atrapalharFamiliar?: boolean
+    atrapalharAmigosColegas?: boolean
+    atrapalharParceiros?: boolean
+    transformarEmForca?: boolean
+    transformarEmOportunidade?: boolean
     reduzirImpacto?: boolean
     dicas?: boolean
     exemplos?: boolean
@@ -21497,9 +21811,26 @@ export namespace Prisma {
     numeroTraco?: boolean
     titulo?: boolean
     oQueE?: boolean
-    comoUsar?: boolean
+    comoUsarAcademico?: boolean
+    comoUsarProfissional?: boolean
+    comoUsarCotidiano?: boolean
     comoOportunidade?: boolean
-    comoAtrapalhar?: boolean
+    exemplosOportunidadeAcademico?: boolean
+    exemplosOportunidadeProfissional?: boolean
+    exemplosOportunidadeFamiliar?: boolean
+    exemplosOportunidadeAmigosColegas?: boolean
+    exemplosOportunidadeParceiros?: boolean
+    exemplosPraticosEstudo?: boolean
+    exemplosPraticosTrabalho?: boolean
+    exemplosPraticosCotidiano?: boolean
+    fraquezaOuAmeaca?: boolean
+    atrapalharAcademico?: boolean
+    atrapalharProfissional?: boolean
+    atrapalharFamiliar?: boolean
+    atrapalharAmigosColegas?: boolean
+    atrapalharParceiros?: boolean
+    transformarEmForca?: boolean
+    transformarEmOportunidade?: boolean
     reduzirImpacto?: boolean
     dicas?: boolean
     exemplos?: boolean
@@ -21513,9 +21844,26 @@ export namespace Prisma {
     numeroTraco?: boolean
     titulo?: boolean
     oQueE?: boolean
-    comoUsar?: boolean
+    comoUsarAcademico?: boolean
+    comoUsarProfissional?: boolean
+    comoUsarCotidiano?: boolean
     comoOportunidade?: boolean
-    comoAtrapalhar?: boolean
+    exemplosOportunidadeAcademico?: boolean
+    exemplosOportunidadeProfissional?: boolean
+    exemplosOportunidadeFamiliar?: boolean
+    exemplosOportunidadeAmigosColegas?: boolean
+    exemplosOportunidadeParceiros?: boolean
+    exemplosPraticosEstudo?: boolean
+    exemplosPraticosTrabalho?: boolean
+    exemplosPraticosCotidiano?: boolean
+    fraquezaOuAmeaca?: boolean
+    atrapalharAcademico?: boolean
+    atrapalharProfissional?: boolean
+    atrapalharFamiliar?: boolean
+    atrapalharAmigosColegas?: boolean
+    atrapalharParceiros?: boolean
+    transformarEmForca?: boolean
+    transformarEmOportunidade?: boolean
     reduzirImpacto?: boolean
     dicas?: boolean
     exemplos?: boolean
@@ -21529,9 +21877,26 @@ export namespace Prisma {
     numeroTraco?: boolean
     titulo?: boolean
     oQueE?: boolean
-    comoUsar?: boolean
+    comoUsarAcademico?: boolean
+    comoUsarProfissional?: boolean
+    comoUsarCotidiano?: boolean
     comoOportunidade?: boolean
-    comoAtrapalhar?: boolean
+    exemplosOportunidadeAcademico?: boolean
+    exemplosOportunidadeProfissional?: boolean
+    exemplosOportunidadeFamiliar?: boolean
+    exemplosOportunidadeAmigosColegas?: boolean
+    exemplosOportunidadeParceiros?: boolean
+    exemplosPraticosEstudo?: boolean
+    exemplosPraticosTrabalho?: boolean
+    exemplosPraticosCotidiano?: boolean
+    fraquezaOuAmeaca?: boolean
+    atrapalharAcademico?: boolean
+    atrapalharProfissional?: boolean
+    atrapalharFamiliar?: boolean
+    atrapalharAmigosColegas?: boolean
+    atrapalharParceiros?: boolean
+    transformarEmForca?: boolean
+    transformarEmOportunidade?: boolean
     reduzirImpacto?: boolean
     dicas?: boolean
     exemplos?: boolean
@@ -21539,7 +21904,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type TracoDetalheOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tipo" | "numeroTraco" | "titulo" | "oQueE" | "comoUsar" | "comoOportunidade" | "comoAtrapalhar" | "reduzirImpacto" | "dicas" | "exemplos" | "createdAt" | "updatedAt", ExtArgs["result"]["tracoDetalhe"]>
+  export type TracoDetalheOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tipo" | "numeroTraco" | "titulo" | "oQueE" | "comoUsarAcademico" | "comoUsarProfissional" | "comoUsarCotidiano" | "comoOportunidade" | "exemplosOportunidadeAcademico" | "exemplosOportunidadeProfissional" | "exemplosOportunidadeFamiliar" | "exemplosOportunidadeAmigosColegas" | "exemplosOportunidadeParceiros" | "exemplosPraticosEstudo" | "exemplosPraticosTrabalho" | "exemplosPraticosCotidiano" | "fraquezaOuAmeaca" | "atrapalharAcademico" | "atrapalharProfissional" | "atrapalharFamiliar" | "atrapalharAmigosColegas" | "atrapalharParceiros" | "transformarEmForca" | "transformarEmOportunidade" | "reduzirImpacto" | "dicas" | "exemplos" | "createdAt" | "updatedAt", ExtArgs["result"]["tracoDetalhe"]>
 
   export type $TracoDetalhePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "TracoDetalhe"
@@ -21550,9 +21915,26 @@ export namespace Prisma {
       numeroTraco: number
       titulo: string
       oQueE: Prisma.JsonValue
-      comoUsar: Prisma.JsonValue
+      comoUsarAcademico: string
+      comoUsarProfissional: string
+      comoUsarCotidiano: string
       comoOportunidade: Prisma.JsonValue
-      comoAtrapalhar: Prisma.JsonValue
+      exemplosOportunidadeAcademico: string
+      exemplosOportunidadeProfissional: string
+      exemplosOportunidadeFamiliar: string
+      exemplosOportunidadeAmigosColegas: string
+      exemplosOportunidadeParceiros: string
+      exemplosPraticosEstudo: string
+      exemplosPraticosTrabalho: string
+      exemplosPraticosCotidiano: string
+      fraquezaOuAmeaca: Prisma.JsonValue
+      atrapalharAcademico: string
+      atrapalharProfissional: string
+      atrapalharFamiliar: string
+      atrapalharAmigosColegas: string
+      atrapalharParceiros: string
+      transformarEmForca: Prisma.JsonValue
+      transformarEmOportunidade: Prisma.JsonValue
       reduzirImpacto: Prisma.JsonValue
       dicas: Prisma.JsonValue
       exemplos: Prisma.JsonValue
@@ -21986,9 +22368,26 @@ export namespace Prisma {
     readonly numeroTraco: FieldRef<"TracoDetalhe", 'Int'>
     readonly titulo: FieldRef<"TracoDetalhe", 'String'>
     readonly oQueE: FieldRef<"TracoDetalhe", 'Json'>
-    readonly comoUsar: FieldRef<"TracoDetalhe", 'Json'>
+    readonly comoUsarAcademico: FieldRef<"TracoDetalhe", 'String'>
+    readonly comoUsarProfissional: FieldRef<"TracoDetalhe", 'String'>
+    readonly comoUsarCotidiano: FieldRef<"TracoDetalhe", 'String'>
     readonly comoOportunidade: FieldRef<"TracoDetalhe", 'Json'>
-    readonly comoAtrapalhar: FieldRef<"TracoDetalhe", 'Json'>
+    readonly exemplosOportunidadeAcademico: FieldRef<"TracoDetalhe", 'String'>
+    readonly exemplosOportunidadeProfissional: FieldRef<"TracoDetalhe", 'String'>
+    readonly exemplosOportunidadeFamiliar: FieldRef<"TracoDetalhe", 'String'>
+    readonly exemplosOportunidadeAmigosColegas: FieldRef<"TracoDetalhe", 'String'>
+    readonly exemplosOportunidadeParceiros: FieldRef<"TracoDetalhe", 'String'>
+    readonly exemplosPraticosEstudo: FieldRef<"TracoDetalhe", 'String'>
+    readonly exemplosPraticosTrabalho: FieldRef<"TracoDetalhe", 'String'>
+    readonly exemplosPraticosCotidiano: FieldRef<"TracoDetalhe", 'String'>
+    readonly fraquezaOuAmeaca: FieldRef<"TracoDetalhe", 'Json'>
+    readonly atrapalharAcademico: FieldRef<"TracoDetalhe", 'String'>
+    readonly atrapalharProfissional: FieldRef<"TracoDetalhe", 'String'>
+    readonly atrapalharFamiliar: FieldRef<"TracoDetalhe", 'String'>
+    readonly atrapalharAmigosColegas: FieldRef<"TracoDetalhe", 'String'>
+    readonly atrapalharParceiros: FieldRef<"TracoDetalhe", 'String'>
+    readonly transformarEmForca: FieldRef<"TracoDetalhe", 'Json'>
+    readonly transformarEmOportunidade: FieldRef<"TracoDetalhe", 'Json'>
     readonly reduzirImpacto: FieldRef<"TracoDetalhe", 'Json'>
     readonly dicas: FieldRef<"TracoDetalhe", 'Json'>
     readonly exemplos: FieldRef<"TracoDetalhe", 'Json'>
@@ -22357,6 +22756,2266 @@ export namespace Prisma {
      * Omit specific fields from the TracoDetalhe
      */
     omit?: TracoDetalheOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model RelatorioSh
+   */
+
+  export type AggregateRelatorioSh = {
+    _count: RelatorioShCountAggregateOutputType | null
+    _avg: RelatorioShAvgAggregateOutputType | null
+    _sum: RelatorioShSumAggregateOutputType | null
+    _min: RelatorioShMinAggregateOutputType | null
+    _max: RelatorioShMaxAggregateOutputType | null
+  }
+
+  export type RelatorioShAvgAggregateOutputType = {
+    numeroTraco: number | null
+  }
+
+  export type RelatorioShSumAggregateOutputType = {
+    numeroTraco: number | null
+  }
+
+  export type RelatorioShMinAggregateOutputType = {
+    id: string | null
+    numeroTraco: number | null
+    titulo: string | null
+    atrapalharAcademico: string | null
+    atrapalharProfissional: string | null
+    atrapalharFamiliar: string | null
+    atrapalharAmigosColegas: string | null
+    atrapalharParceiros: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type RelatorioShMaxAggregateOutputType = {
+    id: string | null
+    numeroTraco: number | null
+    titulo: string | null
+    atrapalharAcademico: string | null
+    atrapalharProfissional: string | null
+    atrapalharFamiliar: string | null
+    atrapalharAmigosColegas: string | null
+    atrapalharParceiros: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type RelatorioShCountAggregateOutputType = {
+    id: number
+    numeroTraco: number
+    titulo: number
+    oQueE: number
+    atrapalharAcademico: number
+    atrapalharProfissional: number
+    atrapalharFamiliar: number
+    atrapalharAmigosColegas: number
+    atrapalharParceiros: number
+    reduzirImpacto: number
+    dicas: number
+    exemplos: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type RelatorioShAvgAggregateInputType = {
+    numeroTraco?: true
+  }
+
+  export type RelatorioShSumAggregateInputType = {
+    numeroTraco?: true
+  }
+
+  export type RelatorioShMinAggregateInputType = {
+    id?: true
+    numeroTraco?: true
+    titulo?: true
+    atrapalharAcademico?: true
+    atrapalharProfissional?: true
+    atrapalharFamiliar?: true
+    atrapalharAmigosColegas?: true
+    atrapalharParceiros?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type RelatorioShMaxAggregateInputType = {
+    id?: true
+    numeroTraco?: true
+    titulo?: true
+    atrapalharAcademico?: true
+    atrapalharProfissional?: true
+    atrapalharFamiliar?: true
+    atrapalharAmigosColegas?: true
+    atrapalharParceiros?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type RelatorioShCountAggregateInputType = {
+    id?: true
+    numeroTraco?: true
+    titulo?: true
+    oQueE?: true
+    atrapalharAcademico?: true
+    atrapalharProfissional?: true
+    atrapalharFamiliar?: true
+    atrapalharAmigosColegas?: true
+    atrapalharParceiros?: true
+    reduzirImpacto?: true
+    dicas?: true
+    exemplos?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type RelatorioShAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which RelatorioSh to aggregate.
+     */
+    where?: RelatorioShWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RelatorioShes to fetch.
+     */
+    orderBy?: RelatorioShOrderByWithRelationInput | RelatorioShOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: RelatorioShWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RelatorioShes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RelatorioShes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned RelatorioShes
+    **/
+    _count?: true | RelatorioShCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: RelatorioShAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: RelatorioShSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: RelatorioShMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: RelatorioShMaxAggregateInputType
+  }
+
+  export type GetRelatorioShAggregateType<T extends RelatorioShAggregateArgs> = {
+        [P in keyof T & keyof AggregateRelatorioSh]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateRelatorioSh[P]>
+      : GetScalarType<T[P], AggregateRelatorioSh[P]>
+  }
+
+
+
+
+  export type RelatorioShGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RelatorioShWhereInput
+    orderBy?: RelatorioShOrderByWithAggregationInput | RelatorioShOrderByWithAggregationInput[]
+    by: RelatorioShScalarFieldEnum[] | RelatorioShScalarFieldEnum
+    having?: RelatorioShScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: RelatorioShCountAggregateInputType | true
+    _avg?: RelatorioShAvgAggregateInputType
+    _sum?: RelatorioShSumAggregateInputType
+    _min?: RelatorioShMinAggregateInputType
+    _max?: RelatorioShMaxAggregateInputType
+  }
+
+  export type RelatorioShGroupByOutputType = {
+    id: string
+    numeroTraco: number
+    titulo: string
+    oQueE: JsonValue
+    atrapalharAcademico: string
+    atrapalharProfissional: string
+    atrapalharFamiliar: string
+    atrapalharAmigosColegas: string
+    atrapalharParceiros: string
+    reduzirImpacto: JsonValue
+    dicas: JsonValue
+    exemplos: JsonValue
+    createdAt: Date
+    updatedAt: Date
+    _count: RelatorioShCountAggregateOutputType | null
+    _avg: RelatorioShAvgAggregateOutputType | null
+    _sum: RelatorioShSumAggregateOutputType | null
+    _min: RelatorioShMinAggregateOutputType | null
+    _max: RelatorioShMaxAggregateOutputType | null
+  }
+
+  type GetRelatorioShGroupByPayload<T extends RelatorioShGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<RelatorioShGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof RelatorioShGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], RelatorioShGroupByOutputType[P]>
+            : GetScalarType<T[P], RelatorioShGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type RelatorioShSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    numeroTraco?: boolean
+    titulo?: boolean
+    oQueE?: boolean
+    atrapalharAcademico?: boolean
+    atrapalharProfissional?: boolean
+    atrapalharFamiliar?: boolean
+    atrapalharAmigosColegas?: boolean
+    atrapalharParceiros?: boolean
+    reduzirImpacto?: boolean
+    dicas?: boolean
+    exemplos?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["relatorioSh"]>
+
+  export type RelatorioShSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    numeroTraco?: boolean
+    titulo?: boolean
+    oQueE?: boolean
+    atrapalharAcademico?: boolean
+    atrapalharProfissional?: boolean
+    atrapalharFamiliar?: boolean
+    atrapalharAmigosColegas?: boolean
+    atrapalharParceiros?: boolean
+    reduzirImpacto?: boolean
+    dicas?: boolean
+    exemplos?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["relatorioSh"]>
+
+  export type RelatorioShSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    numeroTraco?: boolean
+    titulo?: boolean
+    oQueE?: boolean
+    atrapalharAcademico?: boolean
+    atrapalharProfissional?: boolean
+    atrapalharFamiliar?: boolean
+    atrapalharAmigosColegas?: boolean
+    atrapalharParceiros?: boolean
+    reduzirImpacto?: boolean
+    dicas?: boolean
+    exemplos?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["relatorioSh"]>
+
+  export type RelatorioShSelectScalar = {
+    id?: boolean
+    numeroTraco?: boolean
+    titulo?: boolean
+    oQueE?: boolean
+    atrapalharAcademico?: boolean
+    atrapalharProfissional?: boolean
+    atrapalharFamiliar?: boolean
+    atrapalharAmigosColegas?: boolean
+    atrapalharParceiros?: boolean
+    reduzirImpacto?: boolean
+    dicas?: boolean
+    exemplos?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type RelatorioShOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "numeroTraco" | "titulo" | "oQueE" | "atrapalharAcademico" | "atrapalharProfissional" | "atrapalharFamiliar" | "atrapalharAmigosColegas" | "atrapalharParceiros" | "reduzirImpacto" | "dicas" | "exemplos" | "createdAt" | "updatedAt", ExtArgs["result"]["relatorioSh"]>
+
+  export type $RelatorioShPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "RelatorioSh"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      numeroTraco: number
+      titulo: string
+      oQueE: Prisma.JsonValue
+      atrapalharAcademico: string
+      atrapalharProfissional: string
+      atrapalharFamiliar: string
+      atrapalharAmigosColegas: string
+      atrapalharParceiros: string
+      reduzirImpacto: Prisma.JsonValue
+      dicas: Prisma.JsonValue
+      exemplos: Prisma.JsonValue
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["relatorioSh"]>
+    composites: {}
+  }
+
+  type RelatorioShGetPayload<S extends boolean | null | undefined | RelatorioShDefaultArgs> = $Result.GetResult<Prisma.$RelatorioShPayload, S>
+
+  type RelatorioShCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<RelatorioShFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: RelatorioShCountAggregateInputType | true
+    }
+
+  export interface RelatorioShDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['RelatorioSh'], meta: { name: 'RelatorioSh' } }
+    /**
+     * Find zero or one RelatorioSh that matches the filter.
+     * @param {RelatorioShFindUniqueArgs} args - Arguments to find a RelatorioSh
+     * @example
+     * // Get one RelatorioSh
+     * const relatorioSh = await prisma.relatorioSh.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends RelatorioShFindUniqueArgs>(args: SelectSubset<T, RelatorioShFindUniqueArgs<ExtArgs>>): Prisma__RelatorioShClient<$Result.GetResult<Prisma.$RelatorioShPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one RelatorioSh that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {RelatorioShFindUniqueOrThrowArgs} args - Arguments to find a RelatorioSh
+     * @example
+     * // Get one RelatorioSh
+     * const relatorioSh = await prisma.relatorioSh.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends RelatorioShFindUniqueOrThrowArgs>(args: SelectSubset<T, RelatorioShFindUniqueOrThrowArgs<ExtArgs>>): Prisma__RelatorioShClient<$Result.GetResult<Prisma.$RelatorioShPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first RelatorioSh that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RelatorioShFindFirstArgs} args - Arguments to find a RelatorioSh
+     * @example
+     * // Get one RelatorioSh
+     * const relatorioSh = await prisma.relatorioSh.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends RelatorioShFindFirstArgs>(args?: SelectSubset<T, RelatorioShFindFirstArgs<ExtArgs>>): Prisma__RelatorioShClient<$Result.GetResult<Prisma.$RelatorioShPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first RelatorioSh that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RelatorioShFindFirstOrThrowArgs} args - Arguments to find a RelatorioSh
+     * @example
+     * // Get one RelatorioSh
+     * const relatorioSh = await prisma.relatorioSh.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends RelatorioShFindFirstOrThrowArgs>(args?: SelectSubset<T, RelatorioShFindFirstOrThrowArgs<ExtArgs>>): Prisma__RelatorioShClient<$Result.GetResult<Prisma.$RelatorioShPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more RelatorioShes that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RelatorioShFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all RelatorioShes
+     * const relatorioShes = await prisma.relatorioSh.findMany()
+     * 
+     * // Get first 10 RelatorioShes
+     * const relatorioShes = await prisma.relatorioSh.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const relatorioShWithIdOnly = await prisma.relatorioSh.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends RelatorioShFindManyArgs>(args?: SelectSubset<T, RelatorioShFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RelatorioShPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a RelatorioSh.
+     * @param {RelatorioShCreateArgs} args - Arguments to create a RelatorioSh.
+     * @example
+     * // Create one RelatorioSh
+     * const RelatorioSh = await prisma.relatorioSh.create({
+     *   data: {
+     *     // ... data to create a RelatorioSh
+     *   }
+     * })
+     * 
+     */
+    create<T extends RelatorioShCreateArgs>(args: SelectSubset<T, RelatorioShCreateArgs<ExtArgs>>): Prisma__RelatorioShClient<$Result.GetResult<Prisma.$RelatorioShPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many RelatorioShes.
+     * @param {RelatorioShCreateManyArgs} args - Arguments to create many RelatorioShes.
+     * @example
+     * // Create many RelatorioShes
+     * const relatorioSh = await prisma.relatorioSh.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends RelatorioShCreateManyArgs>(args?: SelectSubset<T, RelatorioShCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many RelatorioShes and returns the data saved in the database.
+     * @param {RelatorioShCreateManyAndReturnArgs} args - Arguments to create many RelatorioShes.
+     * @example
+     * // Create many RelatorioShes
+     * const relatorioSh = await prisma.relatorioSh.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many RelatorioShes and only return the `id`
+     * const relatorioShWithIdOnly = await prisma.relatorioSh.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends RelatorioShCreateManyAndReturnArgs>(args?: SelectSubset<T, RelatorioShCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RelatorioShPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a RelatorioSh.
+     * @param {RelatorioShDeleteArgs} args - Arguments to delete one RelatorioSh.
+     * @example
+     * // Delete one RelatorioSh
+     * const RelatorioSh = await prisma.relatorioSh.delete({
+     *   where: {
+     *     // ... filter to delete one RelatorioSh
+     *   }
+     * })
+     * 
+     */
+    delete<T extends RelatorioShDeleteArgs>(args: SelectSubset<T, RelatorioShDeleteArgs<ExtArgs>>): Prisma__RelatorioShClient<$Result.GetResult<Prisma.$RelatorioShPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one RelatorioSh.
+     * @param {RelatorioShUpdateArgs} args - Arguments to update one RelatorioSh.
+     * @example
+     * // Update one RelatorioSh
+     * const relatorioSh = await prisma.relatorioSh.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends RelatorioShUpdateArgs>(args: SelectSubset<T, RelatorioShUpdateArgs<ExtArgs>>): Prisma__RelatorioShClient<$Result.GetResult<Prisma.$RelatorioShPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more RelatorioShes.
+     * @param {RelatorioShDeleteManyArgs} args - Arguments to filter RelatorioShes to delete.
+     * @example
+     * // Delete a few RelatorioShes
+     * const { count } = await prisma.relatorioSh.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends RelatorioShDeleteManyArgs>(args?: SelectSubset<T, RelatorioShDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more RelatorioShes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RelatorioShUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many RelatorioShes
+     * const relatorioSh = await prisma.relatorioSh.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends RelatorioShUpdateManyArgs>(args: SelectSubset<T, RelatorioShUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more RelatorioShes and returns the data updated in the database.
+     * @param {RelatorioShUpdateManyAndReturnArgs} args - Arguments to update many RelatorioShes.
+     * @example
+     * // Update many RelatorioShes
+     * const relatorioSh = await prisma.relatorioSh.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more RelatorioShes and only return the `id`
+     * const relatorioShWithIdOnly = await prisma.relatorioSh.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends RelatorioShUpdateManyAndReturnArgs>(args: SelectSubset<T, RelatorioShUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RelatorioShPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one RelatorioSh.
+     * @param {RelatorioShUpsertArgs} args - Arguments to update or create a RelatorioSh.
+     * @example
+     * // Update or create a RelatorioSh
+     * const relatorioSh = await prisma.relatorioSh.upsert({
+     *   create: {
+     *     // ... data to create a RelatorioSh
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the RelatorioSh we want to update
+     *   }
+     * })
+     */
+    upsert<T extends RelatorioShUpsertArgs>(args: SelectSubset<T, RelatorioShUpsertArgs<ExtArgs>>): Prisma__RelatorioShClient<$Result.GetResult<Prisma.$RelatorioShPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of RelatorioShes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RelatorioShCountArgs} args - Arguments to filter RelatorioShes to count.
+     * @example
+     * // Count the number of RelatorioShes
+     * const count = await prisma.relatorioSh.count({
+     *   where: {
+     *     // ... the filter for the RelatorioShes we want to count
+     *   }
+     * })
+    **/
+    count<T extends RelatorioShCountArgs>(
+      args?: Subset<T, RelatorioShCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], RelatorioShCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a RelatorioSh.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RelatorioShAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends RelatorioShAggregateArgs>(args: Subset<T, RelatorioShAggregateArgs>): Prisma.PrismaPromise<GetRelatorioShAggregateType<T>>
+
+    /**
+     * Group by RelatorioSh.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RelatorioShGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends RelatorioShGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: RelatorioShGroupByArgs['orderBy'] }
+        : { orderBy?: RelatorioShGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, RelatorioShGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetRelatorioShGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the RelatorioSh model
+   */
+  readonly fields: RelatorioShFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for RelatorioSh.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__RelatorioShClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the RelatorioSh model
+   */
+  interface RelatorioShFieldRefs {
+    readonly id: FieldRef<"RelatorioSh", 'String'>
+    readonly numeroTraco: FieldRef<"RelatorioSh", 'Int'>
+    readonly titulo: FieldRef<"RelatorioSh", 'String'>
+    readonly oQueE: FieldRef<"RelatorioSh", 'Json'>
+    readonly atrapalharAcademico: FieldRef<"RelatorioSh", 'String'>
+    readonly atrapalharProfissional: FieldRef<"RelatorioSh", 'String'>
+    readonly atrapalharFamiliar: FieldRef<"RelatorioSh", 'String'>
+    readonly atrapalharAmigosColegas: FieldRef<"RelatorioSh", 'String'>
+    readonly atrapalharParceiros: FieldRef<"RelatorioSh", 'String'>
+    readonly reduzirImpacto: FieldRef<"RelatorioSh", 'Json'>
+    readonly dicas: FieldRef<"RelatorioSh", 'Json'>
+    readonly exemplos: FieldRef<"RelatorioSh", 'Json'>
+    readonly createdAt: FieldRef<"RelatorioSh", 'DateTime'>
+    readonly updatedAt: FieldRef<"RelatorioSh", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * RelatorioSh findUnique
+   */
+  export type RelatorioShFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RelatorioSh
+     */
+    select?: RelatorioShSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RelatorioSh
+     */
+    omit?: RelatorioShOmit<ExtArgs> | null
+    /**
+     * Filter, which RelatorioSh to fetch.
+     */
+    where: RelatorioShWhereUniqueInput
+  }
+
+  /**
+   * RelatorioSh findUniqueOrThrow
+   */
+  export type RelatorioShFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RelatorioSh
+     */
+    select?: RelatorioShSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RelatorioSh
+     */
+    omit?: RelatorioShOmit<ExtArgs> | null
+    /**
+     * Filter, which RelatorioSh to fetch.
+     */
+    where: RelatorioShWhereUniqueInput
+  }
+
+  /**
+   * RelatorioSh findFirst
+   */
+  export type RelatorioShFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RelatorioSh
+     */
+    select?: RelatorioShSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RelatorioSh
+     */
+    omit?: RelatorioShOmit<ExtArgs> | null
+    /**
+     * Filter, which RelatorioSh to fetch.
+     */
+    where?: RelatorioShWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RelatorioShes to fetch.
+     */
+    orderBy?: RelatorioShOrderByWithRelationInput | RelatorioShOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for RelatorioShes.
+     */
+    cursor?: RelatorioShWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RelatorioShes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RelatorioShes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of RelatorioShes.
+     */
+    distinct?: RelatorioShScalarFieldEnum | RelatorioShScalarFieldEnum[]
+  }
+
+  /**
+   * RelatorioSh findFirstOrThrow
+   */
+  export type RelatorioShFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RelatorioSh
+     */
+    select?: RelatorioShSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RelatorioSh
+     */
+    omit?: RelatorioShOmit<ExtArgs> | null
+    /**
+     * Filter, which RelatorioSh to fetch.
+     */
+    where?: RelatorioShWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RelatorioShes to fetch.
+     */
+    orderBy?: RelatorioShOrderByWithRelationInput | RelatorioShOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for RelatorioShes.
+     */
+    cursor?: RelatorioShWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RelatorioShes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RelatorioShes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of RelatorioShes.
+     */
+    distinct?: RelatorioShScalarFieldEnum | RelatorioShScalarFieldEnum[]
+  }
+
+  /**
+   * RelatorioSh findMany
+   */
+  export type RelatorioShFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RelatorioSh
+     */
+    select?: RelatorioShSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RelatorioSh
+     */
+    omit?: RelatorioShOmit<ExtArgs> | null
+    /**
+     * Filter, which RelatorioShes to fetch.
+     */
+    where?: RelatorioShWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RelatorioShes to fetch.
+     */
+    orderBy?: RelatorioShOrderByWithRelationInput | RelatorioShOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing RelatorioShes.
+     */
+    cursor?: RelatorioShWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RelatorioShes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RelatorioShes.
+     */
+    skip?: number
+    distinct?: RelatorioShScalarFieldEnum | RelatorioShScalarFieldEnum[]
+  }
+
+  /**
+   * RelatorioSh create
+   */
+  export type RelatorioShCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RelatorioSh
+     */
+    select?: RelatorioShSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RelatorioSh
+     */
+    omit?: RelatorioShOmit<ExtArgs> | null
+    /**
+     * The data needed to create a RelatorioSh.
+     */
+    data: XOR<RelatorioShCreateInput, RelatorioShUncheckedCreateInput>
+  }
+
+  /**
+   * RelatorioSh createMany
+   */
+  export type RelatorioShCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many RelatorioShes.
+     */
+    data: RelatorioShCreateManyInput | RelatorioShCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * RelatorioSh createManyAndReturn
+   */
+  export type RelatorioShCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RelatorioSh
+     */
+    select?: RelatorioShSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the RelatorioSh
+     */
+    omit?: RelatorioShOmit<ExtArgs> | null
+    /**
+     * The data used to create many RelatorioShes.
+     */
+    data: RelatorioShCreateManyInput | RelatorioShCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * RelatorioSh update
+   */
+  export type RelatorioShUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RelatorioSh
+     */
+    select?: RelatorioShSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RelatorioSh
+     */
+    omit?: RelatorioShOmit<ExtArgs> | null
+    /**
+     * The data needed to update a RelatorioSh.
+     */
+    data: XOR<RelatorioShUpdateInput, RelatorioShUncheckedUpdateInput>
+    /**
+     * Choose, which RelatorioSh to update.
+     */
+    where: RelatorioShWhereUniqueInput
+  }
+
+  /**
+   * RelatorioSh updateMany
+   */
+  export type RelatorioShUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update RelatorioShes.
+     */
+    data: XOR<RelatorioShUpdateManyMutationInput, RelatorioShUncheckedUpdateManyInput>
+    /**
+     * Filter which RelatorioShes to update
+     */
+    where?: RelatorioShWhereInput
+    /**
+     * Limit how many RelatorioShes to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * RelatorioSh updateManyAndReturn
+   */
+  export type RelatorioShUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RelatorioSh
+     */
+    select?: RelatorioShSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the RelatorioSh
+     */
+    omit?: RelatorioShOmit<ExtArgs> | null
+    /**
+     * The data used to update RelatorioShes.
+     */
+    data: XOR<RelatorioShUpdateManyMutationInput, RelatorioShUncheckedUpdateManyInput>
+    /**
+     * Filter which RelatorioShes to update
+     */
+    where?: RelatorioShWhereInput
+    /**
+     * Limit how many RelatorioShes to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * RelatorioSh upsert
+   */
+  export type RelatorioShUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RelatorioSh
+     */
+    select?: RelatorioShSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RelatorioSh
+     */
+    omit?: RelatorioShOmit<ExtArgs> | null
+    /**
+     * The filter to search for the RelatorioSh to update in case it exists.
+     */
+    where: RelatorioShWhereUniqueInput
+    /**
+     * In case the RelatorioSh found by the `where` argument doesn't exist, create a new RelatorioSh with this data.
+     */
+    create: XOR<RelatorioShCreateInput, RelatorioShUncheckedCreateInput>
+    /**
+     * In case the RelatorioSh was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<RelatorioShUpdateInput, RelatorioShUncheckedUpdateInput>
+  }
+
+  /**
+   * RelatorioSh delete
+   */
+  export type RelatorioShDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RelatorioSh
+     */
+    select?: RelatorioShSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RelatorioSh
+     */
+    omit?: RelatorioShOmit<ExtArgs> | null
+    /**
+     * Filter which RelatorioSh to delete.
+     */
+    where: RelatorioShWhereUniqueInput
+  }
+
+  /**
+   * RelatorioSh deleteMany
+   */
+  export type RelatorioShDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which RelatorioShes to delete
+     */
+    where?: RelatorioShWhereInput
+    /**
+     * Limit how many RelatorioShes to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * RelatorioSh without action
+   */
+  export type RelatorioShDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RelatorioSh
+     */
+    select?: RelatorioShSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RelatorioSh
+     */
+    omit?: RelatorioShOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model RelatorioCh
+   */
+
+  export type AggregateRelatorioCh = {
+    _count: RelatorioChCountAggregateOutputType | null
+    _avg: RelatorioChAvgAggregateOutputType | null
+    _sum: RelatorioChSumAggregateOutputType | null
+    _min: RelatorioChMinAggregateOutputType | null
+    _max: RelatorioChMaxAggregateOutputType | null
+  }
+
+  export type RelatorioChAvgAggregateOutputType = {
+    numeroTraco: number | null
+  }
+
+  export type RelatorioChSumAggregateOutputType = {
+    numeroTraco: number | null
+  }
+
+  export type RelatorioChMinAggregateOutputType = {
+    id: string | null
+    numeroTraco: number | null
+    titulo: string | null
+    atrapalharAcademico: string | null
+    atrapalharProfissional: string | null
+    atrapalharFamiliar: string | null
+    atrapalharAmigosColegas: string | null
+    atrapalharParceiros: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type RelatorioChMaxAggregateOutputType = {
+    id: string | null
+    numeroTraco: number | null
+    titulo: string | null
+    atrapalharAcademico: string | null
+    atrapalharProfissional: string | null
+    atrapalharFamiliar: string | null
+    atrapalharAmigosColegas: string | null
+    atrapalharParceiros: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type RelatorioChCountAggregateOutputType = {
+    id: number
+    numeroTraco: number
+    titulo: number
+    oQueE: number
+    atrapalharAcademico: number
+    atrapalharProfissional: number
+    atrapalharFamiliar: number
+    atrapalharAmigosColegas: number
+    atrapalharParceiros: number
+    reduzirImpacto: number
+    dicas: number
+    exemplos: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type RelatorioChAvgAggregateInputType = {
+    numeroTraco?: true
+  }
+
+  export type RelatorioChSumAggregateInputType = {
+    numeroTraco?: true
+  }
+
+  export type RelatorioChMinAggregateInputType = {
+    id?: true
+    numeroTraco?: true
+    titulo?: true
+    atrapalharAcademico?: true
+    atrapalharProfissional?: true
+    atrapalharFamiliar?: true
+    atrapalharAmigosColegas?: true
+    atrapalharParceiros?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type RelatorioChMaxAggregateInputType = {
+    id?: true
+    numeroTraco?: true
+    titulo?: true
+    atrapalharAcademico?: true
+    atrapalharProfissional?: true
+    atrapalharFamiliar?: true
+    atrapalharAmigosColegas?: true
+    atrapalharParceiros?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type RelatorioChCountAggregateInputType = {
+    id?: true
+    numeroTraco?: true
+    titulo?: true
+    oQueE?: true
+    atrapalharAcademico?: true
+    atrapalharProfissional?: true
+    atrapalharFamiliar?: true
+    atrapalharAmigosColegas?: true
+    atrapalharParceiros?: true
+    reduzirImpacto?: true
+    dicas?: true
+    exemplos?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type RelatorioChAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which RelatorioCh to aggregate.
+     */
+    where?: RelatorioChWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RelatorioChes to fetch.
+     */
+    orderBy?: RelatorioChOrderByWithRelationInput | RelatorioChOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: RelatorioChWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RelatorioChes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RelatorioChes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned RelatorioChes
+    **/
+    _count?: true | RelatorioChCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: RelatorioChAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: RelatorioChSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: RelatorioChMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: RelatorioChMaxAggregateInputType
+  }
+
+  export type GetRelatorioChAggregateType<T extends RelatorioChAggregateArgs> = {
+        [P in keyof T & keyof AggregateRelatorioCh]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateRelatorioCh[P]>
+      : GetScalarType<T[P], AggregateRelatorioCh[P]>
+  }
+
+
+
+
+  export type RelatorioChGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RelatorioChWhereInput
+    orderBy?: RelatorioChOrderByWithAggregationInput | RelatorioChOrderByWithAggregationInput[]
+    by: RelatorioChScalarFieldEnum[] | RelatorioChScalarFieldEnum
+    having?: RelatorioChScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: RelatorioChCountAggregateInputType | true
+    _avg?: RelatorioChAvgAggregateInputType
+    _sum?: RelatorioChSumAggregateInputType
+    _min?: RelatorioChMinAggregateInputType
+    _max?: RelatorioChMaxAggregateInputType
+  }
+
+  export type RelatorioChGroupByOutputType = {
+    id: string
+    numeroTraco: number
+    titulo: string
+    oQueE: JsonValue
+    atrapalharAcademico: string
+    atrapalharProfissional: string
+    atrapalharFamiliar: string
+    atrapalharAmigosColegas: string
+    atrapalharParceiros: string
+    reduzirImpacto: JsonValue
+    dicas: JsonValue
+    exemplos: JsonValue
+    createdAt: Date
+    updatedAt: Date
+    _count: RelatorioChCountAggregateOutputType | null
+    _avg: RelatorioChAvgAggregateOutputType | null
+    _sum: RelatorioChSumAggregateOutputType | null
+    _min: RelatorioChMinAggregateOutputType | null
+    _max: RelatorioChMaxAggregateOutputType | null
+  }
+
+  type GetRelatorioChGroupByPayload<T extends RelatorioChGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<RelatorioChGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof RelatorioChGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], RelatorioChGroupByOutputType[P]>
+            : GetScalarType<T[P], RelatorioChGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type RelatorioChSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    numeroTraco?: boolean
+    titulo?: boolean
+    oQueE?: boolean
+    atrapalharAcademico?: boolean
+    atrapalharProfissional?: boolean
+    atrapalharFamiliar?: boolean
+    atrapalharAmigosColegas?: boolean
+    atrapalharParceiros?: boolean
+    reduzirImpacto?: boolean
+    dicas?: boolean
+    exemplos?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["relatorioCh"]>
+
+  export type RelatorioChSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    numeroTraco?: boolean
+    titulo?: boolean
+    oQueE?: boolean
+    atrapalharAcademico?: boolean
+    atrapalharProfissional?: boolean
+    atrapalharFamiliar?: boolean
+    atrapalharAmigosColegas?: boolean
+    atrapalharParceiros?: boolean
+    reduzirImpacto?: boolean
+    dicas?: boolean
+    exemplos?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["relatorioCh"]>
+
+  export type RelatorioChSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    numeroTraco?: boolean
+    titulo?: boolean
+    oQueE?: boolean
+    atrapalharAcademico?: boolean
+    atrapalharProfissional?: boolean
+    atrapalharFamiliar?: boolean
+    atrapalharAmigosColegas?: boolean
+    atrapalharParceiros?: boolean
+    reduzirImpacto?: boolean
+    dicas?: boolean
+    exemplos?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["relatorioCh"]>
+
+  export type RelatorioChSelectScalar = {
+    id?: boolean
+    numeroTraco?: boolean
+    titulo?: boolean
+    oQueE?: boolean
+    atrapalharAcademico?: boolean
+    atrapalharProfissional?: boolean
+    atrapalharFamiliar?: boolean
+    atrapalharAmigosColegas?: boolean
+    atrapalharParceiros?: boolean
+    reduzirImpacto?: boolean
+    dicas?: boolean
+    exemplos?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type RelatorioChOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "numeroTraco" | "titulo" | "oQueE" | "atrapalharAcademico" | "atrapalharProfissional" | "atrapalharFamiliar" | "atrapalharAmigosColegas" | "atrapalharParceiros" | "reduzirImpacto" | "dicas" | "exemplos" | "createdAt" | "updatedAt", ExtArgs["result"]["relatorioCh"]>
+
+  export type $RelatorioChPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "RelatorioCh"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      numeroTraco: number
+      titulo: string
+      oQueE: Prisma.JsonValue
+      atrapalharAcademico: string
+      atrapalharProfissional: string
+      atrapalharFamiliar: string
+      atrapalharAmigosColegas: string
+      atrapalharParceiros: string
+      reduzirImpacto: Prisma.JsonValue
+      dicas: Prisma.JsonValue
+      exemplos: Prisma.JsonValue
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["relatorioCh"]>
+    composites: {}
+  }
+
+  type RelatorioChGetPayload<S extends boolean | null | undefined | RelatorioChDefaultArgs> = $Result.GetResult<Prisma.$RelatorioChPayload, S>
+
+  type RelatorioChCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<RelatorioChFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: RelatorioChCountAggregateInputType | true
+    }
+
+  export interface RelatorioChDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['RelatorioCh'], meta: { name: 'RelatorioCh' } }
+    /**
+     * Find zero or one RelatorioCh that matches the filter.
+     * @param {RelatorioChFindUniqueArgs} args - Arguments to find a RelatorioCh
+     * @example
+     * // Get one RelatorioCh
+     * const relatorioCh = await prisma.relatorioCh.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends RelatorioChFindUniqueArgs>(args: SelectSubset<T, RelatorioChFindUniqueArgs<ExtArgs>>): Prisma__RelatorioChClient<$Result.GetResult<Prisma.$RelatorioChPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one RelatorioCh that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {RelatorioChFindUniqueOrThrowArgs} args - Arguments to find a RelatorioCh
+     * @example
+     * // Get one RelatorioCh
+     * const relatorioCh = await prisma.relatorioCh.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends RelatorioChFindUniqueOrThrowArgs>(args: SelectSubset<T, RelatorioChFindUniqueOrThrowArgs<ExtArgs>>): Prisma__RelatorioChClient<$Result.GetResult<Prisma.$RelatorioChPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first RelatorioCh that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RelatorioChFindFirstArgs} args - Arguments to find a RelatorioCh
+     * @example
+     * // Get one RelatorioCh
+     * const relatorioCh = await prisma.relatorioCh.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends RelatorioChFindFirstArgs>(args?: SelectSubset<T, RelatorioChFindFirstArgs<ExtArgs>>): Prisma__RelatorioChClient<$Result.GetResult<Prisma.$RelatorioChPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first RelatorioCh that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RelatorioChFindFirstOrThrowArgs} args - Arguments to find a RelatorioCh
+     * @example
+     * // Get one RelatorioCh
+     * const relatorioCh = await prisma.relatorioCh.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends RelatorioChFindFirstOrThrowArgs>(args?: SelectSubset<T, RelatorioChFindFirstOrThrowArgs<ExtArgs>>): Prisma__RelatorioChClient<$Result.GetResult<Prisma.$RelatorioChPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more RelatorioChes that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RelatorioChFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all RelatorioChes
+     * const relatorioChes = await prisma.relatorioCh.findMany()
+     * 
+     * // Get first 10 RelatorioChes
+     * const relatorioChes = await prisma.relatorioCh.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const relatorioChWithIdOnly = await prisma.relatorioCh.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends RelatorioChFindManyArgs>(args?: SelectSubset<T, RelatorioChFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RelatorioChPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a RelatorioCh.
+     * @param {RelatorioChCreateArgs} args - Arguments to create a RelatorioCh.
+     * @example
+     * // Create one RelatorioCh
+     * const RelatorioCh = await prisma.relatorioCh.create({
+     *   data: {
+     *     // ... data to create a RelatorioCh
+     *   }
+     * })
+     * 
+     */
+    create<T extends RelatorioChCreateArgs>(args: SelectSubset<T, RelatorioChCreateArgs<ExtArgs>>): Prisma__RelatorioChClient<$Result.GetResult<Prisma.$RelatorioChPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many RelatorioChes.
+     * @param {RelatorioChCreateManyArgs} args - Arguments to create many RelatorioChes.
+     * @example
+     * // Create many RelatorioChes
+     * const relatorioCh = await prisma.relatorioCh.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends RelatorioChCreateManyArgs>(args?: SelectSubset<T, RelatorioChCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many RelatorioChes and returns the data saved in the database.
+     * @param {RelatorioChCreateManyAndReturnArgs} args - Arguments to create many RelatorioChes.
+     * @example
+     * // Create many RelatorioChes
+     * const relatorioCh = await prisma.relatorioCh.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many RelatorioChes and only return the `id`
+     * const relatorioChWithIdOnly = await prisma.relatorioCh.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends RelatorioChCreateManyAndReturnArgs>(args?: SelectSubset<T, RelatorioChCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RelatorioChPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a RelatorioCh.
+     * @param {RelatorioChDeleteArgs} args - Arguments to delete one RelatorioCh.
+     * @example
+     * // Delete one RelatorioCh
+     * const RelatorioCh = await prisma.relatorioCh.delete({
+     *   where: {
+     *     // ... filter to delete one RelatorioCh
+     *   }
+     * })
+     * 
+     */
+    delete<T extends RelatorioChDeleteArgs>(args: SelectSubset<T, RelatorioChDeleteArgs<ExtArgs>>): Prisma__RelatorioChClient<$Result.GetResult<Prisma.$RelatorioChPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one RelatorioCh.
+     * @param {RelatorioChUpdateArgs} args - Arguments to update one RelatorioCh.
+     * @example
+     * // Update one RelatorioCh
+     * const relatorioCh = await prisma.relatorioCh.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends RelatorioChUpdateArgs>(args: SelectSubset<T, RelatorioChUpdateArgs<ExtArgs>>): Prisma__RelatorioChClient<$Result.GetResult<Prisma.$RelatorioChPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more RelatorioChes.
+     * @param {RelatorioChDeleteManyArgs} args - Arguments to filter RelatorioChes to delete.
+     * @example
+     * // Delete a few RelatorioChes
+     * const { count } = await prisma.relatorioCh.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends RelatorioChDeleteManyArgs>(args?: SelectSubset<T, RelatorioChDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more RelatorioChes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RelatorioChUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many RelatorioChes
+     * const relatorioCh = await prisma.relatorioCh.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends RelatorioChUpdateManyArgs>(args: SelectSubset<T, RelatorioChUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more RelatorioChes and returns the data updated in the database.
+     * @param {RelatorioChUpdateManyAndReturnArgs} args - Arguments to update many RelatorioChes.
+     * @example
+     * // Update many RelatorioChes
+     * const relatorioCh = await prisma.relatorioCh.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more RelatorioChes and only return the `id`
+     * const relatorioChWithIdOnly = await prisma.relatorioCh.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends RelatorioChUpdateManyAndReturnArgs>(args: SelectSubset<T, RelatorioChUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RelatorioChPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one RelatorioCh.
+     * @param {RelatorioChUpsertArgs} args - Arguments to update or create a RelatorioCh.
+     * @example
+     * // Update or create a RelatorioCh
+     * const relatorioCh = await prisma.relatorioCh.upsert({
+     *   create: {
+     *     // ... data to create a RelatorioCh
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the RelatorioCh we want to update
+     *   }
+     * })
+     */
+    upsert<T extends RelatorioChUpsertArgs>(args: SelectSubset<T, RelatorioChUpsertArgs<ExtArgs>>): Prisma__RelatorioChClient<$Result.GetResult<Prisma.$RelatorioChPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of RelatorioChes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RelatorioChCountArgs} args - Arguments to filter RelatorioChes to count.
+     * @example
+     * // Count the number of RelatorioChes
+     * const count = await prisma.relatorioCh.count({
+     *   where: {
+     *     // ... the filter for the RelatorioChes we want to count
+     *   }
+     * })
+    **/
+    count<T extends RelatorioChCountArgs>(
+      args?: Subset<T, RelatorioChCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], RelatorioChCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a RelatorioCh.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RelatorioChAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends RelatorioChAggregateArgs>(args: Subset<T, RelatorioChAggregateArgs>): Prisma.PrismaPromise<GetRelatorioChAggregateType<T>>
+
+    /**
+     * Group by RelatorioCh.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RelatorioChGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends RelatorioChGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: RelatorioChGroupByArgs['orderBy'] }
+        : { orderBy?: RelatorioChGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, RelatorioChGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetRelatorioChGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the RelatorioCh model
+   */
+  readonly fields: RelatorioChFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for RelatorioCh.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__RelatorioChClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the RelatorioCh model
+   */
+  interface RelatorioChFieldRefs {
+    readonly id: FieldRef<"RelatorioCh", 'String'>
+    readonly numeroTraco: FieldRef<"RelatorioCh", 'Int'>
+    readonly titulo: FieldRef<"RelatorioCh", 'String'>
+    readonly oQueE: FieldRef<"RelatorioCh", 'Json'>
+    readonly atrapalharAcademico: FieldRef<"RelatorioCh", 'String'>
+    readonly atrapalharProfissional: FieldRef<"RelatorioCh", 'String'>
+    readonly atrapalharFamiliar: FieldRef<"RelatorioCh", 'String'>
+    readonly atrapalharAmigosColegas: FieldRef<"RelatorioCh", 'String'>
+    readonly atrapalharParceiros: FieldRef<"RelatorioCh", 'String'>
+    readonly reduzirImpacto: FieldRef<"RelatorioCh", 'Json'>
+    readonly dicas: FieldRef<"RelatorioCh", 'Json'>
+    readonly exemplos: FieldRef<"RelatorioCh", 'Json'>
+    readonly createdAt: FieldRef<"RelatorioCh", 'DateTime'>
+    readonly updatedAt: FieldRef<"RelatorioCh", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * RelatorioCh findUnique
+   */
+  export type RelatorioChFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RelatorioCh
+     */
+    select?: RelatorioChSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RelatorioCh
+     */
+    omit?: RelatorioChOmit<ExtArgs> | null
+    /**
+     * Filter, which RelatorioCh to fetch.
+     */
+    where: RelatorioChWhereUniqueInput
+  }
+
+  /**
+   * RelatorioCh findUniqueOrThrow
+   */
+  export type RelatorioChFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RelatorioCh
+     */
+    select?: RelatorioChSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RelatorioCh
+     */
+    omit?: RelatorioChOmit<ExtArgs> | null
+    /**
+     * Filter, which RelatorioCh to fetch.
+     */
+    where: RelatorioChWhereUniqueInput
+  }
+
+  /**
+   * RelatorioCh findFirst
+   */
+  export type RelatorioChFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RelatorioCh
+     */
+    select?: RelatorioChSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RelatorioCh
+     */
+    omit?: RelatorioChOmit<ExtArgs> | null
+    /**
+     * Filter, which RelatorioCh to fetch.
+     */
+    where?: RelatorioChWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RelatorioChes to fetch.
+     */
+    orderBy?: RelatorioChOrderByWithRelationInput | RelatorioChOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for RelatorioChes.
+     */
+    cursor?: RelatorioChWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RelatorioChes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RelatorioChes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of RelatorioChes.
+     */
+    distinct?: RelatorioChScalarFieldEnum | RelatorioChScalarFieldEnum[]
+  }
+
+  /**
+   * RelatorioCh findFirstOrThrow
+   */
+  export type RelatorioChFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RelatorioCh
+     */
+    select?: RelatorioChSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RelatorioCh
+     */
+    omit?: RelatorioChOmit<ExtArgs> | null
+    /**
+     * Filter, which RelatorioCh to fetch.
+     */
+    where?: RelatorioChWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RelatorioChes to fetch.
+     */
+    orderBy?: RelatorioChOrderByWithRelationInput | RelatorioChOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for RelatorioChes.
+     */
+    cursor?: RelatorioChWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RelatorioChes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RelatorioChes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of RelatorioChes.
+     */
+    distinct?: RelatorioChScalarFieldEnum | RelatorioChScalarFieldEnum[]
+  }
+
+  /**
+   * RelatorioCh findMany
+   */
+  export type RelatorioChFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RelatorioCh
+     */
+    select?: RelatorioChSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RelatorioCh
+     */
+    omit?: RelatorioChOmit<ExtArgs> | null
+    /**
+     * Filter, which RelatorioChes to fetch.
+     */
+    where?: RelatorioChWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RelatorioChes to fetch.
+     */
+    orderBy?: RelatorioChOrderByWithRelationInput | RelatorioChOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing RelatorioChes.
+     */
+    cursor?: RelatorioChWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RelatorioChes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RelatorioChes.
+     */
+    skip?: number
+    distinct?: RelatorioChScalarFieldEnum | RelatorioChScalarFieldEnum[]
+  }
+
+  /**
+   * RelatorioCh create
+   */
+  export type RelatorioChCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RelatorioCh
+     */
+    select?: RelatorioChSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RelatorioCh
+     */
+    omit?: RelatorioChOmit<ExtArgs> | null
+    /**
+     * The data needed to create a RelatorioCh.
+     */
+    data: XOR<RelatorioChCreateInput, RelatorioChUncheckedCreateInput>
+  }
+
+  /**
+   * RelatorioCh createMany
+   */
+  export type RelatorioChCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many RelatorioChes.
+     */
+    data: RelatorioChCreateManyInput | RelatorioChCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * RelatorioCh createManyAndReturn
+   */
+  export type RelatorioChCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RelatorioCh
+     */
+    select?: RelatorioChSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the RelatorioCh
+     */
+    omit?: RelatorioChOmit<ExtArgs> | null
+    /**
+     * The data used to create many RelatorioChes.
+     */
+    data: RelatorioChCreateManyInput | RelatorioChCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * RelatorioCh update
+   */
+  export type RelatorioChUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RelatorioCh
+     */
+    select?: RelatorioChSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RelatorioCh
+     */
+    omit?: RelatorioChOmit<ExtArgs> | null
+    /**
+     * The data needed to update a RelatorioCh.
+     */
+    data: XOR<RelatorioChUpdateInput, RelatorioChUncheckedUpdateInput>
+    /**
+     * Choose, which RelatorioCh to update.
+     */
+    where: RelatorioChWhereUniqueInput
+  }
+
+  /**
+   * RelatorioCh updateMany
+   */
+  export type RelatorioChUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update RelatorioChes.
+     */
+    data: XOR<RelatorioChUpdateManyMutationInput, RelatorioChUncheckedUpdateManyInput>
+    /**
+     * Filter which RelatorioChes to update
+     */
+    where?: RelatorioChWhereInput
+    /**
+     * Limit how many RelatorioChes to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * RelatorioCh updateManyAndReturn
+   */
+  export type RelatorioChUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RelatorioCh
+     */
+    select?: RelatorioChSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the RelatorioCh
+     */
+    omit?: RelatorioChOmit<ExtArgs> | null
+    /**
+     * The data used to update RelatorioChes.
+     */
+    data: XOR<RelatorioChUpdateManyMutationInput, RelatorioChUncheckedUpdateManyInput>
+    /**
+     * Filter which RelatorioChes to update
+     */
+    where?: RelatorioChWhereInput
+    /**
+     * Limit how many RelatorioChes to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * RelatorioCh upsert
+   */
+  export type RelatorioChUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RelatorioCh
+     */
+    select?: RelatorioChSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RelatorioCh
+     */
+    omit?: RelatorioChOmit<ExtArgs> | null
+    /**
+     * The filter to search for the RelatorioCh to update in case it exists.
+     */
+    where: RelatorioChWhereUniqueInput
+    /**
+     * In case the RelatorioCh found by the `where` argument doesn't exist, create a new RelatorioCh with this data.
+     */
+    create: XOR<RelatorioChCreateInput, RelatorioChUncheckedCreateInput>
+    /**
+     * In case the RelatorioCh was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<RelatorioChUpdateInput, RelatorioChUncheckedUpdateInput>
+  }
+
+  /**
+   * RelatorioCh delete
+   */
+  export type RelatorioChDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RelatorioCh
+     */
+    select?: RelatorioChSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RelatorioCh
+     */
+    omit?: RelatorioChOmit<ExtArgs> | null
+    /**
+     * Filter which RelatorioCh to delete.
+     */
+    where: RelatorioChWhereUniqueInput
+  }
+
+  /**
+   * RelatorioCh deleteMany
+   */
+  export type RelatorioChDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which RelatorioChes to delete
+     */
+    where?: RelatorioChWhereInput
+    /**
+     * Limit how many RelatorioChes to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * RelatorioCh without action
+   */
+  export type RelatorioChDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RelatorioCh
+     */
+    select?: RelatorioChSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RelatorioCh
+     */
+    omit?: RelatorioChOmit<ExtArgs> | null
   }
 
 
@@ -24863,9 +27522,26 @@ export namespace Prisma {
     numeroTraco: 'numeroTraco',
     titulo: 'titulo',
     oQueE: 'oQueE',
-    comoUsar: 'comoUsar',
+    comoUsarAcademico: 'comoUsarAcademico',
+    comoUsarProfissional: 'comoUsarProfissional',
+    comoUsarCotidiano: 'comoUsarCotidiano',
     comoOportunidade: 'comoOportunidade',
-    comoAtrapalhar: 'comoAtrapalhar',
+    exemplosOportunidadeAcademico: 'exemplosOportunidadeAcademico',
+    exemplosOportunidadeProfissional: 'exemplosOportunidadeProfissional',
+    exemplosOportunidadeFamiliar: 'exemplosOportunidadeFamiliar',
+    exemplosOportunidadeAmigosColegas: 'exemplosOportunidadeAmigosColegas',
+    exemplosOportunidadeParceiros: 'exemplosOportunidadeParceiros',
+    exemplosPraticosEstudo: 'exemplosPraticosEstudo',
+    exemplosPraticosTrabalho: 'exemplosPraticosTrabalho',
+    exemplosPraticosCotidiano: 'exemplosPraticosCotidiano',
+    fraquezaOuAmeaca: 'fraquezaOuAmeaca',
+    atrapalharAcademico: 'atrapalharAcademico',
+    atrapalharProfissional: 'atrapalharProfissional',
+    atrapalharFamiliar: 'atrapalharFamiliar',
+    atrapalharAmigosColegas: 'atrapalharAmigosColegas',
+    atrapalharParceiros: 'atrapalharParceiros',
+    transformarEmForca: 'transformarEmForca',
+    transformarEmOportunidade: 'transformarEmOportunidade',
     reduzirImpacto: 'reduzirImpacto',
     dicas: 'dicas',
     exemplos: 'exemplos',
@@ -24874,6 +27550,46 @@ export namespace Prisma {
   };
 
   export type TracoDetalheScalarFieldEnum = (typeof TracoDetalheScalarFieldEnum)[keyof typeof TracoDetalheScalarFieldEnum]
+
+
+  export const RelatorioShScalarFieldEnum: {
+    id: 'id',
+    numeroTraco: 'numeroTraco',
+    titulo: 'titulo',
+    oQueE: 'oQueE',
+    atrapalharAcademico: 'atrapalharAcademico',
+    atrapalharProfissional: 'atrapalharProfissional',
+    atrapalharFamiliar: 'atrapalharFamiliar',
+    atrapalharAmigosColegas: 'atrapalharAmigosColegas',
+    atrapalharParceiros: 'atrapalharParceiros',
+    reduzirImpacto: 'reduzirImpacto',
+    dicas: 'dicas',
+    exemplos: 'exemplos',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type RelatorioShScalarFieldEnum = (typeof RelatorioShScalarFieldEnum)[keyof typeof RelatorioShScalarFieldEnum]
+
+
+  export const RelatorioChScalarFieldEnum: {
+    id: 'id',
+    numeroTraco: 'numeroTraco',
+    titulo: 'titulo',
+    oQueE: 'oQueE',
+    atrapalharAcademico: 'atrapalharAcademico',
+    atrapalharProfissional: 'atrapalharProfissional',
+    atrapalharFamiliar: 'atrapalharFamiliar',
+    atrapalharAmigosColegas: 'atrapalharAmigosColegas',
+    atrapalharParceiros: 'atrapalharParceiros',
+    reduzirImpacto: 'reduzirImpacto',
+    dicas: 'dicas',
+    exemplos: 'exemplos',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type RelatorioChScalarFieldEnum = (typeof RelatorioChScalarFieldEnum)[keyof typeof RelatorioChScalarFieldEnum]
 
 
   export const ReflexaoTracoScalarFieldEnum: {
@@ -26058,9 +28774,26 @@ export namespace Prisma {
     numeroTraco?: IntFilter<"TracoDetalhe"> | number
     titulo?: StringFilter<"TracoDetalhe"> | string
     oQueE?: JsonFilter<"TracoDetalhe">
-    comoUsar?: JsonFilter<"TracoDetalhe">
+    comoUsarAcademico?: StringFilter<"TracoDetalhe"> | string
+    comoUsarProfissional?: StringFilter<"TracoDetalhe"> | string
+    comoUsarCotidiano?: StringFilter<"TracoDetalhe"> | string
     comoOportunidade?: JsonFilter<"TracoDetalhe">
-    comoAtrapalhar?: JsonFilter<"TracoDetalhe">
+    exemplosOportunidadeAcademico?: StringFilter<"TracoDetalhe"> | string
+    exemplosOportunidadeProfissional?: StringFilter<"TracoDetalhe"> | string
+    exemplosOportunidadeFamiliar?: StringFilter<"TracoDetalhe"> | string
+    exemplosOportunidadeAmigosColegas?: StringFilter<"TracoDetalhe"> | string
+    exemplosOportunidadeParceiros?: StringFilter<"TracoDetalhe"> | string
+    exemplosPraticosEstudo?: StringFilter<"TracoDetalhe"> | string
+    exemplosPraticosTrabalho?: StringFilter<"TracoDetalhe"> | string
+    exemplosPraticosCotidiano?: StringFilter<"TracoDetalhe"> | string
+    fraquezaOuAmeaca?: JsonFilter<"TracoDetalhe">
+    atrapalharAcademico?: StringFilter<"TracoDetalhe"> | string
+    atrapalharProfissional?: StringFilter<"TracoDetalhe"> | string
+    atrapalharFamiliar?: StringFilter<"TracoDetalhe"> | string
+    atrapalharAmigosColegas?: StringFilter<"TracoDetalhe"> | string
+    atrapalharParceiros?: StringFilter<"TracoDetalhe"> | string
+    transformarEmForca?: JsonFilter<"TracoDetalhe">
+    transformarEmOportunidade?: JsonFilter<"TracoDetalhe">
     reduzirImpacto?: JsonFilter<"TracoDetalhe">
     dicas?: JsonFilter<"TracoDetalhe">
     exemplos?: JsonFilter<"TracoDetalhe">
@@ -26074,9 +28807,26 @@ export namespace Prisma {
     numeroTraco?: SortOrder
     titulo?: SortOrder
     oQueE?: SortOrder
-    comoUsar?: SortOrder
+    comoUsarAcademico?: SortOrder
+    comoUsarProfissional?: SortOrder
+    comoUsarCotidiano?: SortOrder
     comoOportunidade?: SortOrder
-    comoAtrapalhar?: SortOrder
+    exemplosOportunidadeAcademico?: SortOrder
+    exemplosOportunidadeProfissional?: SortOrder
+    exemplosOportunidadeFamiliar?: SortOrder
+    exemplosOportunidadeAmigosColegas?: SortOrder
+    exemplosOportunidadeParceiros?: SortOrder
+    exemplosPraticosEstudo?: SortOrder
+    exemplosPraticosTrabalho?: SortOrder
+    exemplosPraticosCotidiano?: SortOrder
+    fraquezaOuAmeaca?: SortOrder
+    atrapalharAcademico?: SortOrder
+    atrapalharProfissional?: SortOrder
+    atrapalharFamiliar?: SortOrder
+    atrapalharAmigosColegas?: SortOrder
+    atrapalharParceiros?: SortOrder
+    transformarEmForca?: SortOrder
+    transformarEmOportunidade?: SortOrder
     reduzirImpacto?: SortOrder
     dicas?: SortOrder
     exemplos?: SortOrder
@@ -26094,9 +28844,26 @@ export namespace Prisma {
     numeroTraco?: IntFilter<"TracoDetalhe"> | number
     titulo?: StringFilter<"TracoDetalhe"> | string
     oQueE?: JsonFilter<"TracoDetalhe">
-    comoUsar?: JsonFilter<"TracoDetalhe">
+    comoUsarAcademico?: StringFilter<"TracoDetalhe"> | string
+    comoUsarProfissional?: StringFilter<"TracoDetalhe"> | string
+    comoUsarCotidiano?: StringFilter<"TracoDetalhe"> | string
     comoOportunidade?: JsonFilter<"TracoDetalhe">
-    comoAtrapalhar?: JsonFilter<"TracoDetalhe">
+    exemplosOportunidadeAcademico?: StringFilter<"TracoDetalhe"> | string
+    exemplosOportunidadeProfissional?: StringFilter<"TracoDetalhe"> | string
+    exemplosOportunidadeFamiliar?: StringFilter<"TracoDetalhe"> | string
+    exemplosOportunidadeAmigosColegas?: StringFilter<"TracoDetalhe"> | string
+    exemplosOportunidadeParceiros?: StringFilter<"TracoDetalhe"> | string
+    exemplosPraticosEstudo?: StringFilter<"TracoDetalhe"> | string
+    exemplosPraticosTrabalho?: StringFilter<"TracoDetalhe"> | string
+    exemplosPraticosCotidiano?: StringFilter<"TracoDetalhe"> | string
+    fraquezaOuAmeaca?: JsonFilter<"TracoDetalhe">
+    atrapalharAcademico?: StringFilter<"TracoDetalhe"> | string
+    atrapalharProfissional?: StringFilter<"TracoDetalhe"> | string
+    atrapalharFamiliar?: StringFilter<"TracoDetalhe"> | string
+    atrapalharAmigosColegas?: StringFilter<"TracoDetalhe"> | string
+    atrapalharParceiros?: StringFilter<"TracoDetalhe"> | string
+    transformarEmForca?: JsonFilter<"TracoDetalhe">
+    transformarEmOportunidade?: JsonFilter<"TracoDetalhe">
     reduzirImpacto?: JsonFilter<"TracoDetalhe">
     dicas?: JsonFilter<"TracoDetalhe">
     exemplos?: JsonFilter<"TracoDetalhe">
@@ -26110,9 +28877,26 @@ export namespace Prisma {
     numeroTraco?: SortOrder
     titulo?: SortOrder
     oQueE?: SortOrder
-    comoUsar?: SortOrder
+    comoUsarAcademico?: SortOrder
+    comoUsarProfissional?: SortOrder
+    comoUsarCotidiano?: SortOrder
     comoOportunidade?: SortOrder
-    comoAtrapalhar?: SortOrder
+    exemplosOportunidadeAcademico?: SortOrder
+    exemplosOportunidadeProfissional?: SortOrder
+    exemplosOportunidadeFamiliar?: SortOrder
+    exemplosOportunidadeAmigosColegas?: SortOrder
+    exemplosOportunidadeParceiros?: SortOrder
+    exemplosPraticosEstudo?: SortOrder
+    exemplosPraticosTrabalho?: SortOrder
+    exemplosPraticosCotidiano?: SortOrder
+    fraquezaOuAmeaca?: SortOrder
+    atrapalharAcademico?: SortOrder
+    atrapalharProfissional?: SortOrder
+    atrapalharFamiliar?: SortOrder
+    atrapalharAmigosColegas?: SortOrder
+    atrapalharParceiros?: SortOrder
+    transformarEmForca?: SortOrder
+    transformarEmOportunidade?: SortOrder
     reduzirImpacto?: SortOrder
     dicas?: SortOrder
     exemplos?: SortOrder
@@ -26134,14 +28918,229 @@ export namespace Prisma {
     numeroTraco?: IntWithAggregatesFilter<"TracoDetalhe"> | number
     titulo?: StringWithAggregatesFilter<"TracoDetalhe"> | string
     oQueE?: JsonWithAggregatesFilter<"TracoDetalhe">
-    comoUsar?: JsonWithAggregatesFilter<"TracoDetalhe">
+    comoUsarAcademico?: StringWithAggregatesFilter<"TracoDetalhe"> | string
+    comoUsarProfissional?: StringWithAggregatesFilter<"TracoDetalhe"> | string
+    comoUsarCotidiano?: StringWithAggregatesFilter<"TracoDetalhe"> | string
     comoOportunidade?: JsonWithAggregatesFilter<"TracoDetalhe">
-    comoAtrapalhar?: JsonWithAggregatesFilter<"TracoDetalhe">
+    exemplosOportunidadeAcademico?: StringWithAggregatesFilter<"TracoDetalhe"> | string
+    exemplosOportunidadeProfissional?: StringWithAggregatesFilter<"TracoDetalhe"> | string
+    exemplosOportunidadeFamiliar?: StringWithAggregatesFilter<"TracoDetalhe"> | string
+    exemplosOportunidadeAmigosColegas?: StringWithAggregatesFilter<"TracoDetalhe"> | string
+    exemplosOportunidadeParceiros?: StringWithAggregatesFilter<"TracoDetalhe"> | string
+    exemplosPraticosEstudo?: StringWithAggregatesFilter<"TracoDetalhe"> | string
+    exemplosPraticosTrabalho?: StringWithAggregatesFilter<"TracoDetalhe"> | string
+    exemplosPraticosCotidiano?: StringWithAggregatesFilter<"TracoDetalhe"> | string
+    fraquezaOuAmeaca?: JsonWithAggregatesFilter<"TracoDetalhe">
+    atrapalharAcademico?: StringWithAggregatesFilter<"TracoDetalhe"> | string
+    atrapalharProfissional?: StringWithAggregatesFilter<"TracoDetalhe"> | string
+    atrapalharFamiliar?: StringWithAggregatesFilter<"TracoDetalhe"> | string
+    atrapalharAmigosColegas?: StringWithAggregatesFilter<"TracoDetalhe"> | string
+    atrapalharParceiros?: StringWithAggregatesFilter<"TracoDetalhe"> | string
+    transformarEmForca?: JsonWithAggregatesFilter<"TracoDetalhe">
+    transformarEmOportunidade?: JsonWithAggregatesFilter<"TracoDetalhe">
     reduzirImpacto?: JsonWithAggregatesFilter<"TracoDetalhe">
     dicas?: JsonWithAggregatesFilter<"TracoDetalhe">
     exemplos?: JsonWithAggregatesFilter<"TracoDetalhe">
     createdAt?: DateTimeWithAggregatesFilter<"TracoDetalhe"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"TracoDetalhe"> | Date | string
+  }
+
+  export type RelatorioShWhereInput = {
+    AND?: RelatorioShWhereInput | RelatorioShWhereInput[]
+    OR?: RelatorioShWhereInput[]
+    NOT?: RelatorioShWhereInput | RelatorioShWhereInput[]
+    id?: StringFilter<"RelatorioSh"> | string
+    numeroTraco?: IntFilter<"RelatorioSh"> | number
+    titulo?: StringFilter<"RelatorioSh"> | string
+    oQueE?: JsonFilter<"RelatorioSh">
+    atrapalharAcademico?: StringFilter<"RelatorioSh"> | string
+    atrapalharProfissional?: StringFilter<"RelatorioSh"> | string
+    atrapalharFamiliar?: StringFilter<"RelatorioSh"> | string
+    atrapalharAmigosColegas?: StringFilter<"RelatorioSh"> | string
+    atrapalharParceiros?: StringFilter<"RelatorioSh"> | string
+    reduzirImpacto?: JsonFilter<"RelatorioSh">
+    dicas?: JsonFilter<"RelatorioSh">
+    exemplos?: JsonFilter<"RelatorioSh">
+    createdAt?: DateTimeFilter<"RelatorioSh"> | Date | string
+    updatedAt?: DateTimeFilter<"RelatorioSh"> | Date | string
+  }
+
+  export type RelatorioShOrderByWithRelationInput = {
+    id?: SortOrder
+    numeroTraco?: SortOrder
+    titulo?: SortOrder
+    oQueE?: SortOrder
+    atrapalharAcademico?: SortOrder
+    atrapalharProfissional?: SortOrder
+    atrapalharFamiliar?: SortOrder
+    atrapalharAmigosColegas?: SortOrder
+    atrapalharParceiros?: SortOrder
+    reduzirImpacto?: SortOrder
+    dicas?: SortOrder
+    exemplos?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type RelatorioShWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    numeroTraco?: number
+    AND?: RelatorioShWhereInput | RelatorioShWhereInput[]
+    OR?: RelatorioShWhereInput[]
+    NOT?: RelatorioShWhereInput | RelatorioShWhereInput[]
+    titulo?: StringFilter<"RelatorioSh"> | string
+    oQueE?: JsonFilter<"RelatorioSh">
+    atrapalharAcademico?: StringFilter<"RelatorioSh"> | string
+    atrapalharProfissional?: StringFilter<"RelatorioSh"> | string
+    atrapalharFamiliar?: StringFilter<"RelatorioSh"> | string
+    atrapalharAmigosColegas?: StringFilter<"RelatorioSh"> | string
+    atrapalharParceiros?: StringFilter<"RelatorioSh"> | string
+    reduzirImpacto?: JsonFilter<"RelatorioSh">
+    dicas?: JsonFilter<"RelatorioSh">
+    exemplos?: JsonFilter<"RelatorioSh">
+    createdAt?: DateTimeFilter<"RelatorioSh"> | Date | string
+    updatedAt?: DateTimeFilter<"RelatorioSh"> | Date | string
+  }, "id" | "numeroTraco">
+
+  export type RelatorioShOrderByWithAggregationInput = {
+    id?: SortOrder
+    numeroTraco?: SortOrder
+    titulo?: SortOrder
+    oQueE?: SortOrder
+    atrapalharAcademico?: SortOrder
+    atrapalharProfissional?: SortOrder
+    atrapalharFamiliar?: SortOrder
+    atrapalharAmigosColegas?: SortOrder
+    atrapalharParceiros?: SortOrder
+    reduzirImpacto?: SortOrder
+    dicas?: SortOrder
+    exemplos?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: RelatorioShCountOrderByAggregateInput
+    _avg?: RelatorioShAvgOrderByAggregateInput
+    _max?: RelatorioShMaxOrderByAggregateInput
+    _min?: RelatorioShMinOrderByAggregateInput
+    _sum?: RelatorioShSumOrderByAggregateInput
+  }
+
+  export type RelatorioShScalarWhereWithAggregatesInput = {
+    AND?: RelatorioShScalarWhereWithAggregatesInput | RelatorioShScalarWhereWithAggregatesInput[]
+    OR?: RelatorioShScalarWhereWithAggregatesInput[]
+    NOT?: RelatorioShScalarWhereWithAggregatesInput | RelatorioShScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"RelatorioSh"> | string
+    numeroTraco?: IntWithAggregatesFilter<"RelatorioSh"> | number
+    titulo?: StringWithAggregatesFilter<"RelatorioSh"> | string
+    oQueE?: JsonWithAggregatesFilter<"RelatorioSh">
+    atrapalharAcademico?: StringWithAggregatesFilter<"RelatorioSh"> | string
+    atrapalharProfissional?: StringWithAggregatesFilter<"RelatorioSh"> | string
+    atrapalharFamiliar?: StringWithAggregatesFilter<"RelatorioSh"> | string
+    atrapalharAmigosColegas?: StringWithAggregatesFilter<"RelatorioSh"> | string
+    atrapalharParceiros?: StringWithAggregatesFilter<"RelatorioSh"> | string
+    reduzirImpacto?: JsonWithAggregatesFilter<"RelatorioSh">
+    dicas?: JsonWithAggregatesFilter<"RelatorioSh">
+    exemplos?: JsonWithAggregatesFilter<"RelatorioSh">
+    createdAt?: DateTimeWithAggregatesFilter<"RelatorioSh"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"RelatorioSh"> | Date | string
+  }
+
+  export type RelatorioChWhereInput = {
+    AND?: RelatorioChWhereInput | RelatorioChWhereInput[]
+    OR?: RelatorioChWhereInput[]
+    NOT?: RelatorioChWhereInput | RelatorioChWhereInput[]
+    id?: StringFilter<"RelatorioCh"> | string
+    numeroTraco?: IntFilter<"RelatorioCh"> | number
+    titulo?: StringFilter<"RelatorioCh"> | string
+    oQueE?: JsonFilter<"RelatorioCh">
+    atrapalharAcademico?: StringFilter<"RelatorioCh"> | string
+    atrapalharProfissional?: StringFilter<"RelatorioCh"> | string
+    atrapalharFamiliar?: StringFilter<"RelatorioCh"> | string
+    atrapalharAmigosColegas?: StringFilter<"RelatorioCh"> | string
+    atrapalharParceiros?: StringFilter<"RelatorioCh"> | string
+    reduzirImpacto?: JsonFilter<"RelatorioCh">
+    dicas?: JsonFilter<"RelatorioCh">
+    exemplos?: JsonFilter<"RelatorioCh">
+    createdAt?: DateTimeFilter<"RelatorioCh"> | Date | string
+    updatedAt?: DateTimeFilter<"RelatorioCh"> | Date | string
+  }
+
+  export type RelatorioChOrderByWithRelationInput = {
+    id?: SortOrder
+    numeroTraco?: SortOrder
+    titulo?: SortOrder
+    oQueE?: SortOrder
+    atrapalharAcademico?: SortOrder
+    atrapalharProfissional?: SortOrder
+    atrapalharFamiliar?: SortOrder
+    atrapalharAmigosColegas?: SortOrder
+    atrapalharParceiros?: SortOrder
+    reduzirImpacto?: SortOrder
+    dicas?: SortOrder
+    exemplos?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type RelatorioChWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    numeroTraco?: number
+    AND?: RelatorioChWhereInput | RelatorioChWhereInput[]
+    OR?: RelatorioChWhereInput[]
+    NOT?: RelatorioChWhereInput | RelatorioChWhereInput[]
+    titulo?: StringFilter<"RelatorioCh"> | string
+    oQueE?: JsonFilter<"RelatorioCh">
+    atrapalharAcademico?: StringFilter<"RelatorioCh"> | string
+    atrapalharProfissional?: StringFilter<"RelatorioCh"> | string
+    atrapalharFamiliar?: StringFilter<"RelatorioCh"> | string
+    atrapalharAmigosColegas?: StringFilter<"RelatorioCh"> | string
+    atrapalharParceiros?: StringFilter<"RelatorioCh"> | string
+    reduzirImpacto?: JsonFilter<"RelatorioCh">
+    dicas?: JsonFilter<"RelatorioCh">
+    exemplos?: JsonFilter<"RelatorioCh">
+    createdAt?: DateTimeFilter<"RelatorioCh"> | Date | string
+    updatedAt?: DateTimeFilter<"RelatorioCh"> | Date | string
+  }, "id" | "numeroTraco">
+
+  export type RelatorioChOrderByWithAggregationInput = {
+    id?: SortOrder
+    numeroTraco?: SortOrder
+    titulo?: SortOrder
+    oQueE?: SortOrder
+    atrapalharAcademico?: SortOrder
+    atrapalharProfissional?: SortOrder
+    atrapalharFamiliar?: SortOrder
+    atrapalharAmigosColegas?: SortOrder
+    atrapalharParceiros?: SortOrder
+    reduzirImpacto?: SortOrder
+    dicas?: SortOrder
+    exemplos?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: RelatorioChCountOrderByAggregateInput
+    _avg?: RelatorioChAvgOrderByAggregateInput
+    _max?: RelatorioChMaxOrderByAggregateInput
+    _min?: RelatorioChMinOrderByAggregateInput
+    _sum?: RelatorioChSumOrderByAggregateInput
+  }
+
+  export type RelatorioChScalarWhereWithAggregatesInput = {
+    AND?: RelatorioChScalarWhereWithAggregatesInput | RelatorioChScalarWhereWithAggregatesInput[]
+    OR?: RelatorioChScalarWhereWithAggregatesInput[]
+    NOT?: RelatorioChScalarWhereWithAggregatesInput | RelatorioChScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"RelatorioCh"> | string
+    numeroTraco?: IntWithAggregatesFilter<"RelatorioCh"> | number
+    titulo?: StringWithAggregatesFilter<"RelatorioCh"> | string
+    oQueE?: JsonWithAggregatesFilter<"RelatorioCh">
+    atrapalharAcademico?: StringWithAggregatesFilter<"RelatorioCh"> | string
+    atrapalharProfissional?: StringWithAggregatesFilter<"RelatorioCh"> | string
+    atrapalharFamiliar?: StringWithAggregatesFilter<"RelatorioCh"> | string
+    atrapalharAmigosColegas?: StringWithAggregatesFilter<"RelatorioCh"> | string
+    atrapalharParceiros?: StringWithAggregatesFilter<"RelatorioCh"> | string
+    reduzirImpacto?: JsonWithAggregatesFilter<"RelatorioCh">
+    dicas?: JsonWithAggregatesFilter<"RelatorioCh">
+    exemplos?: JsonWithAggregatesFilter<"RelatorioCh">
+    createdAt?: DateTimeWithAggregatesFilter<"RelatorioCh"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"RelatorioCh"> | Date | string
   }
 
   export type ReflexaoTracoWhereInput = {
@@ -27330,9 +30329,26 @@ export namespace Prisma {
     numeroTraco: number
     titulo: string
     oQueE: JsonNullValueInput | InputJsonValue
-    comoUsar: JsonNullValueInput | InputJsonValue
+    comoUsarAcademico?: string
+    comoUsarProfissional?: string
+    comoUsarCotidiano?: string
     comoOportunidade: JsonNullValueInput | InputJsonValue
-    comoAtrapalhar: JsonNullValueInput | InputJsonValue
+    exemplosOportunidadeAcademico?: string
+    exemplosOportunidadeProfissional?: string
+    exemplosOportunidadeFamiliar?: string
+    exemplosOportunidadeAmigosColegas?: string
+    exemplosOportunidadeParceiros?: string
+    exemplosPraticosEstudo?: string
+    exemplosPraticosTrabalho?: string
+    exemplosPraticosCotidiano?: string
+    fraquezaOuAmeaca?: JsonNullValueInput | InputJsonValue
+    atrapalharAcademico?: string
+    atrapalharProfissional?: string
+    atrapalharFamiliar?: string
+    atrapalharAmigosColegas?: string
+    atrapalharParceiros?: string
+    transformarEmForca?: JsonNullValueInput | InputJsonValue
+    transformarEmOportunidade?: JsonNullValueInput | InputJsonValue
     reduzirImpacto: JsonNullValueInput | InputJsonValue
     dicas: JsonNullValueInput | InputJsonValue
     exemplos: JsonNullValueInput | InputJsonValue
@@ -27346,9 +30362,26 @@ export namespace Prisma {
     numeroTraco: number
     titulo: string
     oQueE: JsonNullValueInput | InputJsonValue
-    comoUsar: JsonNullValueInput | InputJsonValue
+    comoUsarAcademico?: string
+    comoUsarProfissional?: string
+    comoUsarCotidiano?: string
     comoOportunidade: JsonNullValueInput | InputJsonValue
-    comoAtrapalhar: JsonNullValueInput | InputJsonValue
+    exemplosOportunidadeAcademico?: string
+    exemplosOportunidadeProfissional?: string
+    exemplosOportunidadeFamiliar?: string
+    exemplosOportunidadeAmigosColegas?: string
+    exemplosOportunidadeParceiros?: string
+    exemplosPraticosEstudo?: string
+    exemplosPraticosTrabalho?: string
+    exemplosPraticosCotidiano?: string
+    fraquezaOuAmeaca?: JsonNullValueInput | InputJsonValue
+    atrapalharAcademico?: string
+    atrapalharProfissional?: string
+    atrapalharFamiliar?: string
+    atrapalharAmigosColegas?: string
+    atrapalharParceiros?: string
+    transformarEmForca?: JsonNullValueInput | InputJsonValue
+    transformarEmOportunidade?: JsonNullValueInput | InputJsonValue
     reduzirImpacto: JsonNullValueInput | InputJsonValue
     dicas: JsonNullValueInput | InputJsonValue
     exemplos: JsonNullValueInput | InputJsonValue
@@ -27362,9 +30395,26 @@ export namespace Prisma {
     numeroTraco?: IntFieldUpdateOperationsInput | number
     titulo?: StringFieldUpdateOperationsInput | string
     oQueE?: JsonNullValueInput | InputJsonValue
-    comoUsar?: JsonNullValueInput | InputJsonValue
+    comoUsarAcademico?: StringFieldUpdateOperationsInput | string
+    comoUsarProfissional?: StringFieldUpdateOperationsInput | string
+    comoUsarCotidiano?: StringFieldUpdateOperationsInput | string
     comoOportunidade?: JsonNullValueInput | InputJsonValue
-    comoAtrapalhar?: JsonNullValueInput | InputJsonValue
+    exemplosOportunidadeAcademico?: StringFieldUpdateOperationsInput | string
+    exemplosOportunidadeProfissional?: StringFieldUpdateOperationsInput | string
+    exemplosOportunidadeFamiliar?: StringFieldUpdateOperationsInput | string
+    exemplosOportunidadeAmigosColegas?: StringFieldUpdateOperationsInput | string
+    exemplosOportunidadeParceiros?: StringFieldUpdateOperationsInput | string
+    exemplosPraticosEstudo?: StringFieldUpdateOperationsInput | string
+    exemplosPraticosTrabalho?: StringFieldUpdateOperationsInput | string
+    exemplosPraticosCotidiano?: StringFieldUpdateOperationsInput | string
+    fraquezaOuAmeaca?: JsonNullValueInput | InputJsonValue
+    atrapalharAcademico?: StringFieldUpdateOperationsInput | string
+    atrapalharProfissional?: StringFieldUpdateOperationsInput | string
+    atrapalharFamiliar?: StringFieldUpdateOperationsInput | string
+    atrapalharAmigosColegas?: StringFieldUpdateOperationsInput | string
+    atrapalharParceiros?: StringFieldUpdateOperationsInput | string
+    transformarEmForca?: JsonNullValueInput | InputJsonValue
+    transformarEmOportunidade?: JsonNullValueInput | InputJsonValue
     reduzirImpacto?: JsonNullValueInput | InputJsonValue
     dicas?: JsonNullValueInput | InputJsonValue
     exemplos?: JsonNullValueInput | InputJsonValue
@@ -27378,9 +30428,26 @@ export namespace Prisma {
     numeroTraco?: IntFieldUpdateOperationsInput | number
     titulo?: StringFieldUpdateOperationsInput | string
     oQueE?: JsonNullValueInput | InputJsonValue
-    comoUsar?: JsonNullValueInput | InputJsonValue
+    comoUsarAcademico?: StringFieldUpdateOperationsInput | string
+    comoUsarProfissional?: StringFieldUpdateOperationsInput | string
+    comoUsarCotidiano?: StringFieldUpdateOperationsInput | string
     comoOportunidade?: JsonNullValueInput | InputJsonValue
-    comoAtrapalhar?: JsonNullValueInput | InputJsonValue
+    exemplosOportunidadeAcademico?: StringFieldUpdateOperationsInput | string
+    exemplosOportunidadeProfissional?: StringFieldUpdateOperationsInput | string
+    exemplosOportunidadeFamiliar?: StringFieldUpdateOperationsInput | string
+    exemplosOportunidadeAmigosColegas?: StringFieldUpdateOperationsInput | string
+    exemplosOportunidadeParceiros?: StringFieldUpdateOperationsInput | string
+    exemplosPraticosEstudo?: StringFieldUpdateOperationsInput | string
+    exemplosPraticosTrabalho?: StringFieldUpdateOperationsInput | string
+    exemplosPraticosCotidiano?: StringFieldUpdateOperationsInput | string
+    fraquezaOuAmeaca?: JsonNullValueInput | InputJsonValue
+    atrapalharAcademico?: StringFieldUpdateOperationsInput | string
+    atrapalharProfissional?: StringFieldUpdateOperationsInput | string
+    atrapalharFamiliar?: StringFieldUpdateOperationsInput | string
+    atrapalharAmigosColegas?: StringFieldUpdateOperationsInput | string
+    atrapalharParceiros?: StringFieldUpdateOperationsInput | string
+    transformarEmForca?: JsonNullValueInput | InputJsonValue
+    transformarEmOportunidade?: JsonNullValueInput | InputJsonValue
     reduzirImpacto?: JsonNullValueInput | InputJsonValue
     dicas?: JsonNullValueInput | InputJsonValue
     exemplos?: JsonNullValueInput | InputJsonValue
@@ -27394,9 +30461,26 @@ export namespace Prisma {
     numeroTraco: number
     titulo: string
     oQueE: JsonNullValueInput | InputJsonValue
-    comoUsar: JsonNullValueInput | InputJsonValue
+    comoUsarAcademico?: string
+    comoUsarProfissional?: string
+    comoUsarCotidiano?: string
     comoOportunidade: JsonNullValueInput | InputJsonValue
-    comoAtrapalhar: JsonNullValueInput | InputJsonValue
+    exemplosOportunidadeAcademico?: string
+    exemplosOportunidadeProfissional?: string
+    exemplosOportunidadeFamiliar?: string
+    exemplosOportunidadeAmigosColegas?: string
+    exemplosOportunidadeParceiros?: string
+    exemplosPraticosEstudo?: string
+    exemplosPraticosTrabalho?: string
+    exemplosPraticosCotidiano?: string
+    fraquezaOuAmeaca?: JsonNullValueInput | InputJsonValue
+    atrapalharAcademico?: string
+    atrapalharProfissional?: string
+    atrapalharFamiliar?: string
+    atrapalharAmigosColegas?: string
+    atrapalharParceiros?: string
+    transformarEmForca?: JsonNullValueInput | InputJsonValue
+    transformarEmOportunidade?: JsonNullValueInput | InputJsonValue
     reduzirImpacto: JsonNullValueInput | InputJsonValue
     dicas: JsonNullValueInput | InputJsonValue
     exemplos: JsonNullValueInput | InputJsonValue
@@ -27410,9 +30494,26 @@ export namespace Prisma {
     numeroTraco?: IntFieldUpdateOperationsInput | number
     titulo?: StringFieldUpdateOperationsInput | string
     oQueE?: JsonNullValueInput | InputJsonValue
-    comoUsar?: JsonNullValueInput | InputJsonValue
+    comoUsarAcademico?: StringFieldUpdateOperationsInput | string
+    comoUsarProfissional?: StringFieldUpdateOperationsInput | string
+    comoUsarCotidiano?: StringFieldUpdateOperationsInput | string
     comoOportunidade?: JsonNullValueInput | InputJsonValue
-    comoAtrapalhar?: JsonNullValueInput | InputJsonValue
+    exemplosOportunidadeAcademico?: StringFieldUpdateOperationsInput | string
+    exemplosOportunidadeProfissional?: StringFieldUpdateOperationsInput | string
+    exemplosOportunidadeFamiliar?: StringFieldUpdateOperationsInput | string
+    exemplosOportunidadeAmigosColegas?: StringFieldUpdateOperationsInput | string
+    exemplosOportunidadeParceiros?: StringFieldUpdateOperationsInput | string
+    exemplosPraticosEstudo?: StringFieldUpdateOperationsInput | string
+    exemplosPraticosTrabalho?: StringFieldUpdateOperationsInput | string
+    exemplosPraticosCotidiano?: StringFieldUpdateOperationsInput | string
+    fraquezaOuAmeaca?: JsonNullValueInput | InputJsonValue
+    atrapalharAcademico?: StringFieldUpdateOperationsInput | string
+    atrapalharProfissional?: StringFieldUpdateOperationsInput | string
+    atrapalharFamiliar?: StringFieldUpdateOperationsInput | string
+    atrapalharAmigosColegas?: StringFieldUpdateOperationsInput | string
+    atrapalharParceiros?: StringFieldUpdateOperationsInput | string
+    transformarEmForca?: JsonNullValueInput | InputJsonValue
+    transformarEmOportunidade?: JsonNullValueInput | InputJsonValue
     reduzirImpacto?: JsonNullValueInput | InputJsonValue
     dicas?: JsonNullValueInput | InputJsonValue
     exemplos?: JsonNullValueInput | InputJsonValue
@@ -27426,9 +30527,264 @@ export namespace Prisma {
     numeroTraco?: IntFieldUpdateOperationsInput | number
     titulo?: StringFieldUpdateOperationsInput | string
     oQueE?: JsonNullValueInput | InputJsonValue
-    comoUsar?: JsonNullValueInput | InputJsonValue
+    comoUsarAcademico?: StringFieldUpdateOperationsInput | string
+    comoUsarProfissional?: StringFieldUpdateOperationsInput | string
+    comoUsarCotidiano?: StringFieldUpdateOperationsInput | string
     comoOportunidade?: JsonNullValueInput | InputJsonValue
-    comoAtrapalhar?: JsonNullValueInput | InputJsonValue
+    exemplosOportunidadeAcademico?: StringFieldUpdateOperationsInput | string
+    exemplosOportunidadeProfissional?: StringFieldUpdateOperationsInput | string
+    exemplosOportunidadeFamiliar?: StringFieldUpdateOperationsInput | string
+    exemplosOportunidadeAmigosColegas?: StringFieldUpdateOperationsInput | string
+    exemplosOportunidadeParceiros?: StringFieldUpdateOperationsInput | string
+    exemplosPraticosEstudo?: StringFieldUpdateOperationsInput | string
+    exemplosPraticosTrabalho?: StringFieldUpdateOperationsInput | string
+    exemplosPraticosCotidiano?: StringFieldUpdateOperationsInput | string
+    fraquezaOuAmeaca?: JsonNullValueInput | InputJsonValue
+    atrapalharAcademico?: StringFieldUpdateOperationsInput | string
+    atrapalharProfissional?: StringFieldUpdateOperationsInput | string
+    atrapalharFamiliar?: StringFieldUpdateOperationsInput | string
+    atrapalharAmigosColegas?: StringFieldUpdateOperationsInput | string
+    atrapalharParceiros?: StringFieldUpdateOperationsInput | string
+    transformarEmForca?: JsonNullValueInput | InputJsonValue
+    transformarEmOportunidade?: JsonNullValueInput | InputJsonValue
+    reduzirImpacto?: JsonNullValueInput | InputJsonValue
+    dicas?: JsonNullValueInput | InputJsonValue
+    exemplos?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RelatorioShCreateInput = {
+    id?: string
+    numeroTraco: number
+    titulo: string
+    oQueE: JsonNullValueInput | InputJsonValue
+    atrapalharAcademico?: string
+    atrapalharProfissional?: string
+    atrapalharFamiliar?: string
+    atrapalharAmigosColegas?: string
+    atrapalharParceiros?: string
+    reduzirImpacto: JsonNullValueInput | InputJsonValue
+    dicas: JsonNullValueInput | InputJsonValue
+    exemplos: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RelatorioShUncheckedCreateInput = {
+    id?: string
+    numeroTraco: number
+    titulo: string
+    oQueE: JsonNullValueInput | InputJsonValue
+    atrapalharAcademico?: string
+    atrapalharProfissional?: string
+    atrapalharFamiliar?: string
+    atrapalharAmigosColegas?: string
+    atrapalharParceiros?: string
+    reduzirImpacto: JsonNullValueInput | InputJsonValue
+    dicas: JsonNullValueInput | InputJsonValue
+    exemplos: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RelatorioShUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    numeroTraco?: IntFieldUpdateOperationsInput | number
+    titulo?: StringFieldUpdateOperationsInput | string
+    oQueE?: JsonNullValueInput | InputJsonValue
+    atrapalharAcademico?: StringFieldUpdateOperationsInput | string
+    atrapalharProfissional?: StringFieldUpdateOperationsInput | string
+    atrapalharFamiliar?: StringFieldUpdateOperationsInput | string
+    atrapalharAmigosColegas?: StringFieldUpdateOperationsInput | string
+    atrapalharParceiros?: StringFieldUpdateOperationsInput | string
+    reduzirImpacto?: JsonNullValueInput | InputJsonValue
+    dicas?: JsonNullValueInput | InputJsonValue
+    exemplos?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RelatorioShUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    numeroTraco?: IntFieldUpdateOperationsInput | number
+    titulo?: StringFieldUpdateOperationsInput | string
+    oQueE?: JsonNullValueInput | InputJsonValue
+    atrapalharAcademico?: StringFieldUpdateOperationsInput | string
+    atrapalharProfissional?: StringFieldUpdateOperationsInput | string
+    atrapalharFamiliar?: StringFieldUpdateOperationsInput | string
+    atrapalharAmigosColegas?: StringFieldUpdateOperationsInput | string
+    atrapalharParceiros?: StringFieldUpdateOperationsInput | string
+    reduzirImpacto?: JsonNullValueInput | InputJsonValue
+    dicas?: JsonNullValueInput | InputJsonValue
+    exemplos?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RelatorioShCreateManyInput = {
+    id?: string
+    numeroTraco: number
+    titulo: string
+    oQueE: JsonNullValueInput | InputJsonValue
+    atrapalharAcademico?: string
+    atrapalharProfissional?: string
+    atrapalharFamiliar?: string
+    atrapalharAmigosColegas?: string
+    atrapalharParceiros?: string
+    reduzirImpacto: JsonNullValueInput | InputJsonValue
+    dicas: JsonNullValueInput | InputJsonValue
+    exemplos: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RelatorioShUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    numeroTraco?: IntFieldUpdateOperationsInput | number
+    titulo?: StringFieldUpdateOperationsInput | string
+    oQueE?: JsonNullValueInput | InputJsonValue
+    atrapalharAcademico?: StringFieldUpdateOperationsInput | string
+    atrapalharProfissional?: StringFieldUpdateOperationsInput | string
+    atrapalharFamiliar?: StringFieldUpdateOperationsInput | string
+    atrapalharAmigosColegas?: StringFieldUpdateOperationsInput | string
+    atrapalharParceiros?: StringFieldUpdateOperationsInput | string
+    reduzirImpacto?: JsonNullValueInput | InputJsonValue
+    dicas?: JsonNullValueInput | InputJsonValue
+    exemplos?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RelatorioShUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    numeroTraco?: IntFieldUpdateOperationsInput | number
+    titulo?: StringFieldUpdateOperationsInput | string
+    oQueE?: JsonNullValueInput | InputJsonValue
+    atrapalharAcademico?: StringFieldUpdateOperationsInput | string
+    atrapalharProfissional?: StringFieldUpdateOperationsInput | string
+    atrapalharFamiliar?: StringFieldUpdateOperationsInput | string
+    atrapalharAmigosColegas?: StringFieldUpdateOperationsInput | string
+    atrapalharParceiros?: StringFieldUpdateOperationsInput | string
+    reduzirImpacto?: JsonNullValueInput | InputJsonValue
+    dicas?: JsonNullValueInput | InputJsonValue
+    exemplos?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RelatorioChCreateInput = {
+    id?: string
+    numeroTraco: number
+    titulo: string
+    oQueE: JsonNullValueInput | InputJsonValue
+    atrapalharAcademico?: string
+    atrapalharProfissional?: string
+    atrapalharFamiliar?: string
+    atrapalharAmigosColegas?: string
+    atrapalharParceiros?: string
+    reduzirImpacto: JsonNullValueInput | InputJsonValue
+    dicas: JsonNullValueInput | InputJsonValue
+    exemplos: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RelatorioChUncheckedCreateInput = {
+    id?: string
+    numeroTraco: number
+    titulo: string
+    oQueE: JsonNullValueInput | InputJsonValue
+    atrapalharAcademico?: string
+    atrapalharProfissional?: string
+    atrapalharFamiliar?: string
+    atrapalharAmigosColegas?: string
+    atrapalharParceiros?: string
+    reduzirImpacto: JsonNullValueInput | InputJsonValue
+    dicas: JsonNullValueInput | InputJsonValue
+    exemplos: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RelatorioChUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    numeroTraco?: IntFieldUpdateOperationsInput | number
+    titulo?: StringFieldUpdateOperationsInput | string
+    oQueE?: JsonNullValueInput | InputJsonValue
+    atrapalharAcademico?: StringFieldUpdateOperationsInput | string
+    atrapalharProfissional?: StringFieldUpdateOperationsInput | string
+    atrapalharFamiliar?: StringFieldUpdateOperationsInput | string
+    atrapalharAmigosColegas?: StringFieldUpdateOperationsInput | string
+    atrapalharParceiros?: StringFieldUpdateOperationsInput | string
+    reduzirImpacto?: JsonNullValueInput | InputJsonValue
+    dicas?: JsonNullValueInput | InputJsonValue
+    exemplos?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RelatorioChUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    numeroTraco?: IntFieldUpdateOperationsInput | number
+    titulo?: StringFieldUpdateOperationsInput | string
+    oQueE?: JsonNullValueInput | InputJsonValue
+    atrapalharAcademico?: StringFieldUpdateOperationsInput | string
+    atrapalharProfissional?: StringFieldUpdateOperationsInput | string
+    atrapalharFamiliar?: StringFieldUpdateOperationsInput | string
+    atrapalharAmigosColegas?: StringFieldUpdateOperationsInput | string
+    atrapalharParceiros?: StringFieldUpdateOperationsInput | string
+    reduzirImpacto?: JsonNullValueInput | InputJsonValue
+    dicas?: JsonNullValueInput | InputJsonValue
+    exemplos?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RelatorioChCreateManyInput = {
+    id?: string
+    numeroTraco: number
+    titulo: string
+    oQueE: JsonNullValueInput | InputJsonValue
+    atrapalharAcademico?: string
+    atrapalharProfissional?: string
+    atrapalharFamiliar?: string
+    atrapalharAmigosColegas?: string
+    atrapalharParceiros?: string
+    reduzirImpacto: JsonNullValueInput | InputJsonValue
+    dicas: JsonNullValueInput | InputJsonValue
+    exemplos: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RelatorioChUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    numeroTraco?: IntFieldUpdateOperationsInput | number
+    titulo?: StringFieldUpdateOperationsInput | string
+    oQueE?: JsonNullValueInput | InputJsonValue
+    atrapalharAcademico?: StringFieldUpdateOperationsInput | string
+    atrapalharProfissional?: StringFieldUpdateOperationsInput | string
+    atrapalharFamiliar?: StringFieldUpdateOperationsInput | string
+    atrapalharAmigosColegas?: StringFieldUpdateOperationsInput | string
+    atrapalharParceiros?: StringFieldUpdateOperationsInput | string
+    reduzirImpacto?: JsonNullValueInput | InputJsonValue
+    dicas?: JsonNullValueInput | InputJsonValue
+    exemplos?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RelatorioChUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    numeroTraco?: IntFieldUpdateOperationsInput | number
+    titulo?: StringFieldUpdateOperationsInput | string
+    oQueE?: JsonNullValueInput | InputJsonValue
+    atrapalharAcademico?: StringFieldUpdateOperationsInput | string
+    atrapalharProfissional?: StringFieldUpdateOperationsInput | string
+    atrapalharFamiliar?: StringFieldUpdateOperationsInput | string
+    atrapalharAmigosColegas?: StringFieldUpdateOperationsInput | string
+    atrapalharParceiros?: StringFieldUpdateOperationsInput | string
     reduzirImpacto?: JsonNullValueInput | InputJsonValue
     dicas?: JsonNullValueInput | InputJsonValue
     exemplos?: JsonNullValueInput | InputJsonValue
@@ -28506,9 +31862,26 @@ export namespace Prisma {
     numeroTraco?: SortOrder
     titulo?: SortOrder
     oQueE?: SortOrder
-    comoUsar?: SortOrder
+    comoUsarAcademico?: SortOrder
+    comoUsarProfissional?: SortOrder
+    comoUsarCotidiano?: SortOrder
     comoOportunidade?: SortOrder
-    comoAtrapalhar?: SortOrder
+    exemplosOportunidadeAcademico?: SortOrder
+    exemplosOportunidadeProfissional?: SortOrder
+    exemplosOportunidadeFamiliar?: SortOrder
+    exemplosOportunidadeAmigosColegas?: SortOrder
+    exemplosOportunidadeParceiros?: SortOrder
+    exemplosPraticosEstudo?: SortOrder
+    exemplosPraticosTrabalho?: SortOrder
+    exemplosPraticosCotidiano?: SortOrder
+    fraquezaOuAmeaca?: SortOrder
+    atrapalharAcademico?: SortOrder
+    atrapalharProfissional?: SortOrder
+    atrapalharFamiliar?: SortOrder
+    atrapalharAmigosColegas?: SortOrder
+    atrapalharParceiros?: SortOrder
+    transformarEmForca?: SortOrder
+    transformarEmOportunidade?: SortOrder
     reduzirImpacto?: SortOrder
     dicas?: SortOrder
     exemplos?: SortOrder
@@ -28525,6 +31898,22 @@ export namespace Prisma {
     tipo?: SortOrder
     numeroTraco?: SortOrder
     titulo?: SortOrder
+    comoUsarAcademico?: SortOrder
+    comoUsarProfissional?: SortOrder
+    comoUsarCotidiano?: SortOrder
+    exemplosOportunidadeAcademico?: SortOrder
+    exemplosOportunidadeProfissional?: SortOrder
+    exemplosOportunidadeFamiliar?: SortOrder
+    exemplosOportunidadeAmigosColegas?: SortOrder
+    exemplosOportunidadeParceiros?: SortOrder
+    exemplosPraticosEstudo?: SortOrder
+    exemplosPraticosTrabalho?: SortOrder
+    exemplosPraticosCotidiano?: SortOrder
+    atrapalharAcademico?: SortOrder
+    atrapalharProfissional?: SortOrder
+    atrapalharFamiliar?: SortOrder
+    atrapalharAmigosColegas?: SortOrder
+    atrapalharParceiros?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -28534,6 +31923,22 @@ export namespace Prisma {
     tipo?: SortOrder
     numeroTraco?: SortOrder
     titulo?: SortOrder
+    comoUsarAcademico?: SortOrder
+    comoUsarProfissional?: SortOrder
+    comoUsarCotidiano?: SortOrder
+    exemplosOportunidadeAcademico?: SortOrder
+    exemplosOportunidadeProfissional?: SortOrder
+    exemplosOportunidadeFamiliar?: SortOrder
+    exemplosOportunidadeAmigosColegas?: SortOrder
+    exemplosOportunidadeParceiros?: SortOrder
+    exemplosPraticosEstudo?: SortOrder
+    exemplosPraticosTrabalho?: SortOrder
+    exemplosPraticosCotidiano?: SortOrder
+    atrapalharAcademico?: SortOrder
+    atrapalharProfissional?: SortOrder
+    atrapalharFamiliar?: SortOrder
+    atrapalharAmigosColegas?: SortOrder
+    atrapalharParceiros?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -28566,6 +31971,108 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedJsonFilter<$PrismaModel>
     _max?: NestedJsonFilter<$PrismaModel>
+  }
+
+  export type RelatorioShCountOrderByAggregateInput = {
+    id?: SortOrder
+    numeroTraco?: SortOrder
+    titulo?: SortOrder
+    oQueE?: SortOrder
+    atrapalharAcademico?: SortOrder
+    atrapalharProfissional?: SortOrder
+    atrapalharFamiliar?: SortOrder
+    atrapalharAmigosColegas?: SortOrder
+    atrapalharParceiros?: SortOrder
+    reduzirImpacto?: SortOrder
+    dicas?: SortOrder
+    exemplos?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type RelatorioShAvgOrderByAggregateInput = {
+    numeroTraco?: SortOrder
+  }
+
+  export type RelatorioShMaxOrderByAggregateInput = {
+    id?: SortOrder
+    numeroTraco?: SortOrder
+    titulo?: SortOrder
+    atrapalharAcademico?: SortOrder
+    atrapalharProfissional?: SortOrder
+    atrapalharFamiliar?: SortOrder
+    atrapalharAmigosColegas?: SortOrder
+    atrapalharParceiros?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type RelatorioShMinOrderByAggregateInput = {
+    id?: SortOrder
+    numeroTraco?: SortOrder
+    titulo?: SortOrder
+    atrapalharAcademico?: SortOrder
+    atrapalharProfissional?: SortOrder
+    atrapalharFamiliar?: SortOrder
+    atrapalharAmigosColegas?: SortOrder
+    atrapalharParceiros?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type RelatorioShSumOrderByAggregateInput = {
+    numeroTraco?: SortOrder
+  }
+
+  export type RelatorioChCountOrderByAggregateInput = {
+    id?: SortOrder
+    numeroTraco?: SortOrder
+    titulo?: SortOrder
+    oQueE?: SortOrder
+    atrapalharAcademico?: SortOrder
+    atrapalharProfissional?: SortOrder
+    atrapalharFamiliar?: SortOrder
+    atrapalharAmigosColegas?: SortOrder
+    atrapalharParceiros?: SortOrder
+    reduzirImpacto?: SortOrder
+    dicas?: SortOrder
+    exemplos?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type RelatorioChAvgOrderByAggregateInput = {
+    numeroTraco?: SortOrder
+  }
+
+  export type RelatorioChMaxOrderByAggregateInput = {
+    id?: SortOrder
+    numeroTraco?: SortOrder
+    titulo?: SortOrder
+    atrapalharAcademico?: SortOrder
+    atrapalharProfissional?: SortOrder
+    atrapalharFamiliar?: SortOrder
+    atrapalharAmigosColegas?: SortOrder
+    atrapalharParceiros?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type RelatorioChMinOrderByAggregateInput = {
+    id?: SortOrder
+    numeroTraco?: SortOrder
+    titulo?: SortOrder
+    atrapalharAcademico?: SortOrder
+    atrapalharProfissional?: SortOrder
+    atrapalharFamiliar?: SortOrder
+    atrapalharAmigosColegas?: SortOrder
+    atrapalharParceiros?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type RelatorioChSumOrderByAggregateInput = {
+    numeroTraco?: SortOrder
   }
 
   export type ReflexaoTracoUserIdTipoNumeroTracoQuadranteCompoundUniqueInput = {
