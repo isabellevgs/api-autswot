@@ -25045,6 +25045,7 @@ export namespace Prisma {
     tipo: string | null
     numeroTraco: number | null
     quadrante: string | null
+    enviado: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -25055,6 +25056,7 @@ export namespace Prisma {
     tipo: string | null
     numeroTraco: number | null
     quadrante: string | null
+    enviado: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -25066,6 +25068,7 @@ export namespace Prisma {
     numeroTraco: number
     quadrante: number
     respostas: number
+    enviado: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -25086,6 +25089,7 @@ export namespace Prisma {
     tipo?: true
     numeroTraco?: true
     quadrante?: true
+    enviado?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -25096,6 +25100,7 @@ export namespace Prisma {
     tipo?: true
     numeroTraco?: true
     quadrante?: true
+    enviado?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -25107,6 +25112,7 @@ export namespace Prisma {
     numeroTraco?: true
     quadrante?: true
     respostas?: true
+    enviado?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -25205,6 +25211,7 @@ export namespace Prisma {
     numeroTraco: number
     quadrante: string
     respostas: JsonValue
+    enviado: boolean
     createdAt: Date
     updatedAt: Date
     _count: ReflexaoTracoCountAggregateOutputType | null
@@ -25235,6 +25242,7 @@ export namespace Prisma {
     numeroTraco?: boolean
     quadrante?: boolean
     respostas?: boolean
+    enviado?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -25247,6 +25255,7 @@ export namespace Prisma {
     numeroTraco?: boolean
     quadrante?: boolean
     respostas?: boolean
+    enviado?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -25259,6 +25268,7 @@ export namespace Prisma {
     numeroTraco?: boolean
     quadrante?: boolean
     respostas?: boolean
+    enviado?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -25271,11 +25281,12 @@ export namespace Prisma {
     numeroTraco?: boolean
     quadrante?: boolean
     respostas?: boolean
+    enviado?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type ReflexaoTracoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "tipo" | "numeroTraco" | "quadrante" | "respostas" | "createdAt" | "updatedAt", ExtArgs["result"]["reflexaoTraco"]>
+  export type ReflexaoTracoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "tipo" | "numeroTraco" | "quadrante" | "respostas" | "enviado" | "createdAt" | "updatedAt", ExtArgs["result"]["reflexaoTraco"]>
   export type ReflexaoTracoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
@@ -25298,6 +25309,7 @@ export namespace Prisma {
       numeroTraco: number
       quadrante: string
       respostas: Prisma.JsonValue
+      enviado: boolean
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["reflexaoTraco"]>
@@ -25730,6 +25742,7 @@ export namespace Prisma {
     readonly numeroTraco: FieldRef<"ReflexaoTraco", 'Int'>
     readonly quadrante: FieldRef<"ReflexaoTraco", 'String'>
     readonly respostas: FieldRef<"ReflexaoTraco", 'Json'>
+    readonly enviado: FieldRef<"ReflexaoTraco", 'Boolean'>
     readonly createdAt: FieldRef<"ReflexaoTraco", 'DateTime'>
     readonly updatedAt: FieldRef<"ReflexaoTraco", 'DateTime'>
   }
@@ -27599,6 +27612,7 @@ export namespace Prisma {
     numeroTraco: 'numeroTraco',
     quadrante: 'quadrante',
     respostas: 'respostas',
+    enviado: 'enviado',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -29153,6 +29167,7 @@ export namespace Prisma {
     numeroTraco?: IntFilter<"ReflexaoTraco"> | number
     quadrante?: StringFilter<"ReflexaoTraco"> | string
     respostas?: JsonFilter<"ReflexaoTraco">
+    enviado?: BoolFilter<"ReflexaoTraco"> | boolean
     createdAt?: DateTimeFilter<"ReflexaoTraco"> | Date | string
     updatedAt?: DateTimeFilter<"ReflexaoTraco"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
@@ -29165,6 +29180,7 @@ export namespace Prisma {
     numeroTraco?: SortOrder
     quadrante?: SortOrder
     respostas?: SortOrder
+    enviado?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     user?: UserOrderByWithRelationInput
@@ -29181,6 +29197,7 @@ export namespace Prisma {
     numeroTraco?: IntFilter<"ReflexaoTraco"> | number
     quadrante?: StringFilter<"ReflexaoTraco"> | string
     respostas?: JsonFilter<"ReflexaoTraco">
+    enviado?: BoolFilter<"ReflexaoTraco"> | boolean
     createdAt?: DateTimeFilter<"ReflexaoTraco"> | Date | string
     updatedAt?: DateTimeFilter<"ReflexaoTraco"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
@@ -29193,6 +29210,7 @@ export namespace Prisma {
     numeroTraco?: SortOrder
     quadrante?: SortOrder
     respostas?: SortOrder
+    enviado?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: ReflexaoTracoCountOrderByAggregateInput
@@ -29212,6 +29230,7 @@ export namespace Prisma {
     numeroTraco?: IntWithAggregatesFilter<"ReflexaoTraco"> | number
     quadrante?: StringWithAggregatesFilter<"ReflexaoTraco"> | string
     respostas?: JsonWithAggregatesFilter<"ReflexaoTraco">
+    enviado?: BoolWithAggregatesFilter<"ReflexaoTraco"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"ReflexaoTraco"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"ReflexaoTraco"> | Date | string
   }
@@ -30798,6 +30817,7 @@ export namespace Prisma {
     numeroTraco: number
     quadrante: string
     respostas: JsonNullValueInput | InputJsonValue
+    enviado?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     user: UserCreateNestedOneWithoutReflexoesTracoInput
@@ -30810,6 +30830,7 @@ export namespace Prisma {
     numeroTraco: number
     quadrante: string
     respostas: JsonNullValueInput | InputJsonValue
+    enviado?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -30820,6 +30841,7 @@ export namespace Prisma {
     numeroTraco?: IntFieldUpdateOperationsInput | number
     quadrante?: StringFieldUpdateOperationsInput | string
     respostas?: JsonNullValueInput | InputJsonValue
+    enviado?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutReflexoesTracoNestedInput
@@ -30832,6 +30854,7 @@ export namespace Prisma {
     numeroTraco?: IntFieldUpdateOperationsInput | number
     quadrante?: StringFieldUpdateOperationsInput | string
     respostas?: JsonNullValueInput | InputJsonValue
+    enviado?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -30843,6 +30866,7 @@ export namespace Prisma {
     numeroTraco: number
     quadrante: string
     respostas: JsonNullValueInput | InputJsonValue
+    enviado?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -30853,6 +30877,7 @@ export namespace Prisma {
     numeroTraco?: IntFieldUpdateOperationsInput | number
     quadrante?: StringFieldUpdateOperationsInput | string
     respostas?: JsonNullValueInput | InputJsonValue
+    enviado?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -30864,6 +30889,7 @@ export namespace Prisma {
     numeroTraco?: IntFieldUpdateOperationsInput | number
     quadrante?: StringFieldUpdateOperationsInput | string
     respostas?: JsonNullValueInput | InputJsonValue
+    enviado?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -32089,6 +32115,7 @@ export namespace Prisma {
     numeroTraco?: SortOrder
     quadrante?: SortOrder
     respostas?: SortOrder
+    enviado?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -32103,6 +32130,7 @@ export namespace Prisma {
     tipo?: SortOrder
     numeroTraco?: SortOrder
     quadrante?: SortOrder
+    enviado?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -32113,6 +32141,7 @@ export namespace Prisma {
     tipo?: SortOrder
     numeroTraco?: SortOrder
     quadrante?: SortOrder
+    enviado?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -33412,6 +33441,7 @@ export namespace Prisma {
     numeroTraco: number
     quadrante: string
     respostas: JsonNullValueInput | InputJsonValue
+    enviado?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -33422,6 +33452,7 @@ export namespace Prisma {
     numeroTraco: number
     quadrante: string
     respostas: JsonNullValueInput | InputJsonValue
+    enviado?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -33579,6 +33610,7 @@ export namespace Prisma {
     numeroTraco?: IntFilter<"ReflexaoTraco"> | number
     quadrante?: StringFilter<"ReflexaoTraco"> | string
     respostas?: JsonFilter<"ReflexaoTraco">
+    enviado?: BoolFilter<"ReflexaoTraco"> | boolean
     createdAt?: DateTimeFilter<"ReflexaoTraco"> | Date | string
     updatedAt?: DateTimeFilter<"ReflexaoTraco"> | Date | string
   }
@@ -34929,6 +34961,7 @@ export namespace Prisma {
     numeroTraco: number
     quadrante: string
     respostas: JsonNullValueInput | InputJsonValue
+    enviado?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -35054,6 +35087,7 @@ export namespace Prisma {
     numeroTraco?: IntFieldUpdateOperationsInput | number
     quadrante?: StringFieldUpdateOperationsInput | string
     respostas?: JsonNullValueInput | InputJsonValue
+    enviado?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -35064,6 +35098,7 @@ export namespace Prisma {
     numeroTraco?: IntFieldUpdateOperationsInput | number
     quadrante?: StringFieldUpdateOperationsInput | string
     respostas?: JsonNullValueInput | InputJsonValue
+    enviado?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -35074,6 +35109,7 @@ export namespace Prisma {
     numeroTraco?: IntFieldUpdateOperationsInput | number
     quadrante?: StringFieldUpdateOperationsInput | string
     respostas?: JsonNullValueInput | InputJsonValue
+    enviado?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

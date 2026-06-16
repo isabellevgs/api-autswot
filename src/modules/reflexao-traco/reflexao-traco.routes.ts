@@ -15,6 +15,7 @@ const reflexaoSchema = {
     numeroTraco: { type: 'number' },
     quadrante:   { type: 'string' },
     respostas:   respostasSchema,
+    enviado:     { type: 'boolean' },
     createdAt:   { type: 'string' },
     updatedAt:   { type: 'string' },
   },
@@ -27,6 +28,7 @@ const progressoSchema = {
     properties: {
       concluidos:   { type: 'number' },
       necessarios:  { type: 'number' },
+      totalTracos:  { type: 'number' },
       desbloqueado: { type: 'boolean' },
     },
   },

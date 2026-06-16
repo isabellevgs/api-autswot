@@ -334,6 +334,7 @@ exports.Prisma.ReflexaoTracoScalarFieldEnum = {
   numeroTraco: 'numeroTraco',
   quadrante: 'quadrante',
   respostas: 'respostas',
+  enviado: 'enviado',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };

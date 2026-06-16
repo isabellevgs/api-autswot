@@ -356,6 +356,7 @@ model ReflexaoTraco {
   quadrante   String  // 'ameaca' | 'fraqueza' | 'oportunidade' | 'forca'
 
   respostas   Json    // { q1?: string, q2?: string, ..., q8?: string }
+  enviado     Boolean @default(false) // true = respostas enviadas; false = rascunho
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

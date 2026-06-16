@@ -16,6 +16,7 @@ export const upsertReflexaoSchema = z.object({
   numeroTraco: z.number().int().positive(),
   quadrante:   z.enum(['ameaca', 'fraqueza', 'oportunidade', 'forca']),
   respostas:   respostasSchema,
+  enviado:     z.boolean().optional().default(false),
 });
 
 export type UpsertReflexaoInput = z.infer<typeof upsertReflexaoSchema>;
