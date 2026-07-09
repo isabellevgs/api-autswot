@@ -58,14 +58,29 @@ if [ -z "${ADMIN_CONTAINER}" ]; then
   ADMIN_CONTAINER=$(docker ps --filter "publish=3002" --format '{{.Names}}' | head -1)
 fi
 
-log "Containers detectados: API=${API_CONTAINER:-nenhum} App=${APP_CONTAINER:-nenhum} Admin=${ADMIN_CONTAINER:-nenhum}"
+POSTGRES_CONTAINER=$(docker ps --filter "name=autswot-postgres" --format '{{.Names}}' | head -1)
+if [ -z "${POSTGRES_CONTAINER}" ]; then
+  POSTGRES_CONTAINER=$(docker ps --filter "ancestor=postgres:16-alpine" --format '{{.Names}}' | grep -i autswot | head -1)
+fi
+
+log "Containers detectados: API=${API_CONTAINER:-nenhum} App=${APP_CONTAINER:-nenhum} Admin=${ADMIN_CONTAINER:-nenhum} Postgres=${POSTGRES_CONTAINER:-nenhum}"
 
 log "Conectando containers..."
-[ -n "${API_CONTAINER}" ]    && connect "${API_CONTAINER}"    "autswot-api"
-[ -n "${APP_CONTAINER}" ]    && connect "${APP_CONTAINER}"
-[ -n "${ADMIN_CONTAINER}" ]  && connect "${ADMIN_CONTAINER}"
+[ -n "${API_CONTAINER}" ]      && connect "${API_CONTAINER}"      "autswot-api"
+[ -n "${APP_CONTAINER}" ]      && connect "${APP_CONTAINER}"
+[ -n "${ADMIN_CONTAINER}" ]    && connect "${ADMIN_CONTAINER}"
+[ -n "${POSTGRES_CONTAINER}" ] && connect "${POSTGRES_CONTAINER}" "autswot-postgres"
 
 log "Membros da rede ${NETWORK}: $(docker network inspect "${NETWORK}" --format '{{range .Containers}}{{.Name}} {{end}}')"
+
+if [ -n "${API_CONTAINER}" ]; then
+  if docker exec "${API_CONTAINER}" getent hosts autswot-postgres >/dev/null 2>&1; then
+    log "DNS autswot-postgres (from api): OK → $(docker exec "${API_CONTAINER}" getent hosts autswot-postgres | awk '{print $1}' | head -1)"
+  else
+    log "DNS autswot-postgres (from api): FALHOU — API não alcança o banco"
+    exit 1
+  fi
+fi
 
 if [ -n "${APP_CONTAINER}" ]; then
   if docker exec "${APP_CONTAINER}" getent hosts autswot-api >/dev/null 2>&1; then

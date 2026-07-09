@@ -37,6 +37,7 @@ CMD ["sh", "-c", "\
   { [ -z \"$JWT_REFRESH_SECRET\" ] && echo '❌ JWT_REFRESH_SECRET não definida!' && exit 1 || true; } && \
   echo '✅ Variáveis validadas' && \
   echo '🚀 Iniciando aplicação...' && \
+  bun run scripts/wait-for-db.ts && \
   echo '📊 Executando migrations...' && \
   bun x prisma migrate deploy && \
   echo '🌱 Executando seed...' && \
