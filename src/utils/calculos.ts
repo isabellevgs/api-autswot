@@ -14,24 +14,24 @@ export function calcularMediaUser(
   userFREQ: number | null | undefined,
   userINT: number | null | undefined
 ): number | null {
-  // Retorna null se algum dos valores não estiver disponível
-  if (userFREQ === null || userFREQ === undefined || userINT === null || userINT === undefined) {
+  // Retorna null se frequência não estiver disponível
+  if (userFREQ === null || userFREQ === undefined) {
     return null;
   }
 
-  // Validação dos ranges
   if (userFREQ < 1 || userFREQ > 5) {
     throw new Error('Frequência deve estar entre 1 e 5');
   }
 
-  if (userINT < 1 || userINT > 3) {
-    throw new Error('Intensidade deve estar entre 1 e 3');
+  // Com intensidade: fórmula completa; sem intensidade (CH sem história de intensidade): usa só frequência
+  if (userINT !== null && userINT !== undefined) {
+    if (userINT < 1 || userINT > 3) {
+      throw new Error('Intensidade deve estar entre 1 e 3');
+    }
+    return (userFREQ + userINT * (5 / 3)) / 2;
   }
 
-  // Calcula a média usando a fórmula: (userFREQ + userINT * 5/3) / 2
-  const mediaUser = (userFREQ + userINT * (5 / 3)) / 2;
-
-  return mediaUser;
+  return userFREQ;
 }
 
 /**
@@ -154,12 +154,10 @@ export function classificarTracoF(
   tracoOportunidade: Array<{ valor: string }>
 ): 'neutro' | 'forca' | 'fraqueza' | 'oportunidade' | null {
   if (frequencia === null || frequencia === undefined) {
-    console.log('[DEBUG classificarTracoF] Frequência é null ou undefined');
     return null;
   }
 
   const labelFrequencia = mapearFrequenciaParaLabel(frequencia, 'F');
-  console.log('[DEBUG classificarTracoF] Frequência:', frequencia, 'Label:', labelFrequencia);
 
   // Verifica em qual coluna a frequência se encaixa
   // Prioridade: fraqueza > oportunidade > forca > neutro
@@ -168,16 +166,7 @@ export function classificarTracoF(
   const valoresForca = tracoForca.map(t => t.valor);
   const valoresNeutro = tracoNeutro.map(t => t.valor);
 
-  console.log('[DEBUG classificarTracoF] Valores das colunas:', {
-    valoresFraqueza,
-    valoresOportunidade,
-    valoresForca,
-    valoresNeutro
-  });
-
-  // Verifica se está em fraqueza
   const estaEmFraqueza = valoresFraqueza.some(valor => compararValores(valor, labelFrequencia));
-  console.log('[DEBUG classificarTracoF] Está em fraqueza?', estaEmFraqueza);
   if (estaEmFraqueza) {
     return 'fraqueza';
   }

@@ -3,6 +3,7 @@ import { HistoriasSociaisService } from './historias-sociais.service.js';
 import {
   getHistoriasSociaisParamsSchema,
   listHistoriasSociaisQuerySchema,
+  createHistoriasSociaisSchema,
   updateHistoriasSociaisSchema,
   type GetHistoriasSociaisParams,
   type ListHistoriasSociaisQuery,
@@ -30,6 +31,12 @@ export class HistoriasSociaisController {
     );
     const result = await historiasSociaisService.listHistoriasSociais(page, limit, numeroHistoria);
     return reply.send(result);
+  }
+
+  async createHistoriasSociais(request: FastifyRequest, reply: FastifyReply) {
+    const data = createHistoriasSociaisSchema.parse(request.body);
+    const registro = await historiasSociaisService.createHistoriasSociais(data);
+    return reply.status(201).send({ registro });
   }
 
   async updateHistoriasSociais(

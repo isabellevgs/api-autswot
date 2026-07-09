@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { paginationQueryFields } from '../../utils/pagination.js';
 
 export const createForcasSchema = z.object({
   numeroTraco:       z.number().int().positive('Número do traço deve ser positivo'),
@@ -27,17 +28,11 @@ export const getForcasParamsSchema = z.object({
 });
 
 export const listForcasQuerySchema = z.object({
-  page: z.union([z.string(), z.number()]).optional().transform(val => {
-    if (val === undefined) return 1;
-    return typeof val === 'string' ? parseInt(val, 10) : val;
-  }),
-  limit: z.union([z.string(), z.number()]).optional().transform(val => {
-    if (val === undefined) return 10;
-    return typeof val === 'string' ? parseInt(val, 10) : val;
-  }),
+  ...paginationQueryFields,
   numeroTraco: z.union([z.string(), z.number()]).optional().transform(val => {
     if (val === undefined) return undefined;
-    return typeof val === 'string' ? parseInt(val, 10) : val;
+    const n = typeof val === 'string' ? parseInt(val, 10) : val;
+    return Number.isFinite(n) ? n : undefined;
   }),
 });
 

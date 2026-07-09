@@ -91,5 +91,14 @@ export class UserRepository {
       where: { id }
     });
   }
+
+  async incrementSessionVersion(id: string): Promise<number> {
+    const user = await prisma.user.update({
+      where: { id },
+      data: { sessionVersion: { increment: 1 } },
+      select: { sessionVersion: true },
+    });
+    return user.sessionVersion;
+  }
 }
 

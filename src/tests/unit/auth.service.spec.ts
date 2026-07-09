@@ -1,34 +1,33 @@
 import { describe, it, expect, beforeEach, mock } from 'bun:test';
-import { AuthService } from '../../modules/auth/auth.service';
-import { AuthRepository } from '../../modules/auth/auth.repository';
-import { ConflictError, UnauthorizedError, NotFoundError } from '../../utils/errors';
+import { AuthService } from '../../modules/auth/auth.service.js';
+import { ConflictError, UnauthorizedError, NotFoundError, ValidationError } from '../../utils/errors.js';
 import bcrypt from 'bcryptjs';
-import { registerPayloadFixture } from '../fixtures/registerPayload';
+import { registerPayloadFixture } from '../fixtures/registerPayload.js';
 
-// Mock do AuthRepository
-mock.module('../../modules/auth/auth.repository', () => ({
-  AuthRepository: class {
-    findByEmail = mock(() => null);
-    findById = mock(() => null);
-    findByIdSelect = mock(() => null);
-    create = mock(() => null);
-    createSelect = mock(() => null);
-    update = mock(() => null);
-    updateSelect = mock(() => null);
-    delete = mock(() => null);
-    emailExistsExcept = mock(() => false);
-    count = mock(() => 0);
-    findMany = mock(() => []);
-  },
-}));
+function createMockAuthRepository() {
+  return {
+    findByEmail: mock(() => null),
+    findById: mock(() => null),
+    findByIdSelect: mock(() => null),
+    create: mock(() => null),
+    createSelect: mock(() => null),
+    update: mock(() => null),
+    updateSelect: mock(() => null),
+    delete: mock(() => null),
+    emailExistsExcept: mock(() => false),
+    incrementSessionVersion: mock(() => 1),
+    findMany: mock(() => []),
+  };
+}
 
 describe('AuthService', () => {
   let authService: AuthService;
-  let authRepository: AuthRepository;
+  let authRepository: ReturnType<typeof createMockAuthRepository>;
 
   beforeEach(() => {
     authService = new AuthService();
-    authRepository = (authService as any).authRepository;
+    authRepository = createMockAuthRepository();
+    (authService as unknown as { authRepository: typeof authRepository }).authRepository = authRepository;
   });
 
   describe('register', () => {
@@ -40,8 +39,8 @@ describe('AuthService', () => {
         createdAt: new Date(),
       };
 
-      (authRepository.findByEmail as any).mockResolvedValueOnce(null);
-      (authRepository.createSelect as any).mockResolvedValueOnce(mockUser);
+      authRepository.findByEmail.mockResolvedValueOnce(null);
+      authRepository.createSelect.mockResolvedValueOnce(mockUser);
 
       const result = await authService.register({
         ...registerPayloadFixture,
@@ -53,7 +52,7 @@ describe('AuthService', () => {
     });
 
     it('deve lançar ConflictError se email já existir', async () => {
-      (authRepository.findByEmail as any).mockResolvedValueOnce({
+      authRepository.findByEmail.mockResolvedValueOnce({
         id: '123',
         email: 'test@example.com',
       });
@@ -80,7 +79,8 @@ describe('AuthService', () => {
         updatedAt: new Date(),
       };
 
-      (authRepository.findByEmail as any).mockResolvedValueOnce(mockUser);
+      authRepository.findByEmail.mockResolvedValueOnce(mockUser);
+      authRepository.incrementSessionVersion.mockResolvedValueOnce(3);
 
       const result = await authService.login({
         email: 'test@example.com',
@@ -89,10 +89,12 @@ describe('AuthService', () => {
 
       expect(result.email).toBe('test@example.com');
       expect(result.id).toBe('123');
+      expect(result.sessionVersion).toBe(3);
+      expect(authRepository.incrementSessionVersion).toHaveBeenCalledWith('123');
     });
 
     it('deve lançar UnauthorizedError com email inválido', async () => {
-      (authRepository.findByEmail as any).mockResolvedValueOnce(null);
+      authRepository.findByEmail.mockResolvedValueOnce(null);
 
       await expect(
         authService.login({
@@ -110,7 +112,7 @@ describe('AuthService', () => {
         password: hashedPassword,
       };
 
-      (authRepository.findByEmail as any).mockResolvedValueOnce(mockUser);
+      authRepository.findByEmail.mockResolvedValueOnce(mockUser);
 
       await expect(
         authService.login({
@@ -131,7 +133,7 @@ describe('AuthService', () => {
         updatedAt: new Date(),
       };
 
-      (authRepository.findByIdSelect as any).mockResolvedValueOnce(mockUser);
+      authRepository.findByIdSelect.mockResolvedValueOnce(mockUser);
 
       const result = await authService.getProfile('123');
 
@@ -139,7 +141,7 @@ describe('AuthService', () => {
     });
 
     it('deve lançar NotFoundError se usuário não existir', async () => {
-      (authRepository.findByIdSelect as any).mockResolvedValueOnce(null);
+      authRepository.findByIdSelect.mockResolvedValueOnce(null);
 
       await expect(authService.getProfile('123')).rejects.toThrow(NotFoundError);
     });
@@ -154,8 +156,8 @@ describe('AuthService', () => {
         updatedAt: new Date(),
       };
 
-      (authRepository.emailExistsExcept as any).mockResolvedValueOnce(false);
-      (authRepository.updateSelect as any).mockResolvedValueOnce(mockUser);
+      authRepository.emailExistsExcept.mockResolvedValueOnce(false);
+      authRepository.updateSelect.mockResolvedValueOnce(mockUser);
 
       const result = await authService.updateProfile('123', {
         email: 'new@example.com',
@@ -166,7 +168,7 @@ describe('AuthService', () => {
     });
 
     it('deve lançar ConflictError se email já existir', async () => {
-      (authRepository.emailExistsExcept as any).mockResolvedValueOnce(true);
+      authRepository.emailExistsExcept.mockResolvedValueOnce(true);
 
       await expect(
         authService.updateProfile('123', {
@@ -184,8 +186,9 @@ describe('AuthService', () => {
         password: hashedPassword,
       };
 
-      (authRepository.findById as any).mockResolvedValueOnce(mockUser);
-      (authRepository.update as any).mockResolvedValueOnce({});
+      authRepository.findById.mockResolvedValueOnce(mockUser);
+      authRepository.update.mockResolvedValueOnce({});
+      authRepository.incrementSessionVersion.mockResolvedValueOnce(2);
 
       const result = await authService.changePassword('123', {
         currentPassword: 'oldpassword',
@@ -193,6 +196,19 @@ describe('AuthService', () => {
       });
 
       expect(result.message).toBe('Senha alterada com sucesso');
+      expect(authRepository.incrementSessionVersion).toHaveBeenCalledWith('123');
+    });
+
+    it('deve rejeitar nova senha igual à atual', async () => {
+      const hashedPassword = await bcrypt.hash('samepassword', 10);
+      authRepository.findById.mockResolvedValueOnce({ id: '123', password: hashedPassword });
+
+      await expect(
+        authService.changePassword('123', {
+          currentPassword: 'samepassword',
+          newPassword: 'samepassword',
+        })
+      ).rejects.toThrow(ValidationError);
     });
 
     it('deve lançar UnauthorizedError com senha atual incorreta', async () => {
@@ -202,7 +218,7 @@ describe('AuthService', () => {
         password: hashedPassword,
       };
 
-      (authRepository.findById as any).mockResolvedValueOnce(mockUser);
+      authRepository.findById.mockResolvedValueOnce(mockUser);
 
       await expect(
         authService.changePassword('123', {
@@ -215,7 +231,7 @@ describe('AuthService', () => {
 
   describe('deleteAccount', () => {
     it('deve excluir conta com sucesso', async () => {
-      (authRepository.delete as any).mockResolvedValueOnce({});
+      authRepository.delete.mockResolvedValueOnce({});
 
       const result = await authService.deleteAccount('123');
 
@@ -223,4 +239,3 @@ describe('AuthService', () => {
     });
   });
 });
-

@@ -12,7 +12,8 @@ import {
   type ChangePasswordInput,
   type RefreshTokenInput,
 } from './auth.schemas.js';
-import { env } from '../../config/env.js';
+import { issueTokenPair, normalizeRole } from './auth.tokens.js';
+import { UnauthorizedError } from '../../utils/errors.js';
 
 const authService = new AuthService();
 
@@ -21,35 +22,19 @@ export class AuthController {
     const data = registerSchema.parse(request.body) as RegisterInput;
     const user = await authService.register(data);
 
-    // Garantir que o role esteja presente e seja uma string
-    // Normalizar o role para garantir comparação correta no frontend
-    const userRole = user.role ? String(user.role).toUpperCase() : 'USER';
     const userWithRole = {
       ...user,
-      role: userRole,
+      role: normalizeRole(user.role),
+      sessionVersion: 0,
     };
 
-    // Gerar tokens JWT
-    const accessToken = request.server.jwt.sign({
-      id: userWithRole.id,
-      email: userWithRole.email,
-      name: userWithRole.name,
-      role: userWithRole.role,
-    }, {
-      expiresIn: env.JWT_EXPIRES_IN
-    });
-
-    const refreshToken = request.server.jwt.sign({
-      id: userWithRole.id,
-    }, {
-      expiresIn: env.JWT_REFRESH_EXPIRES_IN
-    });
+    const tokens = issueTokenPair(request.server, userWithRole);
 
     return reply.status(201).send({
       message: 'Usuário criado com sucesso',
-      user: userWithRole,
-      accessToken,
-      refreshToken,
+      user: { id: userWithRole.id, email: userWithRole.email, name: userWithRole.name, role: userWithRole.role, createdAt: user.createdAt },
+      accessToken: tokens.accessToken,
+      refreshToken: tokens.refreshToken,
     });
   }
 
@@ -57,101 +42,59 @@ export class AuthController {
     const data = loginSchema.parse(request.body) as LoginInput;
     const user = await authService.login(data);
 
-    // Debug: log do role retornado
-    console.log('🔍 [DEBUG API] login - Role retornado:', user.role, 'Tipo:', typeof user.role);
-    console.log('🔍 [DEBUG API] login - Usuário completo:', JSON.stringify(user, null, 2));
-
-    // Garantir que o role esteja presente e seja uma string
-    // Normalizar o role para garantir comparação correta no frontend
-    const userRole = user.role ? String(user.role).toUpperCase() : 'USER';
     const userWithRole = {
       ...user,
-      role: userRole,
+      role: normalizeRole(user.role),
+      sessionVersion: user.sessionVersion ?? 0,
     };
 
-    // Debug: verificar o userWithRole
-    console.log('🔍 [DEBUG API] login - UserWithRole:', JSON.stringify(userWithRole, null, 2));
+    const tokens = issueTokenPair(request.server, userWithRole);
 
-    // Gerar tokens JWT
-    const accessToken = request.server.jwt.sign({
-      id: userWithRole.id,
-      email: userWithRole.email,
-      name: userWithRole.name,
-      role: userWithRole.role,
-    }, {
-      expiresIn: env.JWT_EXPIRES_IN
-    });
-
-    const refreshToken = request.server.jwt.sign({
-      id: userWithRole.id,
-    }, {
-      expiresIn: env.JWT_REFRESH_EXPIRES_IN
-    });
-
-    const response = {
+    return reply.send({
       message: 'Login realizado com sucesso',
-      user: userWithRole,
-      accessToken,
-      refreshToken,
-    };
-
-    // Debug: verificar a resposta final
-    console.log('🔍 [DEBUG API] login - Resposta final:', JSON.stringify(response, null, 2));
-
-    return reply.send(response);
+      user: { id: userWithRole.id, email: userWithRole.email, name: userWithRole.name, role: userWithRole.role, createdAt: user.createdAt },
+      accessToken: tokens.accessToken,
+      refreshToken: tokens.refreshToken,
+    });
   }
 
   async refreshToken(request: FastifyRequest, reply: FastifyReply) {
     const data = refreshTokenSchema.parse(request.body) as RefreshTokenInput;
 
     try {
-      // Verificar refresh token
-      const decoded = request.server.jwt.verify<{ id: string }>(data.refreshToken);
+      const decoded = request.server.jwt.refresh.verify<{ id: string; sv?: number }>(data.refreshToken);
+      const tokenSv = decoded.sv ?? 0;
 
-      // Buscar dados atualizados do usuário
-      const user = await authService.getProfile(decoded.id);
+      const sessionUser = await authService.getSessionUser(decoded.id);
+      if (sessionUser.sessionVersion !== tokenSv) {
+        throw new UnauthorizedError('Refresh token inválido ou expirado');
+      }
 
-      // Garantir que o role esteja presente e seja uma string
-      // Normalizar o role para garantir comparação correta no frontend
-      const userRole = user.role ? String(user.role).toUpperCase() : 'USER';
-
-      // Gerar novo access token
-      const accessToken = request.server.jwt.sign({
-        id: user.id,
-        email: user.email,
-        name: user.name,
-        role: userRole,
-      }, {
-        expiresIn: env.JWT_EXPIRES_IN
-      });
+      const newSv = await authService.rotateSession(decoded.id);
+      const tokens = issueTokenPair(request.server, { ...sessionUser, sessionVersion: newSv });
 
       return reply.send({
         message: 'Token renovado com sucesso',
-        accessToken,
+        accessToken: tokens.accessToken,
+        refreshToken: tokens.refreshToken,
       });
     } catch (error) {
-      return reply.status(401).send({
-        error: 'Refresh token inválido ou expirado'
-      });
+      if (error instanceof UnauthorizedError) {
+        throw error;
+      }
+      throw new UnauthorizedError('Refresh token inválido ou expirado');
     }
   }
 
   async getProfile(request: FastifyRequest, reply: FastifyReply) {
     const userId = request.user.id;
     const user = await authService.getProfile(userId);
-    
-    // Garantir que o role esteja presente e seja uma string
-    // Normalizar o role para garantir comparação correta no frontend
-    const userRole = user.role ? String(user.role).toUpperCase() : 'USER';
+
     const userWithRole = {
       ...user,
-      role: userRole,
+      role: normalizeRole(user.role),
     };
-    
-    // Debug: log do role retornado
-    console.log('🔍 [DEBUG API] getProfile - Role retornado:', userWithRole.role, 'Tipo:', typeof userWithRole.role);
-    console.log('🔍 [DEBUG API] getProfile - Usuário completo:', JSON.stringify(userWithRole, null, 2));
-    
+
     return reply.send({ user: userWithRole });
   }
 
@@ -160,17 +103,19 @@ export class AuthController {
     const data = updateProfileSchema.parse(request.body) as UpdateProfileInput;
     const user = await authService.updateProfile(userId, data);
 
-    // Garantir que o role esteja presente e seja uma string
-    // Normalizar o role para garantir comparação correta no frontend
-    const userRole = user.role ? String(user.role).toUpperCase() : 'USER';
+    const sessionUser = await authService.getSessionUser(userId);
+    const tokens = issueTokenPair(request.server, sessionUser);
+
     const userWithRole = {
       ...user,
-      role: userRole,
+      role: normalizeRole(user.role),
     };
 
     return reply.send({
       message: 'Perfil atualizado com sucesso',
-      user: userWithRole
+      user: userWithRole,
+      accessToken: tokens.accessToken,
+      refreshToken: tokens.refreshToken,
     });
   }
 
@@ -179,7 +124,14 @@ export class AuthController {
     const data = changePasswordSchema.parse(request.body) as ChangePasswordInput;
     const result = await authService.changePassword(userId, data);
 
-    return reply.send(result);
+    const sessionUser = await authService.getSessionUser(userId);
+    const tokens = issueTokenPair(request.server, sessionUser);
+
+    return reply.send({
+      ...result,
+      accessToken: tokens.accessToken,
+      refreshToken: tokens.refreshToken,
+    });
   }
 
   async deleteAccount(request: FastifyRequest, reply: FastifyReply) {
@@ -189,4 +141,3 @@ export class AuthController {
     return reply.send(result);
   }
 }
-

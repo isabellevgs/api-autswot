@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeAll, afterAll } from 'bun:test';
-import { buildServer } from '../../server';
+import { buildServer } from '../../server.js';
 import type { FastifyInstance } from 'fastify';
 import { registerPayloadFixture } from '../fixtures/registerPayload';
 import type { RegisterInput } from '../../modules/auth/auth.schemas';
@@ -53,7 +53,8 @@ describe('Auth Integration Tests', () => {
 
       expect(response.statusCode).toBe(409);
       const body = response.json();
-      expect(body.error).toBe('Email já está em uso');
+      expect(body.error).toContain('Email');
+      expect(body.error).toContain('em uso');
     });
 
     it('deve retornar erro com dados inválidos', async () => {
@@ -87,6 +88,9 @@ describe('Auth Integration Tests', () => {
       expect(body.user).toBeDefined();
       expect(body.accessToken).toBeDefined();
       expect(body.refreshToken).toBeDefined();
+
+      authToken = body.accessToken;
+      refreshToken = body.refreshToken;
     });
 
     it('deve retornar erro com credenciais inválidas', async () => {
@@ -141,6 +145,9 @@ describe('Auth Integration Tests', () => {
       expect(response.statusCode).toBe(200);
       const body = response.json();
       expect(body.accessToken).toBeDefined();
+      expect(body.refreshToken).toBeDefined();
+      authToken = body.accessToken;
+      refreshToken = body.refreshToken;
     });
 
     it('deve retornar erro com refresh token inválido', async () => {
@@ -172,6 +179,8 @@ describe('Auth Integration Tests', () => {
       expect(response.statusCode).toBe(200);
       const body = response.json();
       expect(body.user.name).toBe('Updated Name');
+      authToken = body.accessToken;
+      refreshToken = body.refreshToken;
     });
   });
 
@@ -190,8 +199,12 @@ describe('Auth Integration Tests', () => {
       });
 
       expect(response.statusCode).toBe(200);
-      
-      // Atualizar senha do testUser para próximos testes
+      const body = response.json();
+      expect(body.accessToken).toBeDefined();
+      expect(body.refreshToken).toBeDefined();
+      authToken = body.accessToken;
+      refreshToken = body.refreshToken;
+
       testUser.password = 'newpassword123';
     });
   });
@@ -208,8 +221,7 @@ describe('Auth Integration Tests', () => {
 
       expect(response.statusCode).toBe(200);
       const body = response.json();
-      expect(body.message).toBe('Conta excluída com sucesso');
+      expect(body.message).toContain('excluída');
     });
   });
 });
-

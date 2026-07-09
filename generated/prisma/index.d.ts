@@ -24,20 +24,15 @@ export type User = $Result.DefaultSelection<Prisma.$UserPayload>
  */
 export type Post = $Result.DefaultSelection<Prisma.$PostPayload>
 /**
- * Model Question
+ * Model DiarioPagina
  * 
  */
-export type Question = $Result.DefaultSelection<Prisma.$QuestionPayload>
+export type DiarioPagina = $Result.DefaultSelection<Prisma.$DiarioPaginaPayload>
 /**
- * Model DiaryEntry
+ * Model DiarioAutoadvocaciaQuinzena
  * 
  */
-export type DiaryEntry = $Result.DefaultSelection<Prisma.$DiaryEntryPayload>
-/**
- * Model DiaryAnswer
- * 
- */
-export type DiaryAnswer = $Result.DefaultSelection<Prisma.$DiaryAnswerPayload>
+export type DiarioAutoadvocaciaQuinzena = $Result.DefaultSelection<Prisma.$DiarioAutoadvocaciaQuinzenaPayload>
 /**
  * Model FraquezasAmeacasSh
  * 
@@ -279,34 +274,24 @@ export class PrismaClient<
   get post(): Prisma.PostDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.question`: Exposes CRUD operations for the **Question** model.
+   * `prisma.diarioPagina`: Exposes CRUD operations for the **DiarioPagina** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more Questions
-    * const questions = await prisma.question.findMany()
+    * // Fetch zero or more DiarioPaginas
+    * const diarioPaginas = await prisma.diarioPagina.findMany()
     * ```
     */
-  get question(): Prisma.QuestionDelegate<ExtArgs, ClientOptions>;
+  get diarioPagina(): Prisma.DiarioPaginaDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.diaryEntry`: Exposes CRUD operations for the **DiaryEntry** model.
+   * `prisma.diarioAutoadvocaciaQuinzena`: Exposes CRUD operations for the **DiarioAutoadvocaciaQuinzena** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more DiaryEntries
-    * const diaryEntries = await prisma.diaryEntry.findMany()
+    * // Fetch zero or more DiarioAutoadvocaciaQuinzenas
+    * const diarioAutoadvocaciaQuinzenas = await prisma.diarioAutoadvocaciaQuinzena.findMany()
     * ```
     */
-  get diaryEntry(): Prisma.DiaryEntryDelegate<ExtArgs, ClientOptions>;
-
-  /**
-   * `prisma.diaryAnswer`: Exposes CRUD operations for the **DiaryAnswer** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more DiaryAnswers
-    * const diaryAnswers = await prisma.diaryAnswer.findMany()
-    * ```
-    */
-  get diaryAnswer(): Prisma.DiaryAnswerDelegate<ExtArgs, ClientOptions>;
+  get diarioAutoadvocaciaQuinzena(): Prisma.DiarioAutoadvocaciaQuinzenaDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.fraquezasAmeacasSh`: Exposes CRUD operations for the **FraquezasAmeacasSh** model.
@@ -913,9 +898,8 @@ export namespace Prisma {
   export const ModelName: {
     User: 'User',
     Post: 'Post',
-    Question: 'Question',
-    DiaryEntry: 'DiaryEntry',
-    DiaryAnswer: 'DiaryAnswer',
+    DiarioPagina: 'DiarioPagina',
+    DiarioAutoadvocaciaQuinzena: 'DiarioAutoadvocaciaQuinzena',
     FraquezasAmeacasSh: 'FraquezasAmeacasSh',
     HistoriasSociais: 'HistoriasSociais',
     FraquezasAmeacasCh: 'FraquezasAmeacasCh',
@@ -948,7 +932,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "post" | "question" | "diaryEntry" | "diaryAnswer" | "fraquezasAmeacasSh" | "historiasSociais" | "fraquezasAmeacasCh" | "fraquezasOportunidades" | "tracoNeutroFO" | "tracoOportunidadeFO" | "tracoFraquezaFO" | "forcas" | "tracoNeutroF" | "tracoForcaF" | "tracoFraquezaF" | "tracoOportunidadeF" | "tracoDetalhe" | "relatorioSh" | "relatorioCh" | "reflexaoTraco" | "questionarioResposta"
+      modelProps: "user" | "post" | "diarioPagina" | "diarioAutoadvocaciaQuinzena" | "fraquezasAmeacasSh" | "historiasSociais" | "fraquezasAmeacasCh" | "fraquezasOportunidades" | "tracoNeutroFO" | "tracoOportunidadeFO" | "tracoFraquezaFO" | "forcas" | "tracoNeutroF" | "tracoForcaF" | "tracoFraquezaF" | "tracoOportunidadeF" | "tracoDetalhe" | "relatorioSh" | "relatorioCh" | "reflexaoTraco" | "questionarioResposta"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1100,225 +1084,151 @@ export namespace Prisma {
           }
         }
       }
-      Question: {
-        payload: Prisma.$QuestionPayload<ExtArgs>
-        fields: Prisma.QuestionFieldRefs
+      DiarioPagina: {
+        payload: Prisma.$DiarioPaginaPayload<ExtArgs>
+        fields: Prisma.DiarioPaginaFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.QuestionFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$QuestionPayload> | null
+            args: Prisma.DiarioPaginaFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DiarioPaginaPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.QuestionFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$QuestionPayload>
+            args: Prisma.DiarioPaginaFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DiarioPaginaPayload>
           }
           findFirst: {
-            args: Prisma.QuestionFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$QuestionPayload> | null
+            args: Prisma.DiarioPaginaFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DiarioPaginaPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.QuestionFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$QuestionPayload>
+            args: Prisma.DiarioPaginaFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DiarioPaginaPayload>
           }
           findMany: {
-            args: Prisma.QuestionFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$QuestionPayload>[]
+            args: Prisma.DiarioPaginaFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DiarioPaginaPayload>[]
           }
           create: {
-            args: Prisma.QuestionCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$QuestionPayload>
+            args: Prisma.DiarioPaginaCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DiarioPaginaPayload>
           }
           createMany: {
-            args: Prisma.QuestionCreateManyArgs<ExtArgs>
+            args: Prisma.DiarioPaginaCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.QuestionCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$QuestionPayload>[]
+            args: Prisma.DiarioPaginaCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DiarioPaginaPayload>[]
           }
           delete: {
-            args: Prisma.QuestionDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$QuestionPayload>
+            args: Prisma.DiarioPaginaDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DiarioPaginaPayload>
           }
           update: {
-            args: Prisma.QuestionUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$QuestionPayload>
+            args: Prisma.DiarioPaginaUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DiarioPaginaPayload>
           }
           deleteMany: {
-            args: Prisma.QuestionDeleteManyArgs<ExtArgs>
+            args: Prisma.DiarioPaginaDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.QuestionUpdateManyArgs<ExtArgs>
+            args: Prisma.DiarioPaginaUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateManyAndReturn: {
-            args: Prisma.QuestionUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$QuestionPayload>[]
+            args: Prisma.DiarioPaginaUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DiarioPaginaPayload>[]
           }
           upsert: {
-            args: Prisma.QuestionUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$QuestionPayload>
+            args: Prisma.DiarioPaginaUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DiarioPaginaPayload>
           }
           aggregate: {
-            args: Prisma.QuestionAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateQuestion>
+            args: Prisma.DiarioPaginaAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateDiarioPagina>
           }
           groupBy: {
-            args: Prisma.QuestionGroupByArgs<ExtArgs>
-            result: $Utils.Optional<QuestionGroupByOutputType>[]
+            args: Prisma.DiarioPaginaGroupByArgs<ExtArgs>
+            result: $Utils.Optional<DiarioPaginaGroupByOutputType>[]
           }
           count: {
-            args: Prisma.QuestionCountArgs<ExtArgs>
-            result: $Utils.Optional<QuestionCountAggregateOutputType> | number
+            args: Prisma.DiarioPaginaCountArgs<ExtArgs>
+            result: $Utils.Optional<DiarioPaginaCountAggregateOutputType> | number
           }
         }
       }
-      DiaryEntry: {
-        payload: Prisma.$DiaryEntryPayload<ExtArgs>
-        fields: Prisma.DiaryEntryFieldRefs
+      DiarioAutoadvocaciaQuinzena: {
+        payload: Prisma.$DiarioAutoadvocaciaQuinzenaPayload<ExtArgs>
+        fields: Prisma.DiarioAutoadvocaciaQuinzenaFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.DiaryEntryFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$DiaryEntryPayload> | null
+            args: Prisma.DiarioAutoadvocaciaQuinzenaFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DiarioAutoadvocaciaQuinzenaPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.DiaryEntryFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$DiaryEntryPayload>
+            args: Prisma.DiarioAutoadvocaciaQuinzenaFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DiarioAutoadvocaciaQuinzenaPayload>
           }
           findFirst: {
-            args: Prisma.DiaryEntryFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$DiaryEntryPayload> | null
+            args: Prisma.DiarioAutoadvocaciaQuinzenaFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DiarioAutoadvocaciaQuinzenaPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.DiaryEntryFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$DiaryEntryPayload>
+            args: Prisma.DiarioAutoadvocaciaQuinzenaFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DiarioAutoadvocaciaQuinzenaPayload>
           }
           findMany: {
-            args: Prisma.DiaryEntryFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$DiaryEntryPayload>[]
+            args: Prisma.DiarioAutoadvocaciaQuinzenaFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DiarioAutoadvocaciaQuinzenaPayload>[]
           }
           create: {
-            args: Prisma.DiaryEntryCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$DiaryEntryPayload>
+            args: Prisma.DiarioAutoadvocaciaQuinzenaCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DiarioAutoadvocaciaQuinzenaPayload>
           }
           createMany: {
-            args: Prisma.DiaryEntryCreateManyArgs<ExtArgs>
+            args: Prisma.DiarioAutoadvocaciaQuinzenaCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.DiaryEntryCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$DiaryEntryPayload>[]
+            args: Prisma.DiarioAutoadvocaciaQuinzenaCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DiarioAutoadvocaciaQuinzenaPayload>[]
           }
           delete: {
-            args: Prisma.DiaryEntryDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$DiaryEntryPayload>
+            args: Prisma.DiarioAutoadvocaciaQuinzenaDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DiarioAutoadvocaciaQuinzenaPayload>
           }
           update: {
-            args: Prisma.DiaryEntryUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$DiaryEntryPayload>
+            args: Prisma.DiarioAutoadvocaciaQuinzenaUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DiarioAutoadvocaciaQuinzenaPayload>
           }
           deleteMany: {
-            args: Prisma.DiaryEntryDeleteManyArgs<ExtArgs>
+            args: Prisma.DiarioAutoadvocaciaQuinzenaDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.DiaryEntryUpdateManyArgs<ExtArgs>
+            args: Prisma.DiarioAutoadvocaciaQuinzenaUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateManyAndReturn: {
-            args: Prisma.DiaryEntryUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$DiaryEntryPayload>[]
+            args: Prisma.DiarioAutoadvocaciaQuinzenaUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DiarioAutoadvocaciaQuinzenaPayload>[]
           }
           upsert: {
-            args: Prisma.DiaryEntryUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$DiaryEntryPayload>
+            args: Prisma.DiarioAutoadvocaciaQuinzenaUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DiarioAutoadvocaciaQuinzenaPayload>
           }
           aggregate: {
-            args: Prisma.DiaryEntryAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateDiaryEntry>
+            args: Prisma.DiarioAutoadvocaciaQuinzenaAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateDiarioAutoadvocaciaQuinzena>
           }
           groupBy: {
-            args: Prisma.DiaryEntryGroupByArgs<ExtArgs>
-            result: $Utils.Optional<DiaryEntryGroupByOutputType>[]
+            args: Prisma.DiarioAutoadvocaciaQuinzenaGroupByArgs<ExtArgs>
+            result: $Utils.Optional<DiarioAutoadvocaciaQuinzenaGroupByOutputType>[]
           }
           count: {
-            args: Prisma.DiaryEntryCountArgs<ExtArgs>
-            result: $Utils.Optional<DiaryEntryCountAggregateOutputType> | number
-          }
-        }
-      }
-      DiaryAnswer: {
-        payload: Prisma.$DiaryAnswerPayload<ExtArgs>
-        fields: Prisma.DiaryAnswerFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.DiaryAnswerFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$DiaryAnswerPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.DiaryAnswerFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$DiaryAnswerPayload>
-          }
-          findFirst: {
-            args: Prisma.DiaryAnswerFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$DiaryAnswerPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.DiaryAnswerFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$DiaryAnswerPayload>
-          }
-          findMany: {
-            args: Prisma.DiaryAnswerFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$DiaryAnswerPayload>[]
-          }
-          create: {
-            args: Prisma.DiaryAnswerCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$DiaryAnswerPayload>
-          }
-          createMany: {
-            args: Prisma.DiaryAnswerCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.DiaryAnswerCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$DiaryAnswerPayload>[]
-          }
-          delete: {
-            args: Prisma.DiaryAnswerDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$DiaryAnswerPayload>
-          }
-          update: {
-            args: Prisma.DiaryAnswerUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$DiaryAnswerPayload>
-          }
-          deleteMany: {
-            args: Prisma.DiaryAnswerDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.DiaryAnswerUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.DiaryAnswerUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$DiaryAnswerPayload>[]
-          }
-          upsert: {
-            args: Prisma.DiaryAnswerUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$DiaryAnswerPayload>
-          }
-          aggregate: {
-            args: Prisma.DiaryAnswerAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateDiaryAnswer>
-          }
-          groupBy: {
-            args: Prisma.DiaryAnswerGroupByArgs<ExtArgs>
-            result: $Utils.Optional<DiaryAnswerGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.DiaryAnswerCountArgs<ExtArgs>
-            result: $Utils.Optional<DiaryAnswerCountAggregateOutputType> | number
+            args: Prisma.DiarioAutoadvocaciaQuinzenaCountArgs<ExtArgs>
+            result: $Utils.Optional<DiarioAutoadvocaciaQuinzenaCountAggregateOutputType> | number
           }
         }
       }
@@ -2674,9 +2584,8 @@ export namespace Prisma {
   export type GlobalOmitConfig = {
     user?: UserOmit
     post?: PostOmit
-    question?: QuestionOmit
-    diaryEntry?: DiaryEntryOmit
-    diaryAnswer?: DiaryAnswerOmit
+    diarioPagina?: DiarioPaginaOmit
+    diarioAutoadvocaciaQuinzena?: DiarioAutoadvocaciaQuinzenaOmit
     fraquezasAmeacasSh?: FraquezasAmeacasShOmit
     historiasSociais?: HistoriasSociaisOmit
     fraquezasAmeacasCh?: FraquezasAmeacasChOmit
@@ -2775,18 +2684,18 @@ export namespace Prisma {
 
   export type UserCountOutputType = {
     posts: number
-    questions: number
-    diaryEntries: number
     questionarioRespostas: number
     reflexoesTraco: number
+    diarioPaginas: number
+    diarioAutoadvocaciaQuinzenas: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     posts?: boolean | UserCountOutputTypeCountPostsArgs
-    questions?: boolean | UserCountOutputTypeCountQuestionsArgs
-    diaryEntries?: boolean | UserCountOutputTypeCountDiaryEntriesArgs
     questionarioRespostas?: boolean | UserCountOutputTypeCountQuestionarioRespostasArgs
     reflexoesTraco?: boolean | UserCountOutputTypeCountReflexoesTracoArgs
+    diarioPaginas?: boolean | UserCountOutputTypeCountDiarioPaginasArgs
+    diarioAutoadvocaciaQuinzenas?: boolean | UserCountOutputTypeCountDiarioAutoadvocaciaQuinzenasArgs
   }
 
   // Custom InputTypes
@@ -2810,20 +2719,6 @@ export namespace Prisma {
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountQuestionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: QuestionWhereInput
-  }
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountDiaryEntriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: DiaryEntryWhereInput
-  }
-
-  /**
-   * UserCountOutputType without action
-   */
   export type UserCountOutputTypeCountQuestionarioRespostasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: QuestionarioRespostaWhereInput
   }
@@ -2835,66 +2730,18 @@ export namespace Prisma {
     where?: ReflexaoTracoWhereInput
   }
 
-
   /**
-   * Count Type QuestionCountOutputType
+   * UserCountOutputType without action
    */
-
-  export type QuestionCountOutputType = {
-    answers: number
-  }
-
-  export type QuestionCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    answers?: boolean | QuestionCountOutputTypeCountAnswersArgs
-  }
-
-  // Custom InputTypes
-  /**
-   * QuestionCountOutputType without action
-   */
-  export type QuestionCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the QuestionCountOutputType
-     */
-    select?: QuestionCountOutputTypeSelect<ExtArgs> | null
+  export type UserCountOutputTypeCountDiarioPaginasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DiarioPaginaWhereInput
   }
 
   /**
-   * QuestionCountOutputType without action
+   * UserCountOutputType without action
    */
-  export type QuestionCountOutputTypeCountAnswersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: DiaryAnswerWhereInput
-  }
-
-
-  /**
-   * Count Type DiaryEntryCountOutputType
-   */
-
-  export type DiaryEntryCountOutputType = {
-    answers: number
-  }
-
-  export type DiaryEntryCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    answers?: boolean | DiaryEntryCountOutputTypeCountAnswersArgs
-  }
-
-  // Custom InputTypes
-  /**
-   * DiaryEntryCountOutputType without action
-   */
-  export type DiaryEntryCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the DiaryEntryCountOutputType
-     */
-    select?: DiaryEntryCountOutputTypeSelect<ExtArgs> | null
-  }
-
-  /**
-   * DiaryEntryCountOutputType without action
-   */
-  export type DiaryEntryCountOutputTypeCountAnswersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: DiaryAnswerWhereInput
+  export type UserCountOutputTypeCountDiarioAutoadvocaciaQuinzenasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DiarioAutoadvocaciaQuinzenaWhereInput
   }
 
 
@@ -3015,8 +2862,18 @@ export namespace Prisma {
 
   export type AggregateUser = {
     _count: UserCountAggregateOutputType | null
+    _avg: UserAvgAggregateOutputType | null
+    _sum: UserSumAggregateOutputType | null
     _min: UserMinAggregateOutputType | null
     _max: UserMaxAggregateOutputType | null
+  }
+
+  export type UserAvgAggregateOutputType = {
+    sessionVersion: number | null
+  }
+
+  export type UserSumAggregateOutputType = {
+    sessionVersion: number | null
   }
 
   export type UserMinAggregateOutputType = {
@@ -3025,6 +2882,7 @@ export namespace Prisma {
     name: string | null
     password: string | null
     role: $Enums.UserRole | null
+    sessionVersion: number | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -3035,6 +2893,7 @@ export namespace Prisma {
     name: string | null
     password: string | null
     role: $Enums.UserRole | null
+    sessionVersion: number | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -3045,6 +2904,7 @@ export namespace Prisma {
     name: number
     password: number
     role: number
+    sessionVersion: number
     profileRegistration: number
     createdAt: number
     updatedAt: number
@@ -3052,12 +2912,21 @@ export namespace Prisma {
   }
 
 
+  export type UserAvgAggregateInputType = {
+    sessionVersion?: true
+  }
+
+  export type UserSumAggregateInputType = {
+    sessionVersion?: true
+  }
+
   export type UserMinAggregateInputType = {
     id?: true
     email?: true
     name?: true
     password?: true
     role?: true
+    sessionVersion?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -3068,6 +2937,7 @@ export namespace Prisma {
     name?: true
     password?: true
     role?: true
+    sessionVersion?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -3078,6 +2948,7 @@ export namespace Prisma {
     name?: true
     password?: true
     role?: true
+    sessionVersion?: true
     profileRegistration?: true
     createdAt?: true
     updatedAt?: true
@@ -3122,6 +2993,18 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
+     * Select which fields to average
+    **/
+    _avg?: UserAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: UserSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
      * Select which fields to find the minimum value
     **/
     _min?: UserMinAggregateInputType
@@ -3152,6 +3035,8 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: UserCountAggregateInputType | true
+    _avg?: UserAvgAggregateInputType
+    _sum?: UserSumAggregateInputType
     _min?: UserMinAggregateInputType
     _max?: UserMaxAggregateInputType
   }
@@ -3162,10 +3047,13 @@ export namespace Prisma {
     name: string
     password: string
     role: $Enums.UserRole
+    sessionVersion: number
     profileRegistration: JsonValue | null
     createdAt: Date
     updatedAt: Date
     _count: UserCountAggregateOutputType | null
+    _avg: UserAvgAggregateOutputType | null
+    _sum: UserSumAggregateOutputType | null
     _min: UserMinAggregateOutputType | null
     _max: UserMaxAggregateOutputType | null
   }
@@ -3190,14 +3078,15 @@ export namespace Prisma {
     name?: boolean
     password?: boolean
     role?: boolean
+    sessionVersion?: boolean
     profileRegistration?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     posts?: boolean | User$postsArgs<ExtArgs>
-    questions?: boolean | User$questionsArgs<ExtArgs>
-    diaryEntries?: boolean | User$diaryEntriesArgs<ExtArgs>
     questionarioRespostas?: boolean | User$questionarioRespostasArgs<ExtArgs>
     reflexoesTraco?: boolean | User$reflexoesTracoArgs<ExtArgs>
+    diarioPaginas?: boolean | User$diarioPaginasArgs<ExtArgs>
+    diarioAutoadvocaciaQuinzenas?: boolean | User$diarioAutoadvocaciaQuinzenasArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -3207,6 +3096,7 @@ export namespace Prisma {
     name?: boolean
     password?: boolean
     role?: boolean
+    sessionVersion?: boolean
     profileRegistration?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -3218,6 +3108,7 @@ export namespace Prisma {
     name?: boolean
     password?: boolean
     role?: boolean
+    sessionVersion?: boolean
     profileRegistration?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -3229,18 +3120,19 @@ export namespace Prisma {
     name?: boolean
     password?: boolean
     role?: boolean
+    sessionVersion?: boolean
     profileRegistration?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "name" | "password" | "role" | "profileRegistration" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "name" | "password" | "role" | "sessionVersion" | "profileRegistration" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     posts?: boolean | User$postsArgs<ExtArgs>
-    questions?: boolean | User$questionsArgs<ExtArgs>
-    diaryEntries?: boolean | User$diaryEntriesArgs<ExtArgs>
     questionarioRespostas?: boolean | User$questionarioRespostasArgs<ExtArgs>
     reflexoesTraco?: boolean | User$reflexoesTracoArgs<ExtArgs>
+    diarioPaginas?: boolean | User$diarioPaginasArgs<ExtArgs>
+    diarioAutoadvocaciaQuinzenas?: boolean | User$diarioAutoadvocaciaQuinzenasArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -3250,10 +3142,10 @@ export namespace Prisma {
     name: "User"
     objects: {
       posts: Prisma.$PostPayload<ExtArgs>[]
-      questions: Prisma.$QuestionPayload<ExtArgs>[]
-      diaryEntries: Prisma.$DiaryEntryPayload<ExtArgs>[]
       questionarioRespostas: Prisma.$QuestionarioRespostaPayload<ExtArgs>[]
       reflexoesTraco: Prisma.$ReflexaoTracoPayload<ExtArgs>[]
+      diarioPaginas: Prisma.$DiarioPaginaPayload<ExtArgs>[]
+      diarioAutoadvocaciaQuinzenas: Prisma.$DiarioAutoadvocaciaQuinzenaPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -3261,6 +3153,10 @@ export namespace Prisma {
       name: string
       password: string
       role: $Enums.UserRole
+      /**
+       * Incrementado em refresh/rotação de senha — invalida tokens antigos
+       */
+      sessionVersion: number
       /**
        * Dados sociodemográficos e de saúde coletados no cadastro (JSON validado na API)
        */
@@ -3662,10 +3558,10 @@ export namespace Prisma {
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     posts<T extends User$postsArgs<ExtArgs> = {}>(args?: Subset<T, User$postsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    questions<T extends User$questionsArgs<ExtArgs> = {}>(args?: Subset<T, User$questionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$QuestionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    diaryEntries<T extends User$diaryEntriesArgs<ExtArgs> = {}>(args?: Subset<T, User$diaryEntriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DiaryEntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     questionarioRespostas<T extends User$questionarioRespostasArgs<ExtArgs> = {}>(args?: Subset<T, User$questionarioRespostasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$QuestionarioRespostaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     reflexoesTraco<T extends User$reflexoesTracoArgs<ExtArgs> = {}>(args?: Subset<T, User$reflexoesTracoArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReflexaoTracoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    diarioPaginas<T extends User$diarioPaginasArgs<ExtArgs> = {}>(args?: Subset<T, User$diarioPaginasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DiarioPaginaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    diarioAutoadvocaciaQuinzenas<T extends User$diarioAutoadvocaciaQuinzenasArgs<ExtArgs> = {}>(args?: Subset<T, User$diarioAutoadvocaciaQuinzenasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DiarioAutoadvocaciaQuinzenaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3700,6 +3596,7 @@ export namespace Prisma {
     readonly name: FieldRef<"User", 'String'>
     readonly password: FieldRef<"User", 'String'>
     readonly role: FieldRef<"User", 'UserRole'>
+    readonly sessionVersion: FieldRef<"User", 'Int'>
     readonly profileRegistration: FieldRef<"User", 'Json'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
     readonly updatedAt: FieldRef<"User", 'DateTime'>
@@ -4115,54 +4012,6 @@ export namespace Prisma {
   }
 
   /**
-   * User.questions
-   */
-  export type User$questionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Question
-     */
-    select?: QuestionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Question
-     */
-    omit?: QuestionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: QuestionInclude<ExtArgs> | null
-    where?: QuestionWhereInput
-    orderBy?: QuestionOrderByWithRelationInput | QuestionOrderByWithRelationInput[]
-    cursor?: QuestionWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: QuestionScalarFieldEnum | QuestionScalarFieldEnum[]
-  }
-
-  /**
-   * User.diaryEntries
-   */
-  export type User$diaryEntriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the DiaryEntry
-     */
-    select?: DiaryEntrySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the DiaryEntry
-     */
-    omit?: DiaryEntryOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: DiaryEntryInclude<ExtArgs> | null
-    where?: DiaryEntryWhereInput
-    orderBy?: DiaryEntryOrderByWithRelationInput | DiaryEntryOrderByWithRelationInput[]
-    cursor?: DiaryEntryWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: DiaryEntryScalarFieldEnum | DiaryEntryScalarFieldEnum[]
-  }
-
-  /**
    * User.questionarioRespostas
    */
   export type User$questionarioRespostasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4208,6 +4057,54 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: ReflexaoTracoScalarFieldEnum | ReflexaoTracoScalarFieldEnum[]
+  }
+
+  /**
+   * User.diarioPaginas
+   */
+  export type User$diarioPaginasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DiarioPagina
+     */
+    select?: DiarioPaginaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DiarioPagina
+     */
+    omit?: DiarioPaginaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DiarioPaginaInclude<ExtArgs> | null
+    where?: DiarioPaginaWhereInput
+    orderBy?: DiarioPaginaOrderByWithRelationInput | DiarioPaginaOrderByWithRelationInput[]
+    cursor?: DiarioPaginaWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: DiarioPaginaScalarFieldEnum | DiarioPaginaScalarFieldEnum[]
+  }
+
+  /**
+   * User.diarioAutoadvocaciaQuinzenas
+   */
+  export type User$diarioAutoadvocaciaQuinzenasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DiarioAutoadvocaciaQuinzena
+     */
+    select?: DiarioAutoadvocaciaQuinzenaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DiarioAutoadvocaciaQuinzena
+     */
+    omit?: DiarioAutoadvocaciaQuinzenaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DiarioAutoadvocaciaQuinzenaInclude<ExtArgs> | null
+    where?: DiarioAutoadvocaciaQuinzenaWhereInput
+    orderBy?: DiarioAutoadvocaciaQuinzenaOrderByWithRelationInput | DiarioAutoadvocaciaQuinzenaOrderByWithRelationInput[]
+    cursor?: DiarioAutoadvocaciaQuinzenaWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: DiarioAutoadvocaciaQuinzenaScalarFieldEnum | DiarioAutoadvocaciaQuinzenaScalarFieldEnum[]
   }
 
   /**
@@ -5314,413 +5211,508 @@ export namespace Prisma {
 
 
   /**
-   * Model Question
+   * Model DiarioPagina
    */
 
-  export type AggregateQuestion = {
-    _count: QuestionCountAggregateOutputType | null
-    _avg: QuestionAvgAggregateOutputType | null
-    _sum: QuestionSumAggregateOutputType | null
-    _min: QuestionMinAggregateOutputType | null
-    _max: QuestionMaxAggregateOutputType | null
+  export type AggregateDiarioPagina = {
+    _count: DiarioPaginaCountAggregateOutputType | null
+    _avg: DiarioPaginaAvgAggregateOutputType | null
+    _sum: DiarioPaginaSumAggregateOutputType | null
+    _min: DiarioPaginaMinAggregateOutputType | null
+    _max: DiarioPaginaMaxAggregateOutputType | null
   }
 
-  export type QuestionAvgAggregateOutputType = {
+  export type DiarioPaginaAvgAggregateOutputType = {
+    numeroTraco: number | null
     ordem: number | null
   }
 
-  export type QuestionSumAggregateOutputType = {
+  export type DiarioPaginaSumAggregateOutputType = {
+    numeroTraco: number | null
     ordem: number | null
   }
 
-  export type QuestionMinAggregateOutputType = {
+  export type DiarioPaginaMinAggregateOutputType = {
     id: string | null
-    texto: string | null
-    ordem: number | null
-    ativo: boolean | null
     userId: string | null
+    tipo: string | null
+    quadrante: string | null
+    tipoTraco: string | null
+    numeroTraco: number | null
+    tituloTraco: string | null
+    chave: string | null
+    ordem: number | null
+    texto: string | null
+    concluida: boolean | null
+    desbloqueada: boolean | null
+    arquivada: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
   }
 
-  export type QuestionMaxAggregateOutputType = {
+  export type DiarioPaginaMaxAggregateOutputType = {
     id: string | null
-    texto: string | null
-    ordem: number | null
-    ativo: boolean | null
     userId: string | null
+    tipo: string | null
+    quadrante: string | null
+    tipoTraco: string | null
+    numeroTraco: number | null
+    tituloTraco: string | null
+    chave: string | null
+    ordem: number | null
+    texto: string | null
+    concluida: boolean | null
+    desbloqueada: boolean | null
+    arquivada: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
   }
 
-  export type QuestionCountAggregateOutputType = {
+  export type DiarioPaginaCountAggregateOutputType = {
     id: number
-    texto: number
-    ordem: number
-    ativo: number
     userId: number
+    tipo: number
+    quadrante: number
+    tipoTraco: number
+    numeroTraco: number
+    tituloTraco: number
+    chave: number
+    ordem: number
+    texto: number
+    concluida: number
+    desbloqueada: number
+    arquivada: number
     createdAt: number
     updatedAt: number
     _all: number
   }
 
 
-  export type QuestionAvgAggregateInputType = {
+  export type DiarioPaginaAvgAggregateInputType = {
+    numeroTraco?: true
     ordem?: true
   }
 
-  export type QuestionSumAggregateInputType = {
+  export type DiarioPaginaSumAggregateInputType = {
+    numeroTraco?: true
     ordem?: true
   }
 
-  export type QuestionMinAggregateInputType = {
+  export type DiarioPaginaMinAggregateInputType = {
     id?: true
-    texto?: true
-    ordem?: true
-    ativo?: true
     userId?: true
+    tipo?: true
+    quadrante?: true
+    tipoTraco?: true
+    numeroTraco?: true
+    tituloTraco?: true
+    chave?: true
+    ordem?: true
+    texto?: true
+    concluida?: true
+    desbloqueada?: true
+    arquivada?: true
     createdAt?: true
     updatedAt?: true
   }
 
-  export type QuestionMaxAggregateInputType = {
+  export type DiarioPaginaMaxAggregateInputType = {
     id?: true
-    texto?: true
-    ordem?: true
-    ativo?: true
     userId?: true
+    tipo?: true
+    quadrante?: true
+    tipoTraco?: true
+    numeroTraco?: true
+    tituloTraco?: true
+    chave?: true
+    ordem?: true
+    texto?: true
+    concluida?: true
+    desbloqueada?: true
+    arquivada?: true
     createdAt?: true
     updatedAt?: true
   }
 
-  export type QuestionCountAggregateInputType = {
+  export type DiarioPaginaCountAggregateInputType = {
     id?: true
-    texto?: true
-    ordem?: true
-    ativo?: true
     userId?: true
+    tipo?: true
+    quadrante?: true
+    tipoTraco?: true
+    numeroTraco?: true
+    tituloTraco?: true
+    chave?: true
+    ordem?: true
+    texto?: true
+    concluida?: true
+    desbloqueada?: true
+    arquivada?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
   }
 
-  export type QuestionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type DiarioPaginaAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Question to aggregate.
+     * Filter which DiarioPagina to aggregate.
      */
-    where?: QuestionWhereInput
+    where?: DiarioPaginaWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Questions to fetch.
+     * Determine the order of DiarioPaginas to fetch.
      */
-    orderBy?: QuestionOrderByWithRelationInput | QuestionOrderByWithRelationInput[]
+    orderBy?: DiarioPaginaOrderByWithRelationInput | DiarioPaginaOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: QuestionWhereUniqueInput
+    cursor?: DiarioPaginaWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Questions from the position of the cursor.
+     * Take `±n` DiarioPaginas from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Questions.
+     * Skip the first `n` DiarioPaginas.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned Questions
+     * Count returned DiarioPaginas
     **/
-    _count?: true | QuestionCountAggregateInputType
+    _count?: true | DiarioPaginaCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to average
     **/
-    _avg?: QuestionAvgAggregateInputType
+    _avg?: DiarioPaginaAvgAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to sum
     **/
-    _sum?: QuestionSumAggregateInputType
+    _sum?: DiarioPaginaSumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: QuestionMinAggregateInputType
+    _min?: DiarioPaginaMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: QuestionMaxAggregateInputType
+    _max?: DiarioPaginaMaxAggregateInputType
   }
 
-  export type GetQuestionAggregateType<T extends QuestionAggregateArgs> = {
-        [P in keyof T & keyof AggregateQuestion]: P extends '_count' | 'count'
+  export type GetDiarioPaginaAggregateType<T extends DiarioPaginaAggregateArgs> = {
+        [P in keyof T & keyof AggregateDiarioPagina]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateQuestion[P]>
-      : GetScalarType<T[P], AggregateQuestion[P]>
+        : GetScalarType<T[P], AggregateDiarioPagina[P]>
+      : GetScalarType<T[P], AggregateDiarioPagina[P]>
   }
 
 
 
 
-  export type QuestionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: QuestionWhereInput
-    orderBy?: QuestionOrderByWithAggregationInput | QuestionOrderByWithAggregationInput[]
-    by: QuestionScalarFieldEnum[] | QuestionScalarFieldEnum
-    having?: QuestionScalarWhereWithAggregatesInput
+  export type DiarioPaginaGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DiarioPaginaWhereInput
+    orderBy?: DiarioPaginaOrderByWithAggregationInput | DiarioPaginaOrderByWithAggregationInput[]
+    by: DiarioPaginaScalarFieldEnum[] | DiarioPaginaScalarFieldEnum
+    having?: DiarioPaginaScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: QuestionCountAggregateInputType | true
-    _avg?: QuestionAvgAggregateInputType
-    _sum?: QuestionSumAggregateInputType
-    _min?: QuestionMinAggregateInputType
-    _max?: QuestionMaxAggregateInputType
+    _count?: DiarioPaginaCountAggregateInputType | true
+    _avg?: DiarioPaginaAvgAggregateInputType
+    _sum?: DiarioPaginaSumAggregateInputType
+    _min?: DiarioPaginaMinAggregateInputType
+    _max?: DiarioPaginaMaxAggregateInputType
   }
 
-  export type QuestionGroupByOutputType = {
+  export type DiarioPaginaGroupByOutputType = {
     id: string
-    texto: string
-    ordem: number
-    ativo: boolean
     userId: string
+    tipo: string
+    quadrante: string | null
+    tipoTraco: string | null
+    numeroTraco: number | null
+    tituloTraco: string | null
+    chave: string
+    ordem: number
+    texto: string
+    concluida: boolean
+    desbloqueada: boolean
+    arquivada: boolean
     createdAt: Date
     updatedAt: Date
-    _count: QuestionCountAggregateOutputType | null
-    _avg: QuestionAvgAggregateOutputType | null
-    _sum: QuestionSumAggregateOutputType | null
-    _min: QuestionMinAggregateOutputType | null
-    _max: QuestionMaxAggregateOutputType | null
+    _count: DiarioPaginaCountAggregateOutputType | null
+    _avg: DiarioPaginaAvgAggregateOutputType | null
+    _sum: DiarioPaginaSumAggregateOutputType | null
+    _min: DiarioPaginaMinAggregateOutputType | null
+    _max: DiarioPaginaMaxAggregateOutputType | null
   }
 
-  type GetQuestionGroupByPayload<T extends QuestionGroupByArgs> = Prisma.PrismaPromise<
+  type GetDiarioPaginaGroupByPayload<T extends DiarioPaginaGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<QuestionGroupByOutputType, T['by']> &
+      PickEnumerable<DiarioPaginaGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof QuestionGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof DiarioPaginaGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], QuestionGroupByOutputType[P]>
-            : GetScalarType<T[P], QuestionGroupByOutputType[P]>
+              : GetScalarType<T[P], DiarioPaginaGroupByOutputType[P]>
+            : GetScalarType<T[P], DiarioPaginaGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type QuestionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type DiarioPaginaSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    texto?: boolean
-    ordem?: boolean
-    ativo?: boolean
     userId?: boolean
+    tipo?: boolean
+    quadrante?: boolean
+    tipoTraco?: boolean
+    numeroTraco?: boolean
+    tituloTraco?: boolean
+    chave?: boolean
+    ordem?: boolean
+    texto?: boolean
+    concluida?: boolean
+    desbloqueada?: boolean
+    arquivada?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
-    answers?: boolean | Question$answersArgs<ExtArgs>
-    _count?: boolean | QuestionCountOutputTypeDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["question"]>
+  }, ExtArgs["result"]["diarioPagina"]>
 
-  export type QuestionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type DiarioPaginaSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    texto?: boolean
-    ordem?: boolean
-    ativo?: boolean
     userId?: boolean
+    tipo?: boolean
+    quadrante?: boolean
+    tipoTraco?: boolean
+    numeroTraco?: boolean
+    tituloTraco?: boolean
+    chave?: boolean
+    ordem?: boolean
+    texto?: boolean
+    concluida?: boolean
+    desbloqueada?: boolean
+    arquivada?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["question"]>
+  }, ExtArgs["result"]["diarioPagina"]>
 
-  export type QuestionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type DiarioPaginaSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    texto?: boolean
-    ordem?: boolean
-    ativo?: boolean
     userId?: boolean
+    tipo?: boolean
+    quadrante?: boolean
+    tipoTraco?: boolean
+    numeroTraco?: boolean
+    tituloTraco?: boolean
+    chave?: boolean
+    ordem?: boolean
+    texto?: boolean
+    concluida?: boolean
+    desbloqueada?: boolean
+    arquivada?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["question"]>
+  }, ExtArgs["result"]["diarioPagina"]>
 
-  export type QuestionSelectScalar = {
+  export type DiarioPaginaSelectScalar = {
     id?: boolean
-    texto?: boolean
-    ordem?: boolean
-    ativo?: boolean
     userId?: boolean
+    tipo?: boolean
+    quadrante?: boolean
+    tipoTraco?: boolean
+    numeroTraco?: boolean
+    tituloTraco?: boolean
+    chave?: boolean
+    ordem?: boolean
+    texto?: boolean
+    concluida?: boolean
+    desbloqueada?: boolean
+    arquivada?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type QuestionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "texto" | "ordem" | "ativo" | "userId" | "createdAt" | "updatedAt", ExtArgs["result"]["question"]>
-  export type QuestionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
-    answers?: boolean | Question$answersArgs<ExtArgs>
-    _count?: boolean | QuestionCountOutputTypeDefaultArgs<ExtArgs>
-  }
-  export type QuestionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type DiarioPaginaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "tipo" | "quadrante" | "tipoTraco" | "numeroTraco" | "tituloTraco" | "chave" | "ordem" | "texto" | "concluida" | "desbloqueada" | "arquivada" | "createdAt" | "updatedAt", ExtArgs["result"]["diarioPagina"]>
+  export type DiarioPaginaInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
-  export type QuestionIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type DiarioPaginaIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type DiarioPaginaIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
 
-  export type $QuestionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Question"
+  export type $DiarioPaginaPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "DiarioPagina"
     objects: {
       user: Prisma.$UserPayload<ExtArgs>
-      answers: Prisma.$DiaryAnswerPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      texto: string
-      ordem: number
-      ativo: boolean
       userId: string
+      tipo: string
+      quadrante: string | null
+      tipoTraco: string | null
+      numeroTraco: number | null
+      tituloTraco: string | null
+      chave: string
+      ordem: number
+      texto: string
+      concluida: boolean
+      desbloqueada: boolean
+      arquivada: boolean
       createdAt: Date
       updatedAt: Date
-    }, ExtArgs["result"]["question"]>
+    }, ExtArgs["result"]["diarioPagina"]>
     composites: {}
   }
 
-  type QuestionGetPayload<S extends boolean | null | undefined | QuestionDefaultArgs> = $Result.GetResult<Prisma.$QuestionPayload, S>
+  type DiarioPaginaGetPayload<S extends boolean | null | undefined | DiarioPaginaDefaultArgs> = $Result.GetResult<Prisma.$DiarioPaginaPayload, S>
 
-  type QuestionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<QuestionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: QuestionCountAggregateInputType | true
+  type DiarioPaginaCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<DiarioPaginaFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: DiarioPaginaCountAggregateInputType | true
     }
 
-  export interface QuestionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Question'], meta: { name: 'Question' } }
+  export interface DiarioPaginaDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['DiarioPagina'], meta: { name: 'DiarioPagina' } }
     /**
-     * Find zero or one Question that matches the filter.
-     * @param {QuestionFindUniqueArgs} args - Arguments to find a Question
+     * Find zero or one DiarioPagina that matches the filter.
+     * @param {DiarioPaginaFindUniqueArgs} args - Arguments to find a DiarioPagina
      * @example
-     * // Get one Question
-     * const question = await prisma.question.findUnique({
+     * // Get one DiarioPagina
+     * const diarioPagina = await prisma.diarioPagina.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends QuestionFindUniqueArgs>(args: SelectSubset<T, QuestionFindUniqueArgs<ExtArgs>>): Prisma__QuestionClient<$Result.GetResult<Prisma.$QuestionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends DiarioPaginaFindUniqueArgs>(args: SelectSubset<T, DiarioPaginaFindUniqueArgs<ExtArgs>>): Prisma__DiarioPaginaClient<$Result.GetResult<Prisma.$DiarioPaginaPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one Question that matches the filter or throw an error with `error.code='P2025'`
+     * Find one DiarioPagina that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {QuestionFindUniqueOrThrowArgs} args - Arguments to find a Question
+     * @param {DiarioPaginaFindUniqueOrThrowArgs} args - Arguments to find a DiarioPagina
      * @example
-     * // Get one Question
-     * const question = await prisma.question.findUniqueOrThrow({
+     * // Get one DiarioPagina
+     * const diarioPagina = await prisma.diarioPagina.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends QuestionFindUniqueOrThrowArgs>(args: SelectSubset<T, QuestionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__QuestionClient<$Result.GetResult<Prisma.$QuestionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends DiarioPaginaFindUniqueOrThrowArgs>(args: SelectSubset<T, DiarioPaginaFindUniqueOrThrowArgs<ExtArgs>>): Prisma__DiarioPaginaClient<$Result.GetResult<Prisma.$DiarioPaginaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Question that matches the filter.
+     * Find the first DiarioPagina that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {QuestionFindFirstArgs} args - Arguments to find a Question
+     * @param {DiarioPaginaFindFirstArgs} args - Arguments to find a DiarioPagina
      * @example
-     * // Get one Question
-     * const question = await prisma.question.findFirst({
+     * // Get one DiarioPagina
+     * const diarioPagina = await prisma.diarioPagina.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends QuestionFindFirstArgs>(args?: SelectSubset<T, QuestionFindFirstArgs<ExtArgs>>): Prisma__QuestionClient<$Result.GetResult<Prisma.$QuestionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends DiarioPaginaFindFirstArgs>(args?: SelectSubset<T, DiarioPaginaFindFirstArgs<ExtArgs>>): Prisma__DiarioPaginaClient<$Result.GetResult<Prisma.$DiarioPaginaPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Question that matches the filter or
+     * Find the first DiarioPagina that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {QuestionFindFirstOrThrowArgs} args - Arguments to find a Question
+     * @param {DiarioPaginaFindFirstOrThrowArgs} args - Arguments to find a DiarioPagina
      * @example
-     * // Get one Question
-     * const question = await prisma.question.findFirstOrThrow({
+     * // Get one DiarioPagina
+     * const diarioPagina = await prisma.diarioPagina.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends QuestionFindFirstOrThrowArgs>(args?: SelectSubset<T, QuestionFindFirstOrThrowArgs<ExtArgs>>): Prisma__QuestionClient<$Result.GetResult<Prisma.$QuestionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends DiarioPaginaFindFirstOrThrowArgs>(args?: SelectSubset<T, DiarioPaginaFindFirstOrThrowArgs<ExtArgs>>): Prisma__DiarioPaginaClient<$Result.GetResult<Prisma.$DiarioPaginaPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find zero or more Questions that matches the filter.
+     * Find zero or more DiarioPaginas that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {QuestionFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {DiarioPaginaFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all Questions
-     * const questions = await prisma.question.findMany()
+     * // Get all DiarioPaginas
+     * const diarioPaginas = await prisma.diarioPagina.findMany()
      * 
-     * // Get first 10 Questions
-     * const questions = await prisma.question.findMany({ take: 10 })
+     * // Get first 10 DiarioPaginas
+     * const diarioPaginas = await prisma.diarioPagina.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const questionWithIdOnly = await prisma.question.findMany({ select: { id: true } })
+     * const diarioPaginaWithIdOnly = await prisma.diarioPagina.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends QuestionFindManyArgs>(args?: SelectSubset<T, QuestionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$QuestionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends DiarioPaginaFindManyArgs>(args?: SelectSubset<T, DiarioPaginaFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DiarioPaginaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
-     * Create a Question.
-     * @param {QuestionCreateArgs} args - Arguments to create a Question.
+     * Create a DiarioPagina.
+     * @param {DiarioPaginaCreateArgs} args - Arguments to create a DiarioPagina.
      * @example
-     * // Create one Question
-     * const Question = await prisma.question.create({
+     * // Create one DiarioPagina
+     * const DiarioPagina = await prisma.diarioPagina.create({
      *   data: {
-     *     // ... data to create a Question
+     *     // ... data to create a DiarioPagina
      *   }
      * })
      * 
      */
-    create<T extends QuestionCreateArgs>(args: SelectSubset<T, QuestionCreateArgs<ExtArgs>>): Prisma__QuestionClient<$Result.GetResult<Prisma.$QuestionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends DiarioPaginaCreateArgs>(args: SelectSubset<T, DiarioPaginaCreateArgs<ExtArgs>>): Prisma__DiarioPaginaClient<$Result.GetResult<Prisma.$DiarioPaginaPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Create many Questions.
-     * @param {QuestionCreateManyArgs} args - Arguments to create many Questions.
+     * Create many DiarioPaginas.
+     * @param {DiarioPaginaCreateManyArgs} args - Arguments to create many DiarioPaginas.
      * @example
-     * // Create many Questions
-     * const question = await prisma.question.createMany({
+     * // Create many DiarioPaginas
+     * const diarioPagina = await prisma.diarioPagina.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
-    createMany<T extends QuestionCreateManyArgs>(args?: SelectSubset<T, QuestionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends DiarioPaginaCreateManyArgs>(args?: SelectSubset<T, DiarioPaginaCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create many Questions and returns the data saved in the database.
-     * @param {QuestionCreateManyAndReturnArgs} args - Arguments to create many Questions.
+     * Create many DiarioPaginas and returns the data saved in the database.
+     * @param {DiarioPaginaCreateManyAndReturnArgs} args - Arguments to create many DiarioPaginas.
      * @example
-     * // Create many Questions
-     * const question = await prisma.question.createManyAndReturn({
+     * // Create many DiarioPaginas
+     * const diarioPagina = await prisma.diarioPagina.createManyAndReturn({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      * 
-     * // Create many Questions and only return the `id`
-     * const questionWithIdOnly = await prisma.question.createManyAndReturn({
+     * // Create many DiarioPaginas and only return the `id`
+     * const diarioPaginaWithIdOnly = await prisma.diarioPagina.createManyAndReturn({
      *   select: { id: true },
      *   data: [
      *     // ... provide data here
@@ -5730,28 +5722,28 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    createManyAndReturn<T extends QuestionCreateManyAndReturnArgs>(args?: SelectSubset<T, QuestionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$QuestionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+    createManyAndReturn<T extends DiarioPaginaCreateManyAndReturnArgs>(args?: SelectSubset<T, DiarioPaginaCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DiarioPaginaPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Delete a Question.
-     * @param {QuestionDeleteArgs} args - Arguments to delete one Question.
+     * Delete a DiarioPagina.
+     * @param {DiarioPaginaDeleteArgs} args - Arguments to delete one DiarioPagina.
      * @example
-     * // Delete one Question
-     * const Question = await prisma.question.delete({
+     * // Delete one DiarioPagina
+     * const DiarioPagina = await prisma.diarioPagina.delete({
      *   where: {
-     *     // ... filter to delete one Question
+     *     // ... filter to delete one DiarioPagina
      *   }
      * })
      * 
      */
-    delete<T extends QuestionDeleteArgs>(args: SelectSubset<T, QuestionDeleteArgs<ExtArgs>>): Prisma__QuestionClient<$Result.GetResult<Prisma.$QuestionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends DiarioPaginaDeleteArgs>(args: SelectSubset<T, DiarioPaginaDeleteArgs<ExtArgs>>): Prisma__DiarioPaginaClient<$Result.GetResult<Prisma.$DiarioPaginaPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Update one Question.
-     * @param {QuestionUpdateArgs} args - Arguments to update one Question.
+     * Update one DiarioPagina.
+     * @param {DiarioPaginaUpdateArgs} args - Arguments to update one DiarioPagina.
      * @example
-     * // Update one Question
-     * const question = await prisma.question.update({
+     * // Update one DiarioPagina
+     * const diarioPagina = await prisma.diarioPagina.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -5761,30 +5753,30 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends QuestionUpdateArgs>(args: SelectSubset<T, QuestionUpdateArgs<ExtArgs>>): Prisma__QuestionClient<$Result.GetResult<Prisma.$QuestionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends DiarioPaginaUpdateArgs>(args: SelectSubset<T, DiarioPaginaUpdateArgs<ExtArgs>>): Prisma__DiarioPaginaClient<$Result.GetResult<Prisma.$DiarioPaginaPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Delete zero or more Questions.
-     * @param {QuestionDeleteManyArgs} args - Arguments to filter Questions to delete.
+     * Delete zero or more DiarioPaginas.
+     * @param {DiarioPaginaDeleteManyArgs} args - Arguments to filter DiarioPaginas to delete.
      * @example
-     * // Delete a few Questions
-     * const { count } = await prisma.question.deleteMany({
+     * // Delete a few DiarioPaginas
+     * const { count } = await prisma.diarioPagina.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-    deleteMany<T extends QuestionDeleteManyArgs>(args?: SelectSubset<T, QuestionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends DiarioPaginaDeleteManyArgs>(args?: SelectSubset<T, DiarioPaginaDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Questions.
+     * Update zero or more DiarioPaginas.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {QuestionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {DiarioPaginaUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many Questions
-     * const question = await prisma.question.updateMany({
+     * // Update many DiarioPaginas
+     * const diarioPagina = await prisma.diarioPagina.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -5794,14 +5786,14 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends QuestionUpdateManyArgs>(args: SelectSubset<T, QuestionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends DiarioPaginaUpdateManyArgs>(args: SelectSubset<T, DiarioPaginaUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Questions and returns the data updated in the database.
-     * @param {QuestionUpdateManyAndReturnArgs} args - Arguments to update many Questions.
+     * Update zero or more DiarioPaginas and returns the data updated in the database.
+     * @param {DiarioPaginaUpdateManyAndReturnArgs} args - Arguments to update many DiarioPaginas.
      * @example
-     * // Update many Questions
-     * const question = await prisma.question.updateManyAndReturn({
+     * // Update many DiarioPaginas
+     * const diarioPagina = await prisma.diarioPagina.updateManyAndReturn({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -5810,8 +5802,8 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more Questions and only return the `id`
-     * const questionWithIdOnly = await prisma.question.updateManyAndReturn({
+     * // Update zero or more DiarioPaginas and only return the `id`
+     * const diarioPaginaWithIdOnly = await prisma.diarioPagina.updateManyAndReturn({
      *   select: { id: true },
      *   where: {
      *     // ... provide filter here
@@ -5824,56 +5816,56 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    updateManyAndReturn<T extends QuestionUpdateManyAndReturnArgs>(args: SelectSubset<T, QuestionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$QuestionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends DiarioPaginaUpdateManyAndReturnArgs>(args: SelectSubset<T, DiarioPaginaUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DiarioPaginaPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Create or update one Question.
-     * @param {QuestionUpsertArgs} args - Arguments to update or create a Question.
+     * Create or update one DiarioPagina.
+     * @param {DiarioPaginaUpsertArgs} args - Arguments to update or create a DiarioPagina.
      * @example
-     * // Update or create a Question
-     * const question = await prisma.question.upsert({
+     * // Update or create a DiarioPagina
+     * const diarioPagina = await prisma.diarioPagina.upsert({
      *   create: {
-     *     // ... data to create a Question
+     *     // ... data to create a DiarioPagina
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the Question we want to update
+     *     // ... the filter for the DiarioPagina we want to update
      *   }
      * })
      */
-    upsert<T extends QuestionUpsertArgs>(args: SelectSubset<T, QuestionUpsertArgs<ExtArgs>>): Prisma__QuestionClient<$Result.GetResult<Prisma.$QuestionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends DiarioPaginaUpsertArgs>(args: SelectSubset<T, DiarioPaginaUpsertArgs<ExtArgs>>): Prisma__DiarioPaginaClient<$Result.GetResult<Prisma.$DiarioPaginaPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
-     * Count the number of Questions.
+     * Count the number of DiarioPaginas.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {QuestionCountArgs} args - Arguments to filter Questions to count.
+     * @param {DiarioPaginaCountArgs} args - Arguments to filter DiarioPaginas to count.
      * @example
-     * // Count the number of Questions
-     * const count = await prisma.question.count({
+     * // Count the number of DiarioPaginas
+     * const count = await prisma.diarioPagina.count({
      *   where: {
-     *     // ... the filter for the Questions we want to count
+     *     // ... the filter for the DiarioPaginas we want to count
      *   }
      * })
     **/
-    count<T extends QuestionCountArgs>(
-      args?: Subset<T, QuestionCountArgs>,
+    count<T extends DiarioPaginaCountArgs>(
+      args?: Subset<T, DiarioPaginaCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], QuestionCountAggregateOutputType>
+          : GetScalarType<T['select'], DiarioPaginaCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a Question.
+     * Allows you to perform aggregations operations on a DiarioPagina.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {QuestionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {DiarioPaginaAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -5893,13 +5885,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends QuestionAggregateArgs>(args: Subset<T, QuestionAggregateArgs>): Prisma.PrismaPromise<GetQuestionAggregateType<T>>
+    aggregate<T extends DiarioPaginaAggregateArgs>(args: Subset<T, DiarioPaginaAggregateArgs>): Prisma.PrismaPromise<GetDiarioPaginaAggregateType<T>>
 
     /**
-     * Group by Question.
+     * Group by DiarioPagina.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {QuestionGroupByArgs} args - Group by arguments.
+     * @param {DiarioPaginaGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -5914,14 +5906,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends QuestionGroupByArgs,
+      T extends DiarioPaginaGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: QuestionGroupByArgs['orderBy'] }
-        : { orderBy?: QuestionGroupByArgs['orderBy'] },
+        ? { orderBy: DiarioPaginaGroupByArgs['orderBy'] }
+        : { orderBy?: DiarioPaginaGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -5970,23 +5962,22 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, QuestionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetQuestionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, DiarioPaginaGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetDiarioPaginaGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the Question model
+   * Fields of the DiarioPagina model
    */
-  readonly fields: QuestionFieldRefs;
+  readonly fields: DiarioPaginaFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for Question.
+   * The delegate class that acts as a "Promise-like" for DiarioPagina.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__QuestionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__DiarioPaginaClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    answers<T extends Question$answersArgs<ExtArgs> = {}>(args?: Subset<T, Question$answersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DiaryAnswerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -6013,804 +6004,889 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the Question model
+   * Fields of the DiarioPagina model
    */
-  interface QuestionFieldRefs {
-    readonly id: FieldRef<"Question", 'String'>
-    readonly texto: FieldRef<"Question", 'String'>
-    readonly ordem: FieldRef<"Question", 'Int'>
-    readonly ativo: FieldRef<"Question", 'Boolean'>
-    readonly userId: FieldRef<"Question", 'String'>
-    readonly createdAt: FieldRef<"Question", 'DateTime'>
-    readonly updatedAt: FieldRef<"Question", 'DateTime'>
+  interface DiarioPaginaFieldRefs {
+    readonly id: FieldRef<"DiarioPagina", 'String'>
+    readonly userId: FieldRef<"DiarioPagina", 'String'>
+    readonly tipo: FieldRef<"DiarioPagina", 'String'>
+    readonly quadrante: FieldRef<"DiarioPagina", 'String'>
+    readonly tipoTraco: FieldRef<"DiarioPagina", 'String'>
+    readonly numeroTraco: FieldRef<"DiarioPagina", 'Int'>
+    readonly tituloTraco: FieldRef<"DiarioPagina", 'String'>
+    readonly chave: FieldRef<"DiarioPagina", 'String'>
+    readonly ordem: FieldRef<"DiarioPagina", 'Int'>
+    readonly texto: FieldRef<"DiarioPagina", 'String'>
+    readonly concluida: FieldRef<"DiarioPagina", 'Boolean'>
+    readonly desbloqueada: FieldRef<"DiarioPagina", 'Boolean'>
+    readonly arquivada: FieldRef<"DiarioPagina", 'Boolean'>
+    readonly createdAt: FieldRef<"DiarioPagina", 'DateTime'>
+    readonly updatedAt: FieldRef<"DiarioPagina", 'DateTime'>
   }
     
 
   // Custom InputTypes
   /**
-   * Question findUnique
+   * DiarioPagina findUnique
    */
-  export type QuestionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type DiarioPaginaFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Question
+     * Select specific fields to fetch from the DiarioPagina
      */
-    select?: QuestionSelect<ExtArgs> | null
+    select?: DiarioPaginaSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Question
+     * Omit specific fields from the DiarioPagina
      */
-    omit?: QuestionOmit<ExtArgs> | null
+    omit?: DiarioPaginaOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: QuestionInclude<ExtArgs> | null
+    include?: DiarioPaginaInclude<ExtArgs> | null
     /**
-     * Filter, which Question to fetch.
+     * Filter, which DiarioPagina to fetch.
      */
-    where: QuestionWhereUniqueInput
+    where: DiarioPaginaWhereUniqueInput
   }
 
   /**
-   * Question findUniqueOrThrow
+   * DiarioPagina findUniqueOrThrow
    */
-  export type QuestionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type DiarioPaginaFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Question
+     * Select specific fields to fetch from the DiarioPagina
      */
-    select?: QuestionSelect<ExtArgs> | null
+    select?: DiarioPaginaSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Question
+     * Omit specific fields from the DiarioPagina
      */
-    omit?: QuestionOmit<ExtArgs> | null
+    omit?: DiarioPaginaOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: QuestionInclude<ExtArgs> | null
+    include?: DiarioPaginaInclude<ExtArgs> | null
     /**
-     * Filter, which Question to fetch.
+     * Filter, which DiarioPagina to fetch.
      */
-    where: QuestionWhereUniqueInput
+    where: DiarioPaginaWhereUniqueInput
   }
 
   /**
-   * Question findFirst
+   * DiarioPagina findFirst
    */
-  export type QuestionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type DiarioPaginaFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Question
+     * Select specific fields to fetch from the DiarioPagina
      */
-    select?: QuestionSelect<ExtArgs> | null
+    select?: DiarioPaginaSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Question
+     * Omit specific fields from the DiarioPagina
      */
-    omit?: QuestionOmit<ExtArgs> | null
+    omit?: DiarioPaginaOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: QuestionInclude<ExtArgs> | null
+    include?: DiarioPaginaInclude<ExtArgs> | null
     /**
-     * Filter, which Question to fetch.
+     * Filter, which DiarioPagina to fetch.
      */
-    where?: QuestionWhereInput
+    where?: DiarioPaginaWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Questions to fetch.
+     * Determine the order of DiarioPaginas to fetch.
      */
-    orderBy?: QuestionOrderByWithRelationInput | QuestionOrderByWithRelationInput[]
+    orderBy?: DiarioPaginaOrderByWithRelationInput | DiarioPaginaOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Questions.
+     * Sets the position for searching for DiarioPaginas.
      */
-    cursor?: QuestionWhereUniqueInput
+    cursor?: DiarioPaginaWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Questions from the position of the cursor.
+     * Take `±n` DiarioPaginas from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Questions.
+     * Skip the first `n` DiarioPaginas.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Questions.
+     * Filter by unique combinations of DiarioPaginas.
      */
-    distinct?: QuestionScalarFieldEnum | QuestionScalarFieldEnum[]
+    distinct?: DiarioPaginaScalarFieldEnum | DiarioPaginaScalarFieldEnum[]
   }
 
   /**
-   * Question findFirstOrThrow
+   * DiarioPagina findFirstOrThrow
    */
-  export type QuestionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type DiarioPaginaFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Question
+     * Select specific fields to fetch from the DiarioPagina
      */
-    select?: QuestionSelect<ExtArgs> | null
+    select?: DiarioPaginaSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Question
+     * Omit specific fields from the DiarioPagina
      */
-    omit?: QuestionOmit<ExtArgs> | null
+    omit?: DiarioPaginaOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: QuestionInclude<ExtArgs> | null
+    include?: DiarioPaginaInclude<ExtArgs> | null
     /**
-     * Filter, which Question to fetch.
+     * Filter, which DiarioPagina to fetch.
      */
-    where?: QuestionWhereInput
+    where?: DiarioPaginaWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Questions to fetch.
+     * Determine the order of DiarioPaginas to fetch.
      */
-    orderBy?: QuestionOrderByWithRelationInput | QuestionOrderByWithRelationInput[]
+    orderBy?: DiarioPaginaOrderByWithRelationInput | DiarioPaginaOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Questions.
+     * Sets the position for searching for DiarioPaginas.
      */
-    cursor?: QuestionWhereUniqueInput
+    cursor?: DiarioPaginaWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Questions from the position of the cursor.
+     * Take `±n` DiarioPaginas from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Questions.
+     * Skip the first `n` DiarioPaginas.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Questions.
+     * Filter by unique combinations of DiarioPaginas.
      */
-    distinct?: QuestionScalarFieldEnum | QuestionScalarFieldEnum[]
+    distinct?: DiarioPaginaScalarFieldEnum | DiarioPaginaScalarFieldEnum[]
   }
 
   /**
-   * Question findMany
+   * DiarioPagina findMany
    */
-  export type QuestionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type DiarioPaginaFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Question
+     * Select specific fields to fetch from the DiarioPagina
      */
-    select?: QuestionSelect<ExtArgs> | null
+    select?: DiarioPaginaSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Question
+     * Omit specific fields from the DiarioPagina
      */
-    omit?: QuestionOmit<ExtArgs> | null
+    omit?: DiarioPaginaOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: QuestionInclude<ExtArgs> | null
+    include?: DiarioPaginaInclude<ExtArgs> | null
     /**
-     * Filter, which Questions to fetch.
+     * Filter, which DiarioPaginas to fetch.
      */
-    where?: QuestionWhereInput
+    where?: DiarioPaginaWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Questions to fetch.
+     * Determine the order of DiarioPaginas to fetch.
      */
-    orderBy?: QuestionOrderByWithRelationInput | QuestionOrderByWithRelationInput[]
+    orderBy?: DiarioPaginaOrderByWithRelationInput | DiarioPaginaOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing Questions.
+     * Sets the position for listing DiarioPaginas.
      */
-    cursor?: QuestionWhereUniqueInput
+    cursor?: DiarioPaginaWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Questions from the position of the cursor.
+     * Take `±n` DiarioPaginas from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Questions.
+     * Skip the first `n` DiarioPaginas.
      */
     skip?: number
-    distinct?: QuestionScalarFieldEnum | QuestionScalarFieldEnum[]
+    distinct?: DiarioPaginaScalarFieldEnum | DiarioPaginaScalarFieldEnum[]
   }
 
   /**
-   * Question create
+   * DiarioPagina create
    */
-  export type QuestionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type DiarioPaginaCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Question
+     * Select specific fields to fetch from the DiarioPagina
      */
-    select?: QuestionSelect<ExtArgs> | null
+    select?: DiarioPaginaSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Question
+     * Omit specific fields from the DiarioPagina
      */
-    omit?: QuestionOmit<ExtArgs> | null
+    omit?: DiarioPaginaOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: QuestionInclude<ExtArgs> | null
+    include?: DiarioPaginaInclude<ExtArgs> | null
     /**
-     * The data needed to create a Question.
+     * The data needed to create a DiarioPagina.
      */
-    data: XOR<QuestionCreateInput, QuestionUncheckedCreateInput>
+    data: XOR<DiarioPaginaCreateInput, DiarioPaginaUncheckedCreateInput>
   }
 
   /**
-   * Question createMany
+   * DiarioPagina createMany
    */
-  export type QuestionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type DiarioPaginaCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many Questions.
+     * The data used to create many DiarioPaginas.
      */
-    data: QuestionCreateManyInput | QuestionCreateManyInput[]
+    data: DiarioPaginaCreateManyInput | DiarioPaginaCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * Question createManyAndReturn
+   * DiarioPagina createManyAndReturn
    */
-  export type QuestionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type DiarioPaginaCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Question
+     * Select specific fields to fetch from the DiarioPagina
      */
-    select?: QuestionSelectCreateManyAndReturn<ExtArgs> | null
+    select?: DiarioPaginaSelectCreateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the Question
+     * Omit specific fields from the DiarioPagina
      */
-    omit?: QuestionOmit<ExtArgs> | null
+    omit?: DiarioPaginaOmit<ExtArgs> | null
     /**
-     * The data used to create many Questions.
+     * The data used to create many DiarioPaginas.
      */
-    data: QuestionCreateManyInput | QuestionCreateManyInput[]
+    data: DiarioPaginaCreateManyInput | DiarioPaginaCreateManyInput[]
     skipDuplicates?: boolean
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: QuestionIncludeCreateManyAndReturn<ExtArgs> | null
+    include?: DiarioPaginaIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * Question update
+   * DiarioPagina update
    */
-  export type QuestionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type DiarioPaginaUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Question
+     * Select specific fields to fetch from the DiarioPagina
      */
-    select?: QuestionSelect<ExtArgs> | null
+    select?: DiarioPaginaSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Question
+     * Omit specific fields from the DiarioPagina
      */
-    omit?: QuestionOmit<ExtArgs> | null
+    omit?: DiarioPaginaOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: QuestionInclude<ExtArgs> | null
+    include?: DiarioPaginaInclude<ExtArgs> | null
     /**
-     * The data needed to update a Question.
+     * The data needed to update a DiarioPagina.
      */
-    data: XOR<QuestionUpdateInput, QuestionUncheckedUpdateInput>
+    data: XOR<DiarioPaginaUpdateInput, DiarioPaginaUncheckedUpdateInput>
     /**
-     * Choose, which Question to update.
+     * Choose, which DiarioPagina to update.
      */
-    where: QuestionWhereUniqueInput
+    where: DiarioPaginaWhereUniqueInput
   }
 
   /**
-   * Question updateMany
+   * DiarioPagina updateMany
    */
-  export type QuestionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type DiarioPaginaUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update Questions.
+     * The data used to update DiarioPaginas.
      */
-    data: XOR<QuestionUpdateManyMutationInput, QuestionUncheckedUpdateManyInput>
+    data: XOR<DiarioPaginaUpdateManyMutationInput, DiarioPaginaUncheckedUpdateManyInput>
     /**
-     * Filter which Questions to update
+     * Filter which DiarioPaginas to update
      */
-    where?: QuestionWhereInput
+    where?: DiarioPaginaWhereInput
     /**
-     * Limit how many Questions to update.
+     * Limit how many DiarioPaginas to update.
      */
     limit?: number
   }
 
   /**
-   * Question updateManyAndReturn
+   * DiarioPagina updateManyAndReturn
    */
-  export type QuestionUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type DiarioPaginaUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Question
+     * Select specific fields to fetch from the DiarioPagina
      */
-    select?: QuestionSelectUpdateManyAndReturn<ExtArgs> | null
+    select?: DiarioPaginaSelectUpdateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the Question
+     * Omit specific fields from the DiarioPagina
      */
-    omit?: QuestionOmit<ExtArgs> | null
+    omit?: DiarioPaginaOmit<ExtArgs> | null
     /**
-     * The data used to update Questions.
+     * The data used to update DiarioPaginas.
      */
-    data: XOR<QuestionUpdateManyMutationInput, QuestionUncheckedUpdateManyInput>
+    data: XOR<DiarioPaginaUpdateManyMutationInput, DiarioPaginaUncheckedUpdateManyInput>
     /**
-     * Filter which Questions to update
+     * Filter which DiarioPaginas to update
      */
-    where?: QuestionWhereInput
+    where?: DiarioPaginaWhereInput
     /**
-     * Limit how many Questions to update.
+     * Limit how many DiarioPaginas to update.
      */
     limit?: number
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: QuestionIncludeUpdateManyAndReturn<ExtArgs> | null
+    include?: DiarioPaginaIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * Question upsert
+   * DiarioPagina upsert
    */
-  export type QuestionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type DiarioPaginaUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Question
+     * Select specific fields to fetch from the DiarioPagina
      */
-    select?: QuestionSelect<ExtArgs> | null
+    select?: DiarioPaginaSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Question
+     * Omit specific fields from the DiarioPagina
      */
-    omit?: QuestionOmit<ExtArgs> | null
+    omit?: DiarioPaginaOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: QuestionInclude<ExtArgs> | null
+    include?: DiarioPaginaInclude<ExtArgs> | null
     /**
-     * The filter to search for the Question to update in case it exists.
+     * The filter to search for the DiarioPagina to update in case it exists.
      */
-    where: QuestionWhereUniqueInput
+    where: DiarioPaginaWhereUniqueInput
     /**
-     * In case the Question found by the `where` argument doesn't exist, create a new Question with this data.
+     * In case the DiarioPagina found by the `where` argument doesn't exist, create a new DiarioPagina with this data.
      */
-    create: XOR<QuestionCreateInput, QuestionUncheckedCreateInput>
+    create: XOR<DiarioPaginaCreateInput, DiarioPaginaUncheckedCreateInput>
     /**
-     * In case the Question was found with the provided `where` argument, update it with this data.
+     * In case the DiarioPagina was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<QuestionUpdateInput, QuestionUncheckedUpdateInput>
+    update: XOR<DiarioPaginaUpdateInput, DiarioPaginaUncheckedUpdateInput>
   }
 
   /**
-   * Question delete
+   * DiarioPagina delete
    */
-  export type QuestionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type DiarioPaginaDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Question
+     * Select specific fields to fetch from the DiarioPagina
      */
-    select?: QuestionSelect<ExtArgs> | null
+    select?: DiarioPaginaSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Question
+     * Omit specific fields from the DiarioPagina
      */
-    omit?: QuestionOmit<ExtArgs> | null
+    omit?: DiarioPaginaOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: QuestionInclude<ExtArgs> | null
+    include?: DiarioPaginaInclude<ExtArgs> | null
     /**
-     * Filter which Question to delete.
+     * Filter which DiarioPagina to delete.
      */
-    where: QuestionWhereUniqueInput
+    where: DiarioPaginaWhereUniqueInput
   }
 
   /**
-   * Question deleteMany
+   * DiarioPagina deleteMany
    */
-  export type QuestionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type DiarioPaginaDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Questions to delete
+     * Filter which DiarioPaginas to delete
      */
-    where?: QuestionWhereInput
+    where?: DiarioPaginaWhereInput
     /**
-     * Limit how many Questions to delete.
+     * Limit how many DiarioPaginas to delete.
      */
     limit?: number
   }
 
   /**
-   * Question.answers
+   * DiarioPagina without action
    */
-  export type Question$answersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type DiarioPaginaDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the DiaryAnswer
+     * Select specific fields to fetch from the DiarioPagina
      */
-    select?: DiaryAnswerSelect<ExtArgs> | null
+    select?: DiarioPaginaSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the DiaryAnswer
+     * Omit specific fields from the DiarioPagina
      */
-    omit?: DiaryAnswerOmit<ExtArgs> | null
+    omit?: DiarioPaginaOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: DiaryAnswerInclude<ExtArgs> | null
-    where?: DiaryAnswerWhereInput
-    orderBy?: DiaryAnswerOrderByWithRelationInput | DiaryAnswerOrderByWithRelationInput[]
-    cursor?: DiaryAnswerWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: DiaryAnswerScalarFieldEnum | DiaryAnswerScalarFieldEnum[]
-  }
-
-  /**
-   * Question without action
-   */
-  export type QuestionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Question
-     */
-    select?: QuestionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Question
-     */
-    omit?: QuestionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: QuestionInclude<ExtArgs> | null
+    include?: DiarioPaginaInclude<ExtArgs> | null
   }
 
 
   /**
-   * Model DiaryEntry
+   * Model DiarioAutoadvocaciaQuinzena
    */
 
-  export type AggregateDiaryEntry = {
-    _count: DiaryEntryCountAggregateOutputType | null
-    _min: DiaryEntryMinAggregateOutputType | null
-    _max: DiaryEntryMaxAggregateOutputType | null
+  export type AggregateDiarioAutoadvocaciaQuinzena = {
+    _count: DiarioAutoadvocaciaQuinzenaCountAggregateOutputType | null
+    _avg: DiarioAutoadvocaciaQuinzenaAvgAggregateOutputType | null
+    _sum: DiarioAutoadvocaciaQuinzenaSumAggregateOutputType | null
+    _min: DiarioAutoadvocaciaQuinzenaMinAggregateOutputType | null
+    _max: DiarioAutoadvocaciaQuinzenaMaxAggregateOutputType | null
   }
 
-  export type DiaryEntryMinAggregateOutputType = {
+  export type DiarioAutoadvocaciaQuinzenaAvgAggregateOutputType = {
+    numero: number | null
+  }
+
+  export type DiarioAutoadvocaciaQuinzenaSumAggregateOutputType = {
+    numero: number | null
+  }
+
+  export type DiarioAutoadvocaciaQuinzenaMinAggregateOutputType = {
     id: string | null
     userId: string | null
-    date: Date | null
+    numero: number | null
+    rotulo: string | null
+    inicio: Date | null
+    fim: Date | null
+    resposta1: string | null
+    resposta2: string | null
+    concluida: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
   }
 
-  export type DiaryEntryMaxAggregateOutputType = {
+  export type DiarioAutoadvocaciaQuinzenaMaxAggregateOutputType = {
     id: string | null
     userId: string | null
-    date: Date | null
+    numero: number | null
+    rotulo: string | null
+    inicio: Date | null
+    fim: Date | null
+    resposta1: string | null
+    resposta2: string | null
+    concluida: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
   }
 
-  export type DiaryEntryCountAggregateOutputType = {
+  export type DiarioAutoadvocaciaQuinzenaCountAggregateOutputType = {
     id: number
     userId: number
-    date: number
+    numero: number
+    rotulo: number
+    inicio: number
+    fim: number
+    resposta1: number
+    resposta2: number
+    concluida: number
     createdAt: number
     updatedAt: number
     _all: number
   }
 
 
-  export type DiaryEntryMinAggregateInputType = {
+  export type DiarioAutoadvocaciaQuinzenaAvgAggregateInputType = {
+    numero?: true
+  }
+
+  export type DiarioAutoadvocaciaQuinzenaSumAggregateInputType = {
+    numero?: true
+  }
+
+  export type DiarioAutoadvocaciaQuinzenaMinAggregateInputType = {
     id?: true
     userId?: true
-    date?: true
+    numero?: true
+    rotulo?: true
+    inicio?: true
+    fim?: true
+    resposta1?: true
+    resposta2?: true
+    concluida?: true
     createdAt?: true
     updatedAt?: true
   }
 
-  export type DiaryEntryMaxAggregateInputType = {
+  export type DiarioAutoadvocaciaQuinzenaMaxAggregateInputType = {
     id?: true
     userId?: true
-    date?: true
+    numero?: true
+    rotulo?: true
+    inicio?: true
+    fim?: true
+    resposta1?: true
+    resposta2?: true
+    concluida?: true
     createdAt?: true
     updatedAt?: true
   }
 
-  export type DiaryEntryCountAggregateInputType = {
+  export type DiarioAutoadvocaciaQuinzenaCountAggregateInputType = {
     id?: true
     userId?: true
-    date?: true
+    numero?: true
+    rotulo?: true
+    inicio?: true
+    fim?: true
+    resposta1?: true
+    resposta2?: true
+    concluida?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
   }
 
-  export type DiaryEntryAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type DiarioAutoadvocaciaQuinzenaAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which DiaryEntry to aggregate.
+     * Filter which DiarioAutoadvocaciaQuinzena to aggregate.
      */
-    where?: DiaryEntryWhereInput
+    where?: DiarioAutoadvocaciaQuinzenaWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of DiaryEntries to fetch.
+     * Determine the order of DiarioAutoadvocaciaQuinzenas to fetch.
      */
-    orderBy?: DiaryEntryOrderByWithRelationInput | DiaryEntryOrderByWithRelationInput[]
+    orderBy?: DiarioAutoadvocaciaQuinzenaOrderByWithRelationInput | DiarioAutoadvocaciaQuinzenaOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: DiaryEntryWhereUniqueInput
+    cursor?: DiarioAutoadvocaciaQuinzenaWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` DiaryEntries from the position of the cursor.
+     * Take `±n` DiarioAutoadvocaciaQuinzenas from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` DiaryEntries.
+     * Skip the first `n` DiarioAutoadvocaciaQuinzenas.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned DiaryEntries
+     * Count returned DiarioAutoadvocaciaQuinzenas
     **/
-    _count?: true | DiaryEntryCountAggregateInputType
+    _count?: true | DiarioAutoadvocaciaQuinzenaCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: DiarioAutoadvocaciaQuinzenaAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: DiarioAutoadvocaciaQuinzenaSumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: DiaryEntryMinAggregateInputType
+    _min?: DiarioAutoadvocaciaQuinzenaMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: DiaryEntryMaxAggregateInputType
+    _max?: DiarioAutoadvocaciaQuinzenaMaxAggregateInputType
   }
 
-  export type GetDiaryEntryAggregateType<T extends DiaryEntryAggregateArgs> = {
-        [P in keyof T & keyof AggregateDiaryEntry]: P extends '_count' | 'count'
+  export type GetDiarioAutoadvocaciaQuinzenaAggregateType<T extends DiarioAutoadvocaciaQuinzenaAggregateArgs> = {
+        [P in keyof T & keyof AggregateDiarioAutoadvocaciaQuinzena]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateDiaryEntry[P]>
-      : GetScalarType<T[P], AggregateDiaryEntry[P]>
+        : GetScalarType<T[P], AggregateDiarioAutoadvocaciaQuinzena[P]>
+      : GetScalarType<T[P], AggregateDiarioAutoadvocaciaQuinzena[P]>
   }
 
 
 
 
-  export type DiaryEntryGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: DiaryEntryWhereInput
-    orderBy?: DiaryEntryOrderByWithAggregationInput | DiaryEntryOrderByWithAggregationInput[]
-    by: DiaryEntryScalarFieldEnum[] | DiaryEntryScalarFieldEnum
-    having?: DiaryEntryScalarWhereWithAggregatesInput
+  export type DiarioAutoadvocaciaQuinzenaGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DiarioAutoadvocaciaQuinzenaWhereInput
+    orderBy?: DiarioAutoadvocaciaQuinzenaOrderByWithAggregationInput | DiarioAutoadvocaciaQuinzenaOrderByWithAggregationInput[]
+    by: DiarioAutoadvocaciaQuinzenaScalarFieldEnum[] | DiarioAutoadvocaciaQuinzenaScalarFieldEnum
+    having?: DiarioAutoadvocaciaQuinzenaScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: DiaryEntryCountAggregateInputType | true
-    _min?: DiaryEntryMinAggregateInputType
-    _max?: DiaryEntryMaxAggregateInputType
+    _count?: DiarioAutoadvocaciaQuinzenaCountAggregateInputType | true
+    _avg?: DiarioAutoadvocaciaQuinzenaAvgAggregateInputType
+    _sum?: DiarioAutoadvocaciaQuinzenaSumAggregateInputType
+    _min?: DiarioAutoadvocaciaQuinzenaMinAggregateInputType
+    _max?: DiarioAutoadvocaciaQuinzenaMaxAggregateInputType
   }
 
-  export type DiaryEntryGroupByOutputType = {
+  export type DiarioAutoadvocaciaQuinzenaGroupByOutputType = {
     id: string
     userId: string
-    date: Date
+    numero: number
+    rotulo: string | null
+    inicio: Date
+    fim: Date
+    resposta1: string
+    resposta2: string
+    concluida: boolean
     createdAt: Date
     updatedAt: Date
-    _count: DiaryEntryCountAggregateOutputType | null
-    _min: DiaryEntryMinAggregateOutputType | null
-    _max: DiaryEntryMaxAggregateOutputType | null
+    _count: DiarioAutoadvocaciaQuinzenaCountAggregateOutputType | null
+    _avg: DiarioAutoadvocaciaQuinzenaAvgAggregateOutputType | null
+    _sum: DiarioAutoadvocaciaQuinzenaSumAggregateOutputType | null
+    _min: DiarioAutoadvocaciaQuinzenaMinAggregateOutputType | null
+    _max: DiarioAutoadvocaciaQuinzenaMaxAggregateOutputType | null
   }
 
-  type GetDiaryEntryGroupByPayload<T extends DiaryEntryGroupByArgs> = Prisma.PrismaPromise<
+  type GetDiarioAutoadvocaciaQuinzenaGroupByPayload<T extends DiarioAutoadvocaciaQuinzenaGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<DiaryEntryGroupByOutputType, T['by']> &
+      PickEnumerable<DiarioAutoadvocaciaQuinzenaGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof DiaryEntryGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof DiarioAutoadvocaciaQuinzenaGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], DiaryEntryGroupByOutputType[P]>
-            : GetScalarType<T[P], DiaryEntryGroupByOutputType[P]>
+              : GetScalarType<T[P], DiarioAutoadvocaciaQuinzenaGroupByOutputType[P]>
+            : GetScalarType<T[P], DiarioAutoadvocaciaQuinzenaGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type DiaryEntrySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type DiarioAutoadvocaciaQuinzenaSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
-    date?: boolean
+    numero?: boolean
+    rotulo?: boolean
+    inicio?: boolean
+    fim?: boolean
+    resposta1?: boolean
+    resposta2?: boolean
+    concluida?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
-    answers?: boolean | DiaryEntry$answersArgs<ExtArgs>
-    _count?: boolean | DiaryEntryCountOutputTypeDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["diaryEntry"]>
+  }, ExtArgs["result"]["diarioAutoadvocaciaQuinzena"]>
 
-  export type DiaryEntrySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type DiarioAutoadvocaciaQuinzenaSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
-    date?: boolean
+    numero?: boolean
+    rotulo?: boolean
+    inicio?: boolean
+    fim?: boolean
+    resposta1?: boolean
+    resposta2?: boolean
+    concluida?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["diaryEntry"]>
+  }, ExtArgs["result"]["diarioAutoadvocaciaQuinzena"]>
 
-  export type DiaryEntrySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type DiarioAutoadvocaciaQuinzenaSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
-    date?: boolean
+    numero?: boolean
+    rotulo?: boolean
+    inicio?: boolean
+    fim?: boolean
+    resposta1?: boolean
+    resposta2?: boolean
+    concluida?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["diaryEntry"]>
+  }, ExtArgs["result"]["diarioAutoadvocaciaQuinzena"]>
 
-  export type DiaryEntrySelectScalar = {
+  export type DiarioAutoadvocaciaQuinzenaSelectScalar = {
     id?: boolean
     userId?: boolean
-    date?: boolean
+    numero?: boolean
+    rotulo?: boolean
+    inicio?: boolean
+    fim?: boolean
+    resposta1?: boolean
+    resposta2?: boolean
+    concluida?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type DiaryEntryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "date" | "createdAt" | "updatedAt", ExtArgs["result"]["diaryEntry"]>
-  export type DiaryEntryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
-    answers?: boolean | DiaryEntry$answersArgs<ExtArgs>
-    _count?: boolean | DiaryEntryCountOutputTypeDefaultArgs<ExtArgs>
-  }
-  export type DiaryEntryIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type DiarioAutoadvocaciaQuinzenaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "numero" | "rotulo" | "inicio" | "fim" | "resposta1" | "resposta2" | "concluida" | "createdAt" | "updatedAt", ExtArgs["result"]["diarioAutoadvocaciaQuinzena"]>
+  export type DiarioAutoadvocaciaQuinzenaInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
-  export type DiaryEntryIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type DiarioAutoadvocaciaQuinzenaIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type DiarioAutoadvocaciaQuinzenaIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
 
-  export type $DiaryEntryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "DiaryEntry"
+  export type $DiarioAutoadvocaciaQuinzenaPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "DiarioAutoadvocaciaQuinzena"
     objects: {
       user: Prisma.$UserPayload<ExtArgs>
-      answers: Prisma.$DiaryAnswerPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       userId: string
-      date: Date
+      numero: number
+      rotulo: string | null
+      inicio: Date
+      fim: Date
+      resposta1: string
+      resposta2: string
+      concluida: boolean
       createdAt: Date
       updatedAt: Date
-    }, ExtArgs["result"]["diaryEntry"]>
+    }, ExtArgs["result"]["diarioAutoadvocaciaQuinzena"]>
     composites: {}
   }
 
-  type DiaryEntryGetPayload<S extends boolean | null | undefined | DiaryEntryDefaultArgs> = $Result.GetResult<Prisma.$DiaryEntryPayload, S>
+  type DiarioAutoadvocaciaQuinzenaGetPayload<S extends boolean | null | undefined | DiarioAutoadvocaciaQuinzenaDefaultArgs> = $Result.GetResult<Prisma.$DiarioAutoadvocaciaQuinzenaPayload, S>
 
-  type DiaryEntryCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<DiaryEntryFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: DiaryEntryCountAggregateInputType | true
+  type DiarioAutoadvocaciaQuinzenaCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<DiarioAutoadvocaciaQuinzenaFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: DiarioAutoadvocaciaQuinzenaCountAggregateInputType | true
     }
 
-  export interface DiaryEntryDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['DiaryEntry'], meta: { name: 'DiaryEntry' } }
+  export interface DiarioAutoadvocaciaQuinzenaDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['DiarioAutoadvocaciaQuinzena'], meta: { name: 'DiarioAutoadvocaciaQuinzena' } }
     /**
-     * Find zero or one DiaryEntry that matches the filter.
-     * @param {DiaryEntryFindUniqueArgs} args - Arguments to find a DiaryEntry
+     * Find zero or one DiarioAutoadvocaciaQuinzena that matches the filter.
+     * @param {DiarioAutoadvocaciaQuinzenaFindUniqueArgs} args - Arguments to find a DiarioAutoadvocaciaQuinzena
      * @example
-     * // Get one DiaryEntry
-     * const diaryEntry = await prisma.diaryEntry.findUnique({
+     * // Get one DiarioAutoadvocaciaQuinzena
+     * const diarioAutoadvocaciaQuinzena = await prisma.diarioAutoadvocaciaQuinzena.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends DiaryEntryFindUniqueArgs>(args: SelectSubset<T, DiaryEntryFindUniqueArgs<ExtArgs>>): Prisma__DiaryEntryClient<$Result.GetResult<Prisma.$DiaryEntryPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends DiarioAutoadvocaciaQuinzenaFindUniqueArgs>(args: SelectSubset<T, DiarioAutoadvocaciaQuinzenaFindUniqueArgs<ExtArgs>>): Prisma__DiarioAutoadvocaciaQuinzenaClient<$Result.GetResult<Prisma.$DiarioAutoadvocaciaQuinzenaPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one DiaryEntry that matches the filter or throw an error with `error.code='P2025'`
+     * Find one DiarioAutoadvocaciaQuinzena that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {DiaryEntryFindUniqueOrThrowArgs} args - Arguments to find a DiaryEntry
+     * @param {DiarioAutoadvocaciaQuinzenaFindUniqueOrThrowArgs} args - Arguments to find a DiarioAutoadvocaciaQuinzena
      * @example
-     * // Get one DiaryEntry
-     * const diaryEntry = await prisma.diaryEntry.findUniqueOrThrow({
+     * // Get one DiarioAutoadvocaciaQuinzena
+     * const diarioAutoadvocaciaQuinzena = await prisma.diarioAutoadvocaciaQuinzena.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends DiaryEntryFindUniqueOrThrowArgs>(args: SelectSubset<T, DiaryEntryFindUniqueOrThrowArgs<ExtArgs>>): Prisma__DiaryEntryClient<$Result.GetResult<Prisma.$DiaryEntryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends DiarioAutoadvocaciaQuinzenaFindUniqueOrThrowArgs>(args: SelectSubset<T, DiarioAutoadvocaciaQuinzenaFindUniqueOrThrowArgs<ExtArgs>>): Prisma__DiarioAutoadvocaciaQuinzenaClient<$Result.GetResult<Prisma.$DiarioAutoadvocaciaQuinzenaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first DiaryEntry that matches the filter.
+     * Find the first DiarioAutoadvocaciaQuinzena that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {DiaryEntryFindFirstArgs} args - Arguments to find a DiaryEntry
+     * @param {DiarioAutoadvocaciaQuinzenaFindFirstArgs} args - Arguments to find a DiarioAutoadvocaciaQuinzena
      * @example
-     * // Get one DiaryEntry
-     * const diaryEntry = await prisma.diaryEntry.findFirst({
+     * // Get one DiarioAutoadvocaciaQuinzena
+     * const diarioAutoadvocaciaQuinzena = await prisma.diarioAutoadvocaciaQuinzena.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends DiaryEntryFindFirstArgs>(args?: SelectSubset<T, DiaryEntryFindFirstArgs<ExtArgs>>): Prisma__DiaryEntryClient<$Result.GetResult<Prisma.$DiaryEntryPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends DiarioAutoadvocaciaQuinzenaFindFirstArgs>(args?: SelectSubset<T, DiarioAutoadvocaciaQuinzenaFindFirstArgs<ExtArgs>>): Prisma__DiarioAutoadvocaciaQuinzenaClient<$Result.GetResult<Prisma.$DiarioAutoadvocaciaQuinzenaPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first DiaryEntry that matches the filter or
+     * Find the first DiarioAutoadvocaciaQuinzena that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {DiaryEntryFindFirstOrThrowArgs} args - Arguments to find a DiaryEntry
+     * @param {DiarioAutoadvocaciaQuinzenaFindFirstOrThrowArgs} args - Arguments to find a DiarioAutoadvocaciaQuinzena
      * @example
-     * // Get one DiaryEntry
-     * const diaryEntry = await prisma.diaryEntry.findFirstOrThrow({
+     * // Get one DiarioAutoadvocaciaQuinzena
+     * const diarioAutoadvocaciaQuinzena = await prisma.diarioAutoadvocaciaQuinzena.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends DiaryEntryFindFirstOrThrowArgs>(args?: SelectSubset<T, DiaryEntryFindFirstOrThrowArgs<ExtArgs>>): Prisma__DiaryEntryClient<$Result.GetResult<Prisma.$DiaryEntryPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends DiarioAutoadvocaciaQuinzenaFindFirstOrThrowArgs>(args?: SelectSubset<T, DiarioAutoadvocaciaQuinzenaFindFirstOrThrowArgs<ExtArgs>>): Prisma__DiarioAutoadvocaciaQuinzenaClient<$Result.GetResult<Prisma.$DiarioAutoadvocaciaQuinzenaPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find zero or more DiaryEntries that matches the filter.
+     * Find zero or more DiarioAutoadvocaciaQuinzenas that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {DiaryEntryFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {DiarioAutoadvocaciaQuinzenaFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all DiaryEntries
-     * const diaryEntries = await prisma.diaryEntry.findMany()
+     * // Get all DiarioAutoadvocaciaQuinzenas
+     * const diarioAutoadvocaciaQuinzenas = await prisma.diarioAutoadvocaciaQuinzena.findMany()
      * 
-     * // Get first 10 DiaryEntries
-     * const diaryEntries = await prisma.diaryEntry.findMany({ take: 10 })
+     * // Get first 10 DiarioAutoadvocaciaQuinzenas
+     * const diarioAutoadvocaciaQuinzenas = await prisma.diarioAutoadvocaciaQuinzena.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const diaryEntryWithIdOnly = await prisma.diaryEntry.findMany({ select: { id: true } })
+     * const diarioAutoadvocaciaQuinzenaWithIdOnly = await prisma.diarioAutoadvocaciaQuinzena.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends DiaryEntryFindManyArgs>(args?: SelectSubset<T, DiaryEntryFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DiaryEntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends DiarioAutoadvocaciaQuinzenaFindManyArgs>(args?: SelectSubset<T, DiarioAutoadvocaciaQuinzenaFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DiarioAutoadvocaciaQuinzenaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
-     * Create a DiaryEntry.
-     * @param {DiaryEntryCreateArgs} args - Arguments to create a DiaryEntry.
+     * Create a DiarioAutoadvocaciaQuinzena.
+     * @param {DiarioAutoadvocaciaQuinzenaCreateArgs} args - Arguments to create a DiarioAutoadvocaciaQuinzena.
      * @example
-     * // Create one DiaryEntry
-     * const DiaryEntry = await prisma.diaryEntry.create({
+     * // Create one DiarioAutoadvocaciaQuinzena
+     * const DiarioAutoadvocaciaQuinzena = await prisma.diarioAutoadvocaciaQuinzena.create({
      *   data: {
-     *     // ... data to create a DiaryEntry
+     *     // ... data to create a DiarioAutoadvocaciaQuinzena
      *   }
      * })
      * 
      */
-    create<T extends DiaryEntryCreateArgs>(args: SelectSubset<T, DiaryEntryCreateArgs<ExtArgs>>): Prisma__DiaryEntryClient<$Result.GetResult<Prisma.$DiaryEntryPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends DiarioAutoadvocaciaQuinzenaCreateArgs>(args: SelectSubset<T, DiarioAutoadvocaciaQuinzenaCreateArgs<ExtArgs>>): Prisma__DiarioAutoadvocaciaQuinzenaClient<$Result.GetResult<Prisma.$DiarioAutoadvocaciaQuinzenaPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Create many DiaryEntries.
-     * @param {DiaryEntryCreateManyArgs} args - Arguments to create many DiaryEntries.
+     * Create many DiarioAutoadvocaciaQuinzenas.
+     * @param {DiarioAutoadvocaciaQuinzenaCreateManyArgs} args - Arguments to create many DiarioAutoadvocaciaQuinzenas.
      * @example
-     * // Create many DiaryEntries
-     * const diaryEntry = await prisma.diaryEntry.createMany({
+     * // Create many DiarioAutoadvocaciaQuinzenas
+     * const diarioAutoadvocaciaQuinzena = await prisma.diarioAutoadvocaciaQuinzena.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
-    createMany<T extends DiaryEntryCreateManyArgs>(args?: SelectSubset<T, DiaryEntryCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends DiarioAutoadvocaciaQuinzenaCreateManyArgs>(args?: SelectSubset<T, DiarioAutoadvocaciaQuinzenaCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create many DiaryEntries and returns the data saved in the database.
-     * @param {DiaryEntryCreateManyAndReturnArgs} args - Arguments to create many DiaryEntries.
+     * Create many DiarioAutoadvocaciaQuinzenas and returns the data saved in the database.
+     * @param {DiarioAutoadvocaciaQuinzenaCreateManyAndReturnArgs} args - Arguments to create many DiarioAutoadvocaciaQuinzenas.
      * @example
-     * // Create many DiaryEntries
-     * const diaryEntry = await prisma.diaryEntry.createManyAndReturn({
+     * // Create many DiarioAutoadvocaciaQuinzenas
+     * const diarioAutoadvocaciaQuinzena = await prisma.diarioAutoadvocaciaQuinzena.createManyAndReturn({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      * 
-     * // Create many DiaryEntries and only return the `id`
-     * const diaryEntryWithIdOnly = await prisma.diaryEntry.createManyAndReturn({
+     * // Create many DiarioAutoadvocaciaQuinzenas and only return the `id`
+     * const diarioAutoadvocaciaQuinzenaWithIdOnly = await prisma.diarioAutoadvocaciaQuinzena.createManyAndReturn({
      *   select: { id: true },
      *   data: [
      *     // ... provide data here
@@ -6820,28 +6896,28 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    createManyAndReturn<T extends DiaryEntryCreateManyAndReturnArgs>(args?: SelectSubset<T, DiaryEntryCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DiaryEntryPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+    createManyAndReturn<T extends DiarioAutoadvocaciaQuinzenaCreateManyAndReturnArgs>(args?: SelectSubset<T, DiarioAutoadvocaciaQuinzenaCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DiarioAutoadvocaciaQuinzenaPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Delete a DiaryEntry.
-     * @param {DiaryEntryDeleteArgs} args - Arguments to delete one DiaryEntry.
+     * Delete a DiarioAutoadvocaciaQuinzena.
+     * @param {DiarioAutoadvocaciaQuinzenaDeleteArgs} args - Arguments to delete one DiarioAutoadvocaciaQuinzena.
      * @example
-     * // Delete one DiaryEntry
-     * const DiaryEntry = await prisma.diaryEntry.delete({
+     * // Delete one DiarioAutoadvocaciaQuinzena
+     * const DiarioAutoadvocaciaQuinzena = await prisma.diarioAutoadvocaciaQuinzena.delete({
      *   where: {
-     *     // ... filter to delete one DiaryEntry
+     *     // ... filter to delete one DiarioAutoadvocaciaQuinzena
      *   }
      * })
      * 
      */
-    delete<T extends DiaryEntryDeleteArgs>(args: SelectSubset<T, DiaryEntryDeleteArgs<ExtArgs>>): Prisma__DiaryEntryClient<$Result.GetResult<Prisma.$DiaryEntryPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends DiarioAutoadvocaciaQuinzenaDeleteArgs>(args: SelectSubset<T, DiarioAutoadvocaciaQuinzenaDeleteArgs<ExtArgs>>): Prisma__DiarioAutoadvocaciaQuinzenaClient<$Result.GetResult<Prisma.$DiarioAutoadvocaciaQuinzenaPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Update one DiaryEntry.
-     * @param {DiaryEntryUpdateArgs} args - Arguments to update one DiaryEntry.
+     * Update one DiarioAutoadvocaciaQuinzena.
+     * @param {DiarioAutoadvocaciaQuinzenaUpdateArgs} args - Arguments to update one DiarioAutoadvocaciaQuinzena.
      * @example
-     * // Update one DiaryEntry
-     * const diaryEntry = await prisma.diaryEntry.update({
+     * // Update one DiarioAutoadvocaciaQuinzena
+     * const diarioAutoadvocaciaQuinzena = await prisma.diarioAutoadvocaciaQuinzena.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -6851,30 +6927,30 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends DiaryEntryUpdateArgs>(args: SelectSubset<T, DiaryEntryUpdateArgs<ExtArgs>>): Prisma__DiaryEntryClient<$Result.GetResult<Prisma.$DiaryEntryPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends DiarioAutoadvocaciaQuinzenaUpdateArgs>(args: SelectSubset<T, DiarioAutoadvocaciaQuinzenaUpdateArgs<ExtArgs>>): Prisma__DiarioAutoadvocaciaQuinzenaClient<$Result.GetResult<Prisma.$DiarioAutoadvocaciaQuinzenaPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Delete zero or more DiaryEntries.
-     * @param {DiaryEntryDeleteManyArgs} args - Arguments to filter DiaryEntries to delete.
+     * Delete zero or more DiarioAutoadvocaciaQuinzenas.
+     * @param {DiarioAutoadvocaciaQuinzenaDeleteManyArgs} args - Arguments to filter DiarioAutoadvocaciaQuinzenas to delete.
      * @example
-     * // Delete a few DiaryEntries
-     * const { count } = await prisma.diaryEntry.deleteMany({
+     * // Delete a few DiarioAutoadvocaciaQuinzenas
+     * const { count } = await prisma.diarioAutoadvocaciaQuinzena.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-    deleteMany<T extends DiaryEntryDeleteManyArgs>(args?: SelectSubset<T, DiaryEntryDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends DiarioAutoadvocaciaQuinzenaDeleteManyArgs>(args?: SelectSubset<T, DiarioAutoadvocaciaQuinzenaDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more DiaryEntries.
+     * Update zero or more DiarioAutoadvocaciaQuinzenas.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {DiaryEntryUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {DiarioAutoadvocaciaQuinzenaUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many DiaryEntries
-     * const diaryEntry = await prisma.diaryEntry.updateMany({
+     * // Update many DiarioAutoadvocaciaQuinzenas
+     * const diarioAutoadvocaciaQuinzena = await prisma.diarioAutoadvocaciaQuinzena.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -6884,14 +6960,14 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends DiaryEntryUpdateManyArgs>(args: SelectSubset<T, DiaryEntryUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends DiarioAutoadvocaciaQuinzenaUpdateManyArgs>(args: SelectSubset<T, DiarioAutoadvocaciaQuinzenaUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more DiaryEntries and returns the data updated in the database.
-     * @param {DiaryEntryUpdateManyAndReturnArgs} args - Arguments to update many DiaryEntries.
+     * Update zero or more DiarioAutoadvocaciaQuinzenas and returns the data updated in the database.
+     * @param {DiarioAutoadvocaciaQuinzenaUpdateManyAndReturnArgs} args - Arguments to update many DiarioAutoadvocaciaQuinzenas.
      * @example
-     * // Update many DiaryEntries
-     * const diaryEntry = await prisma.diaryEntry.updateManyAndReturn({
+     * // Update many DiarioAutoadvocaciaQuinzenas
+     * const diarioAutoadvocaciaQuinzena = await prisma.diarioAutoadvocaciaQuinzena.updateManyAndReturn({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -6900,8 +6976,8 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more DiaryEntries and only return the `id`
-     * const diaryEntryWithIdOnly = await prisma.diaryEntry.updateManyAndReturn({
+     * // Update zero or more DiarioAutoadvocaciaQuinzenas and only return the `id`
+     * const diarioAutoadvocaciaQuinzenaWithIdOnly = await prisma.diarioAutoadvocaciaQuinzena.updateManyAndReturn({
      *   select: { id: true },
      *   where: {
      *     // ... provide filter here
@@ -6914,56 +6990,56 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    updateManyAndReturn<T extends DiaryEntryUpdateManyAndReturnArgs>(args: SelectSubset<T, DiaryEntryUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DiaryEntryPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends DiarioAutoadvocaciaQuinzenaUpdateManyAndReturnArgs>(args: SelectSubset<T, DiarioAutoadvocaciaQuinzenaUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DiarioAutoadvocaciaQuinzenaPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Create or update one DiaryEntry.
-     * @param {DiaryEntryUpsertArgs} args - Arguments to update or create a DiaryEntry.
+     * Create or update one DiarioAutoadvocaciaQuinzena.
+     * @param {DiarioAutoadvocaciaQuinzenaUpsertArgs} args - Arguments to update or create a DiarioAutoadvocaciaQuinzena.
      * @example
-     * // Update or create a DiaryEntry
-     * const diaryEntry = await prisma.diaryEntry.upsert({
+     * // Update or create a DiarioAutoadvocaciaQuinzena
+     * const diarioAutoadvocaciaQuinzena = await prisma.diarioAutoadvocaciaQuinzena.upsert({
      *   create: {
-     *     // ... data to create a DiaryEntry
+     *     // ... data to create a DiarioAutoadvocaciaQuinzena
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the DiaryEntry we want to update
+     *     // ... the filter for the DiarioAutoadvocaciaQuinzena we want to update
      *   }
      * })
      */
-    upsert<T extends DiaryEntryUpsertArgs>(args: SelectSubset<T, DiaryEntryUpsertArgs<ExtArgs>>): Prisma__DiaryEntryClient<$Result.GetResult<Prisma.$DiaryEntryPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends DiarioAutoadvocaciaQuinzenaUpsertArgs>(args: SelectSubset<T, DiarioAutoadvocaciaQuinzenaUpsertArgs<ExtArgs>>): Prisma__DiarioAutoadvocaciaQuinzenaClient<$Result.GetResult<Prisma.$DiarioAutoadvocaciaQuinzenaPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
-     * Count the number of DiaryEntries.
+     * Count the number of DiarioAutoadvocaciaQuinzenas.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {DiaryEntryCountArgs} args - Arguments to filter DiaryEntries to count.
+     * @param {DiarioAutoadvocaciaQuinzenaCountArgs} args - Arguments to filter DiarioAutoadvocaciaQuinzenas to count.
      * @example
-     * // Count the number of DiaryEntries
-     * const count = await prisma.diaryEntry.count({
+     * // Count the number of DiarioAutoadvocaciaQuinzenas
+     * const count = await prisma.diarioAutoadvocaciaQuinzena.count({
      *   where: {
-     *     // ... the filter for the DiaryEntries we want to count
+     *     // ... the filter for the DiarioAutoadvocaciaQuinzenas we want to count
      *   }
      * })
     **/
-    count<T extends DiaryEntryCountArgs>(
-      args?: Subset<T, DiaryEntryCountArgs>,
+    count<T extends DiarioAutoadvocaciaQuinzenaCountArgs>(
+      args?: Subset<T, DiarioAutoadvocaciaQuinzenaCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], DiaryEntryCountAggregateOutputType>
+          : GetScalarType<T['select'], DiarioAutoadvocaciaQuinzenaCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a DiaryEntry.
+     * Allows you to perform aggregations operations on a DiarioAutoadvocaciaQuinzena.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {DiaryEntryAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {DiarioAutoadvocaciaQuinzenaAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -6983,13 +7059,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends DiaryEntryAggregateArgs>(args: Subset<T, DiaryEntryAggregateArgs>): Prisma.PrismaPromise<GetDiaryEntryAggregateType<T>>
+    aggregate<T extends DiarioAutoadvocaciaQuinzenaAggregateArgs>(args: Subset<T, DiarioAutoadvocaciaQuinzenaAggregateArgs>): Prisma.PrismaPromise<GetDiarioAutoadvocaciaQuinzenaAggregateType<T>>
 
     /**
-     * Group by DiaryEntry.
+     * Group by DiarioAutoadvocaciaQuinzena.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {DiaryEntryGroupByArgs} args - Group by arguments.
+     * @param {DiarioAutoadvocaciaQuinzenaGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -7004,14 +7080,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends DiaryEntryGroupByArgs,
+      T extends DiarioAutoadvocaciaQuinzenaGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: DiaryEntryGroupByArgs['orderBy'] }
-        : { orderBy?: DiaryEntryGroupByArgs['orderBy'] },
+        ? { orderBy: DiarioAutoadvocaciaQuinzenaGroupByArgs['orderBy'] }
+        : { orderBy?: DiarioAutoadvocaciaQuinzenaGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -7060,23 +7136,22 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, DiaryEntryGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetDiaryEntryGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, DiarioAutoadvocaciaQuinzenaGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetDiarioAutoadvocaciaQuinzenaGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the DiaryEntry model
+   * Fields of the DiarioAutoadvocaciaQuinzena model
    */
-  readonly fields: DiaryEntryFieldRefs;
+  readonly fields: DiarioAutoadvocaciaQuinzenaFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for DiaryEntry.
+   * The delegate class that acts as a "Promise-like" for DiarioAutoadvocaciaQuinzena.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__DiaryEntryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__DiarioAutoadvocaciaQuinzenaClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    answers<T extends DiaryEntry$answersArgs<ExtArgs> = {}>(args?: Subset<T, DiaryEntry$answersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DiaryAnswerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7103,1528 +7178,431 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the DiaryEntry model
+   * Fields of the DiarioAutoadvocaciaQuinzena model
    */
-  interface DiaryEntryFieldRefs {
-    readonly id: FieldRef<"DiaryEntry", 'String'>
-    readonly userId: FieldRef<"DiaryEntry", 'String'>
-    readonly date: FieldRef<"DiaryEntry", 'DateTime'>
-    readonly createdAt: FieldRef<"DiaryEntry", 'DateTime'>
-    readonly updatedAt: FieldRef<"DiaryEntry", 'DateTime'>
+  interface DiarioAutoadvocaciaQuinzenaFieldRefs {
+    readonly id: FieldRef<"DiarioAutoadvocaciaQuinzena", 'String'>
+    readonly userId: FieldRef<"DiarioAutoadvocaciaQuinzena", 'String'>
+    readonly numero: FieldRef<"DiarioAutoadvocaciaQuinzena", 'Int'>
+    readonly rotulo: FieldRef<"DiarioAutoadvocaciaQuinzena", 'String'>
+    readonly inicio: FieldRef<"DiarioAutoadvocaciaQuinzena", 'DateTime'>
+    readonly fim: FieldRef<"DiarioAutoadvocaciaQuinzena", 'DateTime'>
+    readonly resposta1: FieldRef<"DiarioAutoadvocaciaQuinzena", 'String'>
+    readonly resposta2: FieldRef<"DiarioAutoadvocaciaQuinzena", 'String'>
+    readonly concluida: FieldRef<"DiarioAutoadvocaciaQuinzena", 'Boolean'>
+    readonly createdAt: FieldRef<"DiarioAutoadvocaciaQuinzena", 'DateTime'>
+    readonly updatedAt: FieldRef<"DiarioAutoadvocaciaQuinzena", 'DateTime'>
   }
     
 
   // Custom InputTypes
   /**
-   * DiaryEntry findUnique
+   * DiarioAutoadvocaciaQuinzena findUnique
    */
-  export type DiaryEntryFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type DiarioAutoadvocaciaQuinzenaFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the DiaryEntry
+     * Select specific fields to fetch from the DiarioAutoadvocaciaQuinzena
      */
-    select?: DiaryEntrySelect<ExtArgs> | null
+    select?: DiarioAutoadvocaciaQuinzenaSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the DiaryEntry
+     * Omit specific fields from the DiarioAutoadvocaciaQuinzena
      */
-    omit?: DiaryEntryOmit<ExtArgs> | null
+    omit?: DiarioAutoadvocaciaQuinzenaOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: DiaryEntryInclude<ExtArgs> | null
+    include?: DiarioAutoadvocaciaQuinzenaInclude<ExtArgs> | null
     /**
-     * Filter, which DiaryEntry to fetch.
+     * Filter, which DiarioAutoadvocaciaQuinzena to fetch.
      */
-    where: DiaryEntryWhereUniqueInput
+    where: DiarioAutoadvocaciaQuinzenaWhereUniqueInput
   }
 
   /**
-   * DiaryEntry findUniqueOrThrow
+   * DiarioAutoadvocaciaQuinzena findUniqueOrThrow
    */
-  export type DiaryEntryFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type DiarioAutoadvocaciaQuinzenaFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the DiaryEntry
+     * Select specific fields to fetch from the DiarioAutoadvocaciaQuinzena
      */
-    select?: DiaryEntrySelect<ExtArgs> | null
+    select?: DiarioAutoadvocaciaQuinzenaSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the DiaryEntry
+     * Omit specific fields from the DiarioAutoadvocaciaQuinzena
      */
-    omit?: DiaryEntryOmit<ExtArgs> | null
+    omit?: DiarioAutoadvocaciaQuinzenaOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: DiaryEntryInclude<ExtArgs> | null
+    include?: DiarioAutoadvocaciaQuinzenaInclude<ExtArgs> | null
     /**
-     * Filter, which DiaryEntry to fetch.
+     * Filter, which DiarioAutoadvocaciaQuinzena to fetch.
      */
-    where: DiaryEntryWhereUniqueInput
+    where: DiarioAutoadvocaciaQuinzenaWhereUniqueInput
   }
 
   /**
-   * DiaryEntry findFirst
+   * DiarioAutoadvocaciaQuinzena findFirst
    */
-  export type DiaryEntryFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type DiarioAutoadvocaciaQuinzenaFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the DiaryEntry
+     * Select specific fields to fetch from the DiarioAutoadvocaciaQuinzena
      */
-    select?: DiaryEntrySelect<ExtArgs> | null
+    select?: DiarioAutoadvocaciaQuinzenaSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the DiaryEntry
+     * Omit specific fields from the DiarioAutoadvocaciaQuinzena
      */
-    omit?: DiaryEntryOmit<ExtArgs> | null
+    omit?: DiarioAutoadvocaciaQuinzenaOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: DiaryEntryInclude<ExtArgs> | null
+    include?: DiarioAutoadvocaciaQuinzenaInclude<ExtArgs> | null
     /**
-     * Filter, which DiaryEntry to fetch.
+     * Filter, which DiarioAutoadvocaciaQuinzena to fetch.
      */
-    where?: DiaryEntryWhereInput
+    where?: DiarioAutoadvocaciaQuinzenaWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of DiaryEntries to fetch.
+     * Determine the order of DiarioAutoadvocaciaQuinzenas to fetch.
      */
-    orderBy?: DiaryEntryOrderByWithRelationInput | DiaryEntryOrderByWithRelationInput[]
+    orderBy?: DiarioAutoadvocaciaQuinzenaOrderByWithRelationInput | DiarioAutoadvocaciaQuinzenaOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for DiaryEntries.
+     * Sets the position for searching for DiarioAutoadvocaciaQuinzenas.
      */
-    cursor?: DiaryEntryWhereUniqueInput
+    cursor?: DiarioAutoadvocaciaQuinzenaWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` DiaryEntries from the position of the cursor.
+     * Take `±n` DiarioAutoadvocaciaQuinzenas from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` DiaryEntries.
+     * Skip the first `n` DiarioAutoadvocaciaQuinzenas.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of DiaryEntries.
+     * Filter by unique combinations of DiarioAutoadvocaciaQuinzenas.
      */
-    distinct?: DiaryEntryScalarFieldEnum | DiaryEntryScalarFieldEnum[]
+    distinct?: DiarioAutoadvocaciaQuinzenaScalarFieldEnum | DiarioAutoadvocaciaQuinzenaScalarFieldEnum[]
   }
 
   /**
-   * DiaryEntry findFirstOrThrow
+   * DiarioAutoadvocaciaQuinzena findFirstOrThrow
    */
-  export type DiaryEntryFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type DiarioAutoadvocaciaQuinzenaFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the DiaryEntry
+     * Select specific fields to fetch from the DiarioAutoadvocaciaQuinzena
      */
-    select?: DiaryEntrySelect<ExtArgs> | null
+    select?: DiarioAutoadvocaciaQuinzenaSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the DiaryEntry
+     * Omit specific fields from the DiarioAutoadvocaciaQuinzena
      */
-    omit?: DiaryEntryOmit<ExtArgs> | null
+    omit?: DiarioAutoadvocaciaQuinzenaOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: DiaryEntryInclude<ExtArgs> | null
+    include?: DiarioAutoadvocaciaQuinzenaInclude<ExtArgs> | null
     /**
-     * Filter, which DiaryEntry to fetch.
+     * Filter, which DiarioAutoadvocaciaQuinzena to fetch.
      */
-    where?: DiaryEntryWhereInput
+    where?: DiarioAutoadvocaciaQuinzenaWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of DiaryEntries to fetch.
+     * Determine the order of DiarioAutoadvocaciaQuinzenas to fetch.
      */
-    orderBy?: DiaryEntryOrderByWithRelationInput | DiaryEntryOrderByWithRelationInput[]
+    orderBy?: DiarioAutoadvocaciaQuinzenaOrderByWithRelationInput | DiarioAutoadvocaciaQuinzenaOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for DiaryEntries.
+     * Sets the position for searching for DiarioAutoadvocaciaQuinzenas.
      */
-    cursor?: DiaryEntryWhereUniqueInput
+    cursor?: DiarioAutoadvocaciaQuinzenaWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` DiaryEntries from the position of the cursor.
+     * Take `±n` DiarioAutoadvocaciaQuinzenas from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` DiaryEntries.
+     * Skip the first `n` DiarioAutoadvocaciaQuinzenas.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of DiaryEntries.
+     * Filter by unique combinations of DiarioAutoadvocaciaQuinzenas.
      */
-    distinct?: DiaryEntryScalarFieldEnum | DiaryEntryScalarFieldEnum[]
+    distinct?: DiarioAutoadvocaciaQuinzenaScalarFieldEnum | DiarioAutoadvocaciaQuinzenaScalarFieldEnum[]
   }
 
   /**
-   * DiaryEntry findMany
+   * DiarioAutoadvocaciaQuinzena findMany
    */
-  export type DiaryEntryFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type DiarioAutoadvocaciaQuinzenaFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the DiaryEntry
+     * Select specific fields to fetch from the DiarioAutoadvocaciaQuinzena
      */
-    select?: DiaryEntrySelect<ExtArgs> | null
+    select?: DiarioAutoadvocaciaQuinzenaSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the DiaryEntry
+     * Omit specific fields from the DiarioAutoadvocaciaQuinzena
      */
-    omit?: DiaryEntryOmit<ExtArgs> | null
+    omit?: DiarioAutoadvocaciaQuinzenaOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: DiaryEntryInclude<ExtArgs> | null
+    include?: DiarioAutoadvocaciaQuinzenaInclude<ExtArgs> | null
     /**
-     * Filter, which DiaryEntries to fetch.
+     * Filter, which DiarioAutoadvocaciaQuinzenas to fetch.
      */
-    where?: DiaryEntryWhereInput
+    where?: DiarioAutoadvocaciaQuinzenaWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of DiaryEntries to fetch.
+     * Determine the order of DiarioAutoadvocaciaQuinzenas to fetch.
      */
-    orderBy?: DiaryEntryOrderByWithRelationInput | DiaryEntryOrderByWithRelationInput[]
+    orderBy?: DiarioAutoadvocaciaQuinzenaOrderByWithRelationInput | DiarioAutoadvocaciaQuinzenaOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing DiaryEntries.
+     * Sets the position for listing DiarioAutoadvocaciaQuinzenas.
      */
-    cursor?: DiaryEntryWhereUniqueInput
+    cursor?: DiarioAutoadvocaciaQuinzenaWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` DiaryEntries from the position of the cursor.
+     * Take `±n` DiarioAutoadvocaciaQuinzenas from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` DiaryEntries.
+     * Skip the first `n` DiarioAutoadvocaciaQuinzenas.
      */
     skip?: number
-    distinct?: DiaryEntryScalarFieldEnum | DiaryEntryScalarFieldEnum[]
+    distinct?: DiarioAutoadvocaciaQuinzenaScalarFieldEnum | DiarioAutoadvocaciaQuinzenaScalarFieldEnum[]
   }
 
   /**
-   * DiaryEntry create
+   * DiarioAutoadvocaciaQuinzena create
    */
-  export type DiaryEntryCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type DiarioAutoadvocaciaQuinzenaCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the DiaryEntry
+     * Select specific fields to fetch from the DiarioAutoadvocaciaQuinzena
      */
-    select?: DiaryEntrySelect<ExtArgs> | null
+    select?: DiarioAutoadvocaciaQuinzenaSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the DiaryEntry
+     * Omit specific fields from the DiarioAutoadvocaciaQuinzena
      */
-    omit?: DiaryEntryOmit<ExtArgs> | null
+    omit?: DiarioAutoadvocaciaQuinzenaOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: DiaryEntryInclude<ExtArgs> | null
+    include?: DiarioAutoadvocaciaQuinzenaInclude<ExtArgs> | null
     /**
-     * The data needed to create a DiaryEntry.
+     * The data needed to create a DiarioAutoadvocaciaQuinzena.
      */
-    data: XOR<DiaryEntryCreateInput, DiaryEntryUncheckedCreateInput>
+    data: XOR<DiarioAutoadvocaciaQuinzenaCreateInput, DiarioAutoadvocaciaQuinzenaUncheckedCreateInput>
   }
 
   /**
-   * DiaryEntry createMany
+   * DiarioAutoadvocaciaQuinzena createMany
    */
-  export type DiaryEntryCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type DiarioAutoadvocaciaQuinzenaCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many DiaryEntries.
+     * The data used to create many DiarioAutoadvocaciaQuinzenas.
      */
-    data: DiaryEntryCreateManyInput | DiaryEntryCreateManyInput[]
+    data: DiarioAutoadvocaciaQuinzenaCreateManyInput | DiarioAutoadvocaciaQuinzenaCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * DiaryEntry createManyAndReturn
+   * DiarioAutoadvocaciaQuinzena createManyAndReturn
    */
-  export type DiaryEntryCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type DiarioAutoadvocaciaQuinzenaCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the DiaryEntry
+     * Select specific fields to fetch from the DiarioAutoadvocaciaQuinzena
      */
-    select?: DiaryEntrySelectCreateManyAndReturn<ExtArgs> | null
+    select?: DiarioAutoadvocaciaQuinzenaSelectCreateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the DiaryEntry
+     * Omit specific fields from the DiarioAutoadvocaciaQuinzena
      */
-    omit?: DiaryEntryOmit<ExtArgs> | null
+    omit?: DiarioAutoadvocaciaQuinzenaOmit<ExtArgs> | null
     /**
-     * The data used to create many DiaryEntries.
+     * The data used to create many DiarioAutoadvocaciaQuinzenas.
      */
-    data: DiaryEntryCreateManyInput | DiaryEntryCreateManyInput[]
+    data: DiarioAutoadvocaciaQuinzenaCreateManyInput | DiarioAutoadvocaciaQuinzenaCreateManyInput[]
     skipDuplicates?: boolean
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: DiaryEntryIncludeCreateManyAndReturn<ExtArgs> | null
+    include?: DiarioAutoadvocaciaQuinzenaIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * DiaryEntry update
+   * DiarioAutoadvocaciaQuinzena update
    */
-  export type DiaryEntryUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type DiarioAutoadvocaciaQuinzenaUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the DiaryEntry
+     * Select specific fields to fetch from the DiarioAutoadvocaciaQuinzena
      */
-    select?: DiaryEntrySelect<ExtArgs> | null
+    select?: DiarioAutoadvocaciaQuinzenaSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the DiaryEntry
+     * Omit specific fields from the DiarioAutoadvocaciaQuinzena
      */
-    omit?: DiaryEntryOmit<ExtArgs> | null
+    omit?: DiarioAutoadvocaciaQuinzenaOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: DiaryEntryInclude<ExtArgs> | null
+    include?: DiarioAutoadvocaciaQuinzenaInclude<ExtArgs> | null
     /**
-     * The data needed to update a DiaryEntry.
+     * The data needed to update a DiarioAutoadvocaciaQuinzena.
      */
-    data: XOR<DiaryEntryUpdateInput, DiaryEntryUncheckedUpdateInput>
+    data: XOR<DiarioAutoadvocaciaQuinzenaUpdateInput, DiarioAutoadvocaciaQuinzenaUncheckedUpdateInput>
     /**
-     * Choose, which DiaryEntry to update.
+     * Choose, which DiarioAutoadvocaciaQuinzena to update.
      */
-    where: DiaryEntryWhereUniqueInput
+    where: DiarioAutoadvocaciaQuinzenaWhereUniqueInput
   }
 
   /**
-   * DiaryEntry updateMany
+   * DiarioAutoadvocaciaQuinzena updateMany
    */
-  export type DiaryEntryUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type DiarioAutoadvocaciaQuinzenaUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update DiaryEntries.
+     * The data used to update DiarioAutoadvocaciaQuinzenas.
      */
-    data: XOR<DiaryEntryUpdateManyMutationInput, DiaryEntryUncheckedUpdateManyInput>
+    data: XOR<DiarioAutoadvocaciaQuinzenaUpdateManyMutationInput, DiarioAutoadvocaciaQuinzenaUncheckedUpdateManyInput>
     /**
-     * Filter which DiaryEntries to update
+     * Filter which DiarioAutoadvocaciaQuinzenas to update
      */
-    where?: DiaryEntryWhereInput
+    where?: DiarioAutoadvocaciaQuinzenaWhereInput
     /**
-     * Limit how many DiaryEntries to update.
+     * Limit how many DiarioAutoadvocaciaQuinzenas to update.
      */
     limit?: number
   }
 
   /**
-   * DiaryEntry updateManyAndReturn
+   * DiarioAutoadvocaciaQuinzena updateManyAndReturn
    */
-  export type DiaryEntryUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type DiarioAutoadvocaciaQuinzenaUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the DiaryEntry
+     * Select specific fields to fetch from the DiarioAutoadvocaciaQuinzena
      */
-    select?: DiaryEntrySelectUpdateManyAndReturn<ExtArgs> | null
+    select?: DiarioAutoadvocaciaQuinzenaSelectUpdateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the DiaryEntry
+     * Omit specific fields from the DiarioAutoadvocaciaQuinzena
      */
-    omit?: DiaryEntryOmit<ExtArgs> | null
+    omit?: DiarioAutoadvocaciaQuinzenaOmit<ExtArgs> | null
     /**
-     * The data used to update DiaryEntries.
+     * The data used to update DiarioAutoadvocaciaQuinzenas.
      */
-    data: XOR<DiaryEntryUpdateManyMutationInput, DiaryEntryUncheckedUpdateManyInput>
+    data: XOR<DiarioAutoadvocaciaQuinzenaUpdateManyMutationInput, DiarioAutoadvocaciaQuinzenaUncheckedUpdateManyInput>
     /**
-     * Filter which DiaryEntries to update
+     * Filter which DiarioAutoadvocaciaQuinzenas to update
      */
-    where?: DiaryEntryWhereInput
+    where?: DiarioAutoadvocaciaQuinzenaWhereInput
     /**
-     * Limit how many DiaryEntries to update.
+     * Limit how many DiarioAutoadvocaciaQuinzenas to update.
      */
     limit?: number
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: DiaryEntryIncludeUpdateManyAndReturn<ExtArgs> | null
+    include?: DiarioAutoadvocaciaQuinzenaIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * DiaryEntry upsert
+   * DiarioAutoadvocaciaQuinzena upsert
    */
-  export type DiaryEntryUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type DiarioAutoadvocaciaQuinzenaUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the DiaryEntry
+     * Select specific fields to fetch from the DiarioAutoadvocaciaQuinzena
      */
-    select?: DiaryEntrySelect<ExtArgs> | null
+    select?: DiarioAutoadvocaciaQuinzenaSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the DiaryEntry
+     * Omit specific fields from the DiarioAutoadvocaciaQuinzena
      */
-    omit?: DiaryEntryOmit<ExtArgs> | null
+    omit?: DiarioAutoadvocaciaQuinzenaOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: DiaryEntryInclude<ExtArgs> | null
+    include?: DiarioAutoadvocaciaQuinzenaInclude<ExtArgs> | null
     /**
-     * The filter to search for the DiaryEntry to update in case it exists.
+     * The filter to search for the DiarioAutoadvocaciaQuinzena to update in case it exists.
      */
-    where: DiaryEntryWhereUniqueInput
+    where: DiarioAutoadvocaciaQuinzenaWhereUniqueInput
     /**
-     * In case the DiaryEntry found by the `where` argument doesn't exist, create a new DiaryEntry with this data.
+     * In case the DiarioAutoadvocaciaQuinzena found by the `where` argument doesn't exist, create a new DiarioAutoadvocaciaQuinzena with this data.
      */
-    create: XOR<DiaryEntryCreateInput, DiaryEntryUncheckedCreateInput>
+    create: XOR<DiarioAutoadvocaciaQuinzenaCreateInput, DiarioAutoadvocaciaQuinzenaUncheckedCreateInput>
     /**
-     * In case the DiaryEntry was found with the provided `where` argument, update it with this data.
+     * In case the DiarioAutoadvocaciaQuinzena was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<DiaryEntryUpdateInput, DiaryEntryUncheckedUpdateInput>
+    update: XOR<DiarioAutoadvocaciaQuinzenaUpdateInput, DiarioAutoadvocaciaQuinzenaUncheckedUpdateInput>
   }
 
   /**
-   * DiaryEntry delete
+   * DiarioAutoadvocaciaQuinzena delete
    */
-  export type DiaryEntryDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type DiarioAutoadvocaciaQuinzenaDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the DiaryEntry
+     * Select specific fields to fetch from the DiarioAutoadvocaciaQuinzena
      */
-    select?: DiaryEntrySelect<ExtArgs> | null
+    select?: DiarioAutoadvocaciaQuinzenaSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the DiaryEntry
+     * Omit specific fields from the DiarioAutoadvocaciaQuinzena
      */
-    omit?: DiaryEntryOmit<ExtArgs> | null
+    omit?: DiarioAutoadvocaciaQuinzenaOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: DiaryEntryInclude<ExtArgs> | null
+    include?: DiarioAutoadvocaciaQuinzenaInclude<ExtArgs> | null
     /**
-     * Filter which DiaryEntry to delete.
+     * Filter which DiarioAutoadvocaciaQuinzena to delete.
      */
-    where: DiaryEntryWhereUniqueInput
+    where: DiarioAutoadvocaciaQuinzenaWhereUniqueInput
   }
 
   /**
-   * DiaryEntry deleteMany
+   * DiarioAutoadvocaciaQuinzena deleteMany
    */
-  export type DiaryEntryDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type DiarioAutoadvocaciaQuinzenaDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which DiaryEntries to delete
+     * Filter which DiarioAutoadvocaciaQuinzenas to delete
      */
-    where?: DiaryEntryWhereInput
+    where?: DiarioAutoadvocaciaQuinzenaWhereInput
     /**
-     * Limit how many DiaryEntries to delete.
+     * Limit how many DiarioAutoadvocaciaQuinzenas to delete.
      */
     limit?: number
   }
 
   /**
-   * DiaryEntry.answers
+   * DiarioAutoadvocaciaQuinzena without action
    */
-  export type DiaryEntry$answersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type DiarioAutoadvocaciaQuinzenaDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the DiaryAnswer
+     * Select specific fields to fetch from the DiarioAutoadvocaciaQuinzena
      */
-    select?: DiaryAnswerSelect<ExtArgs> | null
+    select?: DiarioAutoadvocaciaQuinzenaSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the DiaryAnswer
+     * Omit specific fields from the DiarioAutoadvocaciaQuinzena
      */
-    omit?: DiaryAnswerOmit<ExtArgs> | null
+    omit?: DiarioAutoadvocaciaQuinzenaOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: DiaryAnswerInclude<ExtArgs> | null
-    where?: DiaryAnswerWhereInput
-    orderBy?: DiaryAnswerOrderByWithRelationInput | DiaryAnswerOrderByWithRelationInput[]
-    cursor?: DiaryAnswerWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: DiaryAnswerScalarFieldEnum | DiaryAnswerScalarFieldEnum[]
-  }
-
-  /**
-   * DiaryEntry without action
-   */
-  export type DiaryEntryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the DiaryEntry
-     */
-    select?: DiaryEntrySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the DiaryEntry
-     */
-    omit?: DiaryEntryOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: DiaryEntryInclude<ExtArgs> | null
-  }
-
-
-  /**
-   * Model DiaryAnswer
-   */
-
-  export type AggregateDiaryAnswer = {
-    _count: DiaryAnswerCountAggregateOutputType | null
-    _min: DiaryAnswerMinAggregateOutputType | null
-    _max: DiaryAnswerMaxAggregateOutputType | null
-  }
-
-  export type DiaryAnswerMinAggregateOutputType = {
-    id: string | null
-    entryId: string | null
-    questionId: string | null
-    texto: string | null
-    createdAt: Date | null
-    updatedAt: Date | null
-  }
-
-  export type DiaryAnswerMaxAggregateOutputType = {
-    id: string | null
-    entryId: string | null
-    questionId: string | null
-    texto: string | null
-    createdAt: Date | null
-    updatedAt: Date | null
-  }
-
-  export type DiaryAnswerCountAggregateOutputType = {
-    id: number
-    entryId: number
-    questionId: number
-    texto: number
-    createdAt: number
-    updatedAt: number
-    _all: number
-  }
-
-
-  export type DiaryAnswerMinAggregateInputType = {
-    id?: true
-    entryId?: true
-    questionId?: true
-    texto?: true
-    createdAt?: true
-    updatedAt?: true
-  }
-
-  export type DiaryAnswerMaxAggregateInputType = {
-    id?: true
-    entryId?: true
-    questionId?: true
-    texto?: true
-    createdAt?: true
-    updatedAt?: true
-  }
-
-  export type DiaryAnswerCountAggregateInputType = {
-    id?: true
-    entryId?: true
-    questionId?: true
-    texto?: true
-    createdAt?: true
-    updatedAt?: true
-    _all?: true
-  }
-
-  export type DiaryAnswerAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which DiaryAnswer to aggregate.
-     */
-    where?: DiaryAnswerWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of DiaryAnswers to fetch.
-     */
-    orderBy?: DiaryAnswerOrderByWithRelationInput | DiaryAnswerOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: DiaryAnswerWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` DiaryAnswers from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` DiaryAnswers.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned DiaryAnswers
-    **/
-    _count?: true | DiaryAnswerCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: DiaryAnswerMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: DiaryAnswerMaxAggregateInputType
-  }
-
-  export type GetDiaryAnswerAggregateType<T extends DiaryAnswerAggregateArgs> = {
-        [P in keyof T & keyof AggregateDiaryAnswer]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateDiaryAnswer[P]>
-      : GetScalarType<T[P], AggregateDiaryAnswer[P]>
-  }
-
-
-
-
-  export type DiaryAnswerGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: DiaryAnswerWhereInput
-    orderBy?: DiaryAnswerOrderByWithAggregationInput | DiaryAnswerOrderByWithAggregationInput[]
-    by: DiaryAnswerScalarFieldEnum[] | DiaryAnswerScalarFieldEnum
-    having?: DiaryAnswerScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: DiaryAnswerCountAggregateInputType | true
-    _min?: DiaryAnswerMinAggregateInputType
-    _max?: DiaryAnswerMaxAggregateInputType
-  }
-
-  export type DiaryAnswerGroupByOutputType = {
-    id: string
-    entryId: string
-    questionId: string
-    texto: string
-    createdAt: Date
-    updatedAt: Date
-    _count: DiaryAnswerCountAggregateOutputType | null
-    _min: DiaryAnswerMinAggregateOutputType | null
-    _max: DiaryAnswerMaxAggregateOutputType | null
-  }
-
-  type GetDiaryAnswerGroupByPayload<T extends DiaryAnswerGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<DiaryAnswerGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof DiaryAnswerGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], DiaryAnswerGroupByOutputType[P]>
-            : GetScalarType<T[P], DiaryAnswerGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type DiaryAnswerSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    entryId?: boolean
-    questionId?: boolean
-    texto?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    entry?: boolean | DiaryEntryDefaultArgs<ExtArgs>
-    question?: boolean | QuestionDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["diaryAnswer"]>
-
-  export type DiaryAnswerSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    entryId?: boolean
-    questionId?: boolean
-    texto?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    entry?: boolean | DiaryEntryDefaultArgs<ExtArgs>
-    question?: boolean | QuestionDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["diaryAnswer"]>
-
-  export type DiaryAnswerSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    entryId?: boolean
-    questionId?: boolean
-    texto?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    entry?: boolean | DiaryEntryDefaultArgs<ExtArgs>
-    question?: boolean | QuestionDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["diaryAnswer"]>
-
-  export type DiaryAnswerSelectScalar = {
-    id?: boolean
-    entryId?: boolean
-    questionId?: boolean
-    texto?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-  }
-
-  export type DiaryAnswerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "entryId" | "questionId" | "texto" | "createdAt" | "updatedAt", ExtArgs["result"]["diaryAnswer"]>
-  export type DiaryAnswerInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    entry?: boolean | DiaryEntryDefaultArgs<ExtArgs>
-    question?: boolean | QuestionDefaultArgs<ExtArgs>
-  }
-  export type DiaryAnswerIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    entry?: boolean | DiaryEntryDefaultArgs<ExtArgs>
-    question?: boolean | QuestionDefaultArgs<ExtArgs>
-  }
-  export type DiaryAnswerIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    entry?: boolean | DiaryEntryDefaultArgs<ExtArgs>
-    question?: boolean | QuestionDefaultArgs<ExtArgs>
-  }
-
-  export type $DiaryAnswerPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "DiaryAnswer"
-    objects: {
-      entry: Prisma.$DiaryEntryPayload<ExtArgs>
-      question: Prisma.$QuestionPayload<ExtArgs>
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: string
-      entryId: string
-      questionId: string
-      texto: string
-      createdAt: Date
-      updatedAt: Date
-    }, ExtArgs["result"]["diaryAnswer"]>
-    composites: {}
-  }
-
-  type DiaryAnswerGetPayload<S extends boolean | null | undefined | DiaryAnswerDefaultArgs> = $Result.GetResult<Prisma.$DiaryAnswerPayload, S>
-
-  type DiaryAnswerCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<DiaryAnswerFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: DiaryAnswerCountAggregateInputType | true
-    }
-
-  export interface DiaryAnswerDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['DiaryAnswer'], meta: { name: 'DiaryAnswer' } }
-    /**
-     * Find zero or one DiaryAnswer that matches the filter.
-     * @param {DiaryAnswerFindUniqueArgs} args - Arguments to find a DiaryAnswer
-     * @example
-     * // Get one DiaryAnswer
-     * const diaryAnswer = await prisma.diaryAnswer.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends DiaryAnswerFindUniqueArgs>(args: SelectSubset<T, DiaryAnswerFindUniqueArgs<ExtArgs>>): Prisma__DiaryAnswerClient<$Result.GetResult<Prisma.$DiaryAnswerPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one DiaryAnswer that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {DiaryAnswerFindUniqueOrThrowArgs} args - Arguments to find a DiaryAnswer
-     * @example
-     * // Get one DiaryAnswer
-     * const diaryAnswer = await prisma.diaryAnswer.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends DiaryAnswerFindUniqueOrThrowArgs>(args: SelectSubset<T, DiaryAnswerFindUniqueOrThrowArgs<ExtArgs>>): Prisma__DiaryAnswerClient<$Result.GetResult<Prisma.$DiaryAnswerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first DiaryAnswer that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {DiaryAnswerFindFirstArgs} args - Arguments to find a DiaryAnswer
-     * @example
-     * // Get one DiaryAnswer
-     * const diaryAnswer = await prisma.diaryAnswer.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends DiaryAnswerFindFirstArgs>(args?: SelectSubset<T, DiaryAnswerFindFirstArgs<ExtArgs>>): Prisma__DiaryAnswerClient<$Result.GetResult<Prisma.$DiaryAnswerPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first DiaryAnswer that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {DiaryAnswerFindFirstOrThrowArgs} args - Arguments to find a DiaryAnswer
-     * @example
-     * // Get one DiaryAnswer
-     * const diaryAnswer = await prisma.diaryAnswer.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends DiaryAnswerFindFirstOrThrowArgs>(args?: SelectSubset<T, DiaryAnswerFindFirstOrThrowArgs<ExtArgs>>): Prisma__DiaryAnswerClient<$Result.GetResult<Prisma.$DiaryAnswerPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more DiaryAnswers that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {DiaryAnswerFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all DiaryAnswers
-     * const diaryAnswers = await prisma.diaryAnswer.findMany()
-     * 
-     * // Get first 10 DiaryAnswers
-     * const diaryAnswers = await prisma.diaryAnswer.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const diaryAnswerWithIdOnly = await prisma.diaryAnswer.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends DiaryAnswerFindManyArgs>(args?: SelectSubset<T, DiaryAnswerFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DiaryAnswerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a DiaryAnswer.
-     * @param {DiaryAnswerCreateArgs} args - Arguments to create a DiaryAnswer.
-     * @example
-     * // Create one DiaryAnswer
-     * const DiaryAnswer = await prisma.diaryAnswer.create({
-     *   data: {
-     *     // ... data to create a DiaryAnswer
-     *   }
-     * })
-     * 
-     */
-    create<T extends DiaryAnswerCreateArgs>(args: SelectSubset<T, DiaryAnswerCreateArgs<ExtArgs>>): Prisma__DiaryAnswerClient<$Result.GetResult<Prisma.$DiaryAnswerPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many DiaryAnswers.
-     * @param {DiaryAnswerCreateManyArgs} args - Arguments to create many DiaryAnswers.
-     * @example
-     * // Create many DiaryAnswers
-     * const diaryAnswer = await prisma.diaryAnswer.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends DiaryAnswerCreateManyArgs>(args?: SelectSubset<T, DiaryAnswerCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many DiaryAnswers and returns the data saved in the database.
-     * @param {DiaryAnswerCreateManyAndReturnArgs} args - Arguments to create many DiaryAnswers.
-     * @example
-     * // Create many DiaryAnswers
-     * const diaryAnswer = await prisma.diaryAnswer.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many DiaryAnswers and only return the `id`
-     * const diaryAnswerWithIdOnly = await prisma.diaryAnswer.createManyAndReturn({
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends DiaryAnswerCreateManyAndReturnArgs>(args?: SelectSubset<T, DiaryAnswerCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DiaryAnswerPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Delete a DiaryAnswer.
-     * @param {DiaryAnswerDeleteArgs} args - Arguments to delete one DiaryAnswer.
-     * @example
-     * // Delete one DiaryAnswer
-     * const DiaryAnswer = await prisma.diaryAnswer.delete({
-     *   where: {
-     *     // ... filter to delete one DiaryAnswer
-     *   }
-     * })
-     * 
-     */
-    delete<T extends DiaryAnswerDeleteArgs>(args: SelectSubset<T, DiaryAnswerDeleteArgs<ExtArgs>>): Prisma__DiaryAnswerClient<$Result.GetResult<Prisma.$DiaryAnswerPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one DiaryAnswer.
-     * @param {DiaryAnswerUpdateArgs} args - Arguments to update one DiaryAnswer.
-     * @example
-     * // Update one DiaryAnswer
-     * const diaryAnswer = await prisma.diaryAnswer.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends DiaryAnswerUpdateArgs>(args: SelectSubset<T, DiaryAnswerUpdateArgs<ExtArgs>>): Prisma__DiaryAnswerClient<$Result.GetResult<Prisma.$DiaryAnswerPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more DiaryAnswers.
-     * @param {DiaryAnswerDeleteManyArgs} args - Arguments to filter DiaryAnswers to delete.
-     * @example
-     * // Delete a few DiaryAnswers
-     * const { count } = await prisma.diaryAnswer.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends DiaryAnswerDeleteManyArgs>(args?: SelectSubset<T, DiaryAnswerDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more DiaryAnswers.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {DiaryAnswerUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many DiaryAnswers
-     * const diaryAnswer = await prisma.diaryAnswer.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends DiaryAnswerUpdateManyArgs>(args: SelectSubset<T, DiaryAnswerUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more DiaryAnswers and returns the data updated in the database.
-     * @param {DiaryAnswerUpdateManyAndReturnArgs} args - Arguments to update many DiaryAnswers.
-     * @example
-     * // Update many DiaryAnswers
-     * const diaryAnswer = await prisma.diaryAnswer.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more DiaryAnswers and only return the `id`
-     * const diaryAnswerWithIdOnly = await prisma.diaryAnswer.updateManyAndReturn({
-     *   select: { id: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends DiaryAnswerUpdateManyAndReturnArgs>(args: SelectSubset<T, DiaryAnswerUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DiaryAnswerPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Create or update one DiaryAnswer.
-     * @param {DiaryAnswerUpsertArgs} args - Arguments to update or create a DiaryAnswer.
-     * @example
-     * // Update or create a DiaryAnswer
-     * const diaryAnswer = await prisma.diaryAnswer.upsert({
-     *   create: {
-     *     // ... data to create a DiaryAnswer
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the DiaryAnswer we want to update
-     *   }
-     * })
-     */
-    upsert<T extends DiaryAnswerUpsertArgs>(args: SelectSubset<T, DiaryAnswerUpsertArgs<ExtArgs>>): Prisma__DiaryAnswerClient<$Result.GetResult<Prisma.$DiaryAnswerPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of DiaryAnswers.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {DiaryAnswerCountArgs} args - Arguments to filter DiaryAnswers to count.
-     * @example
-     * // Count the number of DiaryAnswers
-     * const count = await prisma.diaryAnswer.count({
-     *   where: {
-     *     // ... the filter for the DiaryAnswers we want to count
-     *   }
-     * })
-    **/
-    count<T extends DiaryAnswerCountArgs>(
-      args?: Subset<T, DiaryAnswerCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], DiaryAnswerCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a DiaryAnswer.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {DiaryAnswerAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends DiaryAnswerAggregateArgs>(args: Subset<T, DiaryAnswerAggregateArgs>): Prisma.PrismaPromise<GetDiaryAnswerAggregateType<T>>
-
-    /**
-     * Group by DiaryAnswer.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {DiaryAnswerGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends DiaryAnswerGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: DiaryAnswerGroupByArgs['orderBy'] }
-        : { orderBy?: DiaryAnswerGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, DiaryAnswerGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetDiaryAnswerGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the DiaryAnswer model
-   */
-  readonly fields: DiaryAnswerFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for DiaryAnswer.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__DiaryAnswerClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    entry<T extends DiaryEntryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, DiaryEntryDefaultArgs<ExtArgs>>): Prisma__DiaryEntryClient<$Result.GetResult<Prisma.$DiaryEntryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    question<T extends QuestionDefaultArgs<ExtArgs> = {}>(args?: Subset<T, QuestionDefaultArgs<ExtArgs>>): Prisma__QuestionClient<$Result.GetResult<Prisma.$QuestionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the DiaryAnswer model
-   */
-  interface DiaryAnswerFieldRefs {
-    readonly id: FieldRef<"DiaryAnswer", 'String'>
-    readonly entryId: FieldRef<"DiaryAnswer", 'String'>
-    readonly questionId: FieldRef<"DiaryAnswer", 'String'>
-    readonly texto: FieldRef<"DiaryAnswer", 'String'>
-    readonly createdAt: FieldRef<"DiaryAnswer", 'DateTime'>
-    readonly updatedAt: FieldRef<"DiaryAnswer", 'DateTime'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * DiaryAnswer findUnique
-   */
-  export type DiaryAnswerFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the DiaryAnswer
-     */
-    select?: DiaryAnswerSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the DiaryAnswer
-     */
-    omit?: DiaryAnswerOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: DiaryAnswerInclude<ExtArgs> | null
-    /**
-     * Filter, which DiaryAnswer to fetch.
-     */
-    where: DiaryAnswerWhereUniqueInput
-  }
-
-  /**
-   * DiaryAnswer findUniqueOrThrow
-   */
-  export type DiaryAnswerFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the DiaryAnswer
-     */
-    select?: DiaryAnswerSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the DiaryAnswer
-     */
-    omit?: DiaryAnswerOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: DiaryAnswerInclude<ExtArgs> | null
-    /**
-     * Filter, which DiaryAnswer to fetch.
-     */
-    where: DiaryAnswerWhereUniqueInput
-  }
-
-  /**
-   * DiaryAnswer findFirst
-   */
-  export type DiaryAnswerFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the DiaryAnswer
-     */
-    select?: DiaryAnswerSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the DiaryAnswer
-     */
-    omit?: DiaryAnswerOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: DiaryAnswerInclude<ExtArgs> | null
-    /**
-     * Filter, which DiaryAnswer to fetch.
-     */
-    where?: DiaryAnswerWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of DiaryAnswers to fetch.
-     */
-    orderBy?: DiaryAnswerOrderByWithRelationInput | DiaryAnswerOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for DiaryAnswers.
-     */
-    cursor?: DiaryAnswerWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` DiaryAnswers from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` DiaryAnswers.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of DiaryAnswers.
-     */
-    distinct?: DiaryAnswerScalarFieldEnum | DiaryAnswerScalarFieldEnum[]
-  }
-
-  /**
-   * DiaryAnswer findFirstOrThrow
-   */
-  export type DiaryAnswerFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the DiaryAnswer
-     */
-    select?: DiaryAnswerSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the DiaryAnswer
-     */
-    omit?: DiaryAnswerOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: DiaryAnswerInclude<ExtArgs> | null
-    /**
-     * Filter, which DiaryAnswer to fetch.
-     */
-    where?: DiaryAnswerWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of DiaryAnswers to fetch.
-     */
-    orderBy?: DiaryAnswerOrderByWithRelationInput | DiaryAnswerOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for DiaryAnswers.
-     */
-    cursor?: DiaryAnswerWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` DiaryAnswers from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` DiaryAnswers.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of DiaryAnswers.
-     */
-    distinct?: DiaryAnswerScalarFieldEnum | DiaryAnswerScalarFieldEnum[]
-  }
-
-  /**
-   * DiaryAnswer findMany
-   */
-  export type DiaryAnswerFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the DiaryAnswer
-     */
-    select?: DiaryAnswerSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the DiaryAnswer
-     */
-    omit?: DiaryAnswerOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: DiaryAnswerInclude<ExtArgs> | null
-    /**
-     * Filter, which DiaryAnswers to fetch.
-     */
-    where?: DiaryAnswerWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of DiaryAnswers to fetch.
-     */
-    orderBy?: DiaryAnswerOrderByWithRelationInput | DiaryAnswerOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing DiaryAnswers.
-     */
-    cursor?: DiaryAnswerWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` DiaryAnswers from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` DiaryAnswers.
-     */
-    skip?: number
-    distinct?: DiaryAnswerScalarFieldEnum | DiaryAnswerScalarFieldEnum[]
-  }
-
-  /**
-   * DiaryAnswer create
-   */
-  export type DiaryAnswerCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the DiaryAnswer
-     */
-    select?: DiaryAnswerSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the DiaryAnswer
-     */
-    omit?: DiaryAnswerOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: DiaryAnswerInclude<ExtArgs> | null
-    /**
-     * The data needed to create a DiaryAnswer.
-     */
-    data: XOR<DiaryAnswerCreateInput, DiaryAnswerUncheckedCreateInput>
-  }
-
-  /**
-   * DiaryAnswer createMany
-   */
-  export type DiaryAnswerCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many DiaryAnswers.
-     */
-    data: DiaryAnswerCreateManyInput | DiaryAnswerCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * DiaryAnswer createManyAndReturn
-   */
-  export type DiaryAnswerCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the DiaryAnswer
-     */
-    select?: DiaryAnswerSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the DiaryAnswer
-     */
-    omit?: DiaryAnswerOmit<ExtArgs> | null
-    /**
-     * The data used to create many DiaryAnswers.
-     */
-    data: DiaryAnswerCreateManyInput | DiaryAnswerCreateManyInput[]
-    skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: DiaryAnswerIncludeCreateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * DiaryAnswer update
-   */
-  export type DiaryAnswerUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the DiaryAnswer
-     */
-    select?: DiaryAnswerSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the DiaryAnswer
-     */
-    omit?: DiaryAnswerOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: DiaryAnswerInclude<ExtArgs> | null
-    /**
-     * The data needed to update a DiaryAnswer.
-     */
-    data: XOR<DiaryAnswerUpdateInput, DiaryAnswerUncheckedUpdateInput>
-    /**
-     * Choose, which DiaryAnswer to update.
-     */
-    where: DiaryAnswerWhereUniqueInput
-  }
-
-  /**
-   * DiaryAnswer updateMany
-   */
-  export type DiaryAnswerUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update DiaryAnswers.
-     */
-    data: XOR<DiaryAnswerUpdateManyMutationInput, DiaryAnswerUncheckedUpdateManyInput>
-    /**
-     * Filter which DiaryAnswers to update
-     */
-    where?: DiaryAnswerWhereInput
-    /**
-     * Limit how many DiaryAnswers to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * DiaryAnswer updateManyAndReturn
-   */
-  export type DiaryAnswerUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the DiaryAnswer
-     */
-    select?: DiaryAnswerSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the DiaryAnswer
-     */
-    omit?: DiaryAnswerOmit<ExtArgs> | null
-    /**
-     * The data used to update DiaryAnswers.
-     */
-    data: XOR<DiaryAnswerUpdateManyMutationInput, DiaryAnswerUncheckedUpdateManyInput>
-    /**
-     * Filter which DiaryAnswers to update
-     */
-    where?: DiaryAnswerWhereInput
-    /**
-     * Limit how many DiaryAnswers to update.
-     */
-    limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: DiaryAnswerIncludeUpdateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * DiaryAnswer upsert
-   */
-  export type DiaryAnswerUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the DiaryAnswer
-     */
-    select?: DiaryAnswerSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the DiaryAnswer
-     */
-    omit?: DiaryAnswerOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: DiaryAnswerInclude<ExtArgs> | null
-    /**
-     * The filter to search for the DiaryAnswer to update in case it exists.
-     */
-    where: DiaryAnswerWhereUniqueInput
-    /**
-     * In case the DiaryAnswer found by the `where` argument doesn't exist, create a new DiaryAnswer with this data.
-     */
-    create: XOR<DiaryAnswerCreateInput, DiaryAnswerUncheckedCreateInput>
-    /**
-     * In case the DiaryAnswer was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<DiaryAnswerUpdateInput, DiaryAnswerUncheckedUpdateInput>
-  }
-
-  /**
-   * DiaryAnswer delete
-   */
-  export type DiaryAnswerDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the DiaryAnswer
-     */
-    select?: DiaryAnswerSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the DiaryAnswer
-     */
-    omit?: DiaryAnswerOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: DiaryAnswerInclude<ExtArgs> | null
-    /**
-     * Filter which DiaryAnswer to delete.
-     */
-    where: DiaryAnswerWhereUniqueInput
-  }
-
-  /**
-   * DiaryAnswer deleteMany
-   */
-  export type DiaryAnswerDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which DiaryAnswers to delete
-     */
-    where?: DiaryAnswerWhereInput
-    /**
-     * Limit how many DiaryAnswers to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * DiaryAnswer without action
-   */
-  export type DiaryAnswerDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the DiaryAnswer
-     */
-    select?: DiaryAnswerSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the DiaryAnswer
-     */
-    omit?: DiaryAnswerOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: DiaryAnswerInclude<ExtArgs> | null
+    include?: DiarioAutoadvocaciaQuinzenaInclude<ExtArgs> | null
   }
 
 
@@ -27344,6 +26322,7 @@ export namespace Prisma {
     name: 'name',
     password: 'password',
     role: 'role',
+    sessionVersion: 'sessionVersion',
     profileRegistration: 'profileRegistration',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -27365,40 +26344,42 @@ export namespace Prisma {
   export type PostScalarFieldEnum = (typeof PostScalarFieldEnum)[keyof typeof PostScalarFieldEnum]
 
 
-  export const QuestionScalarFieldEnum: {
+  export const DiarioPaginaScalarFieldEnum: {
     id: 'id',
-    texto: 'texto',
+    userId: 'userId',
+    tipo: 'tipo',
+    quadrante: 'quadrante',
+    tipoTraco: 'tipoTraco',
+    numeroTraco: 'numeroTraco',
+    tituloTraco: 'tituloTraco',
+    chave: 'chave',
     ordem: 'ordem',
-    ativo: 'ativo',
-    userId: 'userId',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
-  };
-
-  export type QuestionScalarFieldEnum = (typeof QuestionScalarFieldEnum)[keyof typeof QuestionScalarFieldEnum]
-
-
-  export const DiaryEntryScalarFieldEnum: {
-    id: 'id',
-    userId: 'userId',
-    date: 'date',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
-  };
-
-  export type DiaryEntryScalarFieldEnum = (typeof DiaryEntryScalarFieldEnum)[keyof typeof DiaryEntryScalarFieldEnum]
-
-
-  export const DiaryAnswerScalarFieldEnum: {
-    id: 'id',
-    entryId: 'entryId',
-    questionId: 'questionId',
     texto: 'texto',
+    concluida: 'concluida',
+    desbloqueada: 'desbloqueada',
+    arquivada: 'arquivada',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
 
-  export type DiaryAnswerScalarFieldEnum = (typeof DiaryAnswerScalarFieldEnum)[keyof typeof DiaryAnswerScalarFieldEnum]
+  export type DiarioPaginaScalarFieldEnum = (typeof DiarioPaginaScalarFieldEnum)[keyof typeof DiarioPaginaScalarFieldEnum]
+
+
+  export const DiarioAutoadvocaciaQuinzenaScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    numero: 'numero',
+    rotulo: 'rotulo',
+    inicio: 'inicio',
+    fim: 'fim',
+    resposta1: 'resposta1',
+    resposta2: 'resposta2',
+    concluida: 'concluida',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type DiarioAutoadvocaciaQuinzenaScalarFieldEnum = (typeof DiarioAutoadvocaciaQuinzenaScalarFieldEnum)[keyof typeof DiarioAutoadvocaciaQuinzenaScalarFieldEnum]
 
 
   export const FraquezasAmeacasShScalarFieldEnum: {
@@ -27718,6 +26699,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Int'
+   */
+  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+    
+
+
+  /**
+   * Reference to a field of type 'Int[]'
+   */
+  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+  /**
    * Reference to a field of type 'Json'
    */
   export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
@@ -27742,20 +26737,6 @@ export namespace Prisma {
    * Reference to a field of type 'DateTime[]'
    */
   export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
-    
-
-
-  /**
-   * Reference to a field of type 'Int'
-   */
-  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
-    
-
-
-  /**
-   * Reference to a field of type 'Int[]'
-   */
-  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
     
 
 
@@ -27792,14 +26773,15 @@ export namespace Prisma {
     name?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
     role?: EnumUserRoleFilter<"User"> | $Enums.UserRole
+    sessionVersion?: IntFilter<"User"> | number
     profileRegistration?: JsonNullableFilter<"User">
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     posts?: PostListRelationFilter
-    questions?: QuestionListRelationFilter
-    diaryEntries?: DiaryEntryListRelationFilter
     questionarioRespostas?: QuestionarioRespostaListRelationFilter
     reflexoesTraco?: ReflexaoTracoListRelationFilter
+    diarioPaginas?: DiarioPaginaListRelationFilter
+    diarioAutoadvocaciaQuinzenas?: DiarioAutoadvocaciaQuinzenaListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -27808,14 +26790,15 @@ export namespace Prisma {
     name?: SortOrder
     password?: SortOrder
     role?: SortOrder
+    sessionVersion?: SortOrder
     profileRegistration?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     posts?: PostOrderByRelationAggregateInput
-    questions?: QuestionOrderByRelationAggregateInput
-    diaryEntries?: DiaryEntryOrderByRelationAggregateInput
     questionarioRespostas?: QuestionarioRespostaOrderByRelationAggregateInput
     reflexoesTraco?: ReflexaoTracoOrderByRelationAggregateInput
+    diarioPaginas?: DiarioPaginaOrderByRelationAggregateInput
+    diarioAutoadvocaciaQuinzenas?: DiarioAutoadvocaciaQuinzenaOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -27827,14 +26810,15 @@ export namespace Prisma {
     name?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
     role?: EnumUserRoleFilter<"User"> | $Enums.UserRole
+    sessionVersion?: IntFilter<"User"> | number
     profileRegistration?: JsonNullableFilter<"User">
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     posts?: PostListRelationFilter
-    questions?: QuestionListRelationFilter
-    diaryEntries?: DiaryEntryListRelationFilter
     questionarioRespostas?: QuestionarioRespostaListRelationFilter
     reflexoesTraco?: ReflexaoTracoListRelationFilter
+    diarioPaginas?: DiarioPaginaListRelationFilter
+    diarioAutoadvocaciaQuinzenas?: DiarioAutoadvocaciaQuinzenaListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -27843,12 +26827,15 @@ export namespace Prisma {
     name?: SortOrder
     password?: SortOrder
     role?: SortOrder
+    sessionVersion?: SortOrder
     profileRegistration?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: UserCountOrderByAggregateInput
+    _avg?: UserAvgOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
     _min?: UserMinOrderByAggregateInput
+    _sum?: UserSumOrderByAggregateInput
   }
 
   export type UserScalarWhereWithAggregatesInput = {
@@ -27860,6 +26847,7 @@ export namespace Prisma {
     name?: StringWithAggregatesFilter<"User"> | string
     password?: StringWithAggregatesFilter<"User"> | string
     role?: EnumUserRoleWithAggregatesFilter<"User"> | $Enums.UserRole
+    sessionVersion?: IntWithAggregatesFilter<"User"> | number
     profileRegistration?: JsonNullableWithAggregatesFilter<"User">
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
@@ -27930,197 +26918,200 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"Post"> | Date | string
   }
 
-  export type QuestionWhereInput = {
-    AND?: QuestionWhereInput | QuestionWhereInput[]
-    OR?: QuestionWhereInput[]
-    NOT?: QuestionWhereInput | QuestionWhereInput[]
-    id?: StringFilter<"Question"> | string
-    texto?: StringFilter<"Question"> | string
-    ordem?: IntFilter<"Question"> | number
-    ativo?: BoolFilter<"Question"> | boolean
-    userId?: StringFilter<"Question"> | string
-    createdAt?: DateTimeFilter<"Question"> | Date | string
-    updatedAt?: DateTimeFilter<"Question"> | Date | string
+  export type DiarioPaginaWhereInput = {
+    AND?: DiarioPaginaWhereInput | DiarioPaginaWhereInput[]
+    OR?: DiarioPaginaWhereInput[]
+    NOT?: DiarioPaginaWhereInput | DiarioPaginaWhereInput[]
+    id?: StringFilter<"DiarioPagina"> | string
+    userId?: StringFilter<"DiarioPagina"> | string
+    tipo?: StringFilter<"DiarioPagina"> | string
+    quadrante?: StringNullableFilter<"DiarioPagina"> | string | null
+    tipoTraco?: StringNullableFilter<"DiarioPagina"> | string | null
+    numeroTraco?: IntNullableFilter<"DiarioPagina"> | number | null
+    tituloTraco?: StringNullableFilter<"DiarioPagina"> | string | null
+    chave?: StringFilter<"DiarioPagina"> | string
+    ordem?: IntFilter<"DiarioPagina"> | number
+    texto?: StringFilter<"DiarioPagina"> | string
+    concluida?: BoolFilter<"DiarioPagina"> | boolean
+    desbloqueada?: BoolFilter<"DiarioPagina"> | boolean
+    arquivada?: BoolFilter<"DiarioPagina"> | boolean
+    createdAt?: DateTimeFilter<"DiarioPagina"> | Date | string
+    updatedAt?: DateTimeFilter<"DiarioPagina"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
-    answers?: DiaryAnswerListRelationFilter
   }
 
-  export type QuestionOrderByWithRelationInput = {
+  export type DiarioPaginaOrderByWithRelationInput = {
     id?: SortOrder
-    texto?: SortOrder
-    ordem?: SortOrder
-    ativo?: SortOrder
     userId?: SortOrder
+    tipo?: SortOrder
+    quadrante?: SortOrderInput | SortOrder
+    tipoTraco?: SortOrderInput | SortOrder
+    numeroTraco?: SortOrderInput | SortOrder
+    tituloTraco?: SortOrderInput | SortOrder
+    chave?: SortOrder
+    ordem?: SortOrder
+    texto?: SortOrder
+    concluida?: SortOrder
+    desbloqueada?: SortOrder
+    arquivada?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     user?: UserOrderByWithRelationInput
-    answers?: DiaryAnswerOrderByRelationAggregateInput
   }
 
-  export type QuestionWhereUniqueInput = Prisma.AtLeast<{
+  export type DiarioPaginaWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    AND?: QuestionWhereInput | QuestionWhereInput[]
-    OR?: QuestionWhereInput[]
-    NOT?: QuestionWhereInput | QuestionWhereInput[]
-    texto?: StringFilter<"Question"> | string
-    ordem?: IntFilter<"Question"> | number
-    ativo?: BoolFilter<"Question"> | boolean
-    userId?: StringFilter<"Question"> | string
-    createdAt?: DateTimeFilter<"Question"> | Date | string
-    updatedAt?: DateTimeFilter<"Question"> | Date | string
+    userId_chave?: DiarioPaginaUserIdChaveCompoundUniqueInput
+    AND?: DiarioPaginaWhereInput | DiarioPaginaWhereInput[]
+    OR?: DiarioPaginaWhereInput[]
+    NOT?: DiarioPaginaWhereInput | DiarioPaginaWhereInput[]
+    userId?: StringFilter<"DiarioPagina"> | string
+    tipo?: StringFilter<"DiarioPagina"> | string
+    quadrante?: StringNullableFilter<"DiarioPagina"> | string | null
+    tipoTraco?: StringNullableFilter<"DiarioPagina"> | string | null
+    numeroTraco?: IntNullableFilter<"DiarioPagina"> | number | null
+    tituloTraco?: StringNullableFilter<"DiarioPagina"> | string | null
+    chave?: StringFilter<"DiarioPagina"> | string
+    ordem?: IntFilter<"DiarioPagina"> | number
+    texto?: StringFilter<"DiarioPagina"> | string
+    concluida?: BoolFilter<"DiarioPagina"> | boolean
+    desbloqueada?: BoolFilter<"DiarioPagina"> | boolean
+    arquivada?: BoolFilter<"DiarioPagina"> | boolean
+    createdAt?: DateTimeFilter<"DiarioPagina"> | Date | string
+    updatedAt?: DateTimeFilter<"DiarioPagina"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
-    answers?: DiaryAnswerListRelationFilter
-  }, "id">
+  }, "id" | "userId_chave">
 
-  export type QuestionOrderByWithAggregationInput = {
+  export type DiarioPaginaOrderByWithAggregationInput = {
     id?: SortOrder
-    texto?: SortOrder
-    ordem?: SortOrder
-    ativo?: SortOrder
     userId?: SortOrder
+    tipo?: SortOrder
+    quadrante?: SortOrderInput | SortOrder
+    tipoTraco?: SortOrderInput | SortOrder
+    numeroTraco?: SortOrderInput | SortOrder
+    tituloTraco?: SortOrderInput | SortOrder
+    chave?: SortOrder
+    ordem?: SortOrder
+    texto?: SortOrder
+    concluida?: SortOrder
+    desbloqueada?: SortOrder
+    arquivada?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    _count?: QuestionCountOrderByAggregateInput
-    _avg?: QuestionAvgOrderByAggregateInput
-    _max?: QuestionMaxOrderByAggregateInput
-    _min?: QuestionMinOrderByAggregateInput
-    _sum?: QuestionSumOrderByAggregateInput
+    _count?: DiarioPaginaCountOrderByAggregateInput
+    _avg?: DiarioPaginaAvgOrderByAggregateInput
+    _max?: DiarioPaginaMaxOrderByAggregateInput
+    _min?: DiarioPaginaMinOrderByAggregateInput
+    _sum?: DiarioPaginaSumOrderByAggregateInput
   }
 
-  export type QuestionScalarWhereWithAggregatesInput = {
-    AND?: QuestionScalarWhereWithAggregatesInput | QuestionScalarWhereWithAggregatesInput[]
-    OR?: QuestionScalarWhereWithAggregatesInput[]
-    NOT?: QuestionScalarWhereWithAggregatesInput | QuestionScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"Question"> | string
-    texto?: StringWithAggregatesFilter<"Question"> | string
-    ordem?: IntWithAggregatesFilter<"Question"> | number
-    ativo?: BoolWithAggregatesFilter<"Question"> | boolean
-    userId?: StringWithAggregatesFilter<"Question"> | string
-    createdAt?: DateTimeWithAggregatesFilter<"Question"> | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter<"Question"> | Date | string
+  export type DiarioPaginaScalarWhereWithAggregatesInput = {
+    AND?: DiarioPaginaScalarWhereWithAggregatesInput | DiarioPaginaScalarWhereWithAggregatesInput[]
+    OR?: DiarioPaginaScalarWhereWithAggregatesInput[]
+    NOT?: DiarioPaginaScalarWhereWithAggregatesInput | DiarioPaginaScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"DiarioPagina"> | string
+    userId?: StringWithAggregatesFilter<"DiarioPagina"> | string
+    tipo?: StringWithAggregatesFilter<"DiarioPagina"> | string
+    quadrante?: StringNullableWithAggregatesFilter<"DiarioPagina"> | string | null
+    tipoTraco?: StringNullableWithAggregatesFilter<"DiarioPagina"> | string | null
+    numeroTraco?: IntNullableWithAggregatesFilter<"DiarioPagina"> | number | null
+    tituloTraco?: StringNullableWithAggregatesFilter<"DiarioPagina"> | string | null
+    chave?: StringWithAggregatesFilter<"DiarioPagina"> | string
+    ordem?: IntWithAggregatesFilter<"DiarioPagina"> | number
+    texto?: StringWithAggregatesFilter<"DiarioPagina"> | string
+    concluida?: BoolWithAggregatesFilter<"DiarioPagina"> | boolean
+    desbloqueada?: BoolWithAggregatesFilter<"DiarioPagina"> | boolean
+    arquivada?: BoolWithAggregatesFilter<"DiarioPagina"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"DiarioPagina"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"DiarioPagina"> | Date | string
   }
 
-  export type DiaryEntryWhereInput = {
-    AND?: DiaryEntryWhereInput | DiaryEntryWhereInput[]
-    OR?: DiaryEntryWhereInput[]
-    NOT?: DiaryEntryWhereInput | DiaryEntryWhereInput[]
-    id?: StringFilter<"DiaryEntry"> | string
-    userId?: StringFilter<"DiaryEntry"> | string
-    date?: DateTimeFilter<"DiaryEntry"> | Date | string
-    createdAt?: DateTimeFilter<"DiaryEntry"> | Date | string
-    updatedAt?: DateTimeFilter<"DiaryEntry"> | Date | string
+  export type DiarioAutoadvocaciaQuinzenaWhereInput = {
+    AND?: DiarioAutoadvocaciaQuinzenaWhereInput | DiarioAutoadvocaciaQuinzenaWhereInput[]
+    OR?: DiarioAutoadvocaciaQuinzenaWhereInput[]
+    NOT?: DiarioAutoadvocaciaQuinzenaWhereInput | DiarioAutoadvocaciaQuinzenaWhereInput[]
+    id?: StringFilter<"DiarioAutoadvocaciaQuinzena"> | string
+    userId?: StringFilter<"DiarioAutoadvocaciaQuinzena"> | string
+    numero?: IntFilter<"DiarioAutoadvocaciaQuinzena"> | number
+    rotulo?: StringNullableFilter<"DiarioAutoadvocaciaQuinzena"> | string | null
+    inicio?: DateTimeFilter<"DiarioAutoadvocaciaQuinzena"> | Date | string
+    fim?: DateTimeFilter<"DiarioAutoadvocaciaQuinzena"> | Date | string
+    resposta1?: StringFilter<"DiarioAutoadvocaciaQuinzena"> | string
+    resposta2?: StringFilter<"DiarioAutoadvocaciaQuinzena"> | string
+    concluida?: BoolFilter<"DiarioAutoadvocaciaQuinzena"> | boolean
+    createdAt?: DateTimeFilter<"DiarioAutoadvocaciaQuinzena"> | Date | string
+    updatedAt?: DateTimeFilter<"DiarioAutoadvocaciaQuinzena"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
-    answers?: DiaryAnswerListRelationFilter
   }
 
-  export type DiaryEntryOrderByWithRelationInput = {
+  export type DiarioAutoadvocaciaQuinzenaOrderByWithRelationInput = {
     id?: SortOrder
     userId?: SortOrder
-    date?: SortOrder
+    numero?: SortOrder
+    rotulo?: SortOrderInput | SortOrder
+    inicio?: SortOrder
+    fim?: SortOrder
+    resposta1?: SortOrder
+    resposta2?: SortOrder
+    concluida?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     user?: UserOrderByWithRelationInput
-    answers?: DiaryAnswerOrderByRelationAggregateInput
   }
 
-  export type DiaryEntryWhereUniqueInput = Prisma.AtLeast<{
+  export type DiarioAutoadvocaciaQuinzenaWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    userId_date?: DiaryEntryUserIdDateCompoundUniqueInput
-    AND?: DiaryEntryWhereInput | DiaryEntryWhereInput[]
-    OR?: DiaryEntryWhereInput[]
-    NOT?: DiaryEntryWhereInput | DiaryEntryWhereInput[]
-    userId?: StringFilter<"DiaryEntry"> | string
-    date?: DateTimeFilter<"DiaryEntry"> | Date | string
-    createdAt?: DateTimeFilter<"DiaryEntry"> | Date | string
-    updatedAt?: DateTimeFilter<"DiaryEntry"> | Date | string
+    userId_numero?: DiarioAutoadvocaciaQuinzenaUserIdNumeroCompoundUniqueInput
+    AND?: DiarioAutoadvocaciaQuinzenaWhereInput | DiarioAutoadvocaciaQuinzenaWhereInput[]
+    OR?: DiarioAutoadvocaciaQuinzenaWhereInput[]
+    NOT?: DiarioAutoadvocaciaQuinzenaWhereInput | DiarioAutoadvocaciaQuinzenaWhereInput[]
+    userId?: StringFilter<"DiarioAutoadvocaciaQuinzena"> | string
+    numero?: IntFilter<"DiarioAutoadvocaciaQuinzena"> | number
+    rotulo?: StringNullableFilter<"DiarioAutoadvocaciaQuinzena"> | string | null
+    inicio?: DateTimeFilter<"DiarioAutoadvocaciaQuinzena"> | Date | string
+    fim?: DateTimeFilter<"DiarioAutoadvocaciaQuinzena"> | Date | string
+    resposta1?: StringFilter<"DiarioAutoadvocaciaQuinzena"> | string
+    resposta2?: StringFilter<"DiarioAutoadvocaciaQuinzena"> | string
+    concluida?: BoolFilter<"DiarioAutoadvocaciaQuinzena"> | boolean
+    createdAt?: DateTimeFilter<"DiarioAutoadvocaciaQuinzena"> | Date | string
+    updatedAt?: DateTimeFilter<"DiarioAutoadvocaciaQuinzena"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
-    answers?: DiaryAnswerListRelationFilter
-  }, "id" | "userId_date">
+  }, "id" | "userId_numero">
 
-  export type DiaryEntryOrderByWithAggregationInput = {
+  export type DiarioAutoadvocaciaQuinzenaOrderByWithAggregationInput = {
     id?: SortOrder
     userId?: SortOrder
-    date?: SortOrder
+    numero?: SortOrder
+    rotulo?: SortOrderInput | SortOrder
+    inicio?: SortOrder
+    fim?: SortOrder
+    resposta1?: SortOrder
+    resposta2?: SortOrder
+    concluida?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    _count?: DiaryEntryCountOrderByAggregateInput
-    _max?: DiaryEntryMaxOrderByAggregateInput
-    _min?: DiaryEntryMinOrderByAggregateInput
+    _count?: DiarioAutoadvocaciaQuinzenaCountOrderByAggregateInput
+    _avg?: DiarioAutoadvocaciaQuinzenaAvgOrderByAggregateInput
+    _max?: DiarioAutoadvocaciaQuinzenaMaxOrderByAggregateInput
+    _min?: DiarioAutoadvocaciaQuinzenaMinOrderByAggregateInput
+    _sum?: DiarioAutoadvocaciaQuinzenaSumOrderByAggregateInput
   }
 
-  export type DiaryEntryScalarWhereWithAggregatesInput = {
-    AND?: DiaryEntryScalarWhereWithAggregatesInput | DiaryEntryScalarWhereWithAggregatesInput[]
-    OR?: DiaryEntryScalarWhereWithAggregatesInput[]
-    NOT?: DiaryEntryScalarWhereWithAggregatesInput | DiaryEntryScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"DiaryEntry"> | string
-    userId?: StringWithAggregatesFilter<"DiaryEntry"> | string
-    date?: DateTimeWithAggregatesFilter<"DiaryEntry"> | Date | string
-    createdAt?: DateTimeWithAggregatesFilter<"DiaryEntry"> | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter<"DiaryEntry"> | Date | string
-  }
-
-  export type DiaryAnswerWhereInput = {
-    AND?: DiaryAnswerWhereInput | DiaryAnswerWhereInput[]
-    OR?: DiaryAnswerWhereInput[]
-    NOT?: DiaryAnswerWhereInput | DiaryAnswerWhereInput[]
-    id?: StringFilter<"DiaryAnswer"> | string
-    entryId?: StringFilter<"DiaryAnswer"> | string
-    questionId?: StringFilter<"DiaryAnswer"> | string
-    texto?: StringFilter<"DiaryAnswer"> | string
-    createdAt?: DateTimeFilter<"DiaryAnswer"> | Date | string
-    updatedAt?: DateTimeFilter<"DiaryAnswer"> | Date | string
-    entry?: XOR<DiaryEntryScalarRelationFilter, DiaryEntryWhereInput>
-    question?: XOR<QuestionScalarRelationFilter, QuestionWhereInput>
-  }
-
-  export type DiaryAnswerOrderByWithRelationInput = {
-    id?: SortOrder
-    entryId?: SortOrder
-    questionId?: SortOrder
-    texto?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    entry?: DiaryEntryOrderByWithRelationInput
-    question?: QuestionOrderByWithRelationInput
-  }
-
-  export type DiaryAnswerWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    entryId_questionId?: DiaryAnswerEntryIdQuestionIdCompoundUniqueInput
-    AND?: DiaryAnswerWhereInput | DiaryAnswerWhereInput[]
-    OR?: DiaryAnswerWhereInput[]
-    NOT?: DiaryAnswerWhereInput | DiaryAnswerWhereInput[]
-    entryId?: StringFilter<"DiaryAnswer"> | string
-    questionId?: StringFilter<"DiaryAnswer"> | string
-    texto?: StringFilter<"DiaryAnswer"> | string
-    createdAt?: DateTimeFilter<"DiaryAnswer"> | Date | string
-    updatedAt?: DateTimeFilter<"DiaryAnswer"> | Date | string
-    entry?: XOR<DiaryEntryScalarRelationFilter, DiaryEntryWhereInput>
-    question?: XOR<QuestionScalarRelationFilter, QuestionWhereInput>
-  }, "id" | "entryId_questionId">
-
-  export type DiaryAnswerOrderByWithAggregationInput = {
-    id?: SortOrder
-    entryId?: SortOrder
-    questionId?: SortOrder
-    texto?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    _count?: DiaryAnswerCountOrderByAggregateInput
-    _max?: DiaryAnswerMaxOrderByAggregateInput
-    _min?: DiaryAnswerMinOrderByAggregateInput
-  }
-
-  export type DiaryAnswerScalarWhereWithAggregatesInput = {
-    AND?: DiaryAnswerScalarWhereWithAggregatesInput | DiaryAnswerScalarWhereWithAggregatesInput[]
-    OR?: DiaryAnswerScalarWhereWithAggregatesInput[]
-    NOT?: DiaryAnswerScalarWhereWithAggregatesInput | DiaryAnswerScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"DiaryAnswer"> | string
-    entryId?: StringWithAggregatesFilter<"DiaryAnswer"> | string
-    questionId?: StringWithAggregatesFilter<"DiaryAnswer"> | string
-    texto?: StringWithAggregatesFilter<"DiaryAnswer"> | string
-    createdAt?: DateTimeWithAggregatesFilter<"DiaryAnswer"> | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter<"DiaryAnswer"> | Date | string
+  export type DiarioAutoadvocaciaQuinzenaScalarWhereWithAggregatesInput = {
+    AND?: DiarioAutoadvocaciaQuinzenaScalarWhereWithAggregatesInput | DiarioAutoadvocaciaQuinzenaScalarWhereWithAggregatesInput[]
+    OR?: DiarioAutoadvocaciaQuinzenaScalarWhereWithAggregatesInput[]
+    NOT?: DiarioAutoadvocaciaQuinzenaScalarWhereWithAggregatesInput | DiarioAutoadvocaciaQuinzenaScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"DiarioAutoadvocaciaQuinzena"> | string
+    userId?: StringWithAggregatesFilter<"DiarioAutoadvocaciaQuinzena"> | string
+    numero?: IntWithAggregatesFilter<"DiarioAutoadvocaciaQuinzena"> | number
+    rotulo?: StringNullableWithAggregatesFilter<"DiarioAutoadvocaciaQuinzena"> | string | null
+    inicio?: DateTimeWithAggregatesFilter<"DiarioAutoadvocaciaQuinzena"> | Date | string
+    fim?: DateTimeWithAggregatesFilter<"DiarioAutoadvocaciaQuinzena"> | Date | string
+    resposta1?: StringWithAggregatesFilter<"DiarioAutoadvocaciaQuinzena"> | string
+    resposta2?: StringWithAggregatesFilter<"DiarioAutoadvocaciaQuinzena"> | string
+    concluida?: BoolWithAggregatesFilter<"DiarioAutoadvocaciaQuinzena"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"DiarioAutoadvocaciaQuinzena"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"DiarioAutoadvocaciaQuinzena"> | Date | string
   }
 
   export type FraquezasAmeacasShWhereInput = {
@@ -29324,14 +28315,15 @@ export namespace Prisma {
     name: string
     password: string
     role?: $Enums.UserRole
+    sessionVersion?: number
     profileRegistration?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
     posts?: PostCreateNestedManyWithoutAuthorInput
-    questions?: QuestionCreateNestedManyWithoutUserInput
-    diaryEntries?: DiaryEntryCreateNestedManyWithoutUserInput
     questionarioRespostas?: QuestionarioRespostaCreateNestedManyWithoutUserInput
     reflexoesTraco?: ReflexaoTracoCreateNestedManyWithoutUserInput
+    diarioPaginas?: DiarioPaginaCreateNestedManyWithoutUserInput
+    diarioAutoadvocaciaQuinzenas?: DiarioAutoadvocaciaQuinzenaCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -29340,14 +28332,15 @@ export namespace Prisma {
     name: string
     password: string
     role?: $Enums.UserRole
+    sessionVersion?: number
     profileRegistration?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
-    questions?: QuestionUncheckedCreateNestedManyWithoutUserInput
-    diaryEntries?: DiaryEntryUncheckedCreateNestedManyWithoutUserInput
     questionarioRespostas?: QuestionarioRespostaUncheckedCreateNestedManyWithoutUserInput
     reflexoesTraco?: ReflexaoTracoUncheckedCreateNestedManyWithoutUserInput
+    diarioPaginas?: DiarioPaginaUncheckedCreateNestedManyWithoutUserInput
+    diarioAutoadvocaciaQuinzenas?: DiarioAutoadvocaciaQuinzenaUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -29356,14 +28349,15 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    sessionVersion?: IntFieldUpdateOperationsInput | number
     profileRegistration?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     posts?: PostUpdateManyWithoutAuthorNestedInput
-    questions?: QuestionUpdateManyWithoutUserNestedInput
-    diaryEntries?: DiaryEntryUpdateManyWithoutUserNestedInput
     questionarioRespostas?: QuestionarioRespostaUpdateManyWithoutUserNestedInput
     reflexoesTraco?: ReflexaoTracoUpdateManyWithoutUserNestedInput
+    diarioPaginas?: DiarioPaginaUpdateManyWithoutUserNestedInput
+    diarioAutoadvocaciaQuinzenas?: DiarioAutoadvocaciaQuinzenaUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -29372,14 +28366,15 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    sessionVersion?: IntFieldUpdateOperationsInput | number
     profileRegistration?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
-    questions?: QuestionUncheckedUpdateManyWithoutUserNestedInput
-    diaryEntries?: DiaryEntryUncheckedUpdateManyWithoutUserNestedInput
     questionarioRespostas?: QuestionarioRespostaUncheckedUpdateManyWithoutUserNestedInput
     reflexoesTraco?: ReflexaoTracoUncheckedUpdateManyWithoutUserNestedInput
+    diarioPaginas?: DiarioPaginaUncheckedUpdateManyWithoutUserNestedInput
+    diarioAutoadvocaciaQuinzenas?: DiarioAutoadvocaciaQuinzenaUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -29388,6 +28383,7 @@ export namespace Prisma {
     name: string
     password: string
     role?: $Enums.UserRole
+    sessionVersion?: number
     profileRegistration?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -29399,6 +28395,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    sessionVersion?: IntFieldUpdateOperationsInput | number
     profileRegistration?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -29410,6 +28407,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    sessionVersion?: IntFieldUpdateOperationsInput | number
     profileRegistration?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -29484,195 +28482,224 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type QuestionCreateInput = {
+  export type DiarioPaginaCreateInput = {
     id?: string
-    texto: string
+    tipo: string
+    quadrante?: string | null
+    tipoTraco?: string | null
+    numeroTraco?: number | null
+    tituloTraco?: string | null
+    chave: string
     ordem: number
-    ativo?: boolean
+    texto?: string
+    concluida?: boolean
+    desbloqueada?: boolean
+    arquivada?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    user: UserCreateNestedOneWithoutQuestionsInput
-    answers?: DiaryAnswerCreateNestedManyWithoutQuestionInput
+    user: UserCreateNestedOneWithoutDiarioPaginasInput
   }
 
-  export type QuestionUncheckedCreateInput = {
+  export type DiarioPaginaUncheckedCreateInput = {
     id?: string
-    texto: string
+    userId: string
+    tipo: string
+    quadrante?: string | null
+    tipoTraco?: string | null
+    numeroTraco?: number | null
+    tituloTraco?: string | null
+    chave: string
     ordem: number
-    ativo?: boolean
-    userId: string
+    texto?: string
+    concluida?: boolean
+    desbloqueada?: boolean
+    arquivada?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    answers?: DiaryAnswerUncheckedCreateNestedManyWithoutQuestionInput
   }
 
-  export type QuestionUpdateInput = {
+  export type DiarioPaginaUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    texto?: StringFieldUpdateOperationsInput | string
+    tipo?: StringFieldUpdateOperationsInput | string
+    quadrante?: NullableStringFieldUpdateOperationsInput | string | null
+    tipoTraco?: NullableStringFieldUpdateOperationsInput | string | null
+    numeroTraco?: NullableIntFieldUpdateOperationsInput | number | null
+    tituloTraco?: NullableStringFieldUpdateOperationsInput | string | null
+    chave?: StringFieldUpdateOperationsInput | string
     ordem?: IntFieldUpdateOperationsInput | number
-    ativo?: BoolFieldUpdateOperationsInput | boolean
+    texto?: StringFieldUpdateOperationsInput | string
+    concluida?: BoolFieldUpdateOperationsInput | boolean
+    desbloqueada?: BoolFieldUpdateOperationsInput | boolean
+    arquivada?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutQuestionsNestedInput
-    answers?: DiaryAnswerUpdateManyWithoutQuestionNestedInput
+    user?: UserUpdateOneRequiredWithoutDiarioPaginasNestedInput
   }
 
-  export type QuestionUncheckedUpdateInput = {
+  export type DiarioPaginaUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    texto?: StringFieldUpdateOperationsInput | string
-    ordem?: IntFieldUpdateOperationsInput | number
-    ativo?: BoolFieldUpdateOperationsInput | boolean
     userId?: StringFieldUpdateOperationsInput | string
+    tipo?: StringFieldUpdateOperationsInput | string
+    quadrante?: NullableStringFieldUpdateOperationsInput | string | null
+    tipoTraco?: NullableStringFieldUpdateOperationsInput | string | null
+    numeroTraco?: NullableIntFieldUpdateOperationsInput | number | null
+    tituloTraco?: NullableStringFieldUpdateOperationsInput | string | null
+    chave?: StringFieldUpdateOperationsInput | string
+    ordem?: IntFieldUpdateOperationsInput | number
+    texto?: StringFieldUpdateOperationsInput | string
+    concluida?: BoolFieldUpdateOperationsInput | boolean
+    desbloqueada?: BoolFieldUpdateOperationsInput | boolean
+    arquivada?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    answers?: DiaryAnswerUncheckedUpdateManyWithoutQuestionNestedInput
   }
 
-  export type QuestionCreateManyInput = {
+  export type DiarioPaginaCreateManyInput = {
     id?: string
-    texto: string
+    userId: string
+    tipo: string
+    quadrante?: string | null
+    tipoTraco?: string | null
+    numeroTraco?: number | null
+    tituloTraco?: string | null
+    chave: string
     ordem: number
-    ativo?: boolean
-    userId: string
+    texto?: string
+    concluida?: boolean
+    desbloqueada?: boolean
+    arquivada?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
-  export type QuestionUpdateManyMutationInput = {
+  export type DiarioPaginaUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    texto?: StringFieldUpdateOperationsInput | string
+    tipo?: StringFieldUpdateOperationsInput | string
+    quadrante?: NullableStringFieldUpdateOperationsInput | string | null
+    tipoTraco?: NullableStringFieldUpdateOperationsInput | string | null
+    numeroTraco?: NullableIntFieldUpdateOperationsInput | number | null
+    tituloTraco?: NullableStringFieldUpdateOperationsInput | string | null
+    chave?: StringFieldUpdateOperationsInput | string
     ordem?: IntFieldUpdateOperationsInput | number
-    ativo?: BoolFieldUpdateOperationsInput | boolean
+    texto?: StringFieldUpdateOperationsInput | string
+    concluida?: BoolFieldUpdateOperationsInput | boolean
+    desbloqueada?: BoolFieldUpdateOperationsInput | boolean
+    arquivada?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type QuestionUncheckedUpdateManyInput = {
+  export type DiarioPaginaUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    texto?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    tipo?: StringFieldUpdateOperationsInput | string
+    quadrante?: NullableStringFieldUpdateOperationsInput | string | null
+    tipoTraco?: NullableStringFieldUpdateOperationsInput | string | null
+    numeroTraco?: NullableIntFieldUpdateOperationsInput | number | null
+    tituloTraco?: NullableStringFieldUpdateOperationsInput | string | null
+    chave?: StringFieldUpdateOperationsInput | string
     ordem?: IntFieldUpdateOperationsInput | number
-    ativo?: BoolFieldUpdateOperationsInput | boolean
-    userId?: StringFieldUpdateOperationsInput | string
+    texto?: StringFieldUpdateOperationsInput | string
+    concluida?: BoolFieldUpdateOperationsInput | boolean
+    desbloqueada?: BoolFieldUpdateOperationsInput | boolean
+    arquivada?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type DiaryEntryCreateInput = {
+  export type DiarioAutoadvocaciaQuinzenaCreateInput = {
     id?: string
-    date: Date | string
+    numero: number
+    rotulo?: string | null
+    inicio: Date | string
+    fim: Date | string
+    resposta1?: string
+    resposta2?: string
+    concluida?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    user: UserCreateNestedOneWithoutDiaryEntriesInput
-    answers?: DiaryAnswerCreateNestedManyWithoutEntryInput
+    user: UserCreateNestedOneWithoutDiarioAutoadvocaciaQuinzenasInput
   }
 
-  export type DiaryEntryUncheckedCreateInput = {
+  export type DiarioAutoadvocaciaQuinzenaUncheckedCreateInput = {
     id?: string
     userId: string
-    date: Date | string
+    numero: number
+    rotulo?: string | null
+    inicio: Date | string
+    fim: Date | string
+    resposta1?: string
+    resposta2?: string
+    concluida?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    answers?: DiaryAnswerUncheckedCreateNestedManyWithoutEntryInput
   }
 
-  export type DiaryEntryUpdateInput = {
+  export type DiarioAutoadvocaciaQuinzenaUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    numero?: IntFieldUpdateOperationsInput | number
+    rotulo?: NullableStringFieldUpdateOperationsInput | string | null
+    inicio?: DateTimeFieldUpdateOperationsInput | Date | string
+    fim?: DateTimeFieldUpdateOperationsInput | Date | string
+    resposta1?: StringFieldUpdateOperationsInput | string
+    resposta2?: StringFieldUpdateOperationsInput | string
+    concluida?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutDiaryEntriesNestedInput
-    answers?: DiaryAnswerUpdateManyWithoutEntryNestedInput
+    user?: UserUpdateOneRequiredWithoutDiarioAutoadvocaciaQuinzenasNestedInput
   }
 
-  export type DiaryEntryUncheckedUpdateInput = {
+  export type DiarioAutoadvocaciaQuinzenaUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    numero?: IntFieldUpdateOperationsInput | number
+    rotulo?: NullableStringFieldUpdateOperationsInput | string | null
+    inicio?: DateTimeFieldUpdateOperationsInput | Date | string
+    fim?: DateTimeFieldUpdateOperationsInput | Date | string
+    resposta1?: StringFieldUpdateOperationsInput | string
+    resposta2?: StringFieldUpdateOperationsInput | string
+    concluida?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    answers?: DiaryAnswerUncheckedUpdateManyWithoutEntryNestedInput
   }
 
-  export type DiaryEntryCreateManyInput = {
+  export type DiarioAutoadvocaciaQuinzenaCreateManyInput = {
     id?: string
     userId: string
-    date: Date | string
+    numero: number
+    rotulo?: string | null
+    inicio: Date | string
+    fim: Date | string
+    resposta1?: string
+    resposta2?: string
+    concluida?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
-  export type DiaryEntryUpdateManyMutationInput = {
+  export type DiarioAutoadvocaciaQuinzenaUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    numero?: IntFieldUpdateOperationsInput | number
+    rotulo?: NullableStringFieldUpdateOperationsInput | string | null
+    inicio?: DateTimeFieldUpdateOperationsInput | Date | string
+    fim?: DateTimeFieldUpdateOperationsInput | Date | string
+    resposta1?: StringFieldUpdateOperationsInput | string
+    resposta2?: StringFieldUpdateOperationsInput | string
+    concluida?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type DiaryEntryUncheckedUpdateManyInput = {
+  export type DiarioAutoadvocaciaQuinzenaUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type DiaryAnswerCreateInput = {
-    id?: string
-    texto: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    entry: DiaryEntryCreateNestedOneWithoutAnswersInput
-    question: QuestionCreateNestedOneWithoutAnswersInput
-  }
-
-  export type DiaryAnswerUncheckedCreateInput = {
-    id?: string
-    entryId: string
-    questionId: string
-    texto: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type DiaryAnswerUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    texto?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    entry?: DiaryEntryUpdateOneRequiredWithoutAnswersNestedInput
-    question?: QuestionUpdateOneRequiredWithoutAnswersNestedInput
-  }
-
-  export type DiaryAnswerUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    entryId?: StringFieldUpdateOperationsInput | string
-    questionId?: StringFieldUpdateOperationsInput | string
-    texto?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type DiaryAnswerCreateManyInput = {
-    id?: string
-    entryId: string
-    questionId: string
-    texto: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type DiaryAnswerUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    texto?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type DiaryAnswerUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    entryId?: StringFieldUpdateOperationsInput | string
-    questionId?: StringFieldUpdateOperationsInput | string
-    texto?: StringFieldUpdateOperationsInput | string
+    numero?: IntFieldUpdateOperationsInput | number
+    rotulo?: NullableStringFieldUpdateOperationsInput | string | null
+    inicio?: DateTimeFieldUpdateOperationsInput | Date | string
+    fim?: DateTimeFieldUpdateOperationsInput | Date | string
+    resposta1?: StringFieldUpdateOperationsInput | string
+    resposta2?: StringFieldUpdateOperationsInput | string
+    concluida?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -31005,6 +30032,17 @@ export namespace Prisma {
     notIn?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
     not?: NestedEnumUserRoleFilter<$PrismaModel> | $Enums.UserRole
   }
+
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
   export type JsonNullableFilter<$PrismaModel = never> =
     | PatchUndefined<
         Either<Required<JsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>,
@@ -31046,18 +30084,6 @@ export namespace Prisma {
     none?: PostWhereInput
   }
 
-  export type QuestionListRelationFilter = {
-    every?: QuestionWhereInput
-    some?: QuestionWhereInput
-    none?: QuestionWhereInput
-  }
-
-  export type DiaryEntryListRelationFilter = {
-    every?: DiaryEntryWhereInput
-    some?: DiaryEntryWhereInput
-    none?: DiaryEntryWhereInput
-  }
-
   export type QuestionarioRespostaListRelationFilter = {
     every?: QuestionarioRespostaWhereInput
     some?: QuestionarioRespostaWhereInput
@@ -31070,20 +30096,24 @@ export namespace Prisma {
     none?: ReflexaoTracoWhereInput
   }
 
+  export type DiarioPaginaListRelationFilter = {
+    every?: DiarioPaginaWhereInput
+    some?: DiarioPaginaWhereInput
+    none?: DiarioPaginaWhereInput
+  }
+
+  export type DiarioAutoadvocaciaQuinzenaListRelationFilter = {
+    every?: DiarioAutoadvocaciaQuinzenaWhereInput
+    some?: DiarioAutoadvocaciaQuinzenaWhereInput
+    none?: DiarioAutoadvocaciaQuinzenaWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
   }
 
   export type PostOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type QuestionOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type DiaryEntryOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -31095,15 +30125,28 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
+  export type DiarioPaginaOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type DiarioAutoadvocaciaQuinzenaOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type UserCountOrderByAggregateInput = {
     id?: SortOrder
     email?: SortOrder
     name?: SortOrder
     password?: SortOrder
     role?: SortOrder
+    sessionVersion?: SortOrder
     profileRegistration?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+  }
+
+  export type UserAvgOrderByAggregateInput = {
+    sessionVersion?: SortOrder
   }
 
   export type UserMaxOrderByAggregateInput = {
@@ -31112,6 +30155,7 @@ export namespace Prisma {
     name?: SortOrder
     password?: SortOrder
     role?: SortOrder
+    sessionVersion?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -31122,8 +30166,13 @@ export namespace Prisma {
     name?: SortOrder
     password?: SortOrder
     role?: SortOrder
+    sessionVersion?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+  }
+
+  export type UserSumOrderByAggregateInput = {
+    sessionVersion?: SortOrder
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -31152,6 +30201,22 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumUserRoleFilter<$PrismaModel>
     _max?: NestedEnumUserRoleFilter<$PrismaModel>
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
   }
   export type JsonNullableWithAggregatesFilter<$PrismaModel = never> =
     | PatchUndefined<
@@ -31262,15 +30327,15 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
-  export type IntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
     lt?: number | IntFieldRefInput<$PrismaModel>
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
   export type BoolFilter<$PrismaModel = never> = {
@@ -31278,68 +30343,89 @@ export namespace Prisma {
     not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
-  export type DiaryAnswerListRelationFilter = {
-    every?: DiaryAnswerWhereInput
-    some?: DiaryAnswerWhereInput
-    none?: DiaryAnswerWhereInput
+  export type DiarioPaginaUserIdChaveCompoundUniqueInput = {
+    userId: string
+    chave: string
   }
 
-  export type DiaryAnswerOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type QuestionCountOrderByAggregateInput = {
+  export type DiarioPaginaCountOrderByAggregateInput = {
     id?: SortOrder
-    texto?: SortOrder
-    ordem?: SortOrder
-    ativo?: SortOrder
     userId?: SortOrder
+    tipo?: SortOrder
+    quadrante?: SortOrder
+    tipoTraco?: SortOrder
+    numeroTraco?: SortOrder
+    tituloTraco?: SortOrder
+    chave?: SortOrder
+    ordem?: SortOrder
+    texto?: SortOrder
+    concluida?: SortOrder
+    desbloqueada?: SortOrder
+    arquivada?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
-  export type QuestionAvgOrderByAggregateInput = {
+  export type DiarioPaginaAvgOrderByAggregateInput = {
+    numeroTraco?: SortOrder
     ordem?: SortOrder
   }
 
-  export type QuestionMaxOrderByAggregateInput = {
+  export type DiarioPaginaMaxOrderByAggregateInput = {
     id?: SortOrder
-    texto?: SortOrder
-    ordem?: SortOrder
-    ativo?: SortOrder
     userId?: SortOrder
+    tipo?: SortOrder
+    quadrante?: SortOrder
+    tipoTraco?: SortOrder
+    numeroTraco?: SortOrder
+    tituloTraco?: SortOrder
+    chave?: SortOrder
+    ordem?: SortOrder
+    texto?: SortOrder
+    concluida?: SortOrder
+    desbloqueada?: SortOrder
+    arquivada?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
-  export type QuestionMinOrderByAggregateInput = {
+  export type DiarioPaginaMinOrderByAggregateInput = {
     id?: SortOrder
-    texto?: SortOrder
-    ordem?: SortOrder
-    ativo?: SortOrder
     userId?: SortOrder
+    tipo?: SortOrder
+    quadrante?: SortOrder
+    tipoTraco?: SortOrder
+    numeroTraco?: SortOrder
+    tituloTraco?: SortOrder
+    chave?: SortOrder
+    ordem?: SortOrder
+    texto?: SortOrder
+    concluida?: SortOrder
+    desbloqueada?: SortOrder
+    arquivada?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
-  export type QuestionSumOrderByAggregateInput = {
+  export type DiarioPaginaSumOrderByAggregateInput = {
+    numeroTraco?: SortOrder
     ordem?: SortOrder
   }
 
-  export type IntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
     lt?: number | IntFieldRefInput<$PrismaModel>
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
   export type BoolWithAggregatesFilter<$PrismaModel = never> = {
@@ -31350,75 +30436,59 @@ export namespace Prisma {
     _max?: NestedBoolFilter<$PrismaModel>
   }
 
-  export type DiaryEntryUserIdDateCompoundUniqueInput = {
+  export type DiarioAutoadvocaciaQuinzenaUserIdNumeroCompoundUniqueInput = {
     userId: string
-    date: Date | string
+    numero: number
   }
 
-  export type DiaryEntryCountOrderByAggregateInput = {
+  export type DiarioAutoadvocaciaQuinzenaCountOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
-    date?: SortOrder
+    numero?: SortOrder
+    rotulo?: SortOrder
+    inicio?: SortOrder
+    fim?: SortOrder
+    resposta1?: SortOrder
+    resposta2?: SortOrder
+    concluida?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
-  export type DiaryEntryMaxOrderByAggregateInput = {
+  export type DiarioAutoadvocaciaQuinzenaAvgOrderByAggregateInput = {
+    numero?: SortOrder
+  }
+
+  export type DiarioAutoadvocaciaQuinzenaMaxOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
-    date?: SortOrder
+    numero?: SortOrder
+    rotulo?: SortOrder
+    inicio?: SortOrder
+    fim?: SortOrder
+    resposta1?: SortOrder
+    resposta2?: SortOrder
+    concluida?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
-  export type DiaryEntryMinOrderByAggregateInput = {
+  export type DiarioAutoadvocaciaQuinzenaMinOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
-    date?: SortOrder
+    numero?: SortOrder
+    rotulo?: SortOrder
+    inicio?: SortOrder
+    fim?: SortOrder
+    resposta1?: SortOrder
+    resposta2?: SortOrder
+    concluida?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
-  export type DiaryEntryScalarRelationFilter = {
-    is?: DiaryEntryWhereInput
-    isNot?: DiaryEntryWhereInput
-  }
-
-  export type QuestionScalarRelationFilter = {
-    is?: QuestionWhereInput
-    isNot?: QuestionWhereInput
-  }
-
-  export type DiaryAnswerEntryIdQuestionIdCompoundUniqueInput = {
-    entryId: string
-    questionId: string
-  }
-
-  export type DiaryAnswerCountOrderByAggregateInput = {
-    id?: SortOrder
-    entryId?: SortOrder
-    questionId?: SortOrder
-    texto?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type DiaryAnswerMaxOrderByAggregateInput = {
-    id?: SortOrder
-    entryId?: SortOrder
-    questionId?: SortOrder
-    texto?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type DiaryAnswerMinOrderByAggregateInput = {
-    id?: SortOrder
-    entryId?: SortOrder
-    questionId?: SortOrder
-    texto?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
+  export type DiarioAutoadvocaciaQuinzenaSumOrderByAggregateInput = {
+    numero?: SortOrder
   }
 
   export type FloatFilter<$PrismaModel = never> = {
@@ -32150,17 +31220,6 @@ export namespace Prisma {
     numeroTraco?: SortOrder
   }
 
-  export type IntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
-  }
-
   export type QuestionarioRespostaUserIdPerguntaIdTipoCompoundUniqueInput = {
     userId: string
     perguntaId: string
@@ -32218,41 +31277,11 @@ export namespace Prisma {
     intensidade?: SortOrder
   }
 
-  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedFloatNullableFilter<$PrismaModel>
-    _sum?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedIntNullableFilter<$PrismaModel>
-    _max?: NestedIntNullableFilter<$PrismaModel>
-  }
-
   export type PostCreateNestedManyWithoutAuthorInput = {
     create?: XOR<PostCreateWithoutAuthorInput, PostUncheckedCreateWithoutAuthorInput> | PostCreateWithoutAuthorInput[] | PostUncheckedCreateWithoutAuthorInput[]
     connectOrCreate?: PostCreateOrConnectWithoutAuthorInput | PostCreateOrConnectWithoutAuthorInput[]
     createMany?: PostCreateManyAuthorInputEnvelope
     connect?: PostWhereUniqueInput | PostWhereUniqueInput[]
-  }
-
-  export type QuestionCreateNestedManyWithoutUserInput = {
-    create?: XOR<QuestionCreateWithoutUserInput, QuestionUncheckedCreateWithoutUserInput> | QuestionCreateWithoutUserInput[] | QuestionUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: QuestionCreateOrConnectWithoutUserInput | QuestionCreateOrConnectWithoutUserInput[]
-    createMany?: QuestionCreateManyUserInputEnvelope
-    connect?: QuestionWhereUniqueInput | QuestionWhereUniqueInput[]
-  }
-
-  export type DiaryEntryCreateNestedManyWithoutUserInput = {
-    create?: XOR<DiaryEntryCreateWithoutUserInput, DiaryEntryUncheckedCreateWithoutUserInput> | DiaryEntryCreateWithoutUserInput[] | DiaryEntryUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: DiaryEntryCreateOrConnectWithoutUserInput | DiaryEntryCreateOrConnectWithoutUserInput[]
-    createMany?: DiaryEntryCreateManyUserInputEnvelope
-    connect?: DiaryEntryWhereUniqueInput | DiaryEntryWhereUniqueInput[]
   }
 
   export type QuestionarioRespostaCreateNestedManyWithoutUserInput = {
@@ -32269,25 +31298,25 @@ export namespace Prisma {
     connect?: ReflexaoTracoWhereUniqueInput | ReflexaoTracoWhereUniqueInput[]
   }
 
+  export type DiarioPaginaCreateNestedManyWithoutUserInput = {
+    create?: XOR<DiarioPaginaCreateWithoutUserInput, DiarioPaginaUncheckedCreateWithoutUserInput> | DiarioPaginaCreateWithoutUserInput[] | DiarioPaginaUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: DiarioPaginaCreateOrConnectWithoutUserInput | DiarioPaginaCreateOrConnectWithoutUserInput[]
+    createMany?: DiarioPaginaCreateManyUserInputEnvelope
+    connect?: DiarioPaginaWhereUniqueInput | DiarioPaginaWhereUniqueInput[]
+  }
+
+  export type DiarioAutoadvocaciaQuinzenaCreateNestedManyWithoutUserInput = {
+    create?: XOR<DiarioAutoadvocaciaQuinzenaCreateWithoutUserInput, DiarioAutoadvocaciaQuinzenaUncheckedCreateWithoutUserInput> | DiarioAutoadvocaciaQuinzenaCreateWithoutUserInput[] | DiarioAutoadvocaciaQuinzenaUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: DiarioAutoadvocaciaQuinzenaCreateOrConnectWithoutUserInput | DiarioAutoadvocaciaQuinzenaCreateOrConnectWithoutUserInput[]
+    createMany?: DiarioAutoadvocaciaQuinzenaCreateManyUserInputEnvelope
+    connect?: DiarioAutoadvocaciaQuinzenaWhereUniqueInput | DiarioAutoadvocaciaQuinzenaWhereUniqueInput[]
+  }
+
   export type PostUncheckedCreateNestedManyWithoutAuthorInput = {
     create?: XOR<PostCreateWithoutAuthorInput, PostUncheckedCreateWithoutAuthorInput> | PostCreateWithoutAuthorInput[] | PostUncheckedCreateWithoutAuthorInput[]
     connectOrCreate?: PostCreateOrConnectWithoutAuthorInput | PostCreateOrConnectWithoutAuthorInput[]
     createMany?: PostCreateManyAuthorInputEnvelope
     connect?: PostWhereUniqueInput | PostWhereUniqueInput[]
-  }
-
-  export type QuestionUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<QuestionCreateWithoutUserInput, QuestionUncheckedCreateWithoutUserInput> | QuestionCreateWithoutUserInput[] | QuestionUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: QuestionCreateOrConnectWithoutUserInput | QuestionCreateOrConnectWithoutUserInput[]
-    createMany?: QuestionCreateManyUserInputEnvelope
-    connect?: QuestionWhereUniqueInput | QuestionWhereUniqueInput[]
-  }
-
-  export type DiaryEntryUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<DiaryEntryCreateWithoutUserInput, DiaryEntryUncheckedCreateWithoutUserInput> | DiaryEntryCreateWithoutUserInput[] | DiaryEntryUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: DiaryEntryCreateOrConnectWithoutUserInput | DiaryEntryCreateOrConnectWithoutUserInput[]
-    createMany?: DiaryEntryCreateManyUserInputEnvelope
-    connect?: DiaryEntryWhereUniqueInput | DiaryEntryWhereUniqueInput[]
   }
 
   export type QuestionarioRespostaUncheckedCreateNestedManyWithoutUserInput = {
@@ -32304,12 +31333,34 @@ export namespace Prisma {
     connect?: ReflexaoTracoWhereUniqueInput | ReflexaoTracoWhereUniqueInput[]
   }
 
+  export type DiarioPaginaUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<DiarioPaginaCreateWithoutUserInput, DiarioPaginaUncheckedCreateWithoutUserInput> | DiarioPaginaCreateWithoutUserInput[] | DiarioPaginaUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: DiarioPaginaCreateOrConnectWithoutUserInput | DiarioPaginaCreateOrConnectWithoutUserInput[]
+    createMany?: DiarioPaginaCreateManyUserInputEnvelope
+    connect?: DiarioPaginaWhereUniqueInput | DiarioPaginaWhereUniqueInput[]
+  }
+
+  export type DiarioAutoadvocaciaQuinzenaUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<DiarioAutoadvocaciaQuinzenaCreateWithoutUserInput, DiarioAutoadvocaciaQuinzenaUncheckedCreateWithoutUserInput> | DiarioAutoadvocaciaQuinzenaCreateWithoutUserInput[] | DiarioAutoadvocaciaQuinzenaUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: DiarioAutoadvocaciaQuinzenaCreateOrConnectWithoutUserInput | DiarioAutoadvocaciaQuinzenaCreateOrConnectWithoutUserInput[]
+    createMany?: DiarioAutoadvocaciaQuinzenaCreateManyUserInputEnvelope
+    connect?: DiarioAutoadvocaciaQuinzenaWhereUniqueInput | DiarioAutoadvocaciaQuinzenaWhereUniqueInput[]
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
 
   export type EnumUserRoleFieldUpdateOperationsInput = {
     set?: $Enums.UserRole
+  }
+
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type DateTimeFieldUpdateOperationsInput = {
@@ -32328,34 +31379,6 @@ export namespace Prisma {
     update?: PostUpdateWithWhereUniqueWithoutAuthorInput | PostUpdateWithWhereUniqueWithoutAuthorInput[]
     updateMany?: PostUpdateManyWithWhereWithoutAuthorInput | PostUpdateManyWithWhereWithoutAuthorInput[]
     deleteMany?: PostScalarWhereInput | PostScalarWhereInput[]
-  }
-
-  export type QuestionUpdateManyWithoutUserNestedInput = {
-    create?: XOR<QuestionCreateWithoutUserInput, QuestionUncheckedCreateWithoutUserInput> | QuestionCreateWithoutUserInput[] | QuestionUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: QuestionCreateOrConnectWithoutUserInput | QuestionCreateOrConnectWithoutUserInput[]
-    upsert?: QuestionUpsertWithWhereUniqueWithoutUserInput | QuestionUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: QuestionCreateManyUserInputEnvelope
-    set?: QuestionWhereUniqueInput | QuestionWhereUniqueInput[]
-    disconnect?: QuestionWhereUniqueInput | QuestionWhereUniqueInput[]
-    delete?: QuestionWhereUniqueInput | QuestionWhereUniqueInput[]
-    connect?: QuestionWhereUniqueInput | QuestionWhereUniqueInput[]
-    update?: QuestionUpdateWithWhereUniqueWithoutUserInput | QuestionUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: QuestionUpdateManyWithWhereWithoutUserInput | QuestionUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: QuestionScalarWhereInput | QuestionScalarWhereInput[]
-  }
-
-  export type DiaryEntryUpdateManyWithoutUserNestedInput = {
-    create?: XOR<DiaryEntryCreateWithoutUserInput, DiaryEntryUncheckedCreateWithoutUserInput> | DiaryEntryCreateWithoutUserInput[] | DiaryEntryUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: DiaryEntryCreateOrConnectWithoutUserInput | DiaryEntryCreateOrConnectWithoutUserInput[]
-    upsert?: DiaryEntryUpsertWithWhereUniqueWithoutUserInput | DiaryEntryUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: DiaryEntryCreateManyUserInputEnvelope
-    set?: DiaryEntryWhereUniqueInput | DiaryEntryWhereUniqueInput[]
-    disconnect?: DiaryEntryWhereUniqueInput | DiaryEntryWhereUniqueInput[]
-    delete?: DiaryEntryWhereUniqueInput | DiaryEntryWhereUniqueInput[]
-    connect?: DiaryEntryWhereUniqueInput | DiaryEntryWhereUniqueInput[]
-    update?: DiaryEntryUpdateWithWhereUniqueWithoutUserInput | DiaryEntryUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: DiaryEntryUpdateManyWithWhereWithoutUserInput | DiaryEntryUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: DiaryEntryScalarWhereInput | DiaryEntryScalarWhereInput[]
   }
 
   export type QuestionarioRespostaUpdateManyWithoutUserNestedInput = {
@@ -32386,6 +31409,34 @@ export namespace Prisma {
     deleteMany?: ReflexaoTracoScalarWhereInput | ReflexaoTracoScalarWhereInput[]
   }
 
+  export type DiarioPaginaUpdateManyWithoutUserNestedInput = {
+    create?: XOR<DiarioPaginaCreateWithoutUserInput, DiarioPaginaUncheckedCreateWithoutUserInput> | DiarioPaginaCreateWithoutUserInput[] | DiarioPaginaUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: DiarioPaginaCreateOrConnectWithoutUserInput | DiarioPaginaCreateOrConnectWithoutUserInput[]
+    upsert?: DiarioPaginaUpsertWithWhereUniqueWithoutUserInput | DiarioPaginaUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: DiarioPaginaCreateManyUserInputEnvelope
+    set?: DiarioPaginaWhereUniqueInput | DiarioPaginaWhereUniqueInput[]
+    disconnect?: DiarioPaginaWhereUniqueInput | DiarioPaginaWhereUniqueInput[]
+    delete?: DiarioPaginaWhereUniqueInput | DiarioPaginaWhereUniqueInput[]
+    connect?: DiarioPaginaWhereUniqueInput | DiarioPaginaWhereUniqueInput[]
+    update?: DiarioPaginaUpdateWithWhereUniqueWithoutUserInput | DiarioPaginaUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: DiarioPaginaUpdateManyWithWhereWithoutUserInput | DiarioPaginaUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: DiarioPaginaScalarWhereInput | DiarioPaginaScalarWhereInput[]
+  }
+
+  export type DiarioAutoadvocaciaQuinzenaUpdateManyWithoutUserNestedInput = {
+    create?: XOR<DiarioAutoadvocaciaQuinzenaCreateWithoutUserInput, DiarioAutoadvocaciaQuinzenaUncheckedCreateWithoutUserInput> | DiarioAutoadvocaciaQuinzenaCreateWithoutUserInput[] | DiarioAutoadvocaciaQuinzenaUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: DiarioAutoadvocaciaQuinzenaCreateOrConnectWithoutUserInput | DiarioAutoadvocaciaQuinzenaCreateOrConnectWithoutUserInput[]
+    upsert?: DiarioAutoadvocaciaQuinzenaUpsertWithWhereUniqueWithoutUserInput | DiarioAutoadvocaciaQuinzenaUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: DiarioAutoadvocaciaQuinzenaCreateManyUserInputEnvelope
+    set?: DiarioAutoadvocaciaQuinzenaWhereUniqueInput | DiarioAutoadvocaciaQuinzenaWhereUniqueInput[]
+    disconnect?: DiarioAutoadvocaciaQuinzenaWhereUniqueInput | DiarioAutoadvocaciaQuinzenaWhereUniqueInput[]
+    delete?: DiarioAutoadvocaciaQuinzenaWhereUniqueInput | DiarioAutoadvocaciaQuinzenaWhereUniqueInput[]
+    connect?: DiarioAutoadvocaciaQuinzenaWhereUniqueInput | DiarioAutoadvocaciaQuinzenaWhereUniqueInput[]
+    update?: DiarioAutoadvocaciaQuinzenaUpdateWithWhereUniqueWithoutUserInput | DiarioAutoadvocaciaQuinzenaUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: DiarioAutoadvocaciaQuinzenaUpdateManyWithWhereWithoutUserInput | DiarioAutoadvocaciaQuinzenaUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: DiarioAutoadvocaciaQuinzenaScalarWhereInput | DiarioAutoadvocaciaQuinzenaScalarWhereInput[]
+  }
+
   export type PostUncheckedUpdateManyWithoutAuthorNestedInput = {
     create?: XOR<PostCreateWithoutAuthorInput, PostUncheckedCreateWithoutAuthorInput> | PostCreateWithoutAuthorInput[] | PostUncheckedCreateWithoutAuthorInput[]
     connectOrCreate?: PostCreateOrConnectWithoutAuthorInput | PostCreateOrConnectWithoutAuthorInput[]
@@ -32398,34 +31449,6 @@ export namespace Prisma {
     update?: PostUpdateWithWhereUniqueWithoutAuthorInput | PostUpdateWithWhereUniqueWithoutAuthorInput[]
     updateMany?: PostUpdateManyWithWhereWithoutAuthorInput | PostUpdateManyWithWhereWithoutAuthorInput[]
     deleteMany?: PostScalarWhereInput | PostScalarWhereInput[]
-  }
-
-  export type QuestionUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<QuestionCreateWithoutUserInput, QuestionUncheckedCreateWithoutUserInput> | QuestionCreateWithoutUserInput[] | QuestionUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: QuestionCreateOrConnectWithoutUserInput | QuestionCreateOrConnectWithoutUserInput[]
-    upsert?: QuestionUpsertWithWhereUniqueWithoutUserInput | QuestionUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: QuestionCreateManyUserInputEnvelope
-    set?: QuestionWhereUniqueInput | QuestionWhereUniqueInput[]
-    disconnect?: QuestionWhereUniqueInput | QuestionWhereUniqueInput[]
-    delete?: QuestionWhereUniqueInput | QuestionWhereUniqueInput[]
-    connect?: QuestionWhereUniqueInput | QuestionWhereUniqueInput[]
-    update?: QuestionUpdateWithWhereUniqueWithoutUserInput | QuestionUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: QuestionUpdateManyWithWhereWithoutUserInput | QuestionUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: QuestionScalarWhereInput | QuestionScalarWhereInput[]
-  }
-
-  export type DiaryEntryUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<DiaryEntryCreateWithoutUserInput, DiaryEntryUncheckedCreateWithoutUserInput> | DiaryEntryCreateWithoutUserInput[] | DiaryEntryUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: DiaryEntryCreateOrConnectWithoutUserInput | DiaryEntryCreateOrConnectWithoutUserInput[]
-    upsert?: DiaryEntryUpsertWithWhereUniqueWithoutUserInput | DiaryEntryUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: DiaryEntryCreateManyUserInputEnvelope
-    set?: DiaryEntryWhereUniqueInput | DiaryEntryWhereUniqueInput[]
-    disconnect?: DiaryEntryWhereUniqueInput | DiaryEntryWhereUniqueInput[]
-    delete?: DiaryEntryWhereUniqueInput | DiaryEntryWhereUniqueInput[]
-    connect?: DiaryEntryWhereUniqueInput | DiaryEntryWhereUniqueInput[]
-    update?: DiaryEntryUpdateWithWhereUniqueWithoutUserInput | DiaryEntryUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: DiaryEntryUpdateManyWithWhereWithoutUserInput | DiaryEntryUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: DiaryEntryScalarWhereInput | DiaryEntryScalarWhereInput[]
   }
 
   export type QuestionarioRespostaUncheckedUpdateManyWithoutUserNestedInput = {
@@ -32456,6 +31479,34 @@ export namespace Prisma {
     deleteMany?: ReflexaoTracoScalarWhereInput | ReflexaoTracoScalarWhereInput[]
   }
 
+  export type DiarioPaginaUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<DiarioPaginaCreateWithoutUserInput, DiarioPaginaUncheckedCreateWithoutUserInput> | DiarioPaginaCreateWithoutUserInput[] | DiarioPaginaUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: DiarioPaginaCreateOrConnectWithoutUserInput | DiarioPaginaCreateOrConnectWithoutUserInput[]
+    upsert?: DiarioPaginaUpsertWithWhereUniqueWithoutUserInput | DiarioPaginaUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: DiarioPaginaCreateManyUserInputEnvelope
+    set?: DiarioPaginaWhereUniqueInput | DiarioPaginaWhereUniqueInput[]
+    disconnect?: DiarioPaginaWhereUniqueInput | DiarioPaginaWhereUniqueInput[]
+    delete?: DiarioPaginaWhereUniqueInput | DiarioPaginaWhereUniqueInput[]
+    connect?: DiarioPaginaWhereUniqueInput | DiarioPaginaWhereUniqueInput[]
+    update?: DiarioPaginaUpdateWithWhereUniqueWithoutUserInput | DiarioPaginaUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: DiarioPaginaUpdateManyWithWhereWithoutUserInput | DiarioPaginaUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: DiarioPaginaScalarWhereInput | DiarioPaginaScalarWhereInput[]
+  }
+
+  export type DiarioAutoadvocaciaQuinzenaUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<DiarioAutoadvocaciaQuinzenaCreateWithoutUserInput, DiarioAutoadvocaciaQuinzenaUncheckedCreateWithoutUserInput> | DiarioAutoadvocaciaQuinzenaCreateWithoutUserInput[] | DiarioAutoadvocaciaQuinzenaUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: DiarioAutoadvocaciaQuinzenaCreateOrConnectWithoutUserInput | DiarioAutoadvocaciaQuinzenaCreateOrConnectWithoutUserInput[]
+    upsert?: DiarioAutoadvocaciaQuinzenaUpsertWithWhereUniqueWithoutUserInput | DiarioAutoadvocaciaQuinzenaUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: DiarioAutoadvocaciaQuinzenaCreateManyUserInputEnvelope
+    set?: DiarioAutoadvocaciaQuinzenaWhereUniqueInput | DiarioAutoadvocaciaQuinzenaWhereUniqueInput[]
+    disconnect?: DiarioAutoadvocaciaQuinzenaWhereUniqueInput | DiarioAutoadvocaciaQuinzenaWhereUniqueInput[]
+    delete?: DiarioAutoadvocaciaQuinzenaWhereUniqueInput | DiarioAutoadvocaciaQuinzenaWhereUniqueInput[]
+    connect?: DiarioAutoadvocaciaQuinzenaWhereUniqueInput | DiarioAutoadvocaciaQuinzenaWhereUniqueInput[]
+    update?: DiarioAutoadvocaciaQuinzenaUpdateWithWhereUniqueWithoutUserInput | DiarioAutoadvocaciaQuinzenaUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: DiarioAutoadvocaciaQuinzenaUpdateManyWithWhereWithoutUserInput | DiarioAutoadvocaciaQuinzenaUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: DiarioAutoadvocaciaQuinzenaScalarWhereInput | DiarioAutoadvocaciaQuinzenaScalarWhereInput[]
+  }
+
   export type UserCreateNestedOneWithoutPostsInput = {
     create?: XOR<UserCreateWithoutPostsInput, UserUncheckedCreateWithoutPostsInput>
     connectOrCreate?: UserCreateOrConnectWithoutPostsInput
@@ -32474,28 +31525,14 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutPostsInput, UserUpdateWithoutPostsInput>, UserUncheckedUpdateWithoutPostsInput>
   }
 
-  export type UserCreateNestedOneWithoutQuestionsInput = {
-    create?: XOR<UserCreateWithoutQuestionsInput, UserUncheckedCreateWithoutQuestionsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutQuestionsInput
+  export type UserCreateNestedOneWithoutDiarioPaginasInput = {
+    create?: XOR<UserCreateWithoutDiarioPaginasInput, UserUncheckedCreateWithoutDiarioPaginasInput>
+    connectOrCreate?: UserCreateOrConnectWithoutDiarioPaginasInput
     connect?: UserWhereUniqueInput
   }
 
-  export type DiaryAnswerCreateNestedManyWithoutQuestionInput = {
-    create?: XOR<DiaryAnswerCreateWithoutQuestionInput, DiaryAnswerUncheckedCreateWithoutQuestionInput> | DiaryAnswerCreateWithoutQuestionInput[] | DiaryAnswerUncheckedCreateWithoutQuestionInput[]
-    connectOrCreate?: DiaryAnswerCreateOrConnectWithoutQuestionInput | DiaryAnswerCreateOrConnectWithoutQuestionInput[]
-    createMany?: DiaryAnswerCreateManyQuestionInputEnvelope
-    connect?: DiaryAnswerWhereUniqueInput | DiaryAnswerWhereUniqueInput[]
-  }
-
-  export type DiaryAnswerUncheckedCreateNestedManyWithoutQuestionInput = {
-    create?: XOR<DiaryAnswerCreateWithoutQuestionInput, DiaryAnswerUncheckedCreateWithoutQuestionInput> | DiaryAnswerCreateWithoutQuestionInput[] | DiaryAnswerUncheckedCreateWithoutQuestionInput[]
-    connectOrCreate?: DiaryAnswerCreateOrConnectWithoutQuestionInput | DiaryAnswerCreateOrConnectWithoutQuestionInput[]
-    createMany?: DiaryAnswerCreateManyQuestionInputEnvelope
-    connect?: DiaryAnswerWhereUniqueInput | DiaryAnswerWhereUniqueInput[]
-  }
-
-  export type IntFieldUpdateOperationsInput = {
-    set?: number
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
     increment?: number
     decrement?: number
     multiply?: number
@@ -32506,124 +31543,26 @@ export namespace Prisma {
     set?: boolean
   }
 
-  export type UserUpdateOneRequiredWithoutQuestionsNestedInput = {
-    create?: XOR<UserCreateWithoutQuestionsInput, UserUncheckedCreateWithoutQuestionsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutQuestionsInput
-    upsert?: UserUpsertWithoutQuestionsInput
+  export type UserUpdateOneRequiredWithoutDiarioPaginasNestedInput = {
+    create?: XOR<UserCreateWithoutDiarioPaginasInput, UserUncheckedCreateWithoutDiarioPaginasInput>
+    connectOrCreate?: UserCreateOrConnectWithoutDiarioPaginasInput
+    upsert?: UserUpsertWithoutDiarioPaginasInput
     connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutQuestionsInput, UserUpdateWithoutQuestionsInput>, UserUncheckedUpdateWithoutQuestionsInput>
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutDiarioPaginasInput, UserUpdateWithoutDiarioPaginasInput>, UserUncheckedUpdateWithoutDiarioPaginasInput>
   }
 
-  export type DiaryAnswerUpdateManyWithoutQuestionNestedInput = {
-    create?: XOR<DiaryAnswerCreateWithoutQuestionInput, DiaryAnswerUncheckedCreateWithoutQuestionInput> | DiaryAnswerCreateWithoutQuestionInput[] | DiaryAnswerUncheckedCreateWithoutQuestionInput[]
-    connectOrCreate?: DiaryAnswerCreateOrConnectWithoutQuestionInput | DiaryAnswerCreateOrConnectWithoutQuestionInput[]
-    upsert?: DiaryAnswerUpsertWithWhereUniqueWithoutQuestionInput | DiaryAnswerUpsertWithWhereUniqueWithoutQuestionInput[]
-    createMany?: DiaryAnswerCreateManyQuestionInputEnvelope
-    set?: DiaryAnswerWhereUniqueInput | DiaryAnswerWhereUniqueInput[]
-    disconnect?: DiaryAnswerWhereUniqueInput | DiaryAnswerWhereUniqueInput[]
-    delete?: DiaryAnswerWhereUniqueInput | DiaryAnswerWhereUniqueInput[]
-    connect?: DiaryAnswerWhereUniqueInput | DiaryAnswerWhereUniqueInput[]
-    update?: DiaryAnswerUpdateWithWhereUniqueWithoutQuestionInput | DiaryAnswerUpdateWithWhereUniqueWithoutQuestionInput[]
-    updateMany?: DiaryAnswerUpdateManyWithWhereWithoutQuestionInput | DiaryAnswerUpdateManyWithWhereWithoutQuestionInput[]
-    deleteMany?: DiaryAnswerScalarWhereInput | DiaryAnswerScalarWhereInput[]
-  }
-
-  export type DiaryAnswerUncheckedUpdateManyWithoutQuestionNestedInput = {
-    create?: XOR<DiaryAnswerCreateWithoutQuestionInput, DiaryAnswerUncheckedCreateWithoutQuestionInput> | DiaryAnswerCreateWithoutQuestionInput[] | DiaryAnswerUncheckedCreateWithoutQuestionInput[]
-    connectOrCreate?: DiaryAnswerCreateOrConnectWithoutQuestionInput | DiaryAnswerCreateOrConnectWithoutQuestionInput[]
-    upsert?: DiaryAnswerUpsertWithWhereUniqueWithoutQuestionInput | DiaryAnswerUpsertWithWhereUniqueWithoutQuestionInput[]
-    createMany?: DiaryAnswerCreateManyQuestionInputEnvelope
-    set?: DiaryAnswerWhereUniqueInput | DiaryAnswerWhereUniqueInput[]
-    disconnect?: DiaryAnswerWhereUniqueInput | DiaryAnswerWhereUniqueInput[]
-    delete?: DiaryAnswerWhereUniqueInput | DiaryAnswerWhereUniqueInput[]
-    connect?: DiaryAnswerWhereUniqueInput | DiaryAnswerWhereUniqueInput[]
-    update?: DiaryAnswerUpdateWithWhereUniqueWithoutQuestionInput | DiaryAnswerUpdateWithWhereUniqueWithoutQuestionInput[]
-    updateMany?: DiaryAnswerUpdateManyWithWhereWithoutQuestionInput | DiaryAnswerUpdateManyWithWhereWithoutQuestionInput[]
-    deleteMany?: DiaryAnswerScalarWhereInput | DiaryAnswerScalarWhereInput[]
-  }
-
-  export type UserCreateNestedOneWithoutDiaryEntriesInput = {
-    create?: XOR<UserCreateWithoutDiaryEntriesInput, UserUncheckedCreateWithoutDiaryEntriesInput>
-    connectOrCreate?: UserCreateOrConnectWithoutDiaryEntriesInput
+  export type UserCreateNestedOneWithoutDiarioAutoadvocaciaQuinzenasInput = {
+    create?: XOR<UserCreateWithoutDiarioAutoadvocaciaQuinzenasInput, UserUncheckedCreateWithoutDiarioAutoadvocaciaQuinzenasInput>
+    connectOrCreate?: UserCreateOrConnectWithoutDiarioAutoadvocaciaQuinzenasInput
     connect?: UserWhereUniqueInput
   }
 
-  export type DiaryAnswerCreateNestedManyWithoutEntryInput = {
-    create?: XOR<DiaryAnswerCreateWithoutEntryInput, DiaryAnswerUncheckedCreateWithoutEntryInput> | DiaryAnswerCreateWithoutEntryInput[] | DiaryAnswerUncheckedCreateWithoutEntryInput[]
-    connectOrCreate?: DiaryAnswerCreateOrConnectWithoutEntryInput | DiaryAnswerCreateOrConnectWithoutEntryInput[]
-    createMany?: DiaryAnswerCreateManyEntryInputEnvelope
-    connect?: DiaryAnswerWhereUniqueInput | DiaryAnswerWhereUniqueInput[]
-  }
-
-  export type DiaryAnswerUncheckedCreateNestedManyWithoutEntryInput = {
-    create?: XOR<DiaryAnswerCreateWithoutEntryInput, DiaryAnswerUncheckedCreateWithoutEntryInput> | DiaryAnswerCreateWithoutEntryInput[] | DiaryAnswerUncheckedCreateWithoutEntryInput[]
-    connectOrCreate?: DiaryAnswerCreateOrConnectWithoutEntryInput | DiaryAnswerCreateOrConnectWithoutEntryInput[]
-    createMany?: DiaryAnswerCreateManyEntryInputEnvelope
-    connect?: DiaryAnswerWhereUniqueInput | DiaryAnswerWhereUniqueInput[]
-  }
-
-  export type UserUpdateOneRequiredWithoutDiaryEntriesNestedInput = {
-    create?: XOR<UserCreateWithoutDiaryEntriesInput, UserUncheckedCreateWithoutDiaryEntriesInput>
-    connectOrCreate?: UserCreateOrConnectWithoutDiaryEntriesInput
-    upsert?: UserUpsertWithoutDiaryEntriesInput
+  export type UserUpdateOneRequiredWithoutDiarioAutoadvocaciaQuinzenasNestedInput = {
+    create?: XOR<UserCreateWithoutDiarioAutoadvocaciaQuinzenasInput, UserUncheckedCreateWithoutDiarioAutoadvocaciaQuinzenasInput>
+    connectOrCreate?: UserCreateOrConnectWithoutDiarioAutoadvocaciaQuinzenasInput
+    upsert?: UserUpsertWithoutDiarioAutoadvocaciaQuinzenasInput
     connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutDiaryEntriesInput, UserUpdateWithoutDiaryEntriesInput>, UserUncheckedUpdateWithoutDiaryEntriesInput>
-  }
-
-  export type DiaryAnswerUpdateManyWithoutEntryNestedInput = {
-    create?: XOR<DiaryAnswerCreateWithoutEntryInput, DiaryAnswerUncheckedCreateWithoutEntryInput> | DiaryAnswerCreateWithoutEntryInput[] | DiaryAnswerUncheckedCreateWithoutEntryInput[]
-    connectOrCreate?: DiaryAnswerCreateOrConnectWithoutEntryInput | DiaryAnswerCreateOrConnectWithoutEntryInput[]
-    upsert?: DiaryAnswerUpsertWithWhereUniqueWithoutEntryInput | DiaryAnswerUpsertWithWhereUniqueWithoutEntryInput[]
-    createMany?: DiaryAnswerCreateManyEntryInputEnvelope
-    set?: DiaryAnswerWhereUniqueInput | DiaryAnswerWhereUniqueInput[]
-    disconnect?: DiaryAnswerWhereUniqueInput | DiaryAnswerWhereUniqueInput[]
-    delete?: DiaryAnswerWhereUniqueInput | DiaryAnswerWhereUniqueInput[]
-    connect?: DiaryAnswerWhereUniqueInput | DiaryAnswerWhereUniqueInput[]
-    update?: DiaryAnswerUpdateWithWhereUniqueWithoutEntryInput | DiaryAnswerUpdateWithWhereUniqueWithoutEntryInput[]
-    updateMany?: DiaryAnswerUpdateManyWithWhereWithoutEntryInput | DiaryAnswerUpdateManyWithWhereWithoutEntryInput[]
-    deleteMany?: DiaryAnswerScalarWhereInput | DiaryAnswerScalarWhereInput[]
-  }
-
-  export type DiaryAnswerUncheckedUpdateManyWithoutEntryNestedInput = {
-    create?: XOR<DiaryAnswerCreateWithoutEntryInput, DiaryAnswerUncheckedCreateWithoutEntryInput> | DiaryAnswerCreateWithoutEntryInput[] | DiaryAnswerUncheckedCreateWithoutEntryInput[]
-    connectOrCreate?: DiaryAnswerCreateOrConnectWithoutEntryInput | DiaryAnswerCreateOrConnectWithoutEntryInput[]
-    upsert?: DiaryAnswerUpsertWithWhereUniqueWithoutEntryInput | DiaryAnswerUpsertWithWhereUniqueWithoutEntryInput[]
-    createMany?: DiaryAnswerCreateManyEntryInputEnvelope
-    set?: DiaryAnswerWhereUniqueInput | DiaryAnswerWhereUniqueInput[]
-    disconnect?: DiaryAnswerWhereUniqueInput | DiaryAnswerWhereUniqueInput[]
-    delete?: DiaryAnswerWhereUniqueInput | DiaryAnswerWhereUniqueInput[]
-    connect?: DiaryAnswerWhereUniqueInput | DiaryAnswerWhereUniqueInput[]
-    update?: DiaryAnswerUpdateWithWhereUniqueWithoutEntryInput | DiaryAnswerUpdateWithWhereUniqueWithoutEntryInput[]
-    updateMany?: DiaryAnswerUpdateManyWithWhereWithoutEntryInput | DiaryAnswerUpdateManyWithWhereWithoutEntryInput[]
-    deleteMany?: DiaryAnswerScalarWhereInput | DiaryAnswerScalarWhereInput[]
-  }
-
-  export type DiaryEntryCreateNestedOneWithoutAnswersInput = {
-    create?: XOR<DiaryEntryCreateWithoutAnswersInput, DiaryEntryUncheckedCreateWithoutAnswersInput>
-    connectOrCreate?: DiaryEntryCreateOrConnectWithoutAnswersInput
-    connect?: DiaryEntryWhereUniqueInput
-  }
-
-  export type QuestionCreateNestedOneWithoutAnswersInput = {
-    create?: XOR<QuestionCreateWithoutAnswersInput, QuestionUncheckedCreateWithoutAnswersInput>
-    connectOrCreate?: QuestionCreateOrConnectWithoutAnswersInput
-    connect?: QuestionWhereUniqueInput
-  }
-
-  export type DiaryEntryUpdateOneRequiredWithoutAnswersNestedInput = {
-    create?: XOR<DiaryEntryCreateWithoutAnswersInput, DiaryEntryUncheckedCreateWithoutAnswersInput>
-    connectOrCreate?: DiaryEntryCreateOrConnectWithoutAnswersInput
-    upsert?: DiaryEntryUpsertWithoutAnswersInput
-    connect?: DiaryEntryWhereUniqueInput
-    update?: XOR<XOR<DiaryEntryUpdateToOneWithWhereWithoutAnswersInput, DiaryEntryUpdateWithoutAnswersInput>, DiaryEntryUncheckedUpdateWithoutAnswersInput>
-  }
-
-  export type QuestionUpdateOneRequiredWithoutAnswersNestedInput = {
-    create?: XOR<QuestionCreateWithoutAnswersInput, QuestionUncheckedCreateWithoutAnswersInput>
-    connectOrCreate?: QuestionCreateOrConnectWithoutAnswersInput
-    upsert?: QuestionUpsertWithoutAnswersInput
-    connect?: QuestionWhereUniqueInput
-    update?: XOR<XOR<QuestionUpdateToOneWithWhereWithoutAnswersInput, QuestionUpdateWithoutAnswersInput>, QuestionUncheckedUpdateWithoutAnswersInput>
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutDiarioAutoadvocaciaQuinzenasInput, UserUpdateWithoutDiarioAutoadvocaciaQuinzenasInput>, UserUncheckedUpdateWithoutDiarioAutoadvocaciaQuinzenasInput>
   }
 
   export type FloatFieldUpdateOperationsInput = {
@@ -33046,14 +31985,6 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput
   }
 
-  export type NullableIntFieldUpdateOperationsInput = {
-    set?: number | null
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
-  }
-
   export type UserUpdateOneRequiredWithoutQuestionarioRespostasNestedInput = {
     create?: XOR<UserCreateWithoutQuestionarioRespostasInput, UserUncheckedCreateWithoutQuestionarioRespostasInput>
     connectOrCreate?: UserCreateOrConnectWithoutQuestionarioRespostasInput
@@ -33081,6 +32012,17 @@ export namespace Prisma {
     in?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
     notIn?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
     not?: NestedEnumUserRoleFilter<$PrismaModel> | $Enums.UserRole
+  }
+
+  export type NestedIntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
   }
 
   export type NestedDateTimeFilter<$PrismaModel = never> = {
@@ -33111,17 +32053,6 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
-  export type NestedIntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
-  }
-
   export type NestedEnumUserRoleWithAggregatesFilter<$PrismaModel = never> = {
     equals?: $Enums.UserRole | EnumUserRoleFieldRefInput<$PrismaModel>
     in?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
@@ -33130,6 +32061,33 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumUserRoleFilter<$PrismaModel>
     _max?: NestedEnumUserRoleFilter<$PrismaModel>
+  }
+
+  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type NestedFloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
   }
 
   export type NestedIntNullableFilter<$PrismaModel = never> = {
@@ -33216,31 +32174,31 @@ export namespace Prisma {
     not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
-  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
     lt?: number | IntFieldRefInput<$PrismaModel>
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
-  export type NestedFloatFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
     lt?: number | FloatFieldRefInput<$PrismaModel>
     lte?: number | FloatFieldRefInput<$PrismaModel>
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatFilter<$PrismaModel> | number
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
   export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
@@ -33290,33 +32248,6 @@ export namespace Prisma {
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
 
-  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedFloatNullableFilter<$PrismaModel>
-    _sum?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedIntNullableFilter<$PrismaModel>
-    _max?: NestedIntNullableFilter<$PrismaModel>
-  }
-
-  export type NestedFloatNullableFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
-  }
-
   export type PostCreateWithoutAuthorInput = {
     id?: string
     title: string
@@ -33342,62 +32273,6 @@ export namespace Prisma {
 
   export type PostCreateManyAuthorInputEnvelope = {
     data: PostCreateManyAuthorInput | PostCreateManyAuthorInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type QuestionCreateWithoutUserInput = {
-    id?: string
-    texto: string
-    ordem: number
-    ativo?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    answers?: DiaryAnswerCreateNestedManyWithoutQuestionInput
-  }
-
-  export type QuestionUncheckedCreateWithoutUserInput = {
-    id?: string
-    texto: string
-    ordem: number
-    ativo?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    answers?: DiaryAnswerUncheckedCreateNestedManyWithoutQuestionInput
-  }
-
-  export type QuestionCreateOrConnectWithoutUserInput = {
-    where: QuestionWhereUniqueInput
-    create: XOR<QuestionCreateWithoutUserInput, QuestionUncheckedCreateWithoutUserInput>
-  }
-
-  export type QuestionCreateManyUserInputEnvelope = {
-    data: QuestionCreateManyUserInput | QuestionCreateManyUserInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type DiaryEntryCreateWithoutUserInput = {
-    id?: string
-    date: Date | string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    answers?: DiaryAnswerCreateNestedManyWithoutEntryInput
-  }
-
-  export type DiaryEntryUncheckedCreateWithoutUserInput = {
-    id?: string
-    date: Date | string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    answers?: DiaryAnswerUncheckedCreateNestedManyWithoutEntryInput
-  }
-
-  export type DiaryEntryCreateOrConnectWithoutUserInput = {
-    where: DiaryEntryWhereUniqueInput
-    create: XOR<DiaryEntryCreateWithoutUserInput, DiaryEntryUncheckedCreateWithoutUserInput>
-  }
-
-  export type DiaryEntryCreateManyUserInputEnvelope = {
-    data: DiaryEntryCreateManyUserInput | DiaryEntryCreateManyUserInput[]
     skipDuplicates?: boolean
   }
 
@@ -33467,6 +32342,86 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type DiarioPaginaCreateWithoutUserInput = {
+    id?: string
+    tipo: string
+    quadrante?: string | null
+    tipoTraco?: string | null
+    numeroTraco?: number | null
+    tituloTraco?: string | null
+    chave: string
+    ordem: number
+    texto?: string
+    concluida?: boolean
+    desbloqueada?: boolean
+    arquivada?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type DiarioPaginaUncheckedCreateWithoutUserInput = {
+    id?: string
+    tipo: string
+    quadrante?: string | null
+    tipoTraco?: string | null
+    numeroTraco?: number | null
+    tituloTraco?: string | null
+    chave: string
+    ordem: number
+    texto?: string
+    concluida?: boolean
+    desbloqueada?: boolean
+    arquivada?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type DiarioPaginaCreateOrConnectWithoutUserInput = {
+    where: DiarioPaginaWhereUniqueInput
+    create: XOR<DiarioPaginaCreateWithoutUserInput, DiarioPaginaUncheckedCreateWithoutUserInput>
+  }
+
+  export type DiarioPaginaCreateManyUserInputEnvelope = {
+    data: DiarioPaginaCreateManyUserInput | DiarioPaginaCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type DiarioAutoadvocaciaQuinzenaCreateWithoutUserInput = {
+    id?: string
+    numero: number
+    rotulo?: string | null
+    inicio: Date | string
+    fim: Date | string
+    resposta1?: string
+    resposta2?: string
+    concluida?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type DiarioAutoadvocaciaQuinzenaUncheckedCreateWithoutUserInput = {
+    id?: string
+    numero: number
+    rotulo?: string | null
+    inicio: Date | string
+    fim: Date | string
+    resposta1?: string
+    resposta2?: string
+    concluida?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type DiarioAutoadvocaciaQuinzenaCreateOrConnectWithoutUserInput = {
+    where: DiarioAutoadvocaciaQuinzenaWhereUniqueInput
+    create: XOR<DiarioAutoadvocaciaQuinzenaCreateWithoutUserInput, DiarioAutoadvocaciaQuinzenaUncheckedCreateWithoutUserInput>
+  }
+
+  export type DiarioAutoadvocaciaQuinzenaCreateManyUserInputEnvelope = {
+    data: DiarioAutoadvocaciaQuinzenaCreateManyUserInput | DiarioAutoadvocaciaQuinzenaCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
   export type PostUpsertWithWhereUniqueWithoutAuthorInput = {
     where: PostWhereUniqueInput
     update: XOR<PostUpdateWithoutAuthorInput, PostUncheckedUpdateWithoutAuthorInput>
@@ -33494,62 +32449,6 @@ export namespace Prisma {
     authorId?: StringFilter<"Post"> | string
     createdAt?: DateTimeFilter<"Post"> | Date | string
     updatedAt?: DateTimeFilter<"Post"> | Date | string
-  }
-
-  export type QuestionUpsertWithWhereUniqueWithoutUserInput = {
-    where: QuestionWhereUniqueInput
-    update: XOR<QuestionUpdateWithoutUserInput, QuestionUncheckedUpdateWithoutUserInput>
-    create: XOR<QuestionCreateWithoutUserInput, QuestionUncheckedCreateWithoutUserInput>
-  }
-
-  export type QuestionUpdateWithWhereUniqueWithoutUserInput = {
-    where: QuestionWhereUniqueInput
-    data: XOR<QuestionUpdateWithoutUserInput, QuestionUncheckedUpdateWithoutUserInput>
-  }
-
-  export type QuestionUpdateManyWithWhereWithoutUserInput = {
-    where: QuestionScalarWhereInput
-    data: XOR<QuestionUpdateManyMutationInput, QuestionUncheckedUpdateManyWithoutUserInput>
-  }
-
-  export type QuestionScalarWhereInput = {
-    AND?: QuestionScalarWhereInput | QuestionScalarWhereInput[]
-    OR?: QuestionScalarWhereInput[]
-    NOT?: QuestionScalarWhereInput | QuestionScalarWhereInput[]
-    id?: StringFilter<"Question"> | string
-    texto?: StringFilter<"Question"> | string
-    ordem?: IntFilter<"Question"> | number
-    ativo?: BoolFilter<"Question"> | boolean
-    userId?: StringFilter<"Question"> | string
-    createdAt?: DateTimeFilter<"Question"> | Date | string
-    updatedAt?: DateTimeFilter<"Question"> | Date | string
-  }
-
-  export type DiaryEntryUpsertWithWhereUniqueWithoutUserInput = {
-    where: DiaryEntryWhereUniqueInput
-    update: XOR<DiaryEntryUpdateWithoutUserInput, DiaryEntryUncheckedUpdateWithoutUserInput>
-    create: XOR<DiaryEntryCreateWithoutUserInput, DiaryEntryUncheckedCreateWithoutUserInput>
-  }
-
-  export type DiaryEntryUpdateWithWhereUniqueWithoutUserInput = {
-    where: DiaryEntryWhereUniqueInput
-    data: XOR<DiaryEntryUpdateWithoutUserInput, DiaryEntryUncheckedUpdateWithoutUserInput>
-  }
-
-  export type DiaryEntryUpdateManyWithWhereWithoutUserInput = {
-    where: DiaryEntryScalarWhereInput
-    data: XOR<DiaryEntryUpdateManyMutationInput, DiaryEntryUncheckedUpdateManyWithoutUserInput>
-  }
-
-  export type DiaryEntryScalarWhereInput = {
-    AND?: DiaryEntryScalarWhereInput | DiaryEntryScalarWhereInput[]
-    OR?: DiaryEntryScalarWhereInput[]
-    NOT?: DiaryEntryScalarWhereInput | DiaryEntryScalarWhereInput[]
-    id?: StringFilter<"DiaryEntry"> | string
-    userId?: StringFilter<"DiaryEntry"> | string
-    date?: DateTimeFilter<"DiaryEntry"> | Date | string
-    createdAt?: DateTimeFilter<"DiaryEntry"> | Date | string
-    updatedAt?: DateTimeFilter<"DiaryEntry"> | Date | string
   }
 
   export type QuestionarioRespostaUpsertWithWhereUniqueWithoutUserInput = {
@@ -33615,19 +32514,90 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"ReflexaoTraco"> | Date | string
   }
 
+  export type DiarioPaginaUpsertWithWhereUniqueWithoutUserInput = {
+    where: DiarioPaginaWhereUniqueInput
+    update: XOR<DiarioPaginaUpdateWithoutUserInput, DiarioPaginaUncheckedUpdateWithoutUserInput>
+    create: XOR<DiarioPaginaCreateWithoutUserInput, DiarioPaginaUncheckedCreateWithoutUserInput>
+  }
+
+  export type DiarioPaginaUpdateWithWhereUniqueWithoutUserInput = {
+    where: DiarioPaginaWhereUniqueInput
+    data: XOR<DiarioPaginaUpdateWithoutUserInput, DiarioPaginaUncheckedUpdateWithoutUserInput>
+  }
+
+  export type DiarioPaginaUpdateManyWithWhereWithoutUserInput = {
+    where: DiarioPaginaScalarWhereInput
+    data: XOR<DiarioPaginaUpdateManyMutationInput, DiarioPaginaUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type DiarioPaginaScalarWhereInput = {
+    AND?: DiarioPaginaScalarWhereInput | DiarioPaginaScalarWhereInput[]
+    OR?: DiarioPaginaScalarWhereInput[]
+    NOT?: DiarioPaginaScalarWhereInput | DiarioPaginaScalarWhereInput[]
+    id?: StringFilter<"DiarioPagina"> | string
+    userId?: StringFilter<"DiarioPagina"> | string
+    tipo?: StringFilter<"DiarioPagina"> | string
+    quadrante?: StringNullableFilter<"DiarioPagina"> | string | null
+    tipoTraco?: StringNullableFilter<"DiarioPagina"> | string | null
+    numeroTraco?: IntNullableFilter<"DiarioPagina"> | number | null
+    tituloTraco?: StringNullableFilter<"DiarioPagina"> | string | null
+    chave?: StringFilter<"DiarioPagina"> | string
+    ordem?: IntFilter<"DiarioPagina"> | number
+    texto?: StringFilter<"DiarioPagina"> | string
+    concluida?: BoolFilter<"DiarioPagina"> | boolean
+    desbloqueada?: BoolFilter<"DiarioPagina"> | boolean
+    arquivada?: BoolFilter<"DiarioPagina"> | boolean
+    createdAt?: DateTimeFilter<"DiarioPagina"> | Date | string
+    updatedAt?: DateTimeFilter<"DiarioPagina"> | Date | string
+  }
+
+  export type DiarioAutoadvocaciaQuinzenaUpsertWithWhereUniqueWithoutUserInput = {
+    where: DiarioAutoadvocaciaQuinzenaWhereUniqueInput
+    update: XOR<DiarioAutoadvocaciaQuinzenaUpdateWithoutUserInput, DiarioAutoadvocaciaQuinzenaUncheckedUpdateWithoutUserInput>
+    create: XOR<DiarioAutoadvocaciaQuinzenaCreateWithoutUserInput, DiarioAutoadvocaciaQuinzenaUncheckedCreateWithoutUserInput>
+  }
+
+  export type DiarioAutoadvocaciaQuinzenaUpdateWithWhereUniqueWithoutUserInput = {
+    where: DiarioAutoadvocaciaQuinzenaWhereUniqueInput
+    data: XOR<DiarioAutoadvocaciaQuinzenaUpdateWithoutUserInput, DiarioAutoadvocaciaQuinzenaUncheckedUpdateWithoutUserInput>
+  }
+
+  export type DiarioAutoadvocaciaQuinzenaUpdateManyWithWhereWithoutUserInput = {
+    where: DiarioAutoadvocaciaQuinzenaScalarWhereInput
+    data: XOR<DiarioAutoadvocaciaQuinzenaUpdateManyMutationInput, DiarioAutoadvocaciaQuinzenaUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type DiarioAutoadvocaciaQuinzenaScalarWhereInput = {
+    AND?: DiarioAutoadvocaciaQuinzenaScalarWhereInput | DiarioAutoadvocaciaQuinzenaScalarWhereInput[]
+    OR?: DiarioAutoadvocaciaQuinzenaScalarWhereInput[]
+    NOT?: DiarioAutoadvocaciaQuinzenaScalarWhereInput | DiarioAutoadvocaciaQuinzenaScalarWhereInput[]
+    id?: StringFilter<"DiarioAutoadvocaciaQuinzena"> | string
+    userId?: StringFilter<"DiarioAutoadvocaciaQuinzena"> | string
+    numero?: IntFilter<"DiarioAutoadvocaciaQuinzena"> | number
+    rotulo?: StringNullableFilter<"DiarioAutoadvocaciaQuinzena"> | string | null
+    inicio?: DateTimeFilter<"DiarioAutoadvocaciaQuinzena"> | Date | string
+    fim?: DateTimeFilter<"DiarioAutoadvocaciaQuinzena"> | Date | string
+    resposta1?: StringFilter<"DiarioAutoadvocaciaQuinzena"> | string
+    resposta2?: StringFilter<"DiarioAutoadvocaciaQuinzena"> | string
+    concluida?: BoolFilter<"DiarioAutoadvocaciaQuinzena"> | boolean
+    createdAt?: DateTimeFilter<"DiarioAutoadvocaciaQuinzena"> | Date | string
+    updatedAt?: DateTimeFilter<"DiarioAutoadvocaciaQuinzena"> | Date | string
+  }
+
   export type UserCreateWithoutPostsInput = {
     id?: string
     email: string
     name: string
     password: string
     role?: $Enums.UserRole
+    sessionVersion?: number
     profileRegistration?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
-    questions?: QuestionCreateNestedManyWithoutUserInput
-    diaryEntries?: DiaryEntryCreateNestedManyWithoutUserInput
     questionarioRespostas?: QuestionarioRespostaCreateNestedManyWithoutUserInput
     reflexoesTraco?: ReflexaoTracoCreateNestedManyWithoutUserInput
+    diarioPaginas?: DiarioPaginaCreateNestedManyWithoutUserInput
+    diarioAutoadvocaciaQuinzenas?: DiarioAutoadvocaciaQuinzenaCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutPostsInput = {
@@ -33636,13 +32606,14 @@ export namespace Prisma {
     name: string
     password: string
     role?: $Enums.UserRole
+    sessionVersion?: number
     profileRegistration?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
-    questions?: QuestionUncheckedCreateNestedManyWithoutUserInput
-    diaryEntries?: DiaryEntryUncheckedCreateNestedManyWithoutUserInput
     questionarioRespostas?: QuestionarioRespostaUncheckedCreateNestedManyWithoutUserInput
     reflexoesTraco?: ReflexaoTracoUncheckedCreateNestedManyWithoutUserInput
+    diarioPaginas?: DiarioPaginaUncheckedCreateNestedManyWithoutUserInput
+    diarioAutoadvocaciaQuinzenas?: DiarioAutoadvocaciaQuinzenaUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutPostsInput = {
@@ -33667,13 +32638,14 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    sessionVersion?: IntFieldUpdateOperationsInput | number
     profileRegistration?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    questions?: QuestionUpdateManyWithoutUserNestedInput
-    diaryEntries?: DiaryEntryUpdateManyWithoutUserNestedInput
     questionarioRespostas?: QuestionarioRespostaUpdateManyWithoutUserNestedInput
     reflexoesTraco?: ReflexaoTracoUpdateManyWithoutUserNestedInput
+    diarioPaginas?: DiarioPaginaUpdateManyWithoutUserNestedInput
+    diarioAutoadvocaciaQuinzenas?: DiarioAutoadvocaciaQuinzenaUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPostsInput = {
@@ -33682,365 +32654,174 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    sessionVersion?: IntFieldUpdateOperationsInput | number
     profileRegistration?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    questions?: QuestionUncheckedUpdateManyWithoutUserNestedInput
-    diaryEntries?: DiaryEntryUncheckedUpdateManyWithoutUserNestedInput
     questionarioRespostas?: QuestionarioRespostaUncheckedUpdateManyWithoutUserNestedInput
     reflexoesTraco?: ReflexaoTracoUncheckedUpdateManyWithoutUserNestedInput
+    diarioPaginas?: DiarioPaginaUncheckedUpdateManyWithoutUserNestedInput
+    diarioAutoadvocaciaQuinzenas?: DiarioAutoadvocaciaQuinzenaUncheckedUpdateManyWithoutUserNestedInput
   }
 
-  export type UserCreateWithoutQuestionsInput = {
+  export type UserCreateWithoutDiarioPaginasInput = {
     id?: string
     email: string
     name: string
     password: string
     role?: $Enums.UserRole
+    sessionVersion?: number
     profileRegistration?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
     posts?: PostCreateNestedManyWithoutAuthorInput
-    diaryEntries?: DiaryEntryCreateNestedManyWithoutUserInput
     questionarioRespostas?: QuestionarioRespostaCreateNestedManyWithoutUserInput
     reflexoesTraco?: ReflexaoTracoCreateNestedManyWithoutUserInput
+    diarioAutoadvocaciaQuinzenas?: DiarioAutoadvocaciaQuinzenaCreateNestedManyWithoutUserInput
   }
 
-  export type UserUncheckedCreateWithoutQuestionsInput = {
+  export type UserUncheckedCreateWithoutDiarioPaginasInput = {
     id?: string
     email: string
     name: string
     password: string
     role?: $Enums.UserRole
+    sessionVersion?: number
     profileRegistration?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
-    diaryEntries?: DiaryEntryUncheckedCreateNestedManyWithoutUserInput
     questionarioRespostas?: QuestionarioRespostaUncheckedCreateNestedManyWithoutUserInput
     reflexoesTraco?: ReflexaoTracoUncheckedCreateNestedManyWithoutUserInput
+    diarioAutoadvocaciaQuinzenas?: DiarioAutoadvocaciaQuinzenaUncheckedCreateNestedManyWithoutUserInput
   }
 
-  export type UserCreateOrConnectWithoutQuestionsInput = {
+  export type UserCreateOrConnectWithoutDiarioPaginasInput = {
     where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutQuestionsInput, UserUncheckedCreateWithoutQuestionsInput>
+    create: XOR<UserCreateWithoutDiarioPaginasInput, UserUncheckedCreateWithoutDiarioPaginasInput>
   }
 
-  export type DiaryAnswerCreateWithoutQuestionInput = {
-    id?: string
-    texto: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    entry: DiaryEntryCreateNestedOneWithoutAnswersInput
-  }
-
-  export type DiaryAnswerUncheckedCreateWithoutQuestionInput = {
-    id?: string
-    entryId: string
-    texto: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type DiaryAnswerCreateOrConnectWithoutQuestionInput = {
-    where: DiaryAnswerWhereUniqueInput
-    create: XOR<DiaryAnswerCreateWithoutQuestionInput, DiaryAnswerUncheckedCreateWithoutQuestionInput>
-  }
-
-  export type DiaryAnswerCreateManyQuestionInputEnvelope = {
-    data: DiaryAnswerCreateManyQuestionInput | DiaryAnswerCreateManyQuestionInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type UserUpsertWithoutQuestionsInput = {
-    update: XOR<UserUpdateWithoutQuestionsInput, UserUncheckedUpdateWithoutQuestionsInput>
-    create: XOR<UserCreateWithoutQuestionsInput, UserUncheckedCreateWithoutQuestionsInput>
+  export type UserUpsertWithoutDiarioPaginasInput = {
+    update: XOR<UserUpdateWithoutDiarioPaginasInput, UserUncheckedUpdateWithoutDiarioPaginasInput>
+    create: XOR<UserCreateWithoutDiarioPaginasInput, UserUncheckedCreateWithoutDiarioPaginasInput>
     where?: UserWhereInput
   }
 
-  export type UserUpdateToOneWithWhereWithoutQuestionsInput = {
+  export type UserUpdateToOneWithWhereWithoutDiarioPaginasInput = {
     where?: UserWhereInput
-    data: XOR<UserUpdateWithoutQuestionsInput, UserUncheckedUpdateWithoutQuestionsInput>
+    data: XOR<UserUpdateWithoutDiarioPaginasInput, UserUncheckedUpdateWithoutDiarioPaginasInput>
   }
 
-  export type UserUpdateWithoutQuestionsInput = {
+  export type UserUpdateWithoutDiarioPaginasInput = {
     id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    sessionVersion?: IntFieldUpdateOperationsInput | number
     profileRegistration?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     posts?: PostUpdateManyWithoutAuthorNestedInput
-    diaryEntries?: DiaryEntryUpdateManyWithoutUserNestedInput
     questionarioRespostas?: QuestionarioRespostaUpdateManyWithoutUserNestedInput
     reflexoesTraco?: ReflexaoTracoUpdateManyWithoutUserNestedInput
+    diarioAutoadvocaciaQuinzenas?: DiarioAutoadvocaciaQuinzenaUpdateManyWithoutUserNestedInput
   }
 
-  export type UserUncheckedUpdateWithoutQuestionsInput = {
+  export type UserUncheckedUpdateWithoutDiarioPaginasInput = {
     id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    sessionVersion?: IntFieldUpdateOperationsInput | number
     profileRegistration?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
-    diaryEntries?: DiaryEntryUncheckedUpdateManyWithoutUserNestedInput
     questionarioRespostas?: QuestionarioRespostaUncheckedUpdateManyWithoutUserNestedInput
     reflexoesTraco?: ReflexaoTracoUncheckedUpdateManyWithoutUserNestedInput
+    diarioAutoadvocaciaQuinzenas?: DiarioAutoadvocaciaQuinzenaUncheckedUpdateManyWithoutUserNestedInput
   }
 
-  export type DiaryAnswerUpsertWithWhereUniqueWithoutQuestionInput = {
-    where: DiaryAnswerWhereUniqueInput
-    update: XOR<DiaryAnswerUpdateWithoutQuestionInput, DiaryAnswerUncheckedUpdateWithoutQuestionInput>
-    create: XOR<DiaryAnswerCreateWithoutQuestionInput, DiaryAnswerUncheckedCreateWithoutQuestionInput>
-  }
-
-  export type DiaryAnswerUpdateWithWhereUniqueWithoutQuestionInput = {
-    where: DiaryAnswerWhereUniqueInput
-    data: XOR<DiaryAnswerUpdateWithoutQuestionInput, DiaryAnswerUncheckedUpdateWithoutQuestionInput>
-  }
-
-  export type DiaryAnswerUpdateManyWithWhereWithoutQuestionInput = {
-    where: DiaryAnswerScalarWhereInput
-    data: XOR<DiaryAnswerUpdateManyMutationInput, DiaryAnswerUncheckedUpdateManyWithoutQuestionInput>
-  }
-
-  export type DiaryAnswerScalarWhereInput = {
-    AND?: DiaryAnswerScalarWhereInput | DiaryAnswerScalarWhereInput[]
-    OR?: DiaryAnswerScalarWhereInput[]
-    NOT?: DiaryAnswerScalarWhereInput | DiaryAnswerScalarWhereInput[]
-    id?: StringFilter<"DiaryAnswer"> | string
-    entryId?: StringFilter<"DiaryAnswer"> | string
-    questionId?: StringFilter<"DiaryAnswer"> | string
-    texto?: StringFilter<"DiaryAnswer"> | string
-    createdAt?: DateTimeFilter<"DiaryAnswer"> | Date | string
-    updatedAt?: DateTimeFilter<"DiaryAnswer"> | Date | string
-  }
-
-  export type UserCreateWithoutDiaryEntriesInput = {
+  export type UserCreateWithoutDiarioAutoadvocaciaQuinzenasInput = {
     id?: string
     email: string
     name: string
     password: string
     role?: $Enums.UserRole
+    sessionVersion?: number
     profileRegistration?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
     posts?: PostCreateNestedManyWithoutAuthorInput
-    questions?: QuestionCreateNestedManyWithoutUserInput
     questionarioRespostas?: QuestionarioRespostaCreateNestedManyWithoutUserInput
     reflexoesTraco?: ReflexaoTracoCreateNestedManyWithoutUserInput
+    diarioPaginas?: DiarioPaginaCreateNestedManyWithoutUserInput
   }
 
-  export type UserUncheckedCreateWithoutDiaryEntriesInput = {
+  export type UserUncheckedCreateWithoutDiarioAutoadvocaciaQuinzenasInput = {
     id?: string
     email: string
     name: string
     password: string
     role?: $Enums.UserRole
+    sessionVersion?: number
     profileRegistration?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
-    questions?: QuestionUncheckedCreateNestedManyWithoutUserInput
     questionarioRespostas?: QuestionarioRespostaUncheckedCreateNestedManyWithoutUserInput
     reflexoesTraco?: ReflexaoTracoUncheckedCreateNestedManyWithoutUserInput
+    diarioPaginas?: DiarioPaginaUncheckedCreateNestedManyWithoutUserInput
   }
 
-  export type UserCreateOrConnectWithoutDiaryEntriesInput = {
+  export type UserCreateOrConnectWithoutDiarioAutoadvocaciaQuinzenasInput = {
     where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutDiaryEntriesInput, UserUncheckedCreateWithoutDiaryEntriesInput>
+    create: XOR<UserCreateWithoutDiarioAutoadvocaciaQuinzenasInput, UserUncheckedCreateWithoutDiarioAutoadvocaciaQuinzenasInput>
   }
 
-  export type DiaryAnswerCreateWithoutEntryInput = {
-    id?: string
-    texto: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    question: QuestionCreateNestedOneWithoutAnswersInput
-  }
-
-  export type DiaryAnswerUncheckedCreateWithoutEntryInput = {
-    id?: string
-    questionId: string
-    texto: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type DiaryAnswerCreateOrConnectWithoutEntryInput = {
-    where: DiaryAnswerWhereUniqueInput
-    create: XOR<DiaryAnswerCreateWithoutEntryInput, DiaryAnswerUncheckedCreateWithoutEntryInput>
-  }
-
-  export type DiaryAnswerCreateManyEntryInputEnvelope = {
-    data: DiaryAnswerCreateManyEntryInput | DiaryAnswerCreateManyEntryInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type UserUpsertWithoutDiaryEntriesInput = {
-    update: XOR<UserUpdateWithoutDiaryEntriesInput, UserUncheckedUpdateWithoutDiaryEntriesInput>
-    create: XOR<UserCreateWithoutDiaryEntriesInput, UserUncheckedCreateWithoutDiaryEntriesInput>
+  export type UserUpsertWithoutDiarioAutoadvocaciaQuinzenasInput = {
+    update: XOR<UserUpdateWithoutDiarioAutoadvocaciaQuinzenasInput, UserUncheckedUpdateWithoutDiarioAutoadvocaciaQuinzenasInput>
+    create: XOR<UserCreateWithoutDiarioAutoadvocaciaQuinzenasInput, UserUncheckedCreateWithoutDiarioAutoadvocaciaQuinzenasInput>
     where?: UserWhereInput
   }
 
-  export type UserUpdateToOneWithWhereWithoutDiaryEntriesInput = {
+  export type UserUpdateToOneWithWhereWithoutDiarioAutoadvocaciaQuinzenasInput = {
     where?: UserWhereInput
-    data: XOR<UserUpdateWithoutDiaryEntriesInput, UserUncheckedUpdateWithoutDiaryEntriesInput>
+    data: XOR<UserUpdateWithoutDiarioAutoadvocaciaQuinzenasInput, UserUncheckedUpdateWithoutDiarioAutoadvocaciaQuinzenasInput>
   }
 
-  export type UserUpdateWithoutDiaryEntriesInput = {
+  export type UserUpdateWithoutDiarioAutoadvocaciaQuinzenasInput = {
     id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    sessionVersion?: IntFieldUpdateOperationsInput | number
     profileRegistration?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     posts?: PostUpdateManyWithoutAuthorNestedInput
-    questions?: QuestionUpdateManyWithoutUserNestedInput
     questionarioRespostas?: QuestionarioRespostaUpdateManyWithoutUserNestedInput
     reflexoesTraco?: ReflexaoTracoUpdateManyWithoutUserNestedInput
+    diarioPaginas?: DiarioPaginaUpdateManyWithoutUserNestedInput
   }
 
-  export type UserUncheckedUpdateWithoutDiaryEntriesInput = {
+  export type UserUncheckedUpdateWithoutDiarioAutoadvocaciaQuinzenasInput = {
     id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    sessionVersion?: IntFieldUpdateOperationsInput | number
     profileRegistration?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
-    questions?: QuestionUncheckedUpdateManyWithoutUserNestedInput
     questionarioRespostas?: QuestionarioRespostaUncheckedUpdateManyWithoutUserNestedInput
     reflexoesTraco?: ReflexaoTracoUncheckedUpdateManyWithoutUserNestedInput
-  }
-
-  export type DiaryAnswerUpsertWithWhereUniqueWithoutEntryInput = {
-    where: DiaryAnswerWhereUniqueInput
-    update: XOR<DiaryAnswerUpdateWithoutEntryInput, DiaryAnswerUncheckedUpdateWithoutEntryInput>
-    create: XOR<DiaryAnswerCreateWithoutEntryInput, DiaryAnswerUncheckedCreateWithoutEntryInput>
-  }
-
-  export type DiaryAnswerUpdateWithWhereUniqueWithoutEntryInput = {
-    where: DiaryAnswerWhereUniqueInput
-    data: XOR<DiaryAnswerUpdateWithoutEntryInput, DiaryAnswerUncheckedUpdateWithoutEntryInput>
-  }
-
-  export type DiaryAnswerUpdateManyWithWhereWithoutEntryInput = {
-    where: DiaryAnswerScalarWhereInput
-    data: XOR<DiaryAnswerUpdateManyMutationInput, DiaryAnswerUncheckedUpdateManyWithoutEntryInput>
-  }
-
-  export type DiaryEntryCreateWithoutAnswersInput = {
-    id?: string
-    date: Date | string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    user: UserCreateNestedOneWithoutDiaryEntriesInput
-  }
-
-  export type DiaryEntryUncheckedCreateWithoutAnswersInput = {
-    id?: string
-    userId: string
-    date: Date | string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type DiaryEntryCreateOrConnectWithoutAnswersInput = {
-    where: DiaryEntryWhereUniqueInput
-    create: XOR<DiaryEntryCreateWithoutAnswersInput, DiaryEntryUncheckedCreateWithoutAnswersInput>
-  }
-
-  export type QuestionCreateWithoutAnswersInput = {
-    id?: string
-    texto: string
-    ordem: number
-    ativo?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    user: UserCreateNestedOneWithoutQuestionsInput
-  }
-
-  export type QuestionUncheckedCreateWithoutAnswersInput = {
-    id?: string
-    texto: string
-    ordem: number
-    ativo?: boolean
-    userId: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type QuestionCreateOrConnectWithoutAnswersInput = {
-    where: QuestionWhereUniqueInput
-    create: XOR<QuestionCreateWithoutAnswersInput, QuestionUncheckedCreateWithoutAnswersInput>
-  }
-
-  export type DiaryEntryUpsertWithoutAnswersInput = {
-    update: XOR<DiaryEntryUpdateWithoutAnswersInput, DiaryEntryUncheckedUpdateWithoutAnswersInput>
-    create: XOR<DiaryEntryCreateWithoutAnswersInput, DiaryEntryUncheckedCreateWithoutAnswersInput>
-    where?: DiaryEntryWhereInput
-  }
-
-  export type DiaryEntryUpdateToOneWithWhereWithoutAnswersInput = {
-    where?: DiaryEntryWhereInput
-    data: XOR<DiaryEntryUpdateWithoutAnswersInput, DiaryEntryUncheckedUpdateWithoutAnswersInput>
-  }
-
-  export type DiaryEntryUpdateWithoutAnswersInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutDiaryEntriesNestedInput
-  }
-
-  export type DiaryEntryUncheckedUpdateWithoutAnswersInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type QuestionUpsertWithoutAnswersInput = {
-    update: XOR<QuestionUpdateWithoutAnswersInput, QuestionUncheckedUpdateWithoutAnswersInput>
-    create: XOR<QuestionCreateWithoutAnswersInput, QuestionUncheckedCreateWithoutAnswersInput>
-    where?: QuestionWhereInput
-  }
-
-  export type QuestionUpdateToOneWithWhereWithoutAnswersInput = {
-    where?: QuestionWhereInput
-    data: XOR<QuestionUpdateWithoutAnswersInput, QuestionUncheckedUpdateWithoutAnswersInput>
-  }
-
-  export type QuestionUpdateWithoutAnswersInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    texto?: StringFieldUpdateOperationsInput | string
-    ordem?: IntFieldUpdateOperationsInput | number
-    ativo?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutQuestionsNestedInput
-  }
-
-  export type QuestionUncheckedUpdateWithoutAnswersInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    texto?: StringFieldUpdateOperationsInput | string
-    ordem?: IntFieldUpdateOperationsInput | number
-    ativo?: BoolFieldUpdateOperationsInput | boolean
-    userId?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    diarioPaginas?: DiarioPaginaUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type TracoNeutroFOCreateWithoutFraquezasOportunidadesInput = {
@@ -34772,13 +33553,14 @@ export namespace Prisma {
     name: string
     password: string
     role?: $Enums.UserRole
+    sessionVersion?: number
     profileRegistration?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
     posts?: PostCreateNestedManyWithoutAuthorInput
-    questions?: QuestionCreateNestedManyWithoutUserInput
-    diaryEntries?: DiaryEntryCreateNestedManyWithoutUserInput
     questionarioRespostas?: QuestionarioRespostaCreateNestedManyWithoutUserInput
+    diarioPaginas?: DiarioPaginaCreateNestedManyWithoutUserInput
+    diarioAutoadvocaciaQuinzenas?: DiarioAutoadvocaciaQuinzenaCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutReflexoesTracoInput = {
@@ -34787,13 +33569,14 @@ export namespace Prisma {
     name: string
     password: string
     role?: $Enums.UserRole
+    sessionVersion?: number
     profileRegistration?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
-    questions?: QuestionUncheckedCreateNestedManyWithoutUserInput
-    diaryEntries?: DiaryEntryUncheckedCreateNestedManyWithoutUserInput
     questionarioRespostas?: QuestionarioRespostaUncheckedCreateNestedManyWithoutUserInput
+    diarioPaginas?: DiarioPaginaUncheckedCreateNestedManyWithoutUserInput
+    diarioAutoadvocaciaQuinzenas?: DiarioAutoadvocaciaQuinzenaUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutReflexoesTracoInput = {
@@ -34818,13 +33601,14 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    sessionVersion?: IntFieldUpdateOperationsInput | number
     profileRegistration?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     posts?: PostUpdateManyWithoutAuthorNestedInput
-    questions?: QuestionUpdateManyWithoutUserNestedInput
-    diaryEntries?: DiaryEntryUpdateManyWithoutUserNestedInput
     questionarioRespostas?: QuestionarioRespostaUpdateManyWithoutUserNestedInput
+    diarioPaginas?: DiarioPaginaUpdateManyWithoutUserNestedInput
+    diarioAutoadvocaciaQuinzenas?: DiarioAutoadvocaciaQuinzenaUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutReflexoesTracoInput = {
@@ -34833,13 +33617,14 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    sessionVersion?: IntFieldUpdateOperationsInput | number
     profileRegistration?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
-    questions?: QuestionUncheckedUpdateManyWithoutUserNestedInput
-    diaryEntries?: DiaryEntryUncheckedUpdateManyWithoutUserNestedInput
     questionarioRespostas?: QuestionarioRespostaUncheckedUpdateManyWithoutUserNestedInput
+    diarioPaginas?: DiarioPaginaUncheckedUpdateManyWithoutUserNestedInput
+    diarioAutoadvocaciaQuinzenas?: DiarioAutoadvocaciaQuinzenaUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutQuestionarioRespostasInput = {
@@ -34848,13 +33633,14 @@ export namespace Prisma {
     name: string
     password: string
     role?: $Enums.UserRole
+    sessionVersion?: number
     profileRegistration?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
     posts?: PostCreateNestedManyWithoutAuthorInput
-    questions?: QuestionCreateNestedManyWithoutUserInput
-    diaryEntries?: DiaryEntryCreateNestedManyWithoutUserInput
     reflexoesTraco?: ReflexaoTracoCreateNestedManyWithoutUserInput
+    diarioPaginas?: DiarioPaginaCreateNestedManyWithoutUserInput
+    diarioAutoadvocaciaQuinzenas?: DiarioAutoadvocaciaQuinzenaCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutQuestionarioRespostasInput = {
@@ -34863,13 +33649,14 @@ export namespace Prisma {
     name: string
     password: string
     role?: $Enums.UserRole
+    sessionVersion?: number
     profileRegistration?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
-    questions?: QuestionUncheckedCreateNestedManyWithoutUserInput
-    diaryEntries?: DiaryEntryUncheckedCreateNestedManyWithoutUserInput
     reflexoesTraco?: ReflexaoTracoUncheckedCreateNestedManyWithoutUserInput
+    diarioPaginas?: DiarioPaginaUncheckedCreateNestedManyWithoutUserInput
+    diarioAutoadvocaciaQuinzenas?: DiarioAutoadvocaciaQuinzenaUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutQuestionarioRespostasInput = {
@@ -34894,13 +33681,14 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    sessionVersion?: IntFieldUpdateOperationsInput | number
     profileRegistration?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     posts?: PostUpdateManyWithoutAuthorNestedInput
-    questions?: QuestionUpdateManyWithoutUserNestedInput
-    diaryEntries?: DiaryEntryUpdateManyWithoutUserNestedInput
     reflexoesTraco?: ReflexaoTracoUpdateManyWithoutUserNestedInput
+    diarioPaginas?: DiarioPaginaUpdateManyWithoutUserNestedInput
+    diarioAutoadvocaciaQuinzenas?: DiarioAutoadvocaciaQuinzenaUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutQuestionarioRespostasInput = {
@@ -34909,13 +33697,14 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    sessionVersion?: IntFieldUpdateOperationsInput | number
     profileRegistration?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
-    questions?: QuestionUncheckedUpdateManyWithoutUserNestedInput
-    diaryEntries?: DiaryEntryUncheckedUpdateManyWithoutUserNestedInput
     reflexoesTraco?: ReflexaoTracoUncheckedUpdateManyWithoutUserNestedInput
+    diarioPaginas?: DiarioPaginaUncheckedUpdateManyWithoutUserNestedInput
+    diarioAutoadvocaciaQuinzenas?: DiarioAutoadvocaciaQuinzenaUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type PostCreateManyAuthorInput = {
@@ -34923,22 +33712,6 @@ export namespace Prisma {
     title: string
     content: string
     imageUrl?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type QuestionCreateManyUserInput = {
-    id?: string
-    texto: string
-    ordem: number
-    ativo?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type DiaryEntryCreateManyUserInput = {
-    id?: string
-    date: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -34966,6 +33739,36 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
+  export type DiarioPaginaCreateManyUserInput = {
+    id?: string
+    tipo: string
+    quadrante?: string | null
+    tipoTraco?: string | null
+    numeroTraco?: number | null
+    tituloTraco?: string | null
+    chave: string
+    ordem: number
+    texto?: string
+    concluida?: boolean
+    desbloqueada?: boolean
+    arquivada?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type DiarioAutoadvocaciaQuinzenaCreateManyUserInput = {
+    id?: string
+    numero: number
+    rotulo?: string | null
+    inicio: Date | string
+    fim: Date | string
+    resposta1?: string
+    resposta2?: string
+    concluida?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
   export type PostUpdateWithoutAuthorInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
@@ -34989,58 +33792,6 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type QuestionUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    texto?: StringFieldUpdateOperationsInput | string
-    ordem?: IntFieldUpdateOperationsInput | number
-    ativo?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    answers?: DiaryAnswerUpdateManyWithoutQuestionNestedInput
-  }
-
-  export type QuestionUncheckedUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    texto?: StringFieldUpdateOperationsInput | string
-    ordem?: IntFieldUpdateOperationsInput | number
-    ativo?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    answers?: DiaryAnswerUncheckedUpdateManyWithoutQuestionNestedInput
-  }
-
-  export type QuestionUncheckedUpdateManyWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    texto?: StringFieldUpdateOperationsInput | string
-    ordem?: IntFieldUpdateOperationsInput | number
-    ativo?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type DiaryEntryUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    answers?: DiaryAnswerUpdateManyWithoutEntryNestedInput
-  }
-
-  export type DiaryEntryUncheckedUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    answers?: DiaryAnswerUncheckedUpdateManyWithoutEntryNestedInput
-  }
-
-  export type DiaryEntryUncheckedUpdateManyWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -35114,66 +33865,92 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type DiaryAnswerCreateManyQuestionInput = {
-    id?: string
-    entryId: string
-    texto: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type DiaryAnswerUpdateWithoutQuestionInput = {
+  export type DiarioPaginaUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
+    tipo?: StringFieldUpdateOperationsInput | string
+    quadrante?: NullableStringFieldUpdateOperationsInput | string | null
+    tipoTraco?: NullableStringFieldUpdateOperationsInput | string | null
+    numeroTraco?: NullableIntFieldUpdateOperationsInput | number | null
+    tituloTraco?: NullableStringFieldUpdateOperationsInput | string | null
+    chave?: StringFieldUpdateOperationsInput | string
+    ordem?: IntFieldUpdateOperationsInput | number
     texto?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    entry?: DiaryEntryUpdateOneRequiredWithoutAnswersNestedInput
-  }
-
-  export type DiaryAnswerUncheckedUpdateWithoutQuestionInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    entryId?: StringFieldUpdateOperationsInput | string
-    texto?: StringFieldUpdateOperationsInput | string
+    concluida?: BoolFieldUpdateOperationsInput | boolean
+    desbloqueada?: BoolFieldUpdateOperationsInput | boolean
+    arquivada?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type DiaryAnswerUncheckedUpdateManyWithoutQuestionInput = {
+  export type DiarioPaginaUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    entryId?: StringFieldUpdateOperationsInput | string
+    tipo?: StringFieldUpdateOperationsInput | string
+    quadrante?: NullableStringFieldUpdateOperationsInput | string | null
+    tipoTraco?: NullableStringFieldUpdateOperationsInput | string | null
+    numeroTraco?: NullableIntFieldUpdateOperationsInput | number | null
+    tituloTraco?: NullableStringFieldUpdateOperationsInput | string | null
+    chave?: StringFieldUpdateOperationsInput | string
+    ordem?: IntFieldUpdateOperationsInput | number
     texto?: StringFieldUpdateOperationsInput | string
+    concluida?: BoolFieldUpdateOperationsInput | boolean
+    desbloqueada?: BoolFieldUpdateOperationsInput | boolean
+    arquivada?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type DiaryAnswerCreateManyEntryInput = {
-    id?: string
-    questionId: string
-    texto: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type DiaryAnswerUpdateWithoutEntryInput = {
+  export type DiarioPaginaUncheckedUpdateManyWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
+    tipo?: StringFieldUpdateOperationsInput | string
+    quadrante?: NullableStringFieldUpdateOperationsInput | string | null
+    tipoTraco?: NullableStringFieldUpdateOperationsInput | string | null
+    numeroTraco?: NullableIntFieldUpdateOperationsInput | number | null
+    tituloTraco?: NullableStringFieldUpdateOperationsInput | string | null
+    chave?: StringFieldUpdateOperationsInput | string
+    ordem?: IntFieldUpdateOperationsInput | number
     texto?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    question?: QuestionUpdateOneRequiredWithoutAnswersNestedInput
-  }
-
-  export type DiaryAnswerUncheckedUpdateWithoutEntryInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    questionId?: StringFieldUpdateOperationsInput | string
-    texto?: StringFieldUpdateOperationsInput | string
+    concluida?: BoolFieldUpdateOperationsInput | boolean
+    desbloqueada?: BoolFieldUpdateOperationsInput | boolean
+    arquivada?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type DiaryAnswerUncheckedUpdateManyWithoutEntryInput = {
+  export type DiarioAutoadvocaciaQuinzenaUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    questionId?: StringFieldUpdateOperationsInput | string
-    texto?: StringFieldUpdateOperationsInput | string
+    numero?: IntFieldUpdateOperationsInput | number
+    rotulo?: NullableStringFieldUpdateOperationsInput | string | null
+    inicio?: DateTimeFieldUpdateOperationsInput | Date | string
+    fim?: DateTimeFieldUpdateOperationsInput | Date | string
+    resposta1?: StringFieldUpdateOperationsInput | string
+    resposta2?: StringFieldUpdateOperationsInput | string
+    concluida?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DiarioAutoadvocaciaQuinzenaUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    numero?: IntFieldUpdateOperationsInput | number
+    rotulo?: NullableStringFieldUpdateOperationsInput | string | null
+    inicio?: DateTimeFieldUpdateOperationsInput | Date | string
+    fim?: DateTimeFieldUpdateOperationsInput | Date | string
+    resposta1?: StringFieldUpdateOperationsInput | string
+    resposta2?: StringFieldUpdateOperationsInput | string
+    concluida?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DiarioAutoadvocaciaQuinzenaUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    numero?: IntFieldUpdateOperationsInput | number
+    rotulo?: NullableStringFieldUpdateOperationsInput | string | null
+    inicio?: DateTimeFieldUpdateOperationsInput | Date | string
+    fim?: DateTimeFieldUpdateOperationsInput | Date | string
+    resposta1?: StringFieldUpdateOperationsInput | string
+    resposta2?: StringFieldUpdateOperationsInput | string
+    concluida?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

@@ -1,6 +1,6 @@
 import { FraquezasAmeacasChRepository } from './fraquezas-ameacas-ch.repository.js';
 import { NotFoundError } from '../../utils/errors.js';
-import type { UpdateFraquezasAmeacasChInput } from './fraquezas-ameacas-ch.schemas.js';
+import type { CreateFraquezasAmeacasChInput, UpdateFraquezasAmeacasChInput } from './fraquezas-ameacas-ch.schemas.js';
 
 export class FraquezasAmeacasChService {
   private fraquezasAmeacasChRepository: FraquezasAmeacasChRepository;
@@ -13,6 +13,10 @@ export class FraquezasAmeacasChService {
     const registro = await this.fraquezasAmeacasChRepository.findById(id);
     if (!registro) throw new NotFoundError('Registro não encontrado');
     return registro;
+  }
+
+  async createFraquezasAmeacasCh(data: CreateFraquezasAmeacasChInput) {
+    return this.fraquezasAmeacasChRepository.create(data);
   }
 
   async updateFraquezasAmeacasCh(id: string, data: UpdateFraquezasAmeacasChInput) {

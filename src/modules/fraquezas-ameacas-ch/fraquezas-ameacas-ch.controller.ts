@@ -3,6 +3,7 @@ import { FraquezasAmeacasChService } from './fraquezas-ameacas-ch.service.js';
 import {
   getFraquezasAmeacasChParamsSchema,
   listFraquezasAmeacasChQuerySchema,
+  createFraquezasAmeacasChSchema,
   updateFraquezasAmeacasChSchema,
   type GetFraquezasAmeacasChParams,
   type ListFraquezasAmeacasChQuery,
@@ -28,6 +29,12 @@ export class FraquezasAmeacasChController {
     const { page = 1, limit = 10, numeroTraco } = listFraquezasAmeacasChQuerySchema.parse(request.query);
     const result = await fraquezasAmeacasChService.listFraquezasAmeacasCh(page, limit, numeroTraco);
     return reply.send(result);
+  }
+
+  async createFraquezasAmeacasCh(request: FastifyRequest, reply: FastifyReply) {
+    const data = createFraquezasAmeacasChSchema.parse(request.body);
+    const registro = await fraquezasAmeacasChService.createFraquezasAmeacasCh(data);
+    return reply.status(201).send({ registro });
   }
 
   async updateFraquezasAmeacasCh(

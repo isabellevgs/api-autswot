@@ -1,9 +1,10 @@
 import type { FastifyRequest, FastifyReply } from 'fastify';
 import { QuestionarioRespostaService } from './questionario-resposta.service.js';
 import { ForbiddenError } from '../../utils/errors.js';
+import { assertSuperUserOrOwner, isSuperUser } from '../../utils/authorization.js';
 import {
-  salvarRespostaSchema,
-  salvarRespostasSchema,
+  parseSalvarRespostaInput,
+  parseSalvarRespostasInput,
   getRespostaParamsSchema,
   listRespostasQuerySchema,
   listRespostasByUserIdParamsSchema,
@@ -25,6 +26,7 @@ export class QuestionarioRespostaController {
   ) {
     const { id } = getRespostaParamsSchema.parse(request.params);
     const resposta = await service.getRespostaById(id);
+    assertSuperUserOrOwner(request.user, resposta.userId);
     return reply.send({ resposta });
   }
 
@@ -43,7 +45,7 @@ export class QuestionarioRespostaController {
     reply: FastifyReply
   ) {
     const userId = request.user.id;
-    const data = salvarRespostaSchema.parse(request.body);
+    const data = await parseSalvarRespostaInput(request.body);
     const resposta = await service.salvarResposta(userId, data);
     return reply.status(201).send({
       message: 'Resposta salva com sucesso',
@@ -56,7 +58,7 @@ export class QuestionarioRespostaController {
     reply: FastifyReply
   ) {
     const userId = request.user.id;
-    const { respostas } = salvarRespostasSchema.parse(request.body);
+    const { respostas } = await parseSalvarRespostasInput(request.body);
     const result = await service.salvarRespostas(userId, respostas);
     return reply.status(201).send({
       message: `${result.count} resposta(s) salva(s) com sucesso`,
@@ -69,6 +71,8 @@ export class QuestionarioRespostaController {
     reply: FastifyReply
   ) {
     const { id } = getRespostaParamsSchema.parse(request.params);
+    const resposta = await service.getRespostaById(id);
+    assertSuperUserOrOwner(request.user, resposta.userId, 'Você não tem permissão para deletar esta resposta.');
     await service.deletarResposta(id);
     return reply.send({
       message: 'Resposta deletada com sucesso',
@@ -80,14 +84,7 @@ export class QuestionarioRespostaController {
     reply: FastifyReply
   ) {
     const userId = request.user.id;
-    console.log('[DEBUG controller] obterSwotCompleto chamado com userId:', userId);
     const swot = await service.obterSwotCompleto(userId);
-    console.log('[DEBUG controller] SWOT retornado:', {
-      forcas: swot.forcas.length,
-      fraquezas: swot.fraquezas.length,
-      oportunidades: swot.oportunidades.length,
-      ameacas: swot.ameacas.length
-    });
     return reply.send(swot);
   }
 
@@ -95,21 +92,12 @@ export class QuestionarioRespostaController {
     request: FastifyRequest<{ Params: { userId: string } }>,
     reply: FastifyReply
   ) {
-    // Verificar se o usuário é SUPER_USER
-    const userRole = request.user.role?.toString().trim().toUpperCase();
-    if (userRole !== 'SUPER_USER') {
+    if (!isSuperUser(request.user.role)) {
       throw new ForbiddenError('Apenas super usuários podem visualizar SWOT de outros usuários');
     }
 
     const { userId } = request.params;
-    console.log('[DEBUG controller] obterSwotByUserId chamado com userId:', userId);
     const swot = await service.obterSwotCompleto(userId);
-    console.log('[DEBUG controller] SWOT retornado:', {
-      forcas: swot.forcas.length,
-      fraquezas: swot.fraquezas.length,
-      oportunidades: swot.oportunidades.length,
-      ameacas: swot.ameacas.length
-    });
     return reply.send(swot);
   }
 
@@ -120,9 +108,7 @@ export class QuestionarioRespostaController {
     }>,
     reply: FastifyReply
   ) {
-    // Verificar se o usuário é SUPER_USER
-    const userRole = request.user.role?.toString().trim().toUpperCase();
-    if (userRole !== 'SUPER_USER') {
+    if (!isSuperUser(request.user.role)) {
       throw new ForbiddenError('Apenas super usuários podem visualizar respostas de outros usuários');
     }
 
@@ -132,4 +118,3 @@ export class QuestionarioRespostaController {
     return reply.send({ respostas });
   }
 }
-

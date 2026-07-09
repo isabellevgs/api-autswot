@@ -25,12 +25,18 @@ export async function relatorioShRoutes(fastify: FastifyInstance) {
   fastify.addHook('onRequest', fastify.authenticate);
 
   fastify.get('/', {
-    schema: { response: { 200: { type: 'array', items: relatorioSchema } } },
+    schema: {
+      description: 'Listar relatórios SH (leitura permitida a usuários autenticados do app)',
+      response: { 200: { type: 'array', items: relatorioSchema } },
+    },
     handler: controller.listar,
   });
 
   fastify.get('/:numeroTraco', {
-    schema: { response: { 200: relatorioSchema } },
+    schema: {
+      description: 'Obter relatório SH por traço (leitura permitida a usuários autenticados do app)',
+      response: { 200: relatorioSchema },
+    },
     handler: controller.obter,
   });
 

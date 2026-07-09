@@ -3,6 +3,7 @@ import { FraquezasAmeacasShService } from './fraquezas-ameacas-sh.service.js';
 import {
   getFraquezasAmeacasShParamsSchema,
   listFraquezasAmeacasShQuerySchema,
+  createFraquezasAmeacasShSchema,
   updateFraquezasAmeacasShSchema,
   type GetFraquezasAmeacasShParams,
   type ListFraquezasAmeacasShQuery,
@@ -34,6 +35,12 @@ export class FraquezasAmeacasShController {
       numeroTraco
     );
     return reply.send(result);
+  }
+
+  async createFraquezasAmeacasSh(request: FastifyRequest, reply: FastifyReply) {
+    const data = createFraquezasAmeacasShSchema.parse(request.body);
+    const registro = await fraquezasAmeacasShService.createFraquezasAmeacasSh(data);
+    return reply.status(201).send({ registro });
   }
 
   async updateFraquezasAmeacasSh(

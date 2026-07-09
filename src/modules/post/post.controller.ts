@@ -1,5 +1,4 @@
 import type { FastifyRequest, FastifyReply } from 'fastify';
-import { ZodError } from 'zod';
 import { PostService } from './post.service.js';
 import {
   createPostSchema,
@@ -22,23 +21,10 @@ export class PostController {
   }
 
   async listPosts(request: FastifyRequest<{ Querystring: ListPostsQuery }>, reply: FastifyReply) {
-    try {
-      const { page = 1, limit = 10, search } = listPostsQuerySchema.parse(request.query);
-      // Normalizar o termo de busca
-      const normalizedSearch = search?.trim() || undefined;
-      const result = await postService.listPosts(page, limit, normalizedSearch);
-      return reply.send(result);
-    } catch (error: any) {
-      request.log.error({ error }, 'Erro ao listar posts');
-      if (error.name === 'ZodError') {
-        return reply.status(400).send({
-          error: 'Parâmetros inválidos',
-          code: 'VALIDATION_ERROR',
-          details: error.errors,
-        });
-      }
-      throw error;
-    }
+    const { page = 1, limit = 10, search } = listPostsQuerySchema.parse(request.query);
+    const normalizedSearch = search?.trim() || undefined;
+    const result = await postService.listPosts(page, limit, normalizedSearch);
+    return reply.send(result);
   }
 
   async createPost(
@@ -46,7 +32,7 @@ export class PostController {
     reply: FastifyReply
   ) {
     const data = createPostSchema.parse(request.body);
-    const userId = (request.user as any).id;
+    const userId = request.user.id;
     const post = await postService.createPost(data, userId);
 
     return reply.status(201).send({
@@ -61,7 +47,7 @@ export class PostController {
   ) {
     const { id } = getPostParamsSchema.parse(request.params);
     const data = updatePostSchema.parse(request.body) as UpdatePostInput;
-    const userId = (request.user as any).id;
+    const userId = request.user.id;
     const post = await postService.updatePost(id, data, userId);
 
     return reply.send({

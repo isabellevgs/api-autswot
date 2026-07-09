@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { paginationQueryFields } from '../../utils/pagination.js';
 
 export const createPostSchema = z.object({
   title: z.string().min(1, 'Título é obrigatório').max(200, 'Título muito longo'),
@@ -17,9 +18,8 @@ export const getPostParamsSchema = z.object({
 });
 
 export const listPostsQuerySchema = z.object({
-  page: z.string().optional().transform(val => val ? parseInt(val, 10) : 1),
-  limit: z.string().optional().transform(val => val ? parseInt(val, 10) : 10),
-  search: z.string().optional(), // Busca por título ou conteúdo
+  ...paginationQueryFields,
+  search: z.string().optional(),
 });
 
 export type CreatePostInput = z.infer<typeof createPostSchema>;

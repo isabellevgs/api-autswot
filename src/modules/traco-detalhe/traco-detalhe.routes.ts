@@ -48,6 +48,7 @@ export async function tracoDetalheRoutes(fastify: FastifyInstance) {
 
   // Admin: listar todos
   fastify.get('/', {
+    onRequest: [fastify.requireRole(['SUPER_USER'])],
     schema: { response: { 200: { type: 'array', items: detalheSchema } } },
     handler: controller.listar,
   });

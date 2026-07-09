@@ -1,7 +1,7 @@
 import type { FastifyError, FastifyReply, FastifyRequest } from 'fastify';
 import { ZodError } from 'zod';
 import { Prisma } from '../../generated/prisma/index.js';
-import { AppError } from '../utils/errors.js';
+import { AppError, ValidationError } from '../utils/errors.js';
 
 export async function errorHandler(
   error: FastifyError,
@@ -24,11 +24,18 @@ export async function errorHandler(
   }
 
   // Erro customizado da aplicação
+  if (error instanceof ValidationError) {
+    return reply.status(error.statusCode).send({
+      error: error.message,
+      code: error.code,
+      ...(error.details && { details: error.details }),
+    });
+  }
+
   if (error instanceof AppError) {
     return reply.status(error.statusCode).send({
       error: error.message,
       code: error.code,
-      ...(error instanceof Error && error.name === 'ValidationError' && { details: (error as any).details }),
     });
   }
 
@@ -68,6 +75,27 @@ export async function errorHandler(
           prismaCode: error.code,
         });
     }
+  }
+
+  // Erro de validação do schema Fastify (AJV)
+  if (Array.isArray((error as FastifyError & { validation?: unknown[] }).validation)) {
+    const validation = (error as FastifyError & { validation: Array<{
+      instancePath?: string;
+      message?: string;
+      params?: { missingProperty?: string };
+    }> }).validation;
+
+    return reply.status(400).send({
+      error: 'Dados inválidos',
+      code: 'VALIDATION_ERROR',
+      details: validation.map((v) => ({
+        field:
+          v.instancePath?.replace(/^\//, '').replace(/\//g, '.') ||
+          v.params?.missingProperty ||
+          '',
+        message: v.message || 'Valor inválido',
+      })),
+    });
   }
 
   // Erro do JWT

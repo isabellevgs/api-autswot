@@ -57,6 +57,7 @@ export async function questionarioRespostaRoutes(fastify: FastifyInstance) {
 
   // Listar respostas de um usuário específico (apenas para SUPER_USER/admin)
   fastify.get('/user/:userId', {
+    onRequest: [fastify.requireRole(['SUPER_USER'])],
     schema: {
       tags: ['questionario-resposta'],
       description: 'Listar respostas do questionário de um usuário específico (apenas para SUPER_USER)',
@@ -281,6 +282,7 @@ export async function questionarioRespostaRoutes(fastify: FastifyInstance) {
   // Obter SWOT completo de um usuário específico (apenas para SUPER_USER/admin)
   // IMPORTANTE: Esta rota deve vir ANTES de /swot para evitar conflito
   fastify.get('/swot/user/:userId', {
+    onRequest: [fastify.requireRole(['SUPER_USER'])],
     schema: {
       tags: ['questionario-resposta'],
       description: 'Obter SWOT completo de um usuário específico (apenas para SUPER_USER)',

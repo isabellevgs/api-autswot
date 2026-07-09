@@ -1,6 +1,6 @@
 import { HistoriasSociaisRepository } from './historias-sociais.repository.js';
 import { NotFoundError } from '../../utils/errors.js';
-import type { UpdateHistoriasSociaisInput } from './historias-sociais.schemas.js';
+import type { CreateHistoriasSociaisInput, UpdateHistoriasSociaisInput } from './historias-sociais.schemas.js';
 
 /**
  * Service de HistoriasSociais
@@ -38,6 +38,10 @@ export class HistoriasSociaisService {
     }
 
     return registro;
+  }
+
+  async createHistoriasSociais(data: CreateHistoriasSociaisInput) {
+    return this.historiasSociaisRepository.create(data);
   }
 
   /**

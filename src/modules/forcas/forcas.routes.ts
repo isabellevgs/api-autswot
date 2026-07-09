@@ -68,8 +68,9 @@ export async function forcasRoutes(fastify: FastifyInstance) {
     },
   }, forcasController.getForcas.bind(forcasController));
 
-  // Criar
+  // Criar (admin)
   fastify.post('/', {
+    onRequest: [fastify.requireRole(['SUPER_USER'])],
     schema: {
       tags: ['forcas'],
       security: [{ bearerAuth: [] }],
@@ -93,8 +94,9 @@ export async function forcasRoutes(fastify: FastifyInstance) {
     },
   }, forcasController.createForcas.bind(forcasController));
 
-  // Atualizar
+  // Atualizar (admin)
   fastify.put('/:id', {
+    onRequest: [fastify.requireRole(['SUPER_USER'])],
     schema: {
       tags: ['forcas'],
       security: [{ bearerAuth: [] }],
@@ -119,8 +121,9 @@ export async function forcasRoutes(fastify: FastifyInstance) {
     },
   }, forcasController.updateForcas.bind(forcasController));
 
-  // Deletar
+  // Deletar (admin)
   fastify.delete('/:id', {
+    onRequest: [fastify.requireRole(['SUPER_USER'])],
     schema: {
       tags: ['forcas'],
       security: [{ bearerAuth: [] }],

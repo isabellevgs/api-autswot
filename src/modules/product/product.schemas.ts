@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { paginationQueryFields } from '../../utils/pagination.js';
 
 // TODO: Ajustar schemas quando o modelo Product for definido
 export const createProductSchema = z.object({
@@ -18,8 +19,7 @@ export const getProductParamsSchema = z.object({
 });
 
 export const listProductsQuerySchema = z.object({
-  page: z.string().optional().transform(val => val ? parseInt(val, 10) : 1),
-  limit: z.string().optional().transform(val => val ? parseInt(val, 10) : 10),
+  ...paginationQueryFields,
 });
 
 export type CreateProductInput = z.infer<typeof createProductSchema>;

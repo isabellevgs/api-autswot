@@ -1,11 +1,13 @@
 import { z } from 'zod';
+import { paginationQueryFields } from '../../utils/pagination.js';
 
 export const createFraquezasAmeacasShSchema = z.object({
   numeroTraco: z.number().int().positive('Número do traço deve ser positivo'),
   pergunta: z.string().min(1, 'Pergunta é obrigatória'),
-  explicacao: z.string().min(1, 'Explicação é obrigatória'),
-  frequencia: z.number().min(0, 'Frequência deve ser um número não negativo'),
-  intensidade: z.number().min(0, 'Intensidade deve ser um número não negativo'),
+  explicacao: z.string().optional().default(''),
+  swot: z.string().optional().default(''),
+  frequencia: z.number().min(0, 'Frequência deve ser um número não negativo').optional().default(0),
+  intensidade: z.number().min(0, 'Intensidade deve ser um número não negativo').optional().default(0),
 });
 
 export const updateFraquezasAmeacasShSchema = z.object({
@@ -22,17 +24,11 @@ export const getFraquezasAmeacasShParamsSchema = z.object({
 });
 
 export const listFraquezasAmeacasShQuerySchema = z.object({
-  page: z.union([z.string(), z.number()]).optional().transform(val => {
-    if (val === undefined) return 1;
-    return typeof val === 'string' ? parseInt(val, 10) : val;
-  }),
-  limit: z.union([z.string(), z.number()]).optional().transform(val => {
-    if (val === undefined) return 10;
-    return typeof val === 'string' ? parseInt(val, 10) : val;
-  }),
+  ...paginationQueryFields,
   numeroTraco: z.union([z.string(), z.number()]).optional().transform(val => {
     if (val === undefined) return undefined;
-    return typeof val === 'string' ? parseInt(val, 10) : val;
+    const n = typeof val === 'string' ? parseInt(val, 10) : val;
+    return Number.isFinite(n) ? n : undefined;
   }),
 });
 

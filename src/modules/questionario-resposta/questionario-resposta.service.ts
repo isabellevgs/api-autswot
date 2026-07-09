@@ -1,11 +1,33 @@
+import { prisma } from '../../config/database.js';
 import { QuestionarioRespostaRepository } from './questionario-resposta.repository.js';
 import { NotFoundError } from '../../utils/errors.js';
 import { calcularMediaUser, classificarTracoFO, classificarTracoF } from '../../utils/calculos.js';
-import { FraquezasAmeacasShRepository } from '../fraquezas-ameacas-sh/fraquezas-ameacas-sh.repository.js';
-import { FraquezasAmeacasChRepository } from '../fraquezas-ameacas-ch/fraquezas-ameacas-ch.repository.js';
-import { FraquezasOportunidadesRepository } from '../fraquezas-oportunidades/fraquezas-oportunidades.repository.js';
-import { ForcasRepository } from '../forcas/forcas.repository.js';
 import type { QuestionarioResposta } from '../../../generated/prisma/index.js';
+
+type RespostaCalculada = QuestionarioResposta & {
+  mediaUser: number | null;
+  classificacaoAmeacaFraqueza: 'ameaça' | 'fraqueza' | null;
+  classificacaoTraco: 'neutro' | 'oportunidade' | 'fraqueza' | 'forca' | null;
+  swot: string | null;
+};
+
+interface ReferenciasCache {
+  sh: Map<number, { swot: string; intensidade: number }>;
+  ch: Map<number, { swot: string; intensidade: number }>;
+  fo: Map<number, {
+    swot: string;
+    tracoNeutro: Array<{ valor: string }>;
+    tracoOportunidade: Array<{ valor: string }>;
+    tracoFraqueza: Array<{ valor: string }>;
+  }>;
+  f: Map<number, {
+    swot: string;
+    tracoNeutro: Array<{ valor: string }>;
+    tracoForca: Array<{ valor: string }>;
+    tracoFraqueza: Array<{ valor: string }>;
+    tracoOportunidade: Array<{ valor: string }>;
+  }>;
+}
 
 /**
  * Service de QuestionarioResposta
@@ -13,183 +35,128 @@ import type { QuestionarioResposta } from '../../../generated/prisma/index.js';
  */
 export class QuestionarioRespostaService {
   private repository: QuestionarioRespostaRepository;
-  private fraquezasAmeacasShRepository: FraquezasAmeacasShRepository;
-  private fraquezasAmeacasChRepository: FraquezasAmeacasChRepository;
-  private fraquezasOportunidadesRepository: FraquezasOportunidadesRepository;
-  private forcasRepository: ForcasRepository;
 
   constructor() {
     this.repository = new QuestionarioRespostaRepository();
-    this.fraquezasAmeacasShRepository = new FraquezasAmeacasShRepository();
-    this.fraquezasAmeacasChRepository = new FraquezasAmeacasChRepository();
-    this.fraquezasOportunidadesRepository = new FraquezasOportunidadesRepository();
-    this.forcasRepository = new ForcasRepository();
   }
 
-  /**
-   * Determina se é ameaça ou fraqueza comparando mediaUser com intensidade da tabela
-   * Se mediaUser >= intensidade da tabela → é uma ameaça
-   * Se mediaUser < intensidade da tabela → é uma fraqueza
-   */
-  private async determinarAmeacaFraqueza(
+  private numerosUnicosPorTipo(respostas: QuestionarioResposta[], tipo: string): number[] {
+    return [...new Set(respostas.filter((r) => r.tipo === tipo).map((r) => r.numeroTraco))];
+  }
+
+  private async carregarReferencias(respostas: QuestionarioResposta[]): Promise<ReferenciasCache> {
+    const shNumeros = this.numerosUnicosPorTipo(respostas, 'SH');
+    const chNumeros = this.numerosUnicosPorTipo(respostas, 'CH');
+    const foNumeros = this.numerosUnicosPorTipo(respostas, 'FO');
+    const fNumeros = this.numerosUnicosPorTipo(respostas, 'F');
+
+    const [sh, ch, fo, f] = await Promise.all([
+      shNumeros.length
+        ? prisma.fraquezasAmeacasSh.findMany({ where: { numeroTraco: { in: shNumeros } } })
+        : Promise.resolve([]),
+      chNumeros.length
+        ? prisma.fraquezasAmeacasCh.findMany({ where: { numeroTraco: { in: chNumeros } } })
+        : Promise.resolve([]),
+      foNumeros.length
+        ? prisma.fraquezasOportunidades.findMany({
+            where: { numeroTraco: { in: foNumeros } },
+            include: { tracoNeutro: true, tracoOportunidade: true, tracoFraqueza: true },
+          })
+        : Promise.resolve([]),
+      fNumeros.length
+        ? prisma.forcas.findMany({
+            where: { numeroTraco: { in: fNumeros } },
+            include: {
+              tracoNeutro: true,
+              tracoForca: true,
+              tracoFraqueza: true,
+              tracoOportunidade: true,
+            },
+          })
+        : Promise.resolve([]),
+    ]);
+
+    return {
+      sh: new Map(sh.map((r) => [r.numeroTraco, { swot: r.swot, intensidade: r.intensidade }])),
+      ch: new Map(ch.map((r) => [r.numeroTraco, { swot: r.swot, intensidade: r.intensidade }])),
+      fo: new Map(fo.map((r) => [r.numeroTraco, r])),
+      f: new Map(f.map((r) => [r.numeroTraco, r])),
+    };
+  }
+
+  private determinarAmeacaFraquezaComCache(
     tipo: string,
     numeroTraco: number,
-    mediaUser: number | null
-  ): Promise<'ameaça' | 'fraqueza' | null> {
-    // Só determina para tipos SH e CH quando mediaUser está disponível
-    if ((tipo !== 'SH' && tipo !== 'CH') || mediaUser === null) {
-      return null;
-    }
+    mediaUser: number | null,
+    cache: ReferenciasCache,
+  ): 'ameaça' | 'fraqueza' | null {
+    if ((tipo !== 'SH' && tipo !== 'CH') || mediaUser === null) return null;
 
-    try {
-      let registro: { intensidade: number } | null = null;
+    const registro = tipo === 'SH' ? cache.sh.get(numeroTraco) : cache.ch.get(numeroTraco);
+    if (!registro || registro.intensidade === null || registro.intensidade === undefined) return null;
 
-      // Busca o registro na tabela correspondente
-      if (tipo === 'SH') {
-        registro = await this.fraquezasAmeacasShRepository.findByNumeroTraco(numeroTraco);
-      } else if (tipo === 'CH') {
-        registro = await this.fraquezasAmeacasChRepository.findByNumeroTraco(numeroTraco);
-      }
-
-      // Se não encontrou o registro, retorna null
-      if (!registro || registro.intensidade === null || registro.intensidade === undefined) {
-        return null;
-      }
-
-      // Compara mediaUser com intensidade da tabela
-      if (mediaUser >= registro.intensidade) {
-        return 'ameaça';
-      } else {
-        return 'fraqueza';
-      }
-    } catch (error) {
-      // Em caso de erro, retorna null
-      return null;
-    }
+    return mediaUser >= registro.intensidade ? 'ameaça' : 'fraqueza';
   }
 
-  /**
-   * Classifica traço FO comparando frequência com valores das colunas
-   */
-  private async classificarTracoFO(
-    numeroTraco: number,
-    frequencia: number | null | undefined
-  ): Promise<'neutro' | 'oportunidade' | 'fraqueza' | null> {
-    if (frequencia === null || frequencia === undefined) {
-      return null;
-    }
-
-    try {
-      const registro = await this.fraquezasOportunidadesRepository.findByNumeroTraco(numeroTraco);
-      
-      if (!registro) {
-        return null;
-      }
-
-      return classificarTracoFO(
-        frequencia,
-        registro.tracoNeutro,
-        registro.tracoOportunidade,
-        registro.tracoFraqueza
-      );
-    } catch (error) {
-      return null;
-    }
-  }
-
-  /**
-   * Classifica traço F comparando frequência com valores das colunas
-   */
-  private async classificarTracoF(
-    numeroTraco: number,
-    frequencia: number | null | undefined
-  ): Promise<'neutro' | 'forca' | 'fraqueza' | 'oportunidade' | null> {
-    if (frequencia === null || frequencia === undefined) {
-      return null;
-    }
-
-    try {
-      const registro = await this.forcasRepository.findByNumeroTraco(numeroTraco);
-      
-      if (!registro) {
-        return null;
-      }
-
-      return classificarTracoF(
-        frequencia,
-        registro.tracoNeutro,
-        registro.tracoForca,
-        registro.tracoFraqueza,
-        registro.tracoOportunidade
-      );
-    } catch (error) {
-      return null;
-    }
-  }
-
-  /**
-   * Adiciona os campos calculados para todas as respostas
-   */
-  private async adicionarCamposCalculados(
-    resposta: QuestionarioResposta
-  ): Promise<QuestionarioResposta & { 
-    mediaUser: number | null; 
-    classificacaoAmeacaFraqueza: 'ameaça' | 'fraqueza' | null;
-    classificacaoTraco: 'neutro' | 'oportunidade' | 'fraqueza' | 'forca' | null;
-    swot: string | null;
-  }> {
+  private adicionarCamposCalculadosComCache(
+    resposta: QuestionarioResposta,
+    cache: ReferenciasCache,
+  ): RespostaCalculada {
     let mediaUser: number | null = null;
     let classificacaoAmeacaFraqueza: 'ameaça' | 'fraqueza' | null = null;
     let classificacaoTraco: 'neutro' | 'oportunidade' | 'fraqueza' | 'forca' | null = null;
     let swot: string | null = null;
 
-    // Busca o campo swot da tabela correspondente
-    try {
-      if (resposta.tipo === 'SH') {
-        const registro = await this.fraquezasAmeacasShRepository.findByNumeroTraco(resposta.numeroTraco);
-        swot = registro?.swot || null;
-      } else if (resposta.tipo === 'CH') {
-        const registro = await this.fraquezasAmeacasChRepository.findByNumeroTraco(resposta.numeroTraco);
-        swot = registro?.swot || null;
-      } else if (resposta.tipo === 'FO') {
-        const registro = await this.fraquezasOportunidadesRepository.findByNumeroTraco(resposta.numeroTraco);
-        swot = registro?.swot || null;
-      } else if (resposta.tipo === 'F') {
-        const registro = await this.forcasRepository.findByNumeroTraco(resposta.numeroTraco);
-        swot = registro?.swot || null;
-      }
-    } catch (error) {
-      // Se houver erro ao buscar swot, mantém como null
-      swot = null;
+    if (resposta.tipo === 'SH') {
+      swot = cache.sh.get(resposta.numeroTraco)?.swot ?? null;
+    } else if (resposta.tipo === 'CH') {
+      swot = cache.ch.get(resposta.numeroTraco)?.swot ?? null;
+    } else if (resposta.tipo === 'FO') {
+      swot = cache.fo.get(resposta.numeroTraco)?.swot ?? null;
+    } else if (resposta.tipo === 'F') {
+      swot = cache.f.get(resposta.numeroTraco)?.swot ?? null;
     }
 
-    // Calcula mediaUser e classificacaoAmeacaFraqueza para tipos SH e CH quando resposta é 'sim'
     if ((resposta.tipo === 'SH' || resposta.tipo === 'CH') && resposta.resposta === 'sim') {
       try {
         mediaUser = calcularMediaUser(resposta.frequencia, resposta.intensidade);
-        
-        // Se mediaUser foi calculado, determina se é ameaça ou fraqueza
         if (mediaUser !== null) {
-          classificacaoAmeacaFraqueza = await this.determinarAmeacaFraqueza(
+          classificacaoAmeacaFraqueza = this.determinarAmeacaFraquezaComCache(
             resposta.tipo,
             resposta.numeroTraco,
-            mediaUser
+            mediaUser,
+            cache,
           );
         }
-      } catch (error) {
-        // Se houver erro no cálculo, mantém como null
+      } catch {
         mediaUser = null;
         classificacaoAmeacaFraqueza = null;
       }
     }
 
-    // Classifica traço para tipos FO e F quando resposta é 'sim'
-    if (resposta.tipo === 'FO' && resposta.resposta === 'sim') {
-      classificacaoTraco = await this.classificarTracoFO(resposta.numeroTraco, resposta.frequencia);
+    if (resposta.tipo === 'FO' && resposta.resposta === 'sim' && resposta.frequencia != null) {
+      const registro = cache.fo.get(resposta.numeroTraco);
+      if (registro) {
+        classificacaoTraco = classificarTracoFO(
+          resposta.frequencia,
+          registro.tracoNeutro,
+          registro.tracoOportunidade,
+          registro.tracoFraqueza,
+        );
+      }
     }
 
-    if (resposta.tipo === 'F' && resposta.resposta === 'sim') {
-      classificacaoTraco = await this.classificarTracoF(resposta.numeroTraco, resposta.frequencia);
+    if (resposta.tipo === 'F' && resposta.resposta === 'sim' && resposta.frequencia != null) {
+      const registro = cache.f.get(resposta.numeroTraco);
+      if (registro) {
+        classificacaoTraco = classificarTracoF(
+          resposta.frequencia,
+          registro.tracoNeutro,
+          registro.tracoForca,
+          registro.tracoFraqueza,
+          registro.tracoOportunidade,
+        );
+      }
     }
 
     return {
@@ -201,45 +168,36 @@ export class QuestionarioRespostaService {
     };
   }
 
-  /**
-   * Obter resposta por ID
-   */
+  private async adicionarCamposCalculados(resposta: QuestionarioResposta): Promise<RespostaCalculada> {
+    const cache = await this.carregarReferencias([resposta]);
+    return this.adicionarCamposCalculadosComCache(resposta, cache);
+  }
+
+  private async adicionarCamposCalculadosEmLote(respostas: QuestionarioResposta[]): Promise<RespostaCalculada[]> {
+    if (!respostas.length) return [];
+    const cache = await this.carregarReferencias(respostas);
+    return respostas.map((resposta) => this.adicionarCamposCalculadosComCache(resposta, cache));
+  }
+
   async getRespostaById(id: string) {
     const resposta = await this.repository.findById(id);
-
     if (!resposta) {
       throw new NotFoundError('Resposta não encontrada');
     }
-
     return this.adicionarCamposCalculados(resposta);
   }
 
-  /**
-   * Obter resposta por usuário, pergunta e tipo
-   */
-  async getRespostaByUserPerguntaTipo(
-    userId: string,
-    perguntaId: string,
-    tipo: string
-  ) {
+  async getRespostaByUserPerguntaTipo(userId: string, perguntaId: string, tipo: string) {
     const resposta = await this.repository.findByUserPerguntaTipo(userId, perguntaId, tipo);
-    if (!resposta) {
-      return null;
-    }
+    if (!resposta) return null;
     return this.adicionarCamposCalculados(resposta);
   }
 
-  /**
-   * Listar todas as respostas de um usuário
-   */
   async listRespostasByUserId(userId: string, tipo?: string) {
     const respostas = await this.repository.findByUserId(userId, tipo);
-    return Promise.all(respostas.map(resposta => this.adicionarCamposCalculados(resposta)));
+    return this.adicionarCamposCalculadosEmLote(respostas);
   }
 
-  /**
-   * Salvar ou atualizar uma resposta
-   */
   async salvarResposta(
     userId: string,
     data: {
@@ -251,16 +209,10 @@ export class QuestionarioRespostaService {
       intensidade?: number | null;
     }
   ) {
-    const resposta = await this.repository.upsert({
-      userId,
-      ...data,
-    });
+    const resposta = await this.repository.upsert({ userId, ...data });
     return this.adicionarCamposCalculados(resposta);
   }
 
-  /**
-   * Salvar múltiplas respostas em batch
-   */
   async salvarRespostas(
     userId: string,
     respostas: Array<{
@@ -272,69 +224,32 @@ export class QuestionarioRespostaService {
       intensidade?: number | null;
     }>
   ) {
-    const respostasComUserId = respostas.map(resposta => ({
-      userId,
-      ...resposta,
-    }));
-
+    const respostasComUserId = respostas.map((resposta) => ({ userId, ...resposta }));
     return this.repository.createMany(respostasComUserId);
   }
 
-  /**
-   * Deletar resposta
-   */
   async deletarResposta(id: string) {
     const resposta = await this.repository.findById(id);
     if (!resposta) {
       throw new NotFoundError('Resposta não encontrada');
     }
-
     return this.repository.delete(id);
   }
 
-  /**
-   * Deletar todas as respostas de um usuário
-   */
   async deletarRespostasByUserId(userId: string, tipo?: string) {
     return this.repository.deleteByUserId(userId, tipo);
   }
 
-  /**
-   * Retorna o SWOT completo organizado por módulos
-   */
   async obterSwotCompleto(userId: string) {
-    // Busca todas as respostas do usuário
     const respostas = await this.repository.findByUserId(userId);
-    
-    console.log('[DEBUG obterSwotCompleto] Respostas encontradas:', respostas.length);
-    console.log('[DEBUG obterSwotCompleto] Respostas:', respostas.map(r => ({
-      tipo: r.tipo,
-      numeroTraco: r.numeroTraco,
-      frequencia: r.frequencia,
-      resposta: r.resposta
-    })));
-    
-    // Adiciona campos calculados a todas as respostas
-    const respostasComCalculos = await Promise.all(
-      respostas.map(resposta => this.adicionarCamposCalculados(resposta))
-    );
+    const respostasComCalculos = await this.adicionarCamposCalculadosEmLote(respostas);
 
-    console.log('[DEBUG obterSwotCompleto] Respostas com cálculos:', respostasComCalculos.map(r => ({
-      tipo: r.tipo,
-      numeroTraco: r.numeroTraco,
-      classificacaoAmeacaFraqueza: r.classificacaoAmeacaFraqueza,
-      classificacaoTraco: r.classificacaoTraco,
-      swot: r.swot
-    })));
-
-    // Organiza por módulos
-    const forcas: typeof respostasComCalculos = [];
-    const fraquezas: typeof respostasComCalculos = [];
-    const oportunidades: typeof respostasComCalculos = [];
-    const ameacas: typeof respostasComCalculos = [];
+    const forcas: RespostaCalculada[] = [];
+    const fraquezas: RespostaCalculada[] = [];
+    const oportunidades: RespostaCalculada[] = [];
+    const ameacas: RespostaCalculada[] = [];
 
     for (const resposta of respostasComCalculos) {
-      // Para SH e CH: usa classificacaoAmeacaFraqueza
       if (resposta.tipo === 'SH' || resposta.tipo === 'CH') {
         if (resposta.classificacaoAmeacaFraqueza === 'ameaça') {
           ameacas.push(resposta);
@@ -343,30 +258,18 @@ export class QuestionarioRespostaService {
         }
       }
 
-      // Para FO e F: usa classificacaoTraco
       if (resposta.tipo === 'FO' || resposta.tipo === 'F') {
-        console.log('[DEBUG obterSwotCompleto] Processando resposta tipo', resposta.tipo, 'com classificacaoTraco:', resposta.classificacaoTraco);
         if (resposta.classificacaoTraco === 'forca') {
           forcas.push(resposta);
         } else if (resposta.classificacaoTraco === 'fraqueza') {
-          console.log('[DEBUG obterSwotCompleto] Adicionando fraqueza:', resposta.numeroTraco, resposta.swot);
           fraquezas.push(resposta);
         } else if (resposta.classificacaoTraco === 'oportunidade') {
           oportunidades.push(resposta);
         }
-        // 'neutro' não é adicionado a nenhum módulo
       }
     }
 
-    console.log('[DEBUG obterSwotCompleto] Resultado final:', {
-      forcas: forcas.length,
-      fraquezas: fraquezas.length,
-      oportunidades: oportunidades.length,
-      ameacas: ameacas.length
-    });
-
-    // Ordena por numeroTraco em cada módulo
-    const ordenarPorNumeroTraco = (a: typeof respostasComCalculos[0], b: typeof respostasComCalculos[0]) => 
+    const ordenarPorNumeroTraco = (a: RespostaCalculada, b: RespostaCalculada) =>
       a.numeroTraco - b.numeroTraco;
 
     forcas.sort(ordenarPorNumeroTraco);
@@ -374,12 +277,6 @@ export class QuestionarioRespostaService {
     oportunidades.sort(ordenarPorNumeroTraco);
     ameacas.sort(ordenarPorNumeroTraco);
 
-    return {
-      forcas,
-      fraquezas,
-      oportunidades,
-      ameacas,
-    };
+    return { forcas, fraquezas, oportunidades, ameacas };
   }
 }
-

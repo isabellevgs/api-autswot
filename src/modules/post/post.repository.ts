@@ -36,12 +36,15 @@ export class PostRepository {
 
   /**
    * Listar posts com paginação e busca opcional
-   * Busca apenas no título do post
+   * Busca no título e no conteúdo do post
    */
   async findMany(skip: number = 0, take: number = 10, search?: string) {
     const where: Prisma.PostWhereInput = search && search.trim()
       ? {
-          title: { contains: search.trim(), mode: 'insensitive' },
+          OR: [
+            { title: { contains: search.trim(), mode: 'insensitive' } },
+            { content: { contains: search.trim(), mode: 'insensitive' } },
+          ],
         }
       : {};
 
@@ -72,12 +75,15 @@ export class PostRepository {
 
   /**
    * Contar posts
-   * Busca apenas no título do post
+   * Busca no título e no conteúdo do post
    */
   async count(search?: string): Promise<number> {
     const where: Prisma.PostWhereInput = search && search.trim()
       ? {
-          title: { contains: search.trim(), mode: 'insensitive' },
+          OR: [
+            { title: { contains: search.trim(), mode: 'insensitive' } },
+            { content: { contains: search.trim(), mode: 'insensitive' } },
+          ],
         }
       : {};
 

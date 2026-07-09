@@ -3,6 +3,7 @@ import { FraquezasOportunidadesService } from './fraquezas-oportunidades.service
 import {
   getFraquezasOportunidadesParamsSchema,
   listFraquezasOportunidadesQuerySchema,
+  createFraquezasOportunidadesSchema,
   updateFraquezasOportunidadesSchema,
   type GetFraquezasOportunidadesParams,
   type ListFraquezasOportunidadesQuery,
@@ -28,6 +29,12 @@ export class FraquezasOportunidadesController {
     const { page = 1, limit = 10, numeroTraco } = listFraquezasOportunidadesQuerySchema.parse(request.query);
     const result = await fraquezasOportunidadesService.listFraquezasOportunidades(page, limit, numeroTraco);
     return reply.send(result);
+  }
+
+  async createFraquezasOportunidades(request: FastifyRequest, reply: FastifyReply) {
+    const data = createFraquezasOportunidadesSchema.parse(request.body);
+    const registro = await fraquezasOportunidadesService.createFraquezasOportunidades(data);
+    return reply.status(201).send({ registro });
   }
 
   async updateFraquezasOportunidades(

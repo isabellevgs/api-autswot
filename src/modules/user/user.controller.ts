@@ -1,6 +1,7 @@
 import type { FastifyRequest, FastifyReply } from 'fastify';
 import { UserService } from './user.service.js';
 import { z } from 'zod';
+import { assertSuperUserOrOwner } from '../../utils/authorization.js';
 import {
   updateUserSchema,
   getUserParamsSchema,
@@ -19,6 +20,7 @@ const userService = new UserService();
 export class UserController {
   async getUser(request: FastifyRequest<{ Params: GetUserParams }>, reply: FastifyReply) {
     const { id } = getUserParamsSchema.parse(request.params);
+    assertSuperUserOrOwner(request.user, id);
     const user = await userService.getUserById(id);
     return reply.send({ user });
   }
@@ -34,6 +36,7 @@ export class UserController {
     reply: FastifyReply
   ) {
     const { id } = getUserParamsSchema.parse(request.params);
+    assertSuperUserOrOwner(request.user, id, 'Você não tem permissão para atualizar este usuário.');
     const data = updateUserSchema.parse(request.body) as UpdateUserInput;
     const user = await userService.updateUser(id, data);
 

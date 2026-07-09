@@ -20,6 +20,18 @@ const start = async () => {
     console.log('🚀 Servidor rodando na porta', env.PORT);
     console.log(`📍 Acesse: http://localhost:${env.PORT}`);
     console.log(`🌍 Ambiente: ${env.NODE_ENV}`);
+
+    const shutdown = async (signal: string) => {
+      console.log(`\n${signal} recebido — encerrando servidor...`);
+      await fastify.close();
+      const { prisma, pool } = await import('./config/database.js');
+      await prisma.$disconnect();
+      await pool.end();
+      process.exit(0);
+    };
+
+    process.on('SIGINT', () => shutdown('SIGINT'));
+    process.on('SIGTERM', () => shutdown('SIGTERM'));
   } catch (err) {
     console.error('❌ Erro ao iniciar servidor:', err);
     process.exit(1);

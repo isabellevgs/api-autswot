@@ -1,7 +1,7 @@
 import bcrypt from 'bcryptjs';
 import type { Prisma } from '../../../generated/prisma/index.js';
 import { AuthRepository } from './auth.repository.js';
-import { ConflictError, NotFoundError, UnauthorizedError } from '../../utils/errors.js';
+import { ConflictError, NotFoundError, UnauthorizedError, ValidationError } from '../../utils/errors.js';
 import type { RegisterInput, LoginInput, UpdateProfileInput, ChangePasswordInput } from './auth.schemas.js';
 
 /**
@@ -69,16 +69,14 @@ export class AuthService {
       throw new UnauthorizedError('Email ou senha incorretos');
     }
 
-    // Debug: verificar o role antes de retornar
-    console.log('🔍 [DEBUG SERVICE] login - Role do usuário no banco:', user.role, 'Tipo:', typeof user.role);
-    console.log('🔍 [DEBUG SERVICE] login - Usuário completo do banco:', JSON.stringify(user, null, 2));
-
     // Garantir que o role seja uma string válida
-    let userRole: string = 'USER'; // Default
+    let userRole: string = 'USER';
     if (user.role) {
-      // Converter enum para string explicitamente
       userRole = String(user.role).toUpperCase();
     }
+
+    // Rotaciona sessão a cada login (invalida tokens de outros dispositivos)
+    const newSv = await this.authRepository.incrementSessionVersion(user.id);
 
     // Retornar dados do usuário (sem a senha)
     const userResponse = {
@@ -86,14 +84,40 @@ export class AuthService {
       email: user.email,
       name: user.name,
       role: userRole,
+      sessionVersion: newSv,
       createdAt: user.createdAt,
     };
 
-    // Debug: verificar o role após montar a resposta
-    console.log('🔍 [DEBUG SERVICE] login - Role na resposta:', userResponse.role, 'Tipo:', typeof userResponse.role);
-    console.log('🔍 [DEBUG SERVICE] login - Resposta completa:', JSON.stringify(userResponse, null, 2));
-
     return userResponse;
+  }
+
+  /**
+   * Dados mínimos para emissão/validação de tokens
+   */
+  async getSessionUser(userId: string) {
+    const user = await this.authRepository.findByIdSelect(userId, {
+      id: true,
+      email: true,
+      name: true,
+      role: true,
+      sessionVersion: true,
+    });
+
+    if (!user) {
+      throw new NotFoundError('Usuário não encontrado');
+    }
+
+    return {
+      id: user.id,
+      email: user.email,
+      name: user.name,
+      role: String(user.role).toUpperCase(),
+      sessionVersion: user.sessionVersion ?? 0,
+    };
+  }
+
+  async rotateSession(userId: string): Promise<number> {
+    return this.authRepository.incrementSessionVersion(userId);
   }
 
   /**
@@ -142,6 +166,8 @@ export class AuthService {
       }
     );
 
+    await this.authRepository.incrementSessionVersion(userId);
+
     return updatedUser;
   }
 
@@ -163,11 +189,18 @@ export class AuthService {
       throw new UnauthorizedError('Senha atual incorreta');
     }
 
+    if (data.currentPassword === data.newPassword) {
+      throw new ValidationError('Dados inválidos', [
+        { field: 'newPassword', message: 'A nova senha deve ser diferente da atual' },
+      ]);
+    }
+
     // Hash da nova senha
     const hashedPassword = await bcrypt.hash(data.newPassword, 10);
 
-    // Atualizar senha
+    // Atualizar senha e invalidar sessões existentes
     await this.authRepository.update(userId, { password: hashedPassword });
+    await this.authRepository.incrementSessionVersion(userId);
 
     return { message: 'Senha alterada com sucesso' };
   }

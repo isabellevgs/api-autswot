@@ -1,7 +1,7 @@
 import { FraquezasOportunidadesRepository } from './fraquezas-oportunidades.repository.js';
 import { NotFoundError } from '../../utils/errors.js';
 import { prisma } from '../../config/database.js';
-import type { UpdateFraquezasOportunidadesInput } from './fraquezas-oportunidades.schemas.js';
+import type { CreateFraquezasOportunidadesInput, UpdateFraquezasOportunidadesInput } from './fraquezas-oportunidades.schemas.js';
 
 export class FraquezasOportunidadesService {
   private repo: FraquezasOportunidadesRepository;
@@ -14,6 +14,35 @@ export class FraquezasOportunidadesService {
     const registro = await this.repo.findById(id);
     if (!registro) throw new NotFoundError('Registro não encontrado');
     return registro;
+  }
+
+  async createFraquezasOportunidades(data: CreateFraquezasOportunidadesInput) {
+    const { tracoNeutro, tracoOportunidade, tracoFraqueza, ...mainData } = data;
+
+    return prisma.$transaction(async (tx) => {
+      const registro = await tx.fraquezasOportunidades.create({ data: mainData });
+
+      if (tracoNeutro?.length) {
+        await tx.tracoNeutroFO.createMany({
+          data: tracoNeutro.map((valor) => ({ valor, fraquezasOportunidadesId: registro.id })),
+        });
+      }
+      if (tracoOportunidade?.length) {
+        await tx.tracoOportunidadeFO.createMany({
+          data: tracoOportunidade.map((valor) => ({ valor, fraquezasOportunidadesId: registro.id })),
+        });
+      }
+      if (tracoFraqueza?.length) {
+        await tx.tracoFraquezaFO.createMany({
+          data: tracoFraqueza.map((valor) => ({ valor, fraquezasOportunidadesId: registro.id })),
+        });
+      }
+
+      return tx.fraquezasOportunidades.findUnique({
+        where: { id: registro.id },
+        include: { tracoNeutro: true, tracoOportunidade: true, tracoFraqueza: true },
+      });
+    });
   }
 
   async updateFraquezasOportunidades(id: string, data: UpdateFraquezasOportunidadesInput) {

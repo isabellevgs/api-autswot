@@ -5,10 +5,8 @@ import helmet from "@fastify/helmet";
 import { env } from "./config/env.js";
 import { authRoutes } from "./modules/auth/auth.routes.js";
 import { userRoutes } from "./modules/user/user.routes.js";
-import { productRoutes } from "./modules/product/product.routes.js";
 import { postRoutes } from "./modules/post/post.routes.js";
-import { questionRoutes } from "./modules/question/question.routes.js";
-import { diaryRoutes } from "./modules/diary/diary.routes.js";
+import { diarioRoutes } from "./modules/diario/diario.routes.js";
 import { fraquezasAmeacasShRoutes } from "./modules/fraquezas-ameacas-sh/fraquezas-ameacas-sh.routes.js";
 import { fraquezasAmeacasChRoutes } from "./modules/fraquezas-ameacas-ch/fraquezas-ameacas-ch.routes.js";
 import { fraquezasOportunidadesRoutes } from "./modules/fraquezas-oportunidades/fraquezas-oportunidades.routes.js";
@@ -19,9 +17,12 @@ import { tracoDetalheRoutes } from "./modules/traco-detalhe/traco-detalhe.routes
 import { relatorioShRoutes } from "./modules/relatorio-sh/relatorio-sh.routes.js";
 import { relatorioChRoutes } from "./modules/relatorio-ch/relatorio-ch.routes.js";
 import { reflexaoTracoRoutes } from "./modules/reflexao-traco/reflexao-traco.routes.js";
+import { prisma } from "./config/database.js";
 import { errorHandler } from "./plugins/error-handler.js";
 import { rateLimitPlugin } from "./plugins/rate-limit.js";
 import { swaggerPlugin } from "./plugins/swagger.js";
+import { UnauthorizedError, ForbiddenError } from "./utils/errors.js";
+import { normalizeRole } from "./modules/auth/auth.tokens.js";
 
 // Tipos para JWT
 interface JwtPayload {
@@ -29,6 +30,7 @@ interface JwtPayload {
   email: string;
   name: string;
   role: "USER" | "SUPER_USER";
+  sv?: number;
 }
 
 declare module "fastify" {
@@ -40,6 +42,14 @@ declare module "fastify" {
     requireRole: (
       roles: "SUPER_USER"[]
     ) => (request: FastifyRequest, reply: FastifyReply) => Promise<void>;
+    jwt: {
+      sign: (payload: object, options?: { expiresIn?: string }) => string;
+      verify: <T extends object>(token: string) => T;
+      refresh: {
+        sign: (payload: object, options?: { expiresIn?: string }) => string;
+        verify: <T extends object>(token: string) => T;
+      };
+    };
   }
 }
 
@@ -54,8 +64,20 @@ const ALLOWED_ORIGINS: string[] = env.FRONTEND_URL
   .map((u) => u.trim())
   .filter(Boolean);
 
-console.log(`[CORS] NODE_ENV: ${env.NODE_ENV}`);
-console.log(`[CORS] Origens permitidas: ${ALLOWED_ORIGINS.join(", ")}`);
+if (env.NODE_ENV !== "test") {
+  console.log(`[CORS] NODE_ENV: ${env.NODE_ENV}`);
+  console.log(`[CORS] Origens permitidas: ${ALLOWED_ORIGINS.join(", ")}`);
+}
+
+/** Registra rotas com e sem prefixo /v1 (compatibilidade com clientes existentes). */
+async function registerDualRoutes(
+  fastify: Awaited<ReturnType<typeof Fastify>>,
+  routes: Parameters<typeof fastify.register>[0],
+  basePath: string,
+) {
+  await fastify.register(routes, { prefix: `/v1${basePath}` });
+  await fastify.register(routes, { prefix: basePath });
+}
 
 
 export async function buildServer() {
@@ -87,7 +109,9 @@ export async function buildServer() {
     const isDev  = env.NODE_ENV !== 'production';
     const allowed = isDev || !origin || ALLOWED_ORIGINS.includes(origin);
 
-    console.log(`[CORS] ${request.method} ${request.url} origin="${origin ?? 'none'}" allowed=${allowed}`);
+    if (env.NODE_ENV === 'development') {
+      console.log(`[CORS] ${request.method} ${request.url} origin="${origin ?? 'none'}" allowed=${allowed}`);
+    }
 
     if (origin && allowed) {
       reply.header('Access-Control-Allow-Origin',      origin);
@@ -97,7 +121,7 @@ export async function buildServer() {
 
     // Preflight OPTIONS — responde imediatamente com 204
     if (request.method === 'OPTIONS') {
-      reply
+      return reply
         .header('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,PATCH,OPTIONS')
         .header('Access-Control-Allow-Headers', 'Content-Type,Authorization')
         .header('Access-Control-Max-Age', '86400')
@@ -129,45 +153,62 @@ export async function buildServer() {
   // Registrar Swagger (documentação)
   await swaggerPlugin(fastify);
 
-  // Configurar JWT
+  // Access token JWT
   await fastify.register(jwt, {
     secret: env.JWT_SECRET,
+  });
+
+  // Refresh token JWT (secret separado)
+  await fastify.register(jwt, {
+    secret: env.JWT_REFRESH_SECRET,
+    namespace: 'refresh',
   });
 
   // Decorator para verificar autenticação
   fastify.decorate(
     "authenticate",
-    async function (request: FastifyRequest, reply: FastifyReply) {
+    async function (request: FastifyRequest, _reply: FastifyReply) {
       try {
         await request.jwtVerify();
-      } catch (err) {
-        reply.status(401).send({
-          error: "Token inválido ou ausente",
-          code: "UNAUTHORIZED",
-        });
+      } catch {
+        throw new UnauthorizedError("Token inválido ou ausente");
       }
+
+      const payload = request.user as JwtPayload;
+      const user = await prisma.user.findUnique({
+        where: { id: payload.id },
+        select: { id: true, email: true, name: true, role: true, sessionVersion: true },
+      });
+
+      if (!user) {
+        throw new UnauthorizedError("Usuário não encontrado");
+      }
+
+      const tokenSv = payload.sv ?? 0;
+      if (user.sessionVersion !== tokenSv) {
+        throw new UnauthorizedError("Sessão expirada. Faça login novamente.");
+      }
+
+      request.user = {
+        id: user.id,
+        email: user.email,
+        name: user.name,
+        role: normalizeRole(user.role) as JwtPayload["role"],
+        sv: user.sessionVersion,
+      };
     }
   );
 
   // Decorator para verificar role do usuário
   fastify.decorate("requireRole", function (roles: "SUPER_USER"[]) {
+    const app = this;
     return async function (request: FastifyRequest, reply: FastifyReply) {
-      try {
-        await request.jwtVerify();
+      await app.authenticate(request, reply);
 
-        const userRole = request.user.role;
+      const userRole = normalizeRole(request.user.role);
 
-        if (!roles.includes(userRole as "SUPER_USER")) {
-          return reply.status(403).send({
-            error: "Acesso negado. Permissão insuficiente.",
-            code: "FORBIDDEN",
-          });
-        }
-      } catch (err) {
-        reply.status(401).send({
-          error: "Token inválido ou ausente",
-          code: "UNAUTHORIZED",
-        });
+      if (!roles.includes(userRole as "SUPER_USER")) {
+        throw new ForbiddenError("Acesso negado. Permissão insuficiente.");
       }
     };
   });
@@ -183,99 +224,39 @@ export async function buildServer() {
     };
   });
 
-  // Health check separado (para monitoramento)
-  fastify.get("/health", async () => {
-    // Você pode adicionar checks de banco, etc
-    return {
-      status: "healthy",
+  // Health check com verificação do banco
+  fastify.get("/health", async (_request, reply) => {
+    const base = {
       uptime: process.uptime(),
+      timestamp: new Date().toISOString(),
     };
+
+    try {
+      await prisma.$queryRaw`SELECT 1`;
+      return { status: "healthy", database: "ok", ...base };
+    } catch {
+      return reply.status(503).send({
+        status: "unhealthy",
+        database: "error",
+        ...base,
+      });
+    }
   });
 
-  // Registrar rotas de autenticação com versionamento (v1)
-  await fastify.register(authRoutes, { prefix: "/v1/auth" });
-
-  // Manter compatibilidade com versão antiga (sem v1)
-  await fastify.register(authRoutes, { prefix: "/auth" });
-
-  // Registrar rotas de usuários
-  await fastify.register(userRoutes, { prefix: "/v1/users" });
-  await fastify.register(userRoutes, { prefix: "/users" });
-
-  // Registrar rotas de produtos
-  await fastify.register(productRoutes, { prefix: "/v1/products" });
-  await fastify.register(productRoutes, { prefix: "/products" });
-
-  // Registrar rotas de posts
-  await fastify.register(postRoutes, { prefix: "/v1/posts" });
-  await fastify.register(postRoutes, { prefix: "/posts" });
-
-  // Registrar rotas de questions
-  await fastify.register(questionRoutes, { prefix: "/v1/questions" });
-  await fastify.register(questionRoutes, { prefix: "/questions" });
-
-  // Registrar rotas de diary
-  await fastify.register(diaryRoutes, { prefix: "/v1/diary" });
-  await fastify.register(diaryRoutes, { prefix: "/diary" });
-
-  // Registrar rotas de fraquezas-ameacas-sh
-  await fastify.register(fraquezasAmeacasShRoutes, {
-    prefix: "/v1/fraquezas-ameacas-sh",
-  });
-  await fastify.register(fraquezasAmeacasShRoutes, {
-    prefix: "/fraquezas-ameacas-sh",
-  });
-
-  // Registrar rotas de fraquezas-ameacas-ch
-  await fastify.register(fraquezasAmeacasChRoutes, {
-    prefix: "/v1/fraquezas-ameacas-ch",
-  });
-  await fastify.register(fraquezasAmeacasChRoutes, {
-    prefix: "/fraquezas-ameacas-ch",
-  });
-
-  // Registrar rotas de fraquezas-oportunidades
-  await fastify.register(fraquezasOportunidadesRoutes, {
-    prefix: "/v1/fraquezas-oportunidades",
-  });
-  await fastify.register(fraquezasOportunidadesRoutes, {
-    prefix: "/fraquezas-oportunidades",
-  });
-
-  // Registrar rotas de historias-sociais
-  await fastify.register(historiasSociaisRoutes, {
-    prefix: "/v1/historias-sociais",
-  });
-  await fastify.register(historiasSociaisRoutes, {
-    prefix: "/historias-sociais",
-  });
-
-  // Registrar rotas de forcas
-  await fastify.register(forcasRoutes, { prefix: "/v1/forcas" });
-  await fastify.register(forcasRoutes, { prefix: "/forcas" });
-
-  // Registrar rotas de questionario-resposta
-  await fastify.register(questionarioRespostaRoutes, {
-    prefix: "/v1/questionario-resposta",
-  });
-  await fastify.register(questionarioRespostaRoutes, {
-    prefix: "/questionario-resposta",
-  });
-
-  // Registrar rotas de traco-detalhe
-  await fastify.register(tracoDetalheRoutes, { prefix: "/v1/traco-detalhe" });
-  await fastify.register(tracoDetalheRoutes, { prefix: "/traco-detalhe" });
-
-  // Registrar rotas de relatorio-sh
-  await fastify.register(relatorioShRoutes, { prefix: "/v1/relatorio-sh" });
-  await fastify.register(relatorioShRoutes, { prefix: "/relatorio-sh" });
-
-  await fastify.register(relatorioChRoutes, { prefix: "/v1/relatorio-ch" });
-  await fastify.register(relatorioChRoutes, { prefix: "/relatorio-ch" });
-
-  // Registrar rotas de reflexao-traco
-  await fastify.register(reflexaoTracoRoutes, { prefix: "/v1/reflexao-traco" });
-  await fastify.register(reflexaoTracoRoutes, { prefix: "/reflexao-traco" });
+  await registerDualRoutes(fastify, authRoutes, "/auth");
+  await registerDualRoutes(fastify, userRoutes, "/users");
+  await registerDualRoutes(fastify, postRoutes, "/posts");
+  await registerDualRoutes(fastify, diarioRoutes, "/diario");
+  await registerDualRoutes(fastify, fraquezasAmeacasShRoutes, "/fraquezas-ameacas-sh");
+  await registerDualRoutes(fastify, fraquezasAmeacasChRoutes, "/fraquezas-ameacas-ch");
+  await registerDualRoutes(fastify, fraquezasOportunidadesRoutes, "/fraquezas-oportunidades");
+  await registerDualRoutes(fastify, historiasSociaisRoutes, "/historias-sociais");
+  await registerDualRoutes(fastify, forcasRoutes, "/forcas");
+  await registerDualRoutes(fastify, questionarioRespostaRoutes, "/questionario-resposta");
+  await registerDualRoutes(fastify, tracoDetalheRoutes, "/traco-detalhe");
+  await registerDualRoutes(fastify, relatorioShRoutes, "/relatorio-sh");
+  await registerDualRoutes(fastify, relatorioChRoutes, "/relatorio-ch");
+  await registerDualRoutes(fastify, reflexaoTracoRoutes, "/reflexao-traco");
 
   return fastify;
 }

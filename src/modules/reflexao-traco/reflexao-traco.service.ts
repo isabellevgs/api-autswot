@@ -7,6 +7,12 @@ import {
   type QuadranteKey,
 } from '../../constants/swot-quadrantes.js';
 import { QuestionarioRespostaService } from '../questionario-resposta/questionario-resposta.service.js';
+import { ForbiddenError } from '../../utils/errors.js';
+import { validarReflexaoTraco } from '../../utils/validar-reflexao-traco.js';
+import {
+  chaveDiarioAposEnvioTraco,
+  sincronizarPaginasJornada,
+} from '../diario/diario.service.js';
 
 const questionarioService = new QuestionarioRespostaService();
 
@@ -21,12 +27,30 @@ export async function listarReflexoesDoUsuario(userId: string) {
 }
 
 export async function salvarReflexao(userId: string, data: UpsertReflexaoInput) {
+  await validarReflexaoTraco(userId, data);
+
+  // Rascunhos podem ser salvos a qualquer momento; envio exige quadrante desbloqueado
+  if (data.enviado) {
+    const progresso = await obterProgressoQuadrantes(userId);
+    if (!progresso[data.quadrante]?.desbloqueado) {
+      throw new ForbiddenError('Este quadrante ainda não está desbloqueado.');
+    }
+  }
+
   const { tipo, numeroTraco, quadrante, respostas, enviado } = data;
-  return prisma.reflexaoTraco.upsert({
+  const reflexao = await prisma.reflexaoTraco.upsert({
     where: { userId_tipo_numeroTraco_quadrante: { userId, tipo, numeroTraco, quadrante } },
     update: { respostas, enviado },
     create: { userId, tipo, numeroTraco, quadrante, respostas, enviado },
   });
+
+  let diarioPaginaChave: string | null = null;
+  if (enviado) {
+    await sincronizarPaginasJornada(userId);
+    diarioPaginaChave = chaveDiarioAposEnvioTraco(tipo, numeroTraco, quadrante);
+  }
+
+  return { ...reflexao, diarioPaginaChave };
 }
 
 export async function listarReflexoesParaAdmin(userId: string) {

@@ -25,7 +25,7 @@ function isRateLimitExempt(request: FastifyRequest): boolean {
 
 export async function rateLimitPlugin(fastify: FastifyInstance) {
   await fastify.register(rateLimit, {
-    max: 1000,
+    max: 500,
     timeWindow: "15 minutes",
     keyGenerator: clientIp,
     allowList: (request) => isRateLimitExempt(request),

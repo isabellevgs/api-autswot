@@ -1,9 +1,14 @@
 import { z } from 'zod';
+import { paginationQueryFields } from '../../utils/pagination.js';
 
 export const createFraquezasOportunidadesSchema = z.object({
   numeroTraco: z.number().int().positive('Número do traço deve ser positivo'),
   pergunta: z.string().min(1, 'Pergunta é obrigatória'),
-  explicacao: z.string().min(1, 'Explicação é obrigatória'),
+  explicacao: z.string().optional().default(''),
+  swot: z.string().optional().default(''),
+  tracoNeutro: z.array(z.string()).optional(),
+  tracoOportunidade: z.array(z.string()).optional(),
+  tracoFraqueza: z.array(z.string()).optional(),
 });
 
 export const updateFraquezasOportunidadesSchema = z.object({
@@ -21,17 +26,11 @@ export const getFraquezasOportunidadesParamsSchema = z.object({
 });
 
 export const listFraquezasOportunidadesQuerySchema = z.object({
-  page: z.union([z.string(), z.number()]).optional().transform(val => {
-    if (val === undefined) return 1;
-    return typeof val === 'string' ? parseInt(val, 10) : val;
-  }),
-  limit: z.union([z.string(), z.number()]).optional().transform(val => {
-    if (val === undefined) return 10;
-    return typeof val === 'string' ? parseInt(val, 10) : val;
-  }),
+  ...paginationQueryFields,
   numeroTraco: z.union([z.string(), z.number()]).optional().transform(val => {
     if (val === undefined) return undefined;
-    return typeof val === 'string' ? parseInt(val, 10) : val;
+    const n = typeof val === 'string' ? parseInt(val, 10) : val;
+    return Number.isFinite(n) ? n : undefined;
   }),
 });
 

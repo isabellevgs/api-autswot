@@ -47,6 +47,29 @@ export async function fraquezasAmeacasChRoutes(fastify: FastifyInstance) {
     },
   }, fraquezasAmeacasChController.listFraquezasAmeacasCh.bind(fraquezasAmeacasChController));
 
+  // Criar (admin)
+  fastify.post('/', {
+    onRequest: [fastify.requireRole(['SUPER_USER'])],
+    schema: {
+      tags: ['fraquezas-ameacas-ch'],
+      security: [{ bearerAuth: [] }],
+      body: {
+        type: 'object',
+        required: ['numeroTraco', 'numHistoria', 'frequencia', 'intensidade'],
+        properties: {
+          numeroTraco: { type: 'number' },
+          numHistoria: { type: 'number' },
+          frequencia: { type: 'number' },
+          intensidade: { type: 'number' },
+          swot: { type: 'string' },
+        },
+      },
+      response: {
+        201: { type: 'object', properties: { registro: registroSchema } },
+      },
+    },
+  }, fraquezasAmeacasChController.createFraquezasAmeacasCh.bind(fraquezasAmeacasChController));
+
   // Obter por ID
   fastify.get('/:id', {
     schema: {
@@ -60,8 +83,9 @@ export async function fraquezasAmeacasChRoutes(fastify: FastifyInstance) {
     },
   }, fraquezasAmeacasChController.getFraquezasAmeacasCh.bind(fraquezasAmeacasChController));
 
-  // Atualizar
+  // Atualizar (admin)
   fastify.put('/:id', {
+    onRequest: [fastify.requireRole(['SUPER_USER'])],
     schema: {
       tags: ['fraquezas-ameacas-ch'],
       security: [{ bearerAuth: [] }],
@@ -81,8 +105,9 @@ export async function fraquezasAmeacasChRoutes(fastify: FastifyInstance) {
     },
   }, fraquezasAmeacasChController.updateFraquezasAmeacasCh.bind(fraquezasAmeacasChController));
 
-  // Deletar
+  // Deletar (admin)
   fastify.delete('/:id', {
+    onRequest: [fastify.requireRole(['SUPER_USER'])],
     schema: {
       tags: ['fraquezas-ameacas-ch'],
       security: [{ bearerAuth: [] }],

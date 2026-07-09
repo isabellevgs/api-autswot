@@ -1,6 +1,7 @@
 import bcrypt from 'bcryptjs';
 import { UserRepository } from './user.repository.js';
 import { NotFoundError, ConflictError, ForbiddenError } from '../../utils/errors.js';
+import { isSuperUser } from '../../utils/authorization.js';
 import type { UpdateUserInput } from './user.schemas.js';
 
 /**
@@ -97,6 +98,7 @@ export class UserService {
 
     const hashed = await bcrypt.hash(newPassword, 10);
     await this.userRepository.update(id, { password: hashed });
+    await this.userRepository.incrementSessionVersion(id);
     return { message: 'Senha redefinida com sucesso' };
   }
 
@@ -133,7 +135,7 @@ export class UserService {
       throw new ForbiddenError('Você não pode excluir sua própria conta por aqui');
     }
 
-    if (user.role === 'SUPER_USER') {
+    if (isSuperUser(user.role)) {
       throw new ForbiddenError('Não é possível excluir um administrador');
     }
 

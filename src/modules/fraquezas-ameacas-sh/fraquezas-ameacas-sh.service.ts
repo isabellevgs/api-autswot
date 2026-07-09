@@ -1,6 +1,6 @@
 import { FraquezasAmeacasShRepository } from './fraquezas-ameacas-sh.repository.js';
 import { NotFoundError } from '../../utils/errors.js';
-import type { UpdateFraquezasAmeacasShInput } from './fraquezas-ameacas-sh.schemas.js';
+import type { CreateFraquezasAmeacasShInput, UpdateFraquezasAmeacasShInput } from './fraquezas-ameacas-sh.schemas.js';
 
 /**
  * Service de FraquezasAmeacasSh
@@ -25,6 +25,10 @@ export class FraquezasAmeacasShService {
     }
 
     return registro;
+  }
+
+  async createFraquezasAmeacasSh(data: CreateFraquezasAmeacasShInput) {
+    return this.fraquezasAmeacasShRepository.create(data);
   }
 
   /**

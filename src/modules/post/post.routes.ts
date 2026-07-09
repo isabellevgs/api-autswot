@@ -1,5 +1,6 @@
 import type { FastifyInstance } from 'fastify';
 import { PostController } from './post.controller.js';
+import { isSuperUser } from '../../utils/authorization.js';
 
 const postController = new PostController();
 
@@ -113,8 +114,9 @@ export async function postRoutes(fastify: FastifyInstance) {
   fastify.register(async (authenticatedRoutes) => {
     authenticatedRoutes.addHook('onRequest', async (request, reply) => {
       await fastify.authenticate(request, reply);
-      const user = request.user as any;
-      if (user.role !== 'SUPER_USER') {
+      if (reply.sent) return;
+      const user = request.user;
+      if (!isSuperUser(user.role)) {
         return reply.status(403).send({
           error: 'Acesso negado. Apenas super usuários podem gerenciar posts.',
           code: 'FORBIDDEN',

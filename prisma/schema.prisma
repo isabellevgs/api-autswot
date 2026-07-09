@@ -23,15 +23,17 @@ model User {
   name       String
   password   String
   role       UserRole     @default(USER)
+  /// Incrementado em refresh/rotação de senha — invalida tokens antigos
+  sessionVersion Int        @default(0)
   /// Dados sociodemográficos e de saúde coletados no cadastro (JSON validado na API)
   profileRegistration Json?
   createdAt  DateTime     @default(now())
   updatedAt  DateTime     @updatedAt
   posts      Post[]       // Relação com posts
-  questions  Question[]   // Relação com perguntas
-  diaryEntries DiaryEntry[] // Relação com entradas do diário
   questionarioRespostas QuestionarioResposta[] // Relação com respostas do questionário
   reflexoesTraco        ReflexaoTraco[]        // Reflexões dos traços SWOT
+  diarioPaginas         DiarioPagina[]         // Páginas do diário da jornada SWOT
+  diarioAutoadvocaciaQuinzenas DiarioAutoadvocaciaQuinzena[] // Quinzenas de autoadvocacia
 }
 
 // Modelo de Post
@@ -49,52 +51,52 @@ model Post {
   @@index([createdAt])
 }
 
-// Modelo de Question (Pergunta)
-model Question {
-  id         String        @id @default(uuid())
-  texto      String        @db.Text
-  ordem      Int           // Ordem da pergunta (para reordenação)
-  ativo      Boolean       @default(true) // Status ativo/inativo da pergunta
-  userId     String        // ID do usuário (person) a quem a pergunta pertence
-  user       User          @relation(fields: [userId], references: [id], onDelete: Cascade)
-  createdAt  DateTime      @default(now())
-  updatedAt  DateTime      @updatedAt
-  answers    DiaryAnswer[] // Relação com respostas
+// Página do diário da jornada SWOT (uma por traço, fechamento de quadrante ou reflexão final)
+model DiarioPagina {
+  id           String   @id @default(uuid())
+  userId       String
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@index([userId])
+  tipo         String   // micro_traco | quadrante_final | forcas | jornada_final
+  quadrante    String?  // ameaca | fraqueza | oportunidade | forca
+  tipoTraco    String?  // SH | CH | FO | F
+  numeroTraco  Int?
+  tituloTraco  String?  @db.Text
+
+  chave        String
+  ordem        Int
+
+  texto        String   @db.Text @default("")
+  concluida    Boolean  @default(false)
+  desbloqueada Boolean  @default(false)
+  arquivada    Boolean  @default(false)
+
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@unique([userId, chave])
   @@index([userId, ordem])
-  @@index([userId, ativo])
 }
 
-// Modelo de Entrada do Diário
-model DiaryEntry {
-  id        String        @id @default(uuid())
-  userId    String        // ID do usuário que criou a entrada
-  user      User           @relation(fields: [userId], references: [id], onDelete: Cascade)
-  date      DateTime      // Data da entrada (sem hora, apenas data)
-  answers   DiaryAnswer[] // Respostas desta entrada
-  createdAt DateTime      @default(now())
-  updatedAt DateTime      @updatedAt
+// Quinzena do diário de autoadvocacia
+model DiarioAutoadvocaciaQuinzena {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  numero    Int
+  rotulo    String?
+  inicio    DateTime
+  fim       DateTime
 
-  @@unique([userId, date]) // Um usuário só pode ter uma entrada por data
+  resposta1 String   @db.Text @default("")
+  resposta2 String   @db.Text @default("")
+  concluida Boolean  @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId, numero])
   @@index([userId])
-  @@index([userId, date])
-}
-
-// Modelo de Resposta do Diário
-model DiaryAnswer {
-  id         String      @id @default(uuid())
-  entryId    String      // ID da entrada do diário
-  entry      DiaryEntry  @relation(fields: [entryId], references: [id], onDelete: Cascade)
-  questionId String      // ID da pergunta
-  question   Question    @relation(fields: [questionId], references: [id], onDelete: Cascade)
-  texto      String      @db.Text // Texto da resposta
-  createdAt  DateTime    @default(now())
-  updatedAt  DateTime    @updatedAt
-
-  @@unique([entryId, questionId]) // Uma entrada só pode ter uma resposta por pergunta
-  @@index([entryId])
-  @@index([questionId])
 }
 
 // Modelo de Fraquezas e Ameaças SH

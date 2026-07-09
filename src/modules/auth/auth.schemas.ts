@@ -101,7 +101,7 @@ export const registerSchema = z
       .email('Email inválido')
       .transform((e) => e.trim().toLowerCase()),
     name: z.string().min(3, 'Nome deve ter pelo menos 3 caracteres').max(100, 'Nome muito longo'),
-    password: z.string().min(6, 'Senha deve ter pelo menos 6 caracteres').max(100, 'Senha muito longa'),
+    password: z.string().min(8, 'Senha deve ter pelo menos 8 caracteres').max(100, 'Senha muito longa'),
   })
   .merge(profileRegistrationFieldsSchema)
   .superRefine((data, ctx) => {
@@ -147,7 +147,7 @@ export const updateProfileSchema = z.object({
 
 export const changePasswordSchema = z.object({
   currentPassword: z.string().min(1, 'Senha atual é obrigatória'),
-  newPassword: z.string().min(6, 'Nova senha deve ter pelo menos 6 caracteres').max(100, 'Senha muito longa'),
+  newPassword: z.string().min(8, 'Nova senha deve ter pelo menos 8 caracteres').max(100, 'Senha muito longa'),
 });
 
 export const refreshTokenSchema = z.object({

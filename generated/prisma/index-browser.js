@@ -126,6 +126,7 @@ exports.Prisma.UserScalarFieldEnum = {
   name: 'name',
   password: 'password',
   role: 'role',
+  sessionVersion: 'sessionVersion',
   profileRegistration: 'profileRegistration',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -141,29 +142,34 @@ exports.Prisma.PostScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
-exports.Prisma.QuestionScalarFieldEnum = {
+exports.Prisma.DiarioPaginaScalarFieldEnum = {
   id: 'id',
-  texto: 'texto',
+  userId: 'userId',
+  tipo: 'tipo',
+  quadrante: 'quadrante',
+  tipoTraco: 'tipoTraco',
+  numeroTraco: 'numeroTraco',
+  tituloTraco: 'tituloTraco',
+  chave: 'chave',
   ordem: 'ordem',
-  ativo: 'ativo',
-  userId: 'userId',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-};
-
-exports.Prisma.DiaryEntryScalarFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  date: 'date',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-};
-
-exports.Prisma.DiaryAnswerScalarFieldEnum = {
-  id: 'id',
-  entryId: 'entryId',
-  questionId: 'questionId',
   texto: 'texto',
+  concluida: 'concluida',
+  desbloqueada: 'desbloqueada',
+  arquivada: 'arquivada',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.DiarioAutoadvocaciaQuinzenaScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  numero: 'numero',
+  rotulo: 'rotulo',
+  inicio: 'inicio',
+  fim: 'fim',
+  resposta1: 'resposta1',
+  resposta2: 'resposta2',
+  concluida: 'concluida',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -389,9 +395,8 @@ exports.UserRole = exports.$Enums.UserRole = {
 exports.Prisma.ModelName = {
   User: 'User',
   Post: 'Post',
-  Question: 'Question',
-  DiaryEntry: 'DiaryEntry',
-  DiaryAnswer: 'DiaryAnswer',
+  DiarioPagina: 'DiarioPagina',
+  DiarioAutoadvocaciaQuinzena: 'DiarioAutoadvocaciaQuinzena',
   FraquezasAmeacasSh: 'FraquezasAmeacasSh',
   HistoriasSociais: 'HistoriasSociais',
   FraquezasAmeacasCh: 'FraquezasAmeacasCh',

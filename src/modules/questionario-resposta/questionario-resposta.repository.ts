@@ -73,6 +73,7 @@ export class QuestionarioRespostaRepository {
         },
       },
       update: {
+        numeroTraco: data.numeroTraco,
         resposta: data.resposta,
         frequencia: data.frequencia,
         intensidade: data.intensidade,
@@ -113,6 +114,7 @@ export class QuestionarioRespostaRepository {
             },
           },
           update: {
+            numeroTraco: resposta.numeroTraco,
             resposta: resposta.resposta,
             frequencia: resposta.frequencia,
             intensidade: resposta.intensidade,

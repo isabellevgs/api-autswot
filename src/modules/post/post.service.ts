@@ -1,5 +1,6 @@
 import { PostRepository } from './post.repository.js';
 import { NotFoundError } from '../../utils/errors.js';
+import { sanitizeHtml } from '../../utils/sanitize-html.js';
 import type { CreatePostInput, UpdatePostInput } from './post.schemas.js';
 
 /**
@@ -28,7 +29,7 @@ export class PostService {
 
   /**
    * Listar posts com paginação e busca opcional
-   * Busca apenas no título do post
+   * Busca no título e no conteúdo do post
    */
   async listPosts(page: number = 1, limit: number = 10, search?: string) {
     const skip = (page - 1) * limit;
@@ -56,7 +57,7 @@ export class PostService {
   async createPost(data: CreatePostInput, authorId: string) {
     const postData = {
       title: data.title,
-      content: data.content,
+      content: sanitizeHtml(data.content),
       imageUrl: data.imageUrl || null,
       author: {
         connect: { id: authorId },
@@ -82,7 +83,7 @@ export class PostService {
 
     const updateData: any = {};
     if (data.title !== undefined) updateData.title = data.title;
-    if (data.content !== undefined) updateData.content = data.content;
+    if (data.content !== undefined) updateData.content = sanitizeHtml(data.content);
     if (data.imageUrl !== undefined) {
       updateData.imageUrl = data.imageUrl || null;
     }

@@ -53,6 +53,34 @@ export async function fraquezasAmeacasShRoutes(fastify: FastifyInstance) {
     },
   }, fraquezasAmeacasShController.listFraquezasAmeacasSh.bind(fraquezasAmeacasShController));
 
+  // Criar registro (admin)
+  fastify.post('/', {
+    onRequest: [fastify.requireRole(['SUPER_USER'])],
+    schema: {
+      tags: ['fraquezas-ameacas-sh'],
+      description: 'Criar registro de fraquezas e ameaças SH',
+      security: [{ bearerAuth: [] }],
+      body: {
+        type: 'object',
+        required: ['numeroTraco', 'pergunta'],
+        properties: {
+          numeroTraco: { type: 'number' },
+          pergunta: { type: 'string' },
+          explicacao: { type: 'string' },
+          swot: { type: 'string' },
+          frequencia: { type: 'number' },
+          intensidade: { type: 'number' },
+        },
+      },
+      response: {
+        201: {
+          type: 'object',
+          properties: { registro: registroSchema },
+        },
+      },
+    },
+  }, fraquezasAmeacasShController.createFraquezasAmeacasSh.bind(fraquezasAmeacasShController));
+
   // Obter registro por ID
   fastify.get('/:id', {
     schema: {
@@ -77,8 +105,9 @@ export async function fraquezasAmeacasShRoutes(fastify: FastifyInstance) {
     },
   }, fraquezasAmeacasShController.getFraquezasAmeacasSh.bind(fraquezasAmeacasShController));
 
-  // Atualizar registro por ID
+  // Atualizar registro por ID (admin)
   fastify.put('/:id', {
+    onRequest: [fastify.requireRole(['SUPER_USER'])],
     schema: {
       tags: ['fraquezas-ameacas-sh'],
       description: 'Atualizar registro de fraquezas e ameaças SH',
@@ -112,8 +141,9 @@ export async function fraquezasAmeacasShRoutes(fastify: FastifyInstance) {
     },
   }, fraquezasAmeacasShController.updateFraquezasAmeacasSh.bind(fraquezasAmeacasShController));
 
-  // Deletar registro por ID
+  // Deletar registro por ID (admin)
   fastify.delete('/:id', {
+    onRequest: [fastify.requireRole(['SUPER_USER'])],
     schema: {
       tags: ['fraquezas-ameacas-sh'],
       description: 'Deletar registro de fraquezas e ameaças SH',

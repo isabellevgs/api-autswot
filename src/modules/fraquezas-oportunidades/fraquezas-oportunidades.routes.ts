@@ -54,6 +54,31 @@ export async function fraquezasOportunidadesRoutes(fastify: FastifyInstance) {
     },
   }, fraquezasOportunidadesController.listFraquezasOportunidades.bind(fraquezasOportunidadesController));
 
+  // Criar (admin)
+  fastify.post('/', {
+    onRequest: [fastify.requireRole(['SUPER_USER'])],
+    schema: {
+      tags: ['fraquezas-oportunidades'],
+      security: [{ bearerAuth: [] }],
+      body: {
+        type: 'object',
+        required: ['numeroTraco', 'pergunta'],
+        properties: {
+          numeroTraco: { type: 'number' },
+          pergunta: { type: 'string' },
+          explicacao: { type: 'string' },
+          swot: { type: 'string' },
+          tracoNeutro: { type: 'array', items: { type: 'string' } },
+          tracoOportunidade: { type: 'array', items: { type: 'string' } },
+          tracoFraqueza: { type: 'array', items: { type: 'string' } },
+        },
+      },
+      response: {
+        201: { type: 'object', properties: { registro: registroSchema } },
+      },
+    },
+  }, fraquezasOportunidadesController.createFraquezasOportunidades.bind(fraquezasOportunidadesController));
+
   // Obter por ID
   fastify.get('/:id', {
     schema: {
@@ -67,8 +92,9 @@ export async function fraquezasOportunidadesRoutes(fastify: FastifyInstance) {
     },
   }, fraquezasOportunidadesController.getFraquezasOportunidades.bind(fraquezasOportunidadesController));
 
-  // Atualizar
+  // Atualizar (admin)
   fastify.put('/:id', {
+    onRequest: [fastify.requireRole(['SUPER_USER'])],
     schema: {
       tags: ['fraquezas-oportunidades'],
       security: [{ bearerAuth: [] }],
@@ -80,6 +106,9 @@ export async function fraquezasOportunidadesRoutes(fastify: FastifyInstance) {
           pergunta:    { type: 'string' },
           explicacao:  { type: 'string' },
           swot:        { type: 'string' },
+          tracoNeutro:       { type: 'array', items: { type: 'string' } },
+          tracoOportunidade: { type: 'array', items: { type: 'string' } },
+          tracoFraqueza:     { type: 'array', items: { type: 'string' } },
         },
       },
       response: {
@@ -89,8 +118,9 @@ export async function fraquezasOportunidadesRoutes(fastify: FastifyInstance) {
     },
   }, fraquezasOportunidadesController.updateFraquezasOportunidades.bind(fraquezasOportunidadesController));
 
-  // Deletar
+  // Deletar (admin)
   fastify.delete('/:id', {
+    onRequest: [fastify.requireRole(['SUPER_USER'])],
     schema: {
       tags: ['fraquezas-oportunidades'],
       security: [{ bearerAuth: [] }],

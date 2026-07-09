@@ -1,10 +1,12 @@
 import { z } from 'zod';
+import { paginationQueryFields } from '../../utils/pagination.js';
 
 export const createFraquezasAmeacasChSchema = z.object({
   numeroTraco: z.number().int().positive('Número do traço deve ser positivo'),
   numHistoria: z.number().int().positive('Número da história deve ser positivo'),
   frequencia: z.number().min(0, 'Frequência deve ser um número não negativo'),
   intensidade: z.number().min(0, 'Intensidade deve ser um número não negativo'),
+  swot: z.string().optional().default(''),
 });
 
 export const updateFraquezasAmeacasChSchema = z.object({
@@ -20,17 +22,11 @@ export const getFraquezasAmeacasChParamsSchema = z.object({
 });
 
 export const listFraquezasAmeacasChQuerySchema = z.object({
-  page: z.union([z.string(), z.number()]).optional().transform(val => {
-    if (val === undefined) return 1;
-    return typeof val === 'string' ? parseInt(val, 10) : val;
-  }),
-  limit: z.union([z.string(), z.number()]).optional().transform(val => {
-    if (val === undefined) return 10;
-    return typeof val === 'string' ? parseInt(val, 10) : val;
-  }),
+  ...paginationQueryFields,
   numeroTraco: z.union([z.string(), z.number()]).optional().transform(val => {
     if (val === undefined) return undefined;
-    return typeof val === 'string' ? parseInt(val, 10) : val;
+    const n = typeof val === 'string' ? parseInt(val, 10) : val;
+    return Number.isFinite(n) ? n : undefined;
   }),
 });
 

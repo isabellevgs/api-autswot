@@ -8,6 +8,7 @@ export async function userRoutes(fastify: FastifyInstance) {
   fastify.addHook('onRequest', fastify.authenticate);
 
   fastify.get('/', {
+    onRequest: [fastify.requireRole(['SUPER_USER'])],
     schema: {
       tags: ['users'],
       description: 'Listar usuários com paginação',
@@ -32,6 +33,7 @@ export async function userRoutes(fastify: FastifyInstance) {
                   id: { type: 'string' },
                   email: { type: 'string' },
                   name: { type: 'string' },
+                  role: { type: 'string', enum: ['USER', 'SUPER_USER'] },
                   createdAt: { type: 'string' },
                   updatedAt: { type: 'string' },
                 },

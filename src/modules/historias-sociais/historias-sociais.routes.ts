@@ -55,6 +55,39 @@ export async function historiasSociaisRoutes(fastify: FastifyInstance) {
     },
   }, historiasSociaisController.listHistoriasSociais.bind(historiasSociaisController));
 
+  // Criar (admin)
+  fastify.post('/', {
+    onRequest: [fastify.requireRole(['SUPER_USER'])],
+    schema: {
+      tags: ['historias-sociais'],
+      security: [{ bearerAuth: [] }],
+      body: {
+        type: 'object',
+        required: [
+          'numeroHistoria', 'introducao', 'titulo', 'personagem', 'ambientacao',
+          'historia', 'questionamento', 'perguntaIntensidade',
+          'intensidadeLeve', 'intensidadeModerada', 'intensidadeAlta',
+        ],
+        properties: {
+          numeroHistoria: { type: 'number' },
+          introducao: { type: 'string' },
+          titulo: { type: 'string' },
+          personagem: { type: 'string' },
+          ambientacao: { type: 'string' },
+          historia: { type: 'string' },
+          questionamento: { type: 'string' },
+          perguntaIntensidade: { type: 'string' },
+          intensidadeLeve: { type: 'string' },
+          intensidadeModerada: { type: 'string' },
+          intensidadeAlta: { type: 'string' },
+        },
+      },
+      response: {
+        201: { type: 'object', properties: { registro: registroSchema } },
+      },
+    },
+  }, historiasSociaisController.createHistoriasSociais.bind(historiasSociaisController));
+
   // Obter por ID
   fastify.get('/:id', {
     schema: {
@@ -68,8 +101,9 @@ export async function historiasSociaisRoutes(fastify: FastifyInstance) {
     },
   }, historiasSociaisController.getHistoriasSociais.bind(historiasSociaisController));
 
-  // Atualizar
+  // Atualizar (admin)
   fastify.put('/:id', {
+    onRequest: [fastify.requireRole(['SUPER_USER'])],
     schema: {
       tags: ['historias-sociais'],
       security: [{ bearerAuth: [] }],
@@ -97,8 +131,9 @@ export async function historiasSociaisRoutes(fastify: FastifyInstance) {
     },
   }, historiasSociaisController.updateHistoriasSociais.bind(historiasSociaisController));
 
-  // Deletar
+  // Deletar (admin)
   fastify.delete('/:id', {
+    onRequest: [fastify.requireRole(['SUPER_USER'])],
     schema: {
       tags: ['historias-sociais'],
       security: [{ bearerAuth: [] }],
