@@ -392,3 +392,9 @@ model QuestionarioResposta {
   @@index([perguntaId])
 }
 
+model AppData {
+  id        Int      @id @default(1)
+  tcle      String   @db.Text
+  updatedAt DateTime @updatedAt
+}
+
