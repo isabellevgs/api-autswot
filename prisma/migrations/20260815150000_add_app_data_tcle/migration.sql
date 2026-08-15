@@ -1,0 +1,7 @@
+CREATE TABLE "AppData" (
+    "id" INTEGER NOT NULL DEFAULT 1,
+    "tcle" TEXT NOT NULL DEFAULT '',
+    "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "AppData_pkey" PRIMARY KEY ("id")
+);
