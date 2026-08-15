@@ -5445,6 +5445,14 @@ async function seedRelatoriosCh() {
 ✅ RelatorioCh: ${count} relatório(s) inserido(s)/atualizado(s).`);
 }
 
+async function seedAppData(){
+  await prisma.appData.upsert({
+    where: { id: 1 },
+    update: {},
+    create: { id: 1, tcle: '' },
+  });
+}
+
 /**
  * Função principal do seed
  * Executa todos os seeds em sequência
@@ -5459,6 +5467,7 @@ async function main() {
     await seedHistoriasSociais();
     await seedFraquezasOportunidades();
     await seedForcas();
+    await seedAppData();
     // Relatórios editoriais (TracoDetalhe, RelatorioSh, RelatorioCh): tabelas via migration;
     // conteúdo cadastrado pelo admin — seed não popula essas tabelas.
 
