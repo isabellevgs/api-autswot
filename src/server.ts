@@ -3,6 +3,7 @@ import type { FastifyRequest, FastifyReply } from "fastify";
 import jwt from "@fastify/jwt";
 import helmet from "@fastify/helmet";
 import { env } from "./config/env.js";
+import { appDataRoutes } from "./modules/app-data/app-data.routes.js";
 import { authRoutes } from "./modules/auth/auth.routes.js";
 import { userRoutes } from "./modules/user/user.routes.js";
 import { postRoutes } from "./modules/post/post.routes.js";
@@ -257,6 +258,7 @@ export async function buildServer() {
   await registerDualRoutes(fastify, relatorioShRoutes, "/relatorio-sh");
   await registerDualRoutes(fastify, relatorioChRoutes, "/relatorio-ch");
   await registerDualRoutes(fastify, reflexaoTracoRoutes, "/reflexao-traco");
+  await registerDualRoutes(fastify, appDataRoutes, "/app-data");
 
   return fastify;
 }
