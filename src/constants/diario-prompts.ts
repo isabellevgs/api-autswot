@@ -1,7 +1,7 @@
 import type { QuadranteKey } from './swot-quadrantes.js';
 
-export const MIN_PALAVRAS_JORNADA = 70;
-export const MIN_PALAVRAS_AUTOADVOCACIA = 50;
+export const MIN_PALAVRAS_JORNADA = 20;
+export const MIN_PALAVRAS_AUTOADVOCACIA = 20;
 export const QUINZENAS_INICIAIS = 8;
 export const DIAS_POR_QUINZENA = 15;
 
@@ -15,12 +15,18 @@ export const TITULOS_QUADRANTE: Record<QuadranteKey, string> = {
 export const PROMPT_MICRO_AMEACA_FRAQUEZA =
   'Descreva aqui como foi a experiência de ter feito o exercício de autoconhecimento, relatando:\n' +
   '1) Sobre que traço você construiu autoconhecimento hoje?\n' +
-  '2) Por que você escolheu esse traço? O que você sentiu ao escrever sobre ele? O que você mais aprendeu? Algo te surpreendeu? Como foi a experiência de pensar em estratégias e em necessidades específicas? Qual foi o grau de dificuldade em fazer o exercício (difícil, fácil, moderado)? Se foi difícil ou moderado, escreva os porquês.';
+  '2) O que você sentiu ao escrever sobre ele?\n' +
+  '3) O que você mais aprendeu? Algo te surpreendeu?\n'+ 
+  '4) Como foi a experiência de pensar em estratégias e em necessidades específicas?\n'+
+  '5) Qual foi o grau de dificuldade em fazer o exercício (difícil, fácil, moderado)? Se foi difícil ou moderado, escreva os porquês.';
 
 export const PROMPT_MICRO_OPORTUNIDADE =
   'Descreva aqui como foi a experiência de ter conhecido suas forças autísticas, relatando:\n' +
   '1) Sobre que traço você construiu autoconhecimento hoje?\n' +
-  '2) Por que você escolheu esse traço? O que você sentiu ao escrever sobre ele? O que você mais aprendeu? Algo te surpreendeu? Como foi a experiência de pensar em estratégias para transformar esse traço em força? Qual foi o grau de dificuldade em fazer o exercício (difícil, fácil, moderado)? Se foi difícil ou moderado, escreva os porquês.';
+  '2) O que você sentiu ao escrever sobre ele?\n'+ 
+  '3) O que você mais aprendeu? Algo te surpreendeu?\n'+
+  '4) Como foi a experiência de pensar em estratégias para transformar esse traço em força?\n'+
+  '5) Qual foi o grau de dificuldade em fazer o exercício (difícil, fácil, moderado)? Se foi difícil ou moderado, escreva os porquês.';
 
 export const PROMPT_QUADRANTE_FINAL: Record<'ameaca' | 'fraqueza' | 'oportunidade', string> = {
   ameaca:
