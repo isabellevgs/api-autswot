@@ -393,8 +393,12 @@ model QuestionarioResposta {
 }
 
 model AppData {
-  id        Int      @id @default(1)
-  tcle      String   @db.Text
-  updatedAt DateTime @updatedAt
+  id                Int       @id @default(1)
+  tcle              String    @db.Text
+  bloquearAcesso    Boolean   @default(false)
+  dataInicioAcesso  DateTime?
+  dataFimAcesso     DateTime?
+  emailsComAcesso   String[]  @default([])
+  updatedAt         DateTime  @updatedAt
 }
 
