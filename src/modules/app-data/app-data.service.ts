@@ -14,6 +14,9 @@ export interface AtualizarBloqueioAcessoInput {
   emailsComAcesso: string[];
 }
 
+const formatarData = (data: Date | null) =>
+  data ? data.toISOString().split('T')[0] : null;
+
 export class AppDataService {
   private repository = new AppDataRepository();
 
@@ -51,8 +54,8 @@ export class AppDataService {
     }
     return {
       bloquearAcesso: appData.bloquearAcesso,
-      dataInicioAcesso: appData.dataInicioAcesso,
-      dataFimAcesso: appData.dataFimAcesso,
+      dataInicioAcesso: formatarData(appData.dataInicioAcesso),
+      dataFimAcesso: formatarData(appData.dataFimAcesso),
       emailsComAcesso: appData.emailsComAcesso,
     };
   }
@@ -125,8 +128,8 @@ export class AppDataService {
     });
     return {
       bloquearAcesso: appData.bloquearAcesso,
-      dataInicioAcesso: appData.dataInicioAcesso,
-      dataFimAcesso: appData.dataFimAcesso,
+      dataInicioAcesso: formatarData(appData.dataInicioAcesso),
+      dataFimAcesso: formatarData(appData.dataFimAcesso),
       emailsComAcesso: appData.emailsComAcesso,
     };
   }
