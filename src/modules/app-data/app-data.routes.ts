@@ -78,6 +78,31 @@ export async function appDataRoutes(fastify: FastifyInstance) {
       },
     }, appDataController.updateTcle.bind(appDataController));
 
+     protectedRoutes.put('/termoUso', {
+      onRequest: [fastify.requireRole(['SUPER_USER'])],
+      schema: {
+        tags: ['app-data'],
+        description: 'Atualizar o texto do Termo de uso (admin)',
+        security: [{ bearerAuth: [] }],
+        body: {
+          type: 'object',
+          required: ['termoUso'],
+          properties: {
+            termoUso: { type: 'string', minLength: 1 },
+          },
+        },
+        response: {
+          200: {
+            type: 'object',
+            properties: {
+              message: { type: 'string' },
+              termoUso: { type: 'string' },
+            },
+          },
+        },
+      },
+    }, appDataController.updateTermoUso.bind(appDataController));
+
     // Usado pelo próprio usuário para saber se está liberado — não expõe lista/datas
     protectedRoutes.get('/acesso-liberado', {
       schema: {
