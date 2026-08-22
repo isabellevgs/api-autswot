@@ -30,6 +30,7 @@ export class AppDataService {
     return { tcle: appData.tcle };
   }
 
+  /** Uso administrativo: retorna a configuração completa (SUPER_USER). */
   async getBloqueioAcesso() {
     const appData = await this.repository.get();
     if (!appData) {
@@ -41,6 +42,29 @@ export class AppDataService {
       dataFimAcesso: appData.dataFimAcesso,
       emailsComAcesso: appData.emailsComAcesso,
     };
+  }
+
+  /** Uso pelo usuário comum: só diz se ELE está liberado, sem expor a lista/datas. */
+  async getAcessoLiberado(emailUsuario: string) {
+    const appData = await this.repository.get();
+    if (!appData) {
+      throw new AppDataNotFoundError();
+    }
+
+    if (!appData.bloquearAcesso) {
+      return { acessoLiberado: true };
+    }
+
+    const agora = new Date();
+    const dentroDoPeriodo =
+      (!appData.dataInicioAcesso || agora >= appData.dataInicioAcesso) &&
+      (!appData.dataFimAcesso || agora <= appData.dataFimAcesso);
+
+    const emailAutorizado = appData.emailsComAcesso.some(
+      (email) => email.toLowerCase() === emailUsuario.toLowerCase(),
+    );
+
+    return { acessoLiberado: dentroDoPeriodo && emailAutorizado };
   }
 
   async updateBloqueioAcesso(input: AtualizarBloqueioAcessoInput) {
