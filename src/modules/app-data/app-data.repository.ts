@@ -12,4 +12,15 @@ export class AppDataRepository {
       data: { tcle },
     });
   }
+  async updateBloqueioAcesso(data: {
+    bloquearAcesso: boolean;
+    dataInicioAcesso: Date | null;
+    dataFimAcesso: Date | null;
+    emailsComAcesso: string[];
+  }): Promise<AppData> {
+    return prisma.appData.update({
+      where: { id: 1 },
+      data,
+    });
+  }
 }
