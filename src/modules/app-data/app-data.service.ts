@@ -7,21 +7,54 @@ export class AppDataNotFoundError extends Error {
   }
 }
 
+export interface AtualizarBloqueioAcessoInput {
+  bloquearAcesso: boolean;
+  dataInicioAcesso: string | null;
+  dataFimAcesso: string | null;
+  emailsComAcesso: string[];
+}
+
 export class AppDataService {
   private repository = new AppDataRepository();
 
   async getTcle() {
     const appData = await this.repository.get();
-
     if (!appData) {
       throw new AppDataNotFoundError();
     }
-
     return { tcle: appData.tcle, updatedAt: appData.updatedAt };
   }
 
   async updateTcle(tcle: string) {
     const appData = await this.repository.updateTcle(tcle);
     return { tcle: appData.tcle };
+  }
+
+  async getBloqueioAcesso() {
+    const appData = await this.repository.get();
+    if (!appData) {
+      throw new AppDataNotFoundError();
+    }
+    return {
+      bloquearAcesso: appData.bloquearAcesso,
+      dataInicioAcesso: appData.dataInicioAcesso,
+      dataFimAcesso: appData.dataFimAcesso,
+      emailsComAcesso: appData.emailsComAcesso,
+    };
+  }
+
+  async updateBloqueioAcesso(input: AtualizarBloqueioAcessoInput) {
+    const appData = await this.repository.updateBloqueioAcesso({
+      bloquearAcesso: input.bloquearAcesso,
+      dataInicioAcesso: input.dataInicioAcesso ? new Date(input.dataInicioAcesso) : null,
+      dataFimAcesso: input.dataFimAcesso ? new Date(input.dataFimAcesso) : null,
+      emailsComAcesso: input.bloquearAcesso ? input.emailsComAcesso : [],
+    });
+    return {
+      bloquearAcesso: appData.bloquearAcesso,
+      dataInicioAcesso: appData.dataInicioAcesso,
+      dataFimAcesso: appData.dataFimAcesso,
+      emailsComAcesso: appData.emailsComAcesso,
+    };
   }
 }
