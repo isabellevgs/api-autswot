@@ -1,8 +1,10 @@
 import type { FastifyRequest, FastifyReply } from 'fastify';
 import { AppDataService, AppDataNotFoundError } from './app-data.service.js';
 import type { AtualizarBloqueioAcessoInput } from './app-data.service.js';
+import { UserService } from '../user/user.service.js';
 
 const appDataService = new AppDataService();
+const userService = new UserService();
 
 export class AppDataController {
   async getTcle(request: FastifyRequest, reply: FastifyReply) {
@@ -37,8 +39,9 @@ export class AppDataController {
 
   async getAcessoLiberado(request: FastifyRequest, reply: FastifyReply) {
     try {
-      const email = (request.user as { email: string }).email;
-      const result = await appDataService.getAcessoLiberado(email);
+      const userId = (request.user as { id: string }).id;
+      const user = await userService.getUserById(userId);
+      const result = await appDataService.getAcessoLiberado(user.email);
       return reply.send(result);
     } catch (err) {
       if (err instanceof AppDataNotFoundError) {
