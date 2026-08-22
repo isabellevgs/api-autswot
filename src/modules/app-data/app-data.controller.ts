@@ -49,19 +49,40 @@ export class AppDataController {
     }
   }
 
-  async getAcessoLiberado(request: FastifyRequest, reply: FastifyReply) {
-    const userId = (request.user as { id: string }).id;
-    const user = await userService.getUserById(userId); // lança NotFoundError (tratado no error handler global) se não existir
-
-    try {
-      const result = await appDataService.getAcessoLiberado(user.email);
-      return reply.send(result);
-    } catch (err) {
-      if (err instanceof AppDataNotFoundError) {
-        return reply.status(404).send({ error: err.message, code: 'APP_DATA_NOT_FOUND' });
-      }
-      throw err;
+  async getAcessoLiberado(emailUsuario: string) {
+    const appData = await this.repository.get();
+    if (!appData) {
+      throw new AppDataNotFoundError();
     }
+  
+    if (!appData.bloquearAcesso) {
+      return { acessoLiberado: true };
+    }
+  
+    const temData = !!appData.dataInicioAcesso && !!appData.dataFimAcesso;
+    const temEmail = appData.emailsComAcesso.length > 0;
+  
+    if (!temData && !temEmail) {
+      return { acessoLiberado: false };
+    }
+  
+    const agora = new Date();
+    const dentroDoPeriodo =
+      temData &&
+      agora >= appData.dataInicioAcesso! &&
+      agora <= appData.dataFimAcesso!;
+  
+    const emailAutorizado = appData.emailsComAcesso.some(
+      (email) => email.toLowerCase() === emailUsuario.toLowerCase(),
+    );
+  
+    if (temData && temEmail) {
+      return { acessoLiberado: dentroDoPeriodo && emailAutorizado };
+    }
+    if (temData) {
+      return { acessoLiberado: dentroDoPeriodo };
+    }
+    return { acessoLiberado: emailAutorizado };
   }
 
   async updateBloqueioAcesso(request: FastifyRequest, reply: FastifyReply) {
