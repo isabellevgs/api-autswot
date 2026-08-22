@@ -60,26 +60,60 @@ export class AppDataService {
   /** Uso pelo usuário comum: só diz se ELE está liberado, sem expor a lista/datas. */
   async getAcessoLiberado(emailUsuario: string) {
     const appData = await this.repository.get();
+  
     if (!appData) {
       throw new AppDataNotFoundError();
     }
   
+    // Bloqueio desativado: todos podem acessar
     if (!appData.bloquearAcesso) {
       return { acessoLiberado: true };
     }
   
-    const agora = new Date();
-    const dentroDoPeriodo =
+    const temData =
       !!appData.dataInicioAcesso &&
-      !!appData.dataFimAcesso &&
-      agora >= appData.dataInicioAcesso &&
-      agora <= appData.dataFimAcesso;
+      !!appData.dataFimAcesso;
   
-    const emailAutorizado = appData.emailsComAcesso.some(
-      (email) => email.toLowerCase() === emailUsuario.toLowerCase(),
-    );
+    const temEmail =
+      appData.emailsComAcesso.length > 0;
   
-    return { acessoLiberado: dentroDoPeriodo || emailAutorizado };
+    // Bloqueio ativado, mas sem data e sem emails:
+    // ninguém pode acessar
+    if (!temData && !temEmail) {
+      return { acessoLiberado: false };
+    }
+  
+    const agora = new Date();
+  
+    const dentroDoPeriodo =
+      temData &&
+      agora >= appData.dataInicioAcesso! &&
+      agora <= appData.dataFimAcesso!;
+  
+    const emailAutorizado =
+      temEmail &&
+      appData.emailsComAcesso.some(
+        (email) => email.toLowerCase() === emailUsuario.toLowerCase(),
+      );
+  
+    // Data + email: precisa cumprir os dois
+    if (temData && temEmail) {
+      return {
+        acessoLiberado: dentroDoPeriodo && emailAutorizado,
+      };
+    }
+  
+    // Somente data: qualquer usuário no período
+    if (temData) {
+      return {
+        acessoLiberado: dentroDoPeriodo,
+      };
+    }
+  
+    // Somente email: qualquer data, desde que o email esteja autorizado
+    return {
+      acessoLiberado: emailAutorizado,
+    };
   }
 
   async updateBloqueioAcesso(input: AtualizarBloqueioAcessoInput) {
