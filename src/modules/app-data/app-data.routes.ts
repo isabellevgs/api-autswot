@@ -26,6 +26,29 @@ export async function appDataRoutes(fastify: FastifyInstance) {
       },
     },
   }, appDataController.getTcle.bind(appDataController));
+  
+  fastify.get('/termoUso', {
+    schema: {
+      tags: ['app-data'],
+      description: 'Obter o texto do Termo de Uso',
+      response: {
+        200: {
+          type: 'object',
+          properties: {
+            termoUso: { type: 'string' },
+            updatedAt: { type: 'string' },
+          },
+        },
+        404: {
+          type: 'object',
+          properties: {
+            error: { type: 'string' },
+            code: { type: 'string' },
+          },
+        },
+      },
+    },
+  }, appDataController.getTermoUso.bind(appDataController));
 
   fastify.register(async (protectedRoutes) => {
     protectedRoutes.addHook('onRequest', fastify.authenticate);
