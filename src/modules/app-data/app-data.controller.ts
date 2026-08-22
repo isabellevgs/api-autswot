@@ -37,6 +37,12 @@ export class AppDataController {
     return reply.send({ message: 'TCLE atualizado com sucesso', tcle: result.tcle });
   }
 
+  async updateTermoUso(request: FastifyRequest, reply: FastifyReply) {
+    const { termoUso } = request.body as { termoUso: string };
+    const result = await appDataService.updateTermoUso(termoUso);
+    return reply.send({ message: 'Termo de uso atualizado com sucesso', termoUso: result.termoUso });
+  }
+
   async getBloqueioAcesso(request: FastifyRequest, reply: FastifyReply) {
     try {
       const result = await appDataService.getBloqueioAcesso();
