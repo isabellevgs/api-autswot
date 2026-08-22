@@ -30,6 +30,19 @@ export class AppDataService {
     return { tcle: appData.tcle };
   }
 
+  async getTermoUso() {
+    const appData = await this.repository.get();
+    if (!appData) {
+      throw new AppDataNotFoundError();
+    }
+    return { termoUso: appData.termoUso, updatedAt: appData.updatedAt };
+  }
+
+  async updateTermoUso(termoUso: string) {
+    const appData = await this.repository.updateTermoUso(termoUso);
+    return { termoUso: appData.termoUso };
+  }
+
   /** Uso administrativo: retorna a configuração completa (SUPER_USER). */
   async getBloqueioAcesso() {
     const appData = await this.repository.get();
