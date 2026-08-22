@@ -6,11 +6,11 @@ export interface QuestaoReflexao {
 }
 
 export const QUESTOES_AMEACA_FRAQUEZA: QuestaoReflexao[] = [
-  { id: 'q1', min: 40 },
-  { id: 'q2', min: 40 },
-  { id: 'q3', min: 50 },
-  { id: 'q4', min: 45 },
-  { id: 'q5', min: 50 },
+  { id: 'q1', min: 25 },
+  { id: 'q2', min: 25 },
+  { id: 'q3', min: 25 },
+  { id: 'q4', min: 25 },
+  { id: 'q5', min: 25 },
   { id: 'q6', min: 1 },
   { id: 'q7', min: 1 },
 ];
