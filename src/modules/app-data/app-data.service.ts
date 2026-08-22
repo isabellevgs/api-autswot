@@ -50,21 +50,23 @@ export class AppDataService {
     if (!appData) {
       throw new AppDataNotFoundError();
     }
-
+  
     if (!appData.bloquearAcesso) {
       return { acessoLiberado: true };
     }
-
+  
     const agora = new Date();
     const dentroDoPeriodo =
-      (!appData.dataInicioAcesso || agora >= appData.dataInicioAcesso) &&
-      (!appData.dataFimAcesso || agora <= appData.dataFimAcesso);
-
+      !!appData.dataInicioAcesso &&
+      !!appData.dataFimAcesso &&
+      agora >= appData.dataInicioAcesso &&
+      agora <= appData.dataFimAcesso;
+  
     const emailAutorizado = appData.emailsComAcesso.some(
       (email) => email.toLowerCase() === emailUsuario.toLowerCase(),
     );
-
-    return { acessoLiberado: dentroDoPeriodo && emailAutorizado };
+  
+    return { acessoLiberado: dentroDoPeriodo || emailAutorizado };
   }
 
   async updateBloqueioAcesso(input: AtualizarBloqueioAcessoInput) {
