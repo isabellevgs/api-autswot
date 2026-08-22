@@ -19,6 +19,18 @@ export class AppDataController {
     }
   }
 
+  async getTermoUso(request: FastifyRequest, reply: FastifyReply) {
+    try {
+      const result = await appDataService.getTermoUso();
+      return reply.send(result);
+    } catch (err) {
+      if (err instanceof AppDataNotFoundError) {
+        return reply.status(404).send({ error: err.message, code: 'TERMO_USO_NOT_FOUND' });
+      }
+      throw err;
+    }
+  }  
+
   async updateTcle(request: FastifyRequest, reply: FastifyReply) {
     const { tcle } = request.body as { tcle: string };
     const result = await appDataService.updateTcle(tcle);
