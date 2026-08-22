@@ -38,9 +38,10 @@ export class AppDataController {
   }
 
   async getAcessoLiberado(request: FastifyRequest, reply: FastifyReply) {
+    const userId = (request.user as { id: string }).id;
+    const user = await userService.getUserById(userId); // lança NotFoundError (tratado no error handler global) se não existir
+
     try {
-      const userId = (request.user as { id: string }).id;
-      const user = await userService.getUserById(userId);
       const result = await appDataService.getAcessoLiberado(user.email);
       return reply.send(result);
     } catch (err) {
