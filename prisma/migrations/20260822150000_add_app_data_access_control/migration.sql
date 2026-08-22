@@ -1,0 +1,5 @@
+ALTER TABLE "AppData"
+  ADD COLUMN "bloquearAcesso" BOOLEAN NOT NULL DEFAULT false,
+  ADD COLUMN "dataInicioAcesso" TIMESTAMP(3),
+  ADD COLUMN "dataFimAcesso" TIMESTAMP(3),
+  ADD COLUMN "emailsComAcesso" TEXT[] NOT NULL DEFAULT ARRAY[]::TEXT[];
