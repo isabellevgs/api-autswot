@@ -397,8 +397,8 @@ model AppData {
   tcle              String    @db.Text
   termoUso          String    @default("") @db.Text
   bloquearAcesso    Boolean   @default(false)
-  dataInicioAcesso  DateTime?
-  dataFimAcesso     DateTime?
+  dataInicioAcesso  DateTime? @db.Date
+  dataFimAcesso     DateTime? @db.Date
   emailsComAcesso   String[]  @default([])
   updatedAt         DateTime  @updatedAt
 }
