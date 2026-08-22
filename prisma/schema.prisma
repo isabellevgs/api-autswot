@@ -395,7 +395,7 @@ model QuestionarioResposta {
 model AppData {
   id                Int       @id @default(1)
   tcle              String    @db.Text
-  termoUso          String    @db.Text
+  termoUso          String    @default("") @db.Text
   bloquearAcesso    Boolean   @default(false)
   dataInicioAcesso  DateTime?
   dataFimAcesso     DateTime?
