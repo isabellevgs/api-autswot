@@ -55,10 +55,36 @@ export async function appDataRoutes(fastify: FastifyInstance) {
       },
     }, appDataController.updateTcle.bind(appDataController));
 
-   protectedRoutes.get('/bloqueio-acesso', {
+    // Usado pelo próprio usuário para saber se está liberado — não expõe lista/datas
+    protectedRoutes.get('/acesso-liberado', {
       schema: {
         tags: ['app-data'],
-        description: 'Obter a configuração de bloqueio de acesso',
+        description: 'Verificar se o usuário autenticado tem acesso liberado à ferramenta',
+        security: [{ bearerAuth: [] }],
+        response: {
+          200: {
+            type: 'object',
+            properties: {
+              acessoLiberado: { type: 'boolean' },
+            },
+          },
+          404: {
+            type: 'object',
+            properties: {
+              error: { type: 'string' },
+              code: { type: 'string' },
+            },
+          },
+        },
+      },
+    }, appDataController.getAcessoLiberado.bind(appDataController));
+
+    // Uso administrativo — configuração completa
+    protectedRoutes.get('/bloqueio-acesso', {
+      onRequest: [fastify.requireRole(['SUPER_USER'])],
+      schema: {
+        tags: ['app-data'],
+        description: 'Obter a configuração de bloqueio de acesso (admin)',
         security: [{ bearerAuth: [] }],
         response: {
           200: {
