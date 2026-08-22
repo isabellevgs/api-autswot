@@ -35,6 +35,19 @@ export class AppDataController {
     }
   }
 
+  async getAcessoLiberado(request: FastifyRequest, reply: FastifyReply) {
+    try {
+      const email = (request.user as { email: string }).email;
+      const result = await appDataService.getAcessoLiberado(email);
+      return reply.send(result);
+    } catch (err) {
+      if (err instanceof AppDataNotFoundError) {
+        return reply.status(404).send({ error: err.message, code: 'APP_DATA_NOT_FOUND' });
+      }
+      throw err;
+    }
+  }
+
   async updateBloqueioAcesso(request: FastifyRequest, reply: FastifyReply) {
     const body = request.body as AtualizarBloqueioAcessoInput;
     const result = await appDataService.updateBloqueioAcesso(body);
