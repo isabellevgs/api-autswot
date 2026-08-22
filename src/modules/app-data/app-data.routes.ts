@@ -55,11 +55,10 @@ export async function appDataRoutes(fastify: FastifyInstance) {
       },
     }, appDataController.updateTcle.bind(appDataController));
 
-    protectedRoutes.get('/bloqueio-acesso', {
-      onRequest: [fastify.requireRole(['SUPER_USER'])],
+   protectedRoutes.get('/bloqueio-acesso', {
       schema: {
         tags: ['app-data'],
-        description: 'Obter a configuração de bloqueio de acesso (admin)',
+        description: 'Obter a configuração de bloqueio de acesso',
         security: [{ bearerAuth: [] }],
         response: {
           200: {
