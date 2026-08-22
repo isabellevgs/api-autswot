@@ -54,5 +54,63 @@ export async function appDataRoutes(fastify: FastifyInstance) {
         },
       },
     }, appDataController.updateTcle.bind(appDataController));
+
+    protectedRoutes.get('/bloqueio-acesso', {
+      onRequest: [fastify.requireRole(['SUPER_USER'])],
+      schema: {
+        tags: ['app-data'],
+        description: 'Obter a configuração de bloqueio de acesso (admin)',
+        security: [{ bearerAuth: [] }],
+        response: {
+          200: {
+            type: 'object',
+            properties: {
+              bloquearAcesso: { type: 'boolean' },
+              dataInicioAcesso: { type: ['string', 'null'] },
+              dataFimAcesso: { type: ['string', 'null'] },
+              emailsComAcesso: { type: 'array', items: { type: 'string' } },
+            },
+          },
+          404: {
+            type: 'object',
+            properties: {
+              error: { type: 'string' },
+              code: { type: 'string' },
+            },
+          },
+        },
+      },
+    }, appDataController.getBloqueioAcesso.bind(appDataController));
+
+    protectedRoutes.put('/bloqueio-acesso', {
+      onRequest: [fastify.requireRole(['SUPER_USER'])],
+      schema: {
+        tags: ['app-data'],
+        description: 'Atualizar a configuração de bloqueio de acesso (admin)',
+        security: [{ bearerAuth: [] }],
+        body: {
+          type: 'object',
+          required: ['bloquearAcesso', 'emailsComAcesso'],
+          properties: {
+            bloquearAcesso: { type: 'boolean' },
+            dataInicioAcesso: { type: ['string', 'null'] },
+            dataFimAcesso: { type: ['string', 'null'] },
+            emailsComAcesso: { type: 'array', items: { type: 'string' } },
+          },
+        },
+        response: {
+          200: {
+            type: 'object',
+            properties: {
+              message: { type: 'string' },
+              bloquearAcesso: { type: 'boolean' },
+              dataInicioAcesso: { type: ['string', 'null'] },
+              dataFimAcesso: { type: ['string', 'null'] },
+              emailsComAcesso: { type: 'array', items: { type: 'string' } },
+            },
+          },
+        },
+      },
+    }, appDataController.updateBloqueioAcesso.bind(appDataController));
   });
 }
