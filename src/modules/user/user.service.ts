@@ -35,6 +35,21 @@ export class UserService {
     return user;
   }
 
+  async getUserByEmail(email: string) {
+    const user = await this.userRepository.findByEmailSelect(email, {
+      id: true,
+      email: true,
+      name: true,
+      role: true,
+      createdAt: true,
+      updatedAt: true,
+    });
+    if (!user) {
+      throw new NotFoundError('Usuário não encontrado');
+    }
+    return user;
+  }
+
   /**
    * Listar usuários com paginação
    */
