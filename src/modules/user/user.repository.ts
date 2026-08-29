@@ -25,6 +25,13 @@ export class UserRepository {
     });
   }
 
+  async findByEmailSelect<T>(email: string, select: Prisma.UserSelect) {
+    return prisma.user.findUnique({
+      where: { email },
+      select
+    });
+  }
+
   /**
    * Buscar usuário por email
    */
