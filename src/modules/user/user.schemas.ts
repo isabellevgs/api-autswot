@@ -10,6 +10,13 @@ export const updateUserSchema = z.object({
     .optional(),
 });
 
+export const getUserByEmailQuerySchema = z.object({
+  email: z
+    .string()
+    .email('Email inválido')
+    .transform((e) => e.trim().toLowerCase()),
+});
+
 export const getUserParamsSchema = z.object({
   id: z.string().uuid('ID inválido'),
 });
@@ -19,6 +26,6 @@ export const listUsersQuerySchema = z.object({
 });
 
 export type UpdateUserInput = z.infer<typeof updateUserSchema>;
+export type GetUserByEmailQuery = z.infer<typeof getUserByEmailQuerySchema>;
 export type GetUserParams = z.infer<typeof getUserParamsSchema>;
 export type ListUsersQuery = z.infer<typeof listUsersQuerySchema>;
-
