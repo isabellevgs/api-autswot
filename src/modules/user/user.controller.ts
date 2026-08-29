@@ -6,6 +6,7 @@ import {
   updateUserSchema,
   getUserParamsSchema,
   listUsersQuerySchema,
+  getUserByEmailQuerySchema,
   type UpdateUserInput,
   type GetUserParams,
   type ListUsersQuery,
