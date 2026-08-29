@@ -9,6 +9,7 @@ import {
   type UpdateUserInput,
   type GetUserParams,
   type ListUsersQuery,
+  type GetUserByEmailQuery,
 } from './user.schemas.js';
 
 const resetPasswordBodySchema = z.object({
