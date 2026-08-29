@@ -90,6 +90,51 @@ export async function userRoutes(fastify: FastifyInstance) {
     },
   }, userController.getUserRegistration.bind(userController));
 
+  // Admin: buscar usuário por email (requer SUPER_USER)
+  fastify.get('/by-email', {
+    onRequest: [fastify.requireRole(['SUPER_USER'])],
+    schema: {
+      tags: ['users'],
+      description: 'Buscar usuário por email (admin)',
+      security: [{ bearerAuth: [] }],
+      querystring: {
+        type: 'object',
+        required: ['email'],
+        properties: {
+          email: { type: 'string', format: 'email' },
+        },
+      },
+      response: {
+        200: {
+          description: 'Dados do usuário',
+          type: 'object',
+          properties: {
+            user: {
+              type: 'object',
+              nullable: true,
+              properties: {
+                id: { type: 'string' },
+                email: { type: 'string' },
+                name: { type: 'string' },
+                role: { type: 'string', enum: ['USER', 'SUPER_USER'] },
+                createdAt: { type: 'string' },
+                updatedAt: { type: 'string' },
+              },
+            },
+          },
+        },
+        404: {
+          description: 'Usuário não encontrado',
+          type: 'object',
+          properties: {
+            error: { type: 'string' },
+            code: { type: 'string' },
+          },
+        },
+      },
+    },
+  }, userController.getUserByEmail.bind(userController));
+  
   fastify.get('/:id', {
     schema: {
       tags: ['users'],
