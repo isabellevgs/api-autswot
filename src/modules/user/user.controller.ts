@@ -25,6 +25,12 @@ export class UserController {
     return reply.send({ user });
   }
 
+  async getUserByEmail(request: FastifyRequest<{ Querystring: GetUserByEmailQuery }>, reply: FastifyReply) {
+    const { email } = getUserByEmailQuerySchema.parse(request.query);
+    const user = await userService.getUserByEmail(email);
+    return reply.send({ user });
+  }
+
   async listUsers(request: FastifyRequest<{ Querystring: ListUsersQuery }>, reply: FastifyReply) {
     const { page = 1, limit = 10 } = listUsersQuerySchema.parse(request.query);
     const result = await userService.listUsers(page, limit);
