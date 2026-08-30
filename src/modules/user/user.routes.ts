@@ -148,7 +148,7 @@ export async function userRoutes(fastify: FastifyInstance) {
         properties: {
           emails: {
             type: 'array',
-            items: { type: 'string', format: 'email' },
+            items: { type: 'string', minLength: 1, maxLength: 254 },
             minItems: 1,
             maxItems: 200,
           },
