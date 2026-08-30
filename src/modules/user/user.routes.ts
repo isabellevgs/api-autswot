@@ -134,6 +134,46 @@ export async function userRoutes(fastify: FastifyInstance) {
       },
     },
   }, userController.getUserByEmail.bind(userController));
+
+  // Admin: buscar múltiplos usuários por lista de emails (requer SUPER_USER)
+  fastify.post('/by-emails', {
+    onRequest: [fastify.requireRole(['SUPER_USER'])],
+    schema: {
+      tags: ['users'],
+      description: 'Buscar múltiplos usuários por email em lote (admin)',
+      security: [{ bearerAuth: [] }],
+      body: {
+        type: 'object',
+        required: ['emails'],
+        properties: {
+          emails: {
+            type: 'array',
+            items: { type: 'string', format: 'email' },
+            minItems: 1,
+            maxItems: 200,
+          },
+        },
+      },
+      response: {
+        200: {
+          description: 'Mapa de email -> dados do usuário (emails não encontrados ficam ausentes)',
+          type: 'object',
+          properties: {
+            usuarios: {
+              type: 'object',
+              additionalProperties: {
+                type: 'object',
+                properties: {
+                  name: { type: 'string', nullable: true },
+                  createdAt: { type: 'string' },
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+  }, userController.getUsersByEmails.bind(userController));
   
   fastify.get('/:id', {
     schema: {
