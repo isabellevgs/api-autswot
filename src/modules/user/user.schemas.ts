@@ -27,7 +27,7 @@ export const listUsersQuerySchema = z.object({
 
 export const getUsersByEmailsBodySchema = z.object({
   emails: z
-    .array(z.string().email())
+    .array(z.string().trim().min(1).max(254))
     .min(1, 'Informe ao menos um email')
     .max(200, 'Máximo de 200 emails por consulta'),
 });
