@@ -25,6 +25,14 @@ export const listUsersQuerySchema = z.object({
   ...paginationQueryFields,
 });
 
+export const getUsersByEmailsBodySchema = z.object({
+  emails: z
+    .array(z.string().email())
+    .min(1, 'Informe ao menos um email')
+    .max(200, 'Máximo de 200 emails por consulta'),
+});
+
+export type GetUsersByEmailsBody = z.infer<typeof getUsersByEmailsBodySchema>;
 export type UpdateUserInput = z.infer<typeof updateUserSchema>;
 export type GetUserByEmailQuery = z.infer<typeof getUserByEmailQuerySchema>;
 export type GetUserParams = z.infer<typeof getUserParamsSchema>;
