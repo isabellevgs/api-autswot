@@ -63,6 +63,18 @@ export class UserRepository {
   }
 
   /**
+ * Buscar múltiplos usuários por uma lista de emails (para consultas em lote)
+ */
+async findManyByEmails(emails: string[], select: Prisma.UserSelect) {
+  return prisma.user.findMany({
+    where: {
+      email: { in: emails }
+    },
+    select
+  });
+}
+
+  /**
    * Contar usuários
    */
   async count(): Promise<number> {
