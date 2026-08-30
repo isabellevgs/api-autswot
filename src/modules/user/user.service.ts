@@ -51,6 +51,32 @@ export class UserService {
   }
 
   /**
+ * Buscar múltiplos usuários por email (consulta em lote)
+ * Normaliza (lowercase/trim) e deduplica antes de consultar.
+ * Retorna um mapa email -> dados do usuário (emails não encontrados ficam ausentes do mapa).
+ */
+async getUsersByEmails(emails: string[]) {
+  const emailsNormalizados = [...new Set(
+    emails.map((e) => e.trim().toLowerCase())
+  )];
+
+  const usuarios = await this.userRepository.findManyByEmails(emailsNormalizados, {
+    email: true,
+    name: true,
+    createdAt: true,
+  });
+
+  const mapa: Record<string, { name: string | null; createdAt: Date }> = {};
+  for (const usuario of usuarios) {
+    mapa[usuario.email.toLowerCase()] = {
+      name: usuario.name,
+      createdAt: usuario.createdAt,
+    };
+  }
+  return mapa;
+}
+
+  /**
    * Listar usuários com paginação
    */
   async listUsers(page: number = 1, limit: number = 10) {
