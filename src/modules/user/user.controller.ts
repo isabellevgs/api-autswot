@@ -7,10 +7,12 @@ import {
   getUserParamsSchema,
   listUsersQuerySchema,
   getUserByEmailQuerySchema,
+  getUsersByEmailsBodySchema,
   type UpdateUserInput,
   type GetUserParams,
   type ListUsersQuery,
   type GetUserByEmailQuery,
+  type GetUsersByEmailsBody
 } from './user.schemas.js';
 
 const resetPasswordBodySchema = z.object({
@@ -31,6 +33,15 @@ export class UserController {
     const { email } = getUserByEmailQuerySchema.parse(request.query);
     const user = await userService.getUserByEmail(email);
     return reply.send({ user });
+  }
+
+  async getUsersByEmails(
+    request: FastifyRequest<{ Body: GetUsersByEmailsBody }>,
+    reply: FastifyReply
+  ) {
+    const { emails } = getUsersByEmailsBodySchema.parse(request.body);
+    const usuarios = await userService.getUsersByEmails(emails);
+    return reply.send({ usuarios });
   }
 
   async listUsers(request: FastifyRequest<{ Querystring: ListUsersQuery }>, reply: FastifyReply) {
