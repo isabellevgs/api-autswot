@@ -185,5 +185,83 @@ export async function appDataRoutes(fastify: FastifyInstance) {
         },
       },
     }, appDataController.updateBloqueioAcesso.bind(appDataController));
+
+    // Usado pelo próprio usuário para saber se está bloqueado no SWOT
+    protectedRoutes.get('/swot-liberado', {
+      schema: {
+        tags: ['app-data'],
+        description: 'Verificar se o usuário autenticado pode acessar o SWOT',
+        security: [{ bearerAuth: [] }],
+        response: {
+          200: {
+            type: 'object',
+            properties: {
+              swotLiberado: { type: 'boolean' },
+            },
+          },
+          404: {
+            type: 'object',
+            properties: {
+              error: { type: 'string' },
+              code: { type: 'string' },
+            },
+          },
+        },
+      },
+    }, appDataController.getSwotLiberado.bind(appDataController));
+
+    // Uso administrativo — configuração completa
+    protectedRoutes.get('/bloqueio-swot', {
+      onRequest: [fastify.requireRole(['SUPER_USER'])],
+      schema: {
+        tags: ['app-data'],
+        description: 'Obter a configuração de bloqueio de SWOT (admin)',
+        security: [{ bearerAuth: [] }],
+        response: {
+          200: {
+            type: 'object',
+            properties: {
+              bloquearSwot: { type: 'boolean' },
+              emailsBloqueadosSwot: { type: 'array', items: { type: 'string' } },
+            },
+          },
+          404: {
+            type: 'object',
+            properties: {
+              error: { type: 'string' },
+              code: { type: 'string' },
+            },
+          },
+        },
+      },
+    }, appDataController.getBloqueioSwot.bind(appDataController));
+
+    protectedRoutes.put('/bloqueio-swot', {
+      onRequest: [fastify.requireRole(['SUPER_USER'])],
+      schema: {
+        tags: ['app-data'],
+        description: 'Atualizar a configuração de bloqueio de SWOT (admin)',
+        security: [{ bearerAuth: [] }],
+        body: {
+          type: 'object',
+          required: ['bloquearSwot', 'emailsBloqueadosSwot'],
+          properties: {
+            bloquearSwot: { type: 'boolean' },
+            emailsBloqueadosSwot: { type: 'array', items: { type: 'string' } },
+          },
+        },
+        response: {
+          200: {
+            type: 'object',
+            properties: {
+              message: { type: 'string' },
+              bloquearSwot: { type: 'boolean' },
+              emailsBloqueadosSwot: { type: 'array', items: { type: 'string' } },
+            },
+          },
+        },
+      },
+    }, appDataController.updateBloqueioSwot.bind(appDataController));
+    
   });
 }
