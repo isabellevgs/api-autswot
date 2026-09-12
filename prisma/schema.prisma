@@ -393,13 +393,15 @@ model QuestionarioResposta {
 }
 
 model AppData {
-  id                Int       @id @default(1)
-  tcle              String    @db.Text
-  termoUso          String    @default("") @db.Text
-  bloquearAcesso    Boolean   @default(false)
-  dataInicioAcesso  DateTime? @db.Date
-  dataFimAcesso     DateTime? @db.Date
-  emailsComAcesso   String[]  @default([])
-  updatedAt         DateTime  @updatedAt
+  id                    Int       @id @default(1)
+  tcle                  String    @db.Text
+  termoUso              String    @default("") @db.Text
+  bloquearAcesso        Boolean   @default(false)
+  dataInicioAcesso      DateTime? @db.Date
+  dataFimAcesso         DateTime? @db.Date
+  emailsComAcesso       String[]  @default([])
+  bloquearSwot          Boolean   @default(false)   
+  emailsBloqueadosSwot  String[]  @default([])
+  updatedAt             DateTime  @updatedAt
 }
 
