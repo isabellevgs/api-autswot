@@ -1,6 +1,6 @@
 import type { FastifyRequest, FastifyReply } from 'fastify';
 import { AppDataService, AppDataNotFoundError } from './app-data.service.js';
-import type { AtualizarBloqueioAcessoInput } from './app-data.service.js';
+import type { AtualizarBloqueioAcessoInput, AtualizarBloqueioSwotInput } from './app-data.service.js';
 import { UserService } from '../user/user.service.js';
 
 const appDataService = new AppDataService();
