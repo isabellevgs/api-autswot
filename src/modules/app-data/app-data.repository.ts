@@ -31,4 +31,14 @@ export class AppDataRepository {
       data,
     });
   }
+
+  async updateBloqueioSwot(data: {
+    bloquearSwot: boolean;
+    emailsBloqueadosSwot: string[];
+  }): Promise<AppData> {
+    return prisma.appData.update({
+      where: { id: 1 },
+      data,
+    });
+  }
 }
