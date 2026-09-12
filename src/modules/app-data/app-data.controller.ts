@@ -79,4 +79,35 @@ export class AppDataController {
     const result = await appDataService.updateBloqueioAcesso(body);
     return reply.send({ message: 'Configuração de bloqueio de acesso atualizada com sucesso', ...result });
   }
+
+  async getBloqueioSwot(request: FastifyRequest, reply: FastifyReply) {
+    try {
+      const result = await appDataService.getBloqueioSwot();
+      return reply.send(result);
+    } catch (err) {
+      if (err instanceof AppDataNotFoundError) {
+        return reply.status(404).send({ error: err.message, code: 'APP_DATA_NOT_FOUND' });
+      }
+      throw err;
+    }
+  }
+
+  async updateBloqueioSwot(request: FastifyRequest, reply: FastifyReply) {
+    const body = request.body as AtualizarBloqueioSwotInput;
+    const result = await appDataService.updateBloqueioSwot(body);
+    return reply.send({ message: 'Configuração de bloqueio de SWOT atualizada com sucesso', ...result });
+  }
+
+  async getSwotLiberado(request: FastifyRequest, reply: FastifyReply) {
+    try {
+      const emailUsuario = request.user.email;
+      const result = await appDataService.getSwotLiberado(emailUsuario);
+      return reply.send(result);
+    } catch (err) {
+      if (err instanceof AppDataNotFoundError) {
+        return reply.status(404).send({ error: err.message, code: 'APP_DATA_NOT_FOUND' });
+      }
+      throw err;
+    }
+  }
 }
