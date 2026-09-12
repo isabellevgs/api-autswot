@@ -14,6 +14,11 @@ export interface AtualizarBloqueioAcessoInput {
   emailsComAcesso: string[];
 }
 
+export interface AtualizarBloqueioSwotInput {
+  bloquearSwot: boolean;
+  emailsBloqueadosSwot: string[];
+}
+
 const formatarData = (data: Date | null) =>
   data ? data.toISOString().split('T')[0] : null;
 
@@ -132,5 +137,46 @@ export class AppDataService {
       dataFimAcesso: formatarData(appData.dataFimAcesso),
       emailsComAcesso: appData.emailsComAcesso,
     };
+  }
+
+  /** Uso administrativo: retorna a configuração completa (SUPER_USER). */
+  async getBloqueioSwot() {
+    const appData = await this.repository.get();
+    if (!appData) {
+      throw new AppDataNotFoundError();
+    }
+    return {
+      bloquearSwot: appData.bloquearSwot,
+      emailsBloqueadosSwot: appData.emailsBloqueadosSwot,
+    };
+  }
+
+  async updateBloqueioSwot(input: AtualizarBloqueioSwotInput) {
+    const appData = await this.repository.updateBloqueioSwot({
+      bloquearSwot: input.bloquearSwot,
+      emailsBloqueadosSwot: input.bloquearSwot ? input.emailsBloqueadosSwot : [],
+    });
+    return {
+      bloquearSwot: appData.bloquearSwot,
+      emailsBloqueadosSwot: appData.emailsBloqueadosSwot,
+    };
+  }
+
+  /** Uso pelo usuário comum: só diz se ELE está bloqueado no SWOT. */
+  async getSwotLiberado(emailUsuario: string) {
+    const appData = await this.repository.get();
+    if (!appData) {
+      throw new AppDataNotFoundError();
+    }
+
+    if (!appData.bloquearSwot) {
+      return { swotLiberado: true };
+    }
+
+    const bloqueado = appData.emailsBloqueadosSwot.some(
+      (email) => email.toLowerCase() === emailUsuario.toLowerCase(),
+    );
+
+    return { swotLiberado: !bloqueado };
   }
 }
