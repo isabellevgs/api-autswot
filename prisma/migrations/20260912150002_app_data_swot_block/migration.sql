@@ -1,0 +1,2 @@
+ALTER TABLE "AppData" ADD COLUMN "bloquearSwot" BOOLEAN NOT NULL DEFAULT false;
+ALTER TABLE "AppData" ADD COLUMN "emailsBloqueadosSwot" TEXT[] NOT NULL DEFAULT '{}';
